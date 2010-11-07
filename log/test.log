@@ -1,0 +1,72 @@
+
+
+Processing SiteController#about (for 0.0.0.0 at 2010-10-30 13:27:57) [GET]
+Rendering template within layouts/site
+Rendering site/about
+Completed in 12ms (View: 10, DB: 1) | 200 OK [http://test.host/site/about]
+
+
+Processing SiteController#help (for 0.0.0.0 at 2010-10-30 13:27:57) [GET]
+Rendering template within layouts/site
+Rendering site/help
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/site/help]
+
+
+Processing SiteController#index (for 0.0.0.0 at 2010-10-30 13:27:57) [GET]
+Rendering template within layouts/site
+Rendering site/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://test.host/]
+
+
+Processing SiteController#about (for 0.0.0.0 at 2010-10-30 13:28:39) [GET]
+Rendering template within layouts/site
+Rendering site/about
+Completed in 12ms (View: 9, DB: 1) | 200 OK [http://test.host/site/about]
+
+
+Processing SiteController#help (for 0.0.0.0 at 2010-10-30 13:28:39) [GET]
+Rendering template within layouts/site
+Rendering site/help
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://test.host/site/help]
+
+
+Processing SiteController#index (for 0.0.0.0 at 2010-10-30 13:28:39) [GET]
+Rendering template within layouts/site
+Rendering site/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://test.host/]
+
+
+Processing SiteController#about (for 0.0.0.0 at 2010-10-30 13:32:26) [GET]
+Rendering template within layouts/site
+Rendering site/about
+Completed in 21ms (View: 18, DB: 9) | 200 OK [http://test.host/site/about]
+
+
+Processing SiteController#help (for 0.0.0.0 at 2010-10-30 13:32:26) [GET]
+Rendering template within layouts/site
+Rendering site/help
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/site/help]
+
+
+Processing SiteController#index (for 0.0.0.0 at 2010-10-30 13:32:26) [GET]
+Rendering template within layouts/site
+Rendering site/index
+Completed in 3ms (View: 3, DB: 0) | 200 OK [http://test.host/]
+
+
+Processing SiteController#about (for 0.0.0.0 at 2010-10-30 13:37:47) [GET]
+Rendering template within layouts/site
+Rendering site/about
+Completed in 12ms (View: 11, DB: 1) | 200 OK [http://test.host/site/about]
+
+
+Processing SiteController#help (for 0.0.0.0 at 2010-10-30 13:37:47) [GET]
+Rendering template within layouts/site
+Rendering site/help
+Completed in 4ms (View: 3, DB: 0) | 200 OK [http://test.host/site/help]
+
+
+Processing SiteController#index (for 0.0.0.0 at 2010-10-30 13:37:47) [GET]
+Rendering template within layouts/site
+Rendering site/index
+Completed in 3ms (View: 2, DB: 0) | 200 OK [http://test.host/]

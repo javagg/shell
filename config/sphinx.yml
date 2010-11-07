@@ -1,0 +1,14 @@
+development: &my_settings
+  enable_star: 1
+  min_prefix_len: 0
+  min_infix_len: 2
+  min_word_len: 1
+  max_results: 70000
+  morphology: none
+  listen: localhost:3312
+  exceptions: ../log/sphinx_exception.log
+  chinese_dictionary: I:/sphinx/bin/xdict
+test:
+  <<: *my_settings
+production:
+  <<: *my_settings

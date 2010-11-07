@@ -1,0 +1,7 @@
+ruby script/plugin install http://github.com/markcatley/responds_to_parent.git
+ruby script/plugin install http://github.com/ewildgoose/render_component.git 
+
+gem install paperclip
+gem install cancan
+gem install authlogic
+

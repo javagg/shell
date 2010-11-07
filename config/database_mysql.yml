@@ -1,0 +1,16 @@
+defaults: &defaults
+  adapter: mysql
+  encoding: utf8
+  username: root
+  password:
+  host: localhost
+
+development:
+  database: shell_development
+  <<: *defaults
+test:
+  database: shell_test
+  <<: *defaults
+production:
+  database: shell_production
+  <<: *defaults

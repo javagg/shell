@@ -1,0 +1,196 @@
+en:
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%e %b"
+      long: "%B %e, %Y"
+      only_day: "%e"
+
+    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
+    abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    order: [ :year, :month, :day ]
+
+  time:
+    formats:
+      default: "%a %b %d %H:%M:%S %Z %Y"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+      only_second: "%S"
+
+      datetime:
+        formats:
+          default: "%Y-%m-%dT%H:%M:%S%Z"
+
+    am: 'am'
+    pm: 'pm'
+
+  datetime:
+    distance_in_words:
+      half_a_minute: 'half a minute'
+      less_than_x_seconds:
+        zero: 'less than 1 second'
+        one: '1 second'
+        other: '{{count}} seconds'
+      x_seconds:
+        one: '1 second'
+        other: '{{count}} seconds'
+      less_than_x_minutes:
+        zero: 'less than a minute'
+        one: '1 minute'
+        other: '{{count}} minutes'
+      x_minutes:
+        one: '1 minute'
+        other: '{{count}} minutes'
+      about_x_hours:
+        one: 'about 1 hour'
+        other: '{{count}} hours'
+      x_days:
+        one: '1 day'
+        other: '{{count}} days'
+      about_x_months:
+        one: 'about 1 month'
+        other: '{{count}} months'
+      x_months:
+        one: '1 month'
+        other: '{{count}} months'
+      about_x_years:
+        one: 'about 1 year'
+        other: '{{count}} years'
+      over_x_years:
+        one: 'over 1 year'
+        other: '{{count}} years'
+
+  number:
+    format:
+      precision: 3
+      separator: '.'
+      delimiter: ','
+    currency:
+      format:
+        unit: '$'
+        precision: 2
+        format: '%u %n'
+  activerecord:
+    attribute:
+      user:
+        username: "用户名"
+        
+  general:
+    ok: "Ok"
+    cancel: "Cancel"
+    are_you_sure: "Are you sure?"
+    submit: "Sumbit"
+    loading: "Loading..."
+    prev_label: "prev"
+    next_label: "next"
+    
+  txt:
+    log_in_to_app: "登录到系统"
+    logged_in: "用户登录了"
+    logged_out: "用户已退出"
+    user: "用户"
+    invalid_user_or_password: "不正确的用户名或者密码"
+    user_create_succeeded: "成功生成用户"
+    user_update_succeeded: "成功更新用户信息"
+    user_delete_succeeded: "用户成功删除"
+    user_dosent_exist: "用户不存在"
+    password_sent_to_your_email: "密码发送已发送到您的邮箱"
+    check_email_for_activation: "Your account has been created. Please check your e-mail for your account activation instructions!"
+    account_updated: "Your account has been successfully updated!"
+    password_updated: "Your password has been successfully updated!"
+    account_with_that_email_not_exist: "No user was found with that email address!"
+    check_email_for_password_reset: "Please check your email for instructions to reset your password!"
+  site:
+    home: "Home"
+    about: "About Us"
+    contact: "Contact Us"
+    help: "Help"
+    choose_lang: "Please choose your language: "
+    yangchang_name: "Yangchang and Shell Petroleum Company Limited"
+    contract_management: "Contracts"
+    license_management: "Licenses"
+    archive_management: "Archives"
+    user_management: "Users"
+    system_settings: "System"
+    copyright: "Yangchang and Shell Petroleum Company Limited, All Rights Reserved"
+
+  user:
+    username: "User Name"
+    password: "Password"
+    confirm_password: "Confirm"
+    email: "Email"
+    register: "Register"
+    register_now: "Register Now"
+    my_account: "My Account"
+    users_currently_logged_in: "Number of users currently logged in: "
+    login: "Login"
+    logout: "Logout"
+    remember_me: "Remember Me"
+    forget_password: "Forget password"
+    cannot_delete_last_user: "Cannot delete the last user"
+    logged_in_to_access: "You must be logged in to access this page"
+    logged_out_to_access: "You must be logged out to access this page"
+  
+  document:
+    basic_info: "Basic"
+    adv_info: "高级信息"
+    number: "No."
+    type: "Document Type"
+    name: "Name"
+    description: "描述"
+    issue_dep: "发行部门"
+    keep_dep: 保存部门
+    keeper: 保管人
+    origin_loc: "原件保存地址"
+    expired_at: "有效期至"
+    state: "状态"
+    has_backup: "是否有备份"
+    backup_loc: "备份保存地址"
+    has_electrical_edtion: "是否有电子版"
+    security_level: "安全保密等级"
+    
+  archive:
+    number: "编号"
+    type: "类型"
+    name: "名称"
+    description: "描述"
+    issue_dep: "发行部门"
+    keep_dep: 保存部门
+    keeper: 保管人
+    origin_loc: "原件保存地址"
+    expired_at: "有效期至"
+    state: "状态"
+    has_backup: "是否有备份"
+    backup_loc: "备份保存地址"
+    has_electrical_edtion: "是否有电子版"
+    security_level: "安全保密等级"
+    
+  contract:
+    number: 合同编号
+    type: 类型
+    other_party: "合同对方"
+    content: "合同内容"
+    start_date: "开始日期"
+    end_date: "结束日期"
+    expense_paid_by: "费用归属" 
+    owning_department: "所属部门"
+    amount: "合同金额"
+    person_in_charge: "持有人／负责人"
+    executive_person: "具体执行人"
+    is_transfered: "是否已经保管"
+  
+  license:
+    sequence: "序列号"
+    area: "区域"
+    station_name: "油站名称"
+    name: "证照名称"
+    number: "编号或注册号"
+    issuing_authority: "发证机关"
+    issuing_date: "发证时间"
+    annual_inspection_date: "年审时间"
+    expired_on: "有效期"
+    filing_location: "存放地点"
+    memo: "备注"

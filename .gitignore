@@ -1,0 +1,8 @@
+tmp
+*.bak
+*.log
+*.pid
+.project
+nbproject
+
+

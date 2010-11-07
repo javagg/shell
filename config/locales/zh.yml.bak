@@ -1,0 +1,329 @@
+zh:
+  date:
+    formats:
+      default: "%Y-%m-%d"
+      short: "%b %e日"
+      long: "%Y年 %B %e日"
+      only_day: "%e日"
+
+    day_names: [星期天, 星期一, 星期二, 星期三, 星期四, 星期五, 星期六]
+    abbr_day_names: [日, 一, 二, 三, 四, 五, 六]
+    month_names: [~, 1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月]
+    abbr_month_names: [~, 1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月]
+    order: [ :year, :month, :day ]
+  
+  time:
+    formats:
+      default: "%a %b %d %H:%M:%S %Z %Y"
+      time: "%H:%M"
+      short: "%d %b %H:%M"
+      long: "%B %d, %Y %H:%M"
+      only_second: "%S"
+      
+      datetime:
+        formats:
+          default: "%Y-%m-%dT%H:%M:%S%Z"
+          
+      am: '上午'
+      pm: '下午'
+      
+  datetime:
+    distance_in_words:
+      half_a_minute: '半分钟'
+      less_than_x_seconds:
+        zero: '一秒内'
+        other: '{{count}} 秒'
+      x_seconds:
+        other: '{{count}} 秒'
+      less_than_x_minutes:
+        zero: '一分钟内'
+        other: '{{count}} 分钟'
+      x_minutes:
+        other: '{{count}} 分钟'
+      about_x_hours:
+        one: '一小时內'
+        other: '{{count}} 小时'
+      x_days:
+        other: '{{count}} 天'
+      about_x_months:
+        one: ' 一个月内'
+        other: '{{count}} 个月'
+      x_months:
+        other: '{{count}} months'
+      about_x_years:
+        one: ' 1 年内'
+        other: '{{count}} 年'
+      over_x_years:
+        other: '{{count}} 年以上'
+      
+  number:
+    format:
+      precision: 3
+      separator: '.'
+      delimiter: ','
+    currency:
+      format:
+        unit: '￥'
+        precision: 2
+        format: '%u %n'
+
+  active_scaffold:
+    add: '增加'
+    add_existing: '增加已有的'
+    add_existing_model: '增加已有的 %{model}'
+    are_you_sure_to_delete: '确定要删除 %{label}？'
+    cancel: '取消'
+    click_to_edit: '编辑请点击'
+    click_to_reset: '重置请点击'
+    close: '关闭'
+    create: '创建'
+    create_model: '创建 %{model}'
+    create_another: '创建另一个 %{model}'
+    created_model: '%{model} 已创建'
+    create_new: '新建'
+    customize: '定制'
+    delete: '删除'
+    deleted_model: '%{model} 已删除'
+    delimiter: '分隔符'
+    download: '下载'
+    edit: '编辑'
+    export: '导出'
+    nested_for_model: '%{parent_model} 的 %{nested_model}'
+    false: 'False'
+    filtered: '(过滤)'
+    found: '找到'
+    hide: '隐藏'
+    live_search: '即时搜索'
+    loading: '正在加载...'
+    next: '下一个'
+    no_entries: '无记录'
+    no_options: '无选项'
+    omit_header: '忽略标题'
+    options: '选项'
+    pdf: 'PDF'
+    previous: '上一个'
+    print: '打印'
+    refresh: '刷新'
+    remove: '移除'
+    remove_file: '移除或替换文件'
+    replace_with_new: '以新建的替换'
+    revisions_for_model: '对 %{model} 的修订'
+    reset: '重置'
+    saving: '正在保存...'
+    search: '搜索'
+    search_terms: '搜索条件'
+    _select_: '-请选择-'
+    show: '显示'
+    show_model: '显示 %{model}'
+    _to_ : ' 到 '
+    true: 'True'
+    update: '更新'
+    update_model: '更新 %{model}'
+    updated_model: '%{model} 已更新'
+    '=': '='
+    '>=': '>='
+    '<=': '<='
+    '>': '>'
+    '<': '<'
+    '!=': '!='
+    between: '在...之间'
+    is_null: '为空(null)'
+    is_not_null: '不为空(null)'
+    contains: '包含'
+    begins_with: '以...开始'
+    ends_with: '以...结束'
+    
+
+      # error_messages
+    cant_destroy_record: "%{record} 不能被销毁"
+    internal_error: '请求失败(代码 500，内部错误)'
+    version_inconsistency: '版本不一致 - 在开始编辑之后该记录已被修改'
+    failed_to_save_record: '由于未知原因未能保存该条记录'
+
+    column_is_null: "(空)"
+  activerecord:
+    models:
+      user: 
+        one: "用户"
+        other: "用户"
+      archive: 
+        one: "文档"
+        other: "文档"
+      attachment: 
+        one: "附件"
+        other: "附件"        
+    attributes:
+      user_session:
+        username: "用户名"
+        password: "密码"
+              
+      user:
+        username: "用户名"
+        password: "密码"
+        password_confirmation: "确认密码"
+        email: "电邮"
+        
+      document:
+        number: "编号"
+        name: "名称"
+        description: "描述"
+        attachments: "附件"
+        
+      archive:
+        number: "文档编号"
+        archive_type: "文档类型"
+        name: "名称"
+        description: "描述"
+        issue_dep: "发行部门"
+        keep_dep: 保存部门
+        keeper: 保管人
+        origin_loc: "原件保存地址"
+        expired_at: "有效期至"
+        state: "状态"
+        has_backup: "是否有备份"
+        backup_loc: "备份保存地址"
+        has_electrical_edtion: "是否有电子版"
+        security_level: "安全保密等级"
+        attachments: "附件"
+        
+      contract:
+        number: 合同编号
+        contract_type: 合同类型
+        other_party: "合同对方"
+        content: "合同内容"
+        start_date: "开始日期"
+        end_date: "结束日期"
+        expense_paid_by: "费用归属" 
+        owning_department: "所属部门"
+        amount: "合同金额"
+        person_in_charge: "持有人／负责人"
+        executive_person: "具体执行人"
+        is_transfered: "是否已经保管"
+  
+      license:
+        sequence: "序列号"
+        area: "区域"
+        station_name: "油站名称"
+        name: "证照名称"
+        number: "证照编号或注册号"
+        issuing_authority: "发证机关"
+        issuing_date: "发证时间"
+        annual_inspection_date: "年审时间"
+        expired_on: "有效期"
+        filing_location: "存放地点"
+        memo: "备注"
+
+
+    errors:
+      template:
+        header:
+          one: "有 1 个错误发生导致「%{model}」无法被保存。"  
+          other: "有 %{count} 个错误发生导致「%{model}」无法被保存。"  
+        body: "如下字段出现错误："
+      models:
+        user:
+          attributes:
+            email:
+              too_short: "过短 (不能少于 %{count} 个字符)"
+              blank: "不能为空字符"
+              invalid: "格式无效"
+            username:
+              too_short: "过短 (不能少于 %{count} 个字符)"
+              blank: "不能为空字符"
+              invalid: "格式无效"
+            password:
+              too_short: "过短 (不能少于 %{count} 个字符)"
+              blank: "不能为空字符"
+              invalid: "格式无效"              
+              confirmation: "与确认值不匹配"   
+            password_confirmation:
+              too_short: "过短 (不能少于 %{count} 个字符)"
+              blank: "不能为空字符"
+              invalid: "格式无效"
+              
+      message: "请检查以下字段："
+      inclusion: "不包含于列表中"
+      exclusion: "不能用"
+      invalid: "不合法"
+      confirmation: "与确认值不匹配"
+      accepted: "必须接受"
+      empty: "不能留空"
+      blank: "不能为空字符"
+      too_long: "过长 (不能超过 %{count} 个字符)"
+      too_short: "过短 (不能少于 %{count} 个字符)"
+      wrong_length: "长度非法 (必须为 %{count} 个字符)"
+      taken: "不可用"
+      not_a_number: "不是数字"
+      greater_than: "必须大于 {{count}}"
+      greater_than_or_equal_to: "必须大于或等于 %{count}"
+      equal_to: "必须等于 %{count}"
+      less_than: "必须小于 %{count}"
+      less_than_or_equal_to: "必须小于或等于 %{count}"
+      odd: "必须为单数"
+      even: "必须为双数"
+
+  general:
+    ok: "确定"
+    cancel: "取消"
+    are_you_sure: "Are you sure?"
+    submit: "提交"
+    loading: "装载中..."
+    prev_label: "上一页"
+    next_label: "下一页"
+        
+  txt:
+    log_in_to_app: "登录到系统"
+    logged_in: "用户登录了"
+    logged_out: "用户已退出"
+    user: "用户"
+    invalid_user_or_password: "不正确的用户名或者密码"
+    user_create_succeeded: "成功生成用户"
+    user_update_succeeded: "成功更新用户信息"
+    user_delete_succeeded: "用户成功删除"
+    user_dosent_exist: "用户不存在"
+    password_sent_to_your_email: "密码发送已发送到您的邮箱"
+    check_email_for_activation: "你的帐号已经建立好了，请检查您的Email来激活！"
+    account_updated: "您的帐户已经成功更新了！"
+    account_activated: "您的帐户已经成功激活了！"
+    password_updated: "您的密码已经成功更新了！"
+    account_with_that_email_not_exist: "注册该电邮的用户并不存在！"
+    check_email_for_password_reset: "请检查您的电邮来进行密码重设！"
+    fectch: "取回"
+    logged_in_to_access: "你必须登录之后才能访问该页面"
+    logged_out_to_access: "你必须退出之后才能访问该页面"
+ 
+  site:
+    home: "首页"
+    about: "关于我们"
+    contact: "联系我们"
+    help: "帮助"
+    choose_lang: "请选择您的语言："
+    yangchang_name: "延长壳牌石油有限公司"
+    contract_management: "合同管理"
+    license_management: "证照管理"
+    archive_management: "文档管理"
+    user_management: "用户管理"
+    system_settings: "系统设置"
+    logged_as: "登录为"
+    copyright: "延长壳牌石油有限公司版权所有"
+    
+  user:
+    username: "用户名"
+    password: "密码"
+    confirm_password: "确认密码"
+    email: "电邮"
+    register: "注册"
+    register_now: "现在注册"
+    my_account: "我的信息"
+    users_currently_logged_in: "当前登录用户数："
+    login: "登录"
+    logout: "退出"
+    remember_me: "记住我"
+    forget_password: "忘记密码"
+    cannot_delete_last_user: "不能删除最后一个用户"
+  
+  document:
+    basic_info: "基本信息"
+    adv_info: "高级信息"
+    show_attachments: "显示附件"
+  

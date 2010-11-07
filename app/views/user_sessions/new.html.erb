@@ -1,0 +1,33 @@
+<div id="login_panel" >
+  <% form_for @user_session, :url => user_session_path do |f| %>
+    <table>
+      <tbody>
+        <tr>
+          <td style="text-align:right;width:80px"><label><%= t 'user.username' %></label></td>
+          <td style="text-align:left"><%= f.text_field :username, :class => 'txt_field' %></td>
+        </tr>
+        <tr>
+          <td style="text-align:right;width:80px"><label><%= t 'user.password' %></label></td>
+          <td style="text-align:left"><%= f.password_field :password, :class => 'txt_field' %></td>
+        </tr>
+        <tr>
+          <td align="right"><%= f.check_box :remember_me %></td>
+          <td align="left"><%= t 'user.remember_me' %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td align="left"><%= f.submit t 'user.login', :class => 'submit' %></td>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td align="left">
+            <%= link_to t('user.forget_password'), new_password_reset_path %>
+            &nbsp;|&nbsp;
+            <%= link_to t('user.register_now'), new_account_path %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>
+
