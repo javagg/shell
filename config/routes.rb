@@ -1,5 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :documents, :active_scaffold => true
+  map.resources :contracts, :active_scaffold => true
   map.resources :archives, :active_scaffold => true
   map.resource :user_session
   map.resource :account, :controller => "users"

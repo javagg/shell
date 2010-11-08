@@ -60,6 +60,10 @@ ActionMailer::Base.smtp_settings = {
   :password => "1234567",
 }
 
+ActiveScaffold.set_defaults do |config|
+  config.ignore_columns.add [:created_at, :updated_at, :id]
+end
+
 class ActiveRecord::Base
   def self.acts_as_document
     include Documentable
@@ -73,3 +77,4 @@ ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :brtime => "%p%I:%M"
 )
+

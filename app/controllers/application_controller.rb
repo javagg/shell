@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   def set_locale
     session[:locale] = params[:locale] if params[:locale]
     I18n.locale = session[:locale] || I18n.default_locale
-  rescue  Exception  =>  err
+  rescue  Exception => err
     logger.error  err
     flash.now[:notice]  =  "#{I18n.locale} translation not available"
     I18n.load_path -= [locale_path]

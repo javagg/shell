@@ -1,3 +1,3 @@
 class Payment < ActiveRecord::Base
-  belongs_to :contracts
+  belongs_to :contract
 end

@@ -114,11 +114,9 @@ body {
     background: url(/images/bg_search.gif);
 }
 
-
 #searchbox {
     background:url("/images/searchbox.gif") no-repeat scroll 0 0 transparent;
     display:block;
-    float:right;
     height:21px;
     margin-right:10px !important;
     margin-top:4px;

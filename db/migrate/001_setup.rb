@@ -90,7 +90,9 @@ class Setup < ActiveRecord::Migration
     end
 
     create_table :contracts do |t|
-#      t.string :number
+      t.string :number
+      t.string :name
+      t.text :description
       t.string :contract_type
       t.string :other_party
       t.text :content
@@ -106,8 +108,15 @@ class Setup < ActiveRecord::Migration
     end
 
     create_table :payments do |t|
+      t.integer :contract_id
       t.date :pay_date
       t.decimal :amount
+      t.timestamps
+    end
+
+    create_table :reminders do |t|
+      t.integer :contract_id
+      t.datetime :when
       t.timestamps
     end
     
@@ -140,5 +149,6 @@ class Setup < ActiveRecord::Migration
     drop_table :licenses
     drop_table :contracts
     drop_table :payments
+    drop_table :reminders
   end
 end

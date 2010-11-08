@@ -152,6 +152,17 @@ zh:
       attachment: 
         one: "附件"
         other: "附件"        
+      contract: 
+        one: "合同"
+        other: "合同"
+      
+      payment: 
+        one: "支付"
+        other: "支付"
+        
+      reminder: 
+        one: "提醒"
+        other: "提醒" 
     attributes:
       user_session:
         username: "用户名"
@@ -168,7 +179,7 @@ zh:
         name: "名称"
         description: "描述"
         attachments: "附件"
-        
+
       archive:
         number: "文档编号"
         archive_type: "文档类型"
@@ -188,6 +199,10 @@ zh:
         
       contract:
         number: 合同编号
+        name: "合同名称"
+        description: "描述"
+        payments: "支付"
+        reminders: "提醒"
         contract_type: 合同类型
         other_party: "合同对方"
         content: "合同内容"
@@ -212,7 +227,14 @@ zh:
         expired_on: "有效期"
         filing_location: "存放地点"
         memo: "备注"
-
+        
+      payment:
+        amount: "金额"
+        pay_date: "付款时间"
+        
+      reminder:
+        when: "何时"
+        
 
     errors:
       template:
@@ -328,3 +350,7 @@ zh:
     adv_info: "高级信息"
     show_attachments: "显示附件"
   
+  contract:
+    show_payments: "显示支付情况"
+    show_remidners: "显示提醒设置"
+    
