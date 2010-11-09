@@ -21,15 +21,17 @@ fieldset.debug_info {
     background: #eee;
 }
 
-/*  Error  Reporting  Styles  */
+/*  Error Reporting Styles  */
 .fieldWithErrors {
-    margin: 2px;
+    border: 1px solid red;
+    margin: 1px;
     padding: 2px;
     background-color: red;
     display: table;
 }
 #errorExplanation {
-    border: 2px solid red;
+/*    text-align: left;*/
+    border: 1px solid red;
     padding: 7px;
     padding-bottom: 12px;
     margin-bottom: 20px;
@@ -56,7 +58,7 @@ fieldset.debug_info {
 }
 
 /* Flash Notice Style */
-#notice {
+#flash_notice {
     -moz-border-radius:5px 5px 5px 5px;
     margin: 1em 1em 2em 1em;
     background:none repeat scroll 0 0 #FFFEBA;
@@ -64,7 +66,7 @@ fieldset.debug_info {
     padding:10px;
 }
 
-#flash {
+#flash_error {
     -moz-border-radius:5px 5px 5px 5px;
     background:none repeat scroll 0 0 #FFFEBA;
     clear:both;
@@ -208,7 +210,7 @@ a:hover {
     margin:0 auto;
     opacity:0.85;
     padding:10px;
-    width: 260px;
+    width: 280px;
     color: #000000;
     overflow:hidden
 }
@@ -219,7 +221,7 @@ a:hover {
     margin:0 auto;
     opacity:0.85;
     padding:10px;
-    width: 280px;
+    width: 300px;
     color: #000000;
     overflow:hidden;
 }

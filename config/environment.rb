@@ -24,6 +24,7 @@ Rails::Initializer.run do |config|
     :lib => 'thinking_sphinx',
     :version => '1.3.2'
   )
+  config.gem "declarative_authorization"
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -47,7 +48,7 @@ Rails::Initializer.run do |config|
 
   # email
   config.action_mailer.default_charset = "utf-8"
-  config.action_mailer.default_url_options = { :host => "219.245.133.20" }
+  config.action_mailer.default_url_options = { :host => "219.245.133.20", :port => 3000 }
 end
 
 ActionMailer::Base.delivery_method = :smtp

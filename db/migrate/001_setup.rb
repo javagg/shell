@@ -9,8 +9,8 @@ class Setup < ActiveRecord::Migration
     add_index :sessions, :updated_at
 
     create_table :users, :force => true do |t|
-      t.string :username, :null => false
-      t.string :email, :null => false
+      t.string :username
+      t.string :email
       t.string :crypted_password, :null => false
       t.string :salt, :null => false
       t.boolean :active, :default => false, :null => false
@@ -28,39 +28,34 @@ class Setup < ActiveRecord::Migration
       t.string :current_login_ip
       t.string :last_login_ip
 
+      # CanCan needs it
+      t.string :role
+
       t.timestamps
     end
-    add_index :users, :username, :unique => true
-    add_index :users, :email, :unique => true
+    add_index :users, :username
+    add_index :users, :email
 
-    create_table :documents do |t|
+    create_table :roles, :force => true do |t|
+      t.string :name
+    end
+
+    create_table :assignments, :force => true do |t|
+      t.references :user, :null => false
+      t.references :role, :null => false
+    end
+
+    create_table :documents, :force => true do |t|
       t.string :number
       t.string :name
       t.text :description
-
-#      t.string :documentable_type
-#
-#      # for thinking sphinx
-#      t.boolean :delta, :default => true, :null => false
 
       t.timestamps
     end
     add_index :documents, :name
 
-    #    create_table :attachments do |t|
-    #      t.integer :document_id
-    #      t.integer :parent_id
-    #      t.string :filename
-    #      t.string :content_type
-    #      t.integer :size
-    #      t.integer :width
-    #      t.integer :height
-    #      t.string :thumbnail
-    #      t.timestamps
-    #    end
-    
-    create_table :attachments do |t|
-      t.integer :attachable_id
+    create_table :attachments, :force => true do |t|
+      t.references :attachable
       t.string :attachable_type
       t.string :data_file_name
       t.string :data_content_type
@@ -72,12 +67,14 @@ class Setup < ActiveRecord::Migration
     end
     add_index :attachments, [:attachable_id, :attachable_type]
 
-    create_table :licenses do |t|
+    create_table :licenses, :force => true do |t|
+      t.string :number
+      t.string :name
+      t.text :description
       t.integer :sequence
       t.string :area
       t.string :station_name
-#      t.string :name
-#      t.string :number
+
       t.string :license_type
       t.string :issuing_authority
       t.date :issuing_date
@@ -89,7 +86,7 @@ class Setup < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :contracts do |t|
+    create_table :contracts, :force => true do |t|
       t.string :number
       t.string :name
       t.text :description
@@ -107,20 +104,20 @@ class Setup < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :payments do |t|
-      t.integer :contract_id
+    create_table :payments, :force => true do |t|
+      t.references :contract
       t.date :pay_date
       t.decimal :amount
       t.timestamps
     end
 
-    create_table :reminders do |t|
-      t.integer :contract_id
+    create_table :reminders, :force => true do |t|
+      t.references :contract
       t.datetime :when
       t.timestamps
     end
     
-    create_table :archives do |t|
+    create_table :archives, :force => true do |t|
       t.string :number
       t.string :name
       t.text :description
@@ -150,5 +147,7 @@ class Setup < ActiveRecord::Migration
     drop_table :contracts
     drop_table :payments
     drop_table :reminders
+    drop_table :roles
+    drop_table :assignments
   end
 end

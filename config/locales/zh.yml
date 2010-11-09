@@ -134,7 +134,7 @@ zh:
     ends_with: '以...结束'
     
 
-      # error_messages
+    # error_messages
     cant_destroy_record: "%{record} 不能被销毁"
     internal_error: '请求失败(代码 500，内部错误)'
     version_inconsistency: '版本不一致 - 在开始编辑之后该记录已被修改'
@@ -235,27 +235,37 @@ zh:
       reminder:
         when: "何时"
         
-
     errors:
       template:
         header:
-          one: "有 1 个错误发生导致「%{model}」无法被保存。"  
-          other: "有 %{count} 个错误发生导致「%{model}」无法被保存。"  
+          one: "有 1 个错误发生"  
+          other: "有 %{count} 个错误发生"  
         body: "如下字段出现错误："
+        
       models:
+        user_session:
+          attributes:
+            username:
+              blank: "不能为空"
+              invalid: "格式无效"
+            password:
+              blank: "不能为空"
+              invalid: "格式无效"
         user:
           attributes:
             email:
               too_short: "过短 (不能少于 %{count} 个字符)"
               blank: "不能为空字符"
               invalid: "格式无效"
+              taken: "已经被占用"
             username:
               too_short: "过短 (不能少于 %{count} 个字符)"
-              blank: "不能为空字符"
+              blank: "不能为空"
               invalid: "格式无效"
+              taken: "已经被占用"
             password:
               too_short: "过短 (不能少于 %{count} 个字符)"
-              blank: "不能为空字符"
+              blank: "不能为空"
               invalid: "格式无效"              
               confirmation: "与确认值不匹配"   
             password_confirmation:
@@ -311,9 +321,10 @@ zh:
     account_with_that_email_not_exist: "注册该电邮的用户并不存在！"
     check_email_for_password_reset: "请检查您的电邮来进行密码重设！"
     fectch: "取回"
-    logged_in_to_access: "你必须登录之后才能访问该页面"
-    logged_out_to_access: "你必须退出之后才能访问该页面"
- 
+    logged_in_to_access: "对不起，你必须登录之后才能访问该页面"
+    logged_out_to_access: "对不起，你必须退出之后才能访问该页面"
+    unauthorized_access: "对不起，您没有足够的权限访问该页"
+    
   site:
     home: "首页"
     about: "关于我们"
@@ -354,3 +365,5 @@ zh:
     show_payments: "显示支付情况"
     show_remidners: "显示提醒设置"
     
+  error_messages:
+    password_blank: "密码不能为空"

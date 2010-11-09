@@ -5,7 +5,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><%= @page_title %></title>
     <%= stylesheet_link_tag 'site' %>
-    <%= formtastic_stylesheet_link_tag %>
     <%= javascript_include_tag :all %>
     <%= active_scaffold_includes %>
     <%= stylesheet_link_tag 'active_scaffold_overrides' %>
@@ -75,7 +74,6 @@
               <li><%= link_to I18n.t('site.home'), home_path %></li>
               <li><%= link_to I18n.t('site.contract_management'), contracts_path %></li>
               <li><%= link_to I18n.t('site.license_management') %></li>
-              <li><%= link_to I18n.t('site.archive_management'), :controller => "documents" %></li>
               <li><%= link_to I18n.t('site.archive_management'), archives_path %></li>
               <li><%= link_to I18n.t('site.user_management') %></li>
               <li><%= link_to I18n.t('site.system_settings') %></li>
@@ -106,8 +104,13 @@
 <%#*</div>%>
         <div id="content">
           <% if flash[:notice] -%>
-            <div id="notice"><%= flash[:notice] %></div>
+            <div id="#flash_notice"><%= flash[:notice] %></div>
           <% end -%>
+
+          <% if flash[:error] -%>
+            <div id="#flash_error"><%= flash[:error] %></div>
+          <% end -%>
+            
           <%= yield %>
         </div>
 

@@ -1,3 +1,4 @@
+
 class Emailer < ActionMailer::Base
   
   FROM = 'forshell12345@sohu.com'

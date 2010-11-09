@@ -70,3 +70,175 @@ Processing SiteController#index (for 0.0.0.0 at 2010-10-30 13:37:47) [GET]
 Rendering template within layouts/site
 Rendering site/index
 Completed in 3ms (View: 2, DB: 0) | 200 OK [http://test.host/]
+ActiveScaffold: extending RESTful routes for documents
+ActiveScaffold: extending RESTful routes for contracts
+ActiveScaffold: extending RESTful routes for archives
+ActiveScaffold: extending RESTful routes for users
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mLicense Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `licenses`[0m
+  [4;35;1mSQL (15.6ms)[0m   [0mSHOW TABLES[0m
+ActiveScaffold: extending RESTful routes for documents
+ActiveScaffold: extending RESTful routes for contracts
+ActiveScaffold: extending RESTful routes for archives
+ActiveScaffold: extending RESTful routes for users
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mLicense Columns (15.6ms)[0m   [0;1mSHOW FIELDS FROM `licenses`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+ActiveScaffold: extending RESTful routes for documents
+ActiveScaffold: extending RESTful routes for contracts
+ActiveScaffold: extending RESTful routes for archives
+ActiveScaffold: extending RESTful routes for users
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (6.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mArchive Columns (4.0ms)[0m   [0mSHOW FIELDS FROM `archives`[0m
+  [4;36;1mAttachment Columns (4.0ms)[0m   [0;1mSHOW FIELDS FROM `attachments`[0m
+  [4;35;1mContract Columns (95.0ms)[0m   [0mSHOW FIELDS FROM `contracts`[0m
+  [4;36;1mDocument Columns (60.0ms)[0m   [0;1mSHOW FIELDS FROM `documents`[0m
+  [4;35;1mPayment Columns (75.0ms)[0m   [0mSHOW FIELDS FROM `payments`[0m
+  [4;36;1mReminder Columns (7.0ms)[0m   [0;1mSHOW FIELDS FROM `reminders`[0m
+Unable to load documentable, underlying cause no such file to load -- documentable 
+
+ F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:184:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:291:in `require_or_load'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:250:in `depend_on'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:162:in `require_dependency'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:853:in `try_to_load_dependency'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:868:in `require_fixture_classes'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:865:in `each'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:865:in `require_fixture_classes'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:848:in `fixtures'
+./test/test_helper.rb:35
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+./test/unit/archive_test.rb:1
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5:in `load'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5:in `each'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
+Unable to load licence, underlying cause no such file to load -- licence 
+
+ F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:184:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:291:in `require_or_load'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:250:in `depend_on'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:162:in `require_dependency'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:853:in `try_to_load_dependency'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:868:in `require_fixture_classes'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:865:in `each'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:865:in `require_fixture_classes'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:848:in `fixtures'
+./test/test_helper.rb:35
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+./test/unit/archive_test.rb:1
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5:in `load'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5:in `each'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
+Unable to load documentable, underlying cause no such file to load -- documentable 
+
+ F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:184:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:291:in `require_or_load'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:250:in `depend_on'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:162:in `require_dependency'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:853:in `try_to_load_dependency'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:868:in `require_fixture_classes'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:865:in `each'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:865:in `require_fixture_classes'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:848:in `fixtures'
+./test/unit/../test_helper.rb:35
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:184:in `require'
+./test/unit/emailer_test.rb:1
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:173:in `load_without_new_constant_marking'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:173:in `load'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5:in `each'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
+Unable to load licence, underlying cause no such file to load -- licence 
+
+ F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:184:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:291:in `require_or_load'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:250:in `depend_on'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:162:in `require_dependency'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:853:in `try_to_load_dependency'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:868:in `require_fixture_classes'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:865:in `each'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:865:in `require_fixture_classes'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:848:in `fixtures'
+./test/unit/../test_helper.rb:35
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:184:in `require'
+./test/unit/emailer_test.rb:1
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:173:in `load_without_new_constant_marking'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:173:in `load'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5:in `each'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
+ActiveScaffold: extending RESTful routes for documents
+ActiveScaffold: extending RESTful routes for contracts
+ActiveScaffold: extending RESTful routes for archives
+ActiveScaffold: extending RESTful routes for users
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mUser Columns (5.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mArchive Columns (4.0ms)[0m   [0mSHOW FIELDS FROM `archives`[0m
+  [4;36;1mAttachment Columns (12.0ms)[0m   [0;1mSHOW FIELDS FROM `attachments`[0m
+  [4;35;1mContract Columns (4.0ms)[0m   [0mSHOW FIELDS FROM `contracts`[0m
+  [4;36;1mDocument Columns (4.0ms)[0m   [0;1mSHOW FIELDS FROM `documents`[0m
+  [4;35;1mPayment Columns (4.0ms)[0m   [0mSHOW FIELDS FROM `payments`[0m
+  [4;36;1mReminder Columns (4.0ms)[0m   [0;1mSHOW FIELDS FROM `reminders`[0m
+Unable to load documentable, underlying cause no such file to load -- documentable 
+
+ F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:184:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:291:in `require_or_load'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:250:in `depend_on'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:162:in `require_dependency'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:853:in `try_to_load_dependency'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:868:in `require_fixture_classes'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:865:in `each'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:865:in `require_fixture_classes'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:848:in `fixtures'
+./test/test_helper.rb:35
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+./test/functional/activation_controller_test.rb:1
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5:in `load'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5:in `each'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
+Unable to load licence, underlying cause no such file to load -- licence 
+
+ F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:184:in `require'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:291:in `require_or_load'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:250:in `depend_on'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activesupport-2.3.10/lib/active_support/dependencies.rb:162:in `require_dependency'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:853:in `try_to_load_dependency'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:868:in `require_fixture_classes'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:865:in `each'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:865:in `require_fixture_classes'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/activerecord-2.3.10/lib/active_record/fixtures.rb:848:in `fixtures'
+./test/test_helper.rb:35
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `gem_original_require'
+F:/noinstall/Ruby187/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:31:in `require'
+./test/functional/activation_controller_test.rb:1
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5:in `load'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5:in `each'
+F:/noinstall/Ruby187/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
