@@ -5,7 +5,7 @@ class DocumentsController < ApplicationController
     config.create.multipart = true
     config.update.multipart = true
     config.columns = [:number, :name, :description, :attachments]
-    config.list.columns.exclude :attachments
+    config.list.columns = [:number, :name, :description]
     config.search.columns.exclude :attachments
     config.nested.add_link I18n.t('document.show_attachments'), [:attachments]
     config.actions.exclude :search

@@ -12,8 +12,20 @@ authorization do
     end
   end
   
+  role :archive_read do
+    includes :users
+    has_permission_on :archives, :to => :read
+  end
+
+  role :archive_write do
+    includes :archive_viewer
+     has_permission_on :archives, :to => :manage
+  end
+  
   role :admin do
+    includes :users
     has_permission_on :users, :to => :manage
+    has_permission_on :archives, :to => :manage
   end
 end
 

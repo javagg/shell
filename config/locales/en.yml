@@ -125,6 +125,7 @@ en:
     register: "Register"
     register_now: "Register Now"
     my_account: "My Account"
+    account: "Account"
     users_currently_logged_in: "Number of users currently logged in: "
     login: "Login"
     logout: "Logout"

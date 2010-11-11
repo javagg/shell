@@ -1,4 +1,7 @@
 class Archive < ActiveRecord::Base
+  DEPARTMENTS = %w(FN OP HR EN HSSE)
+  validates_inclusion_of :issue_dep, :in => DEPARTMENTS
+  validates_inclusion_of :keep_dep, :in => DEPARTMENTS
   has_many :attachments, :as => :attachable, :dependent => :destroy
 end
 
@@ -18,9 +21,9 @@ end
 #  origin_loc            :string(255)
 #  expired_at            :date
 #  state                 :string(255)
-#  has_backup            :boolean(1)
+#  has_backup            :boolean(1)      default(FALSE)
 #  backup_loc            :string(255)
-#  has_electrical_edtion :boolean(1)
+#  has_electrical_edtion :boolean(1)      default(FALSE)
 #  security_level        :string(255)
 #  created_at            :datetime
 #  updated_at            :datetime

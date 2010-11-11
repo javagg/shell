@@ -7,11 +7,12 @@ class RoleTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: roles
 #
 #  id   :integer(4)      not null, primary key
-#  name :string(255)
+#  name :string(255)     not null
 #
 

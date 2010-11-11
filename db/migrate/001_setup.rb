@@ -9,8 +9,8 @@ class Setup < ActiveRecord::Migration
     add_index :sessions, :updated_at
 
     create_table :users, :force => true do |t|
-      t.string :username
-      t.string :email
+      t.string :username, :null => false
+      t.string :email, :null => false
       t.string :crypted_password, :null => false
       t.string :salt, :null => false
       t.boolean :active, :default => false, :null => false
@@ -28,23 +28,19 @@ class Setup < ActiveRecord::Migration
       t.string :current_login_ip
       t.string :last_login_ip
 
-      # CanCan needs it
-      t.string :role
-
       t.timestamps
     end
     add_index :users, :username
     add_index :users, :email
 
     create_table :roles, :force => true do |t|
-      t.string :name
+      t.string :name, :null => false
     end
 
-    create_table :assignments, :force => true do |t|
+    create_table :roles_users, :id => false do |t|
       t.references :user, :null => false
       t.references :role, :null => false
     end
-
     create_table :documents, :force => true do |t|
       t.string :number
       t.string :name
@@ -128,9 +124,9 @@ class Setup < ActiveRecord::Migration
       t.string :origin_loc
       t.date :expired_at
       t.string :state
-      t.boolean :has_backup
+      t.boolean :has_backup, :default => false
       t.string :backup_loc
-      t.boolean :has_electrical_edtion
+      t.boolean :has_electrical_edtion, :default => false
       t.string :security_level
       t.timestamps
     end
@@ -148,6 +144,6 @@ class Setup < ActiveRecord::Migration
     drop_table :payments
     drop_table :reminders
     drop_table :roles
-    drop_table :assignments
+    drop_table :roles_users
   end
 end

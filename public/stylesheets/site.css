@@ -15,7 +15,7 @@ root {
     color: maroon;
 }
 
-fieldset.debug_info {
+fieldset .debug_info {
     text-align: left;
     margin: 1em;
     background: #eee;
@@ -29,8 +29,9 @@ fieldset.debug_info {
     background-color: red;
     display: table;
 }
+
 #errorExplanation {
-/*    text-align: left;*/
+    text-align: left;
     border: 1px solid red;
     padding: 7px;
     padding-bottom: 12px;
@@ -64,17 +65,16 @@ fieldset.debug_info {
     background:none repeat scroll 0 0 #FFFEBA;
     line-height:1.3em;
     padding:10px;
+    text-align: center
 }
 
 #flash_error {
     -moz-border-radius:5px 5px 5px 5px;
+    margin: 1em 1em 2em 1em;
     background:none repeat scroll 0 0 #FFFEBA;
-    clear:both;
-    float:left;
     line-height:1.3em;
-    margin:0 auto 10px;
     padding:10px;
-
+    text-align: center
 }
 
 #page-container {
@@ -109,18 +109,11 @@ body {
     float: right
 }
 
-#search_box {
-    text-align:right;
-    width: 201px;
-    height: 31px;
-    background: url(/images/bg_search.gif);
-}
-
 #searchbox {
     background:url("/images/searchbox.gif") no-repeat scroll 0 0 transparent;
     display:block;
     height:21px;
-    margin-right:10px !important;
+/*    margin-right:10px !important;*/
     margin-top:4px;
     padding:3px 2px;
     width:209px;
@@ -210,7 +203,7 @@ a:hover {
     margin:0 auto;
     opacity:0.85;
     padding:10px;
-    width: 280px;
+    width: 260px;
     color: #000000;
     overflow:hidden
 }
@@ -221,9 +214,12 @@ a:hover {
     margin:0 auto;
     opacity:0.85;
     padding:10px;
-    width: 300px;
+    width: 270px;
     color: #000000;
     overflow:hidden;
+}
+#account_info_panel {
+    text-align:left
 }
 
 #register_panel input.txt_field  {
@@ -240,9 +236,9 @@ a {
 }
 
 .submit {
-    background:url("/images/button.gif") no-repeat scroll 0 0 transparent;
+    background-image:url("images/button.gif");
     border:medium none;
-    color:#ECECEC;
+    color:#000;
     height:18px;
     line-height:18px;
     text-align:center;
