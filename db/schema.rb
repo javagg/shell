@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101106124054) do
+ActiveRecord::Schema.define(:version => 1) do
 
   create_table "archives", :force => true do |t|
     t.string   "number"
@@ -22,9 +22,9 @@ ActiveRecord::Schema.define(:version => 20101106124054) do
     t.string   "origin_loc"
     t.date     "expired_at"
     t.string   "state"
-    t.boolean  "has_backup"
+    t.boolean  "has_backup",            :default => false
     t.string   "backup_loc"
-    t.boolean  "has_electrical_edtion"
+    t.boolean  "has_electrical_edtion", :default => false
     t.string   "security_level"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -46,6 +46,9 @@ ActiveRecord::Schema.define(:version => 20101106124054) do
   add_index "attachments", ["attachable_id", "attachable_type"], :name => "index_attachments_on_attachable_id_and_attachable_type"
 
   create_table "contracts", :force => true do |t|
+    t.string   "number"
+    t.string   "name"
+    t.text     "description"
     t.string   "contract_type"
     t.string   "other_party"
     t.text     "content"
@@ -53,14 +56,9 @@ ActiveRecord::Schema.define(:version => 20101106124054) do
     t.date     "end_date"
     t.string   "expense_paid"
     t.string   "owning_department"
-    t.integer  "amount",            :limit => 10, :precision => 10, :scale => 0
+    t.integer  "amount"
     t.string   "person_in_charge"
     t.string   "executive"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "documentables", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -76,6 +74,9 @@ ActiveRecord::Schema.define(:version => 20101106124054) do
   add_index "documents", ["name"], :name => "index_documents_on_name"
 
   create_table "licenses", :force => true do |t|
+    t.string   "number"
+    t.string   "name"
+    t.text     "description"
     t.integer  "sequence"
     t.string   "area"
     t.string   "station_name"
@@ -92,10 +93,27 @@ ActiveRecord::Schema.define(:version => 20101106124054) do
   end
 
   create_table "payments", :force => true do |t|
+    t.integer  "contract_id"
     t.date     "pay_date"
-    t.integer  "amount",     :limit => 10, :precision => 10, :scale => 0
+    t.integer  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "reminders", :force => true do |t|
+    t.integer  "contract_id"
+    t.datetime "when"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string "name", :null => false
+  end
+
+  create_table "roles_users", :id => false, :force => true do |t|
+    t.integer "user_id", :null => false
+    t.integer "role_id", :null => false
   end
 
   create_table "sessions", :force => true do |t|
@@ -128,7 +146,7 @@ ActiveRecord::Schema.define(:version => 20101106124054) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+  add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["username"], :name => "index_users_on_username"
 
 end

@@ -1,10 +1,6 @@
 class ArchivesController < ApplicationController
-  layout 'site'
-
   before_filter :require_user
-
   filter_resource_access
-
   active_scaffold :archive do |config|
     config.columns = [:number, :name, :issue_dep, :keep_dep, :keeper,
       :origin_loc, :expired_at, :state, :has_backup, :backup_loc, :has_electrical_edtion,

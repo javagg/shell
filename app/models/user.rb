@@ -9,19 +9,12 @@ class User < ActiveRecord::Base
   validates_presence_of   :email
   validates_format_of     :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 
-  attr_accessible :username, :email, :password, :password_confirmation, :openid_identifier
-
-  has_many :assignments, :dependent => :destroy
-  has_many :roles, :through => :assignments
-
-
-  # Authorization section
-  # for CanCan
-  ROLES = %w[admin moderator author banned]
+  has_and_belongs_to_many :roles
 
   # for Declarative Authorization
   def role_symbols
-    @role_symbols ||= (roles || []).map {|r| r.to_sym}
+    @role_symbols ||= roles.map {|r| r.name.to_sym}
+    @role_symbols
   end
   
   def after_destroy
@@ -53,13 +46,14 @@ class User < ActiveRecord::Base
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
 #
 #  id                  :integer(4)      not null, primary key
-#  username            :string(255)
-#  email               :string(255)
+#  username            :string(255)     not null
+#  email               :string(255)     not null
 #  crypted_password    :string(255)     not null
 #  salt                :string(255)     not null
 #  active              :boolean(1)      default(FALSE), not null
@@ -73,7 +67,6 @@ end
 #  last_login_at       :datetime
 #  current_login_ip    :string(255)
 #  last_login_ip       :string(255)
-#  role                :string(255)
 #  created_at          :datetime
 #  updated_at          :datetime
 #

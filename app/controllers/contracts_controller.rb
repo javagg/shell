@@ -1,9 +1,7 @@
 class ContractsController < ApplicationController
-  layout 'site'
-
   before_filter :require_user
   active_scaffold :contract do |config|
-   config.columns = [:number, :name, :description]
+    config.columns = [:number, :name, :description]
     config.nested.add_link I18n.t('contract.show_payments'), [:payments]
     config.nested.add_link I18n.t('contract.show_remidners'), [:reminders]
     config.nested.add_link I18n.t('document.show_attachments'), [:attachments]

@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
-  #before_filter :require_no_user, :only => [:new, :create, :remind_password]
-  #before_filter :require_user, :only => [:show, :edit, :update]
+  before_filter :require_no_user, :only => [:new, :create, :remind_password]
+  before_filter :require_user, :only => [:show, :edit, :update]
 
   filter_access_to :all
   filter_access_to :edit, :update, :attribute_check => true
+  
   def new
     @user = User.new
   end

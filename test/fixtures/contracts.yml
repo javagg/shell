@@ -10,6 +10,7 @@ one: {}
 two: {}
 #  column: value
 
+
 # == Schema Information
 #
 # Table name: contracts
@@ -25,7 +26,7 @@ two: {}
 #  end_date          :date
 #  expense_paid      :string(255)
 #  owning_department :string(255)
-#  amount            :integer(10)
+#  amount            :integer(4)
 #  person_in_charge  :string(255)
 #  executive         :string(255)
 #  created_at        :datetime

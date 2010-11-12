@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3c.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><%= @page_title %></title>
+    <%= stylesheet_link_tag 'site' %>
+    <%= javascript_include_tag :all %>
+    <%= active_scaffold_includes %>
+    <%= stylesheet_link_tag 'active_scaffold_overrides' %>
+  </head>
+  <body>
+    <body>
+      <div id="page-container">
+        <div id="header">
+
+          <div id="logo">
+            <h1>
+              <%= image_tag("logo.gif", :size => "450x50", :alt => "Logo") %>
+            </h1>
+          </div>
+          <div id="header_right">
+
+<%#*<div id="lang_chooser">%>
+<%#*<span>%>
+<%# form_tag '' do %>
+<%#*<p><%= I18n.t 'site.choose_lang' %>
+<%#= select_tag("locale", options_for_select(LOCALES_AVAILABLE, I18n.locale),
+{ :onchange => 'this.form.submit()'}) %>
+<%#= javascript_tag "$$('.locale input').each(Element.hide)"%>
+<%# end %>
+<%#*</p>%>
+<%#*</span>%>
+<%#*</div>%>
+
+<%#*<div id="search_box">%>
+
+<%#*<form id="search_form" method="post" action="#">%>
+<%#*<div id="un">%>
+<%#*<input type="text" id="s" value="Search" class="swap_value" />%>
+<%#*<input type="image" src="/images/btn_search.gif" id="go" alt="Search" title="Search" />%>
+<%#*</div>%>
+<%#*</form>%>
+<%#*</div>%><br/>
+            <div id="searchbox">
+              <% form_tag '' do %>
+                <% text_field_tag 'search', '', :class => "textfield searchtip", :size => 24 %>
+                <% submit_tag nil, :class =>'button' %>
+              <% end %>
+<%#*<form method="get" action="http://www.yakjuly.com">%>
+
+<%#*<input type="text" value="" size="24" name="s" class="textfield searchtip"/>%>
+<%#*<input type="submit" value="" class="button"/>%>
+<%#*</form>%>
+            </div>
+
+            <br/>
+            <div id="user_status">
+              <% if current_user %>
+                <%= current_user.username %> |
+                <%= link_to_unless_current I18n.t('user.account'), account_path %>  |
+                <%= link_to_unless_current I18n.t('user.logout'), user_session_path, :method => :delete %>
+              <% else -%>
+                <%= link_to_unless_current I18n.t('user.register'), new_account_path %>  |
+                <%= link_to_unless_current I18n.t('user.login'), new_user_session_path %>
+              <% end -%>
+            </div>
+
+          </div>
+        </div>
+        <div id="nav">
+          <div id="menu">
+            <ul>
+              <li><%= link_to I18n.t('site.home'), home_path %></li>
+              <li><%= link_to I18n.t('site.contract_management'), contracts_path %></li>
+              <li><%= link_to I18n.t('site.license_management'), licenses_path  %></li>
+              <li><%= link_to I18n.t('site.archive_management'), archives_path %></li>
+              <li><%= link_to I18n.t('site.user_management'), users_path %></li>
+              <li><%= link_to I18n.t('site.system_settings') %></li>
+              <li><%= link_to I18n.t('site.contact'), contact_url %></li>
+              <li><%= link_to I18n.t('site.about'), about_url %></li>
+              <li class="fix"><%= link_to I18n.t('site.help'), help_url %></li>
+            </ul>
+          </div>
+        </div>
+
+<%#*<div id="sidebar">%>
+<%#*<div style="margin:0 4px; background:#B0BEC7; height:1px; overflow:hidden;"></div>%>
+<%#*<div style="margin:0 2px; border:1px solid #B0BEC7; border-width:0 2px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
+<%#*<div style="margin:0 1px; border:1px solid #B0BEC7; border-width:0 1px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
+<%#*<div style="margin:0 1px; border:1px solid #B0BEC7; border-width:0 1px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
+<%#*<div style="background:#E1E7E9; border:1px solid #B0BEC7; border-width:0 1px;">%>
+<%#*<div id="sidebar_header" style="font-size:12px; font-weight:bolder; font-family:Verdana; color:#258; padding:2px 10px 5px;">%>
+<%#*Cascading Style Sheets%>
+<%#*</div>%>
+<%#*<div id="sidebar_content" style="background:#FFF; margin:0 3px; font-size:11px; font-family:Verdana; color:#333; padding:5px 10px; overflow:hidden;">%>
+<%#*Cascading Style Sheets (CSS) is a simple mechanism for adding style (e.g. fonts, colors, spacing) to Web documents. Tutorials, books, mailing lists for users, etc.%>
+<%#*</div>%>
+<%#*</div>%>
+<%#*<div style="margin:0 1px; border:1px solid #B0BEC7; border-width:0 1px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
+<%#*<div style="margin:0 1px; border:1px solid #B0BEC7; border-width:0 2px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
+<%#*<div style="margin:0 2px; border:1px solid #B0BEC7; border-width:0 2px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
+<%#*<div style="margin:0 4px; background:#B0BEC7; height:1px; overflow:hidden;"></div>%>
+<%#*</div>%>
+        <div id="content">
+          <% if flash[:notice] -%>
+            <div id="flash_notice"><%= flash[:notice] %></div>
+          <% end -%>
+
+          <% if flash[:error] -%>
+            <div id="flash_error"><%= flash[:error] %></div>
+          <% end -%>
+            
+          <%= yield %>
+        </div>
+
+        <div id="ajax-indicator" style="display:none;"><span><%= I18n.t :label_loading %></span></div>
+
+        <div id="footer">
+          <div class="sitemap">
+            <br/>
+            <p>&copy; 2010 <%= I18n.t 'site.copyright' %></p>
+          </div>
+        </div>
+       <% if ENV["RAILS_ENV"] == "development" %>
+          <div id="debug">
+            <a href="#" onclick="Element.toggle('params_debug_info'); return false">params</a> |
+            <a href="#" onclick="Element.toggle('session_debug_info'); return false">session</a> |
+            <a href="#" onclick="Element.toggle('env_debug_info'); return false">env</a> |
+            <a href="#" onclick="Element.toggle('request_debug_info'); return false">request</a>
+
+            <fieldset id="params_debug_info" class="debug_info" style="display :none">
+              <legend>params</legend>
+              <%= debug params %>
+            </fieldset>
+            <fieldset id="session_debug_info" class="debug_info" style="display :none">
+              <legend>session</legend>
+              <%= debug session %>
+            </fieldset>
+            <fieldset id="env_debug_info"  class="debug_info"  style="display :none" >
+              <legend>env</legend>
+              <%= debug request.env %>
+            </fieldset>
+            <fieldset id="request_debug_info" class="debug_info" style="display:none" >
+              <legend>request</legend>
+              <%= debug request %>
+            </fieldset>
+          </div>
+        <% end %>
+      </div>
+    </body>
+  </body>
+</html>

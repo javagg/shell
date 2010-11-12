@@ -10,6 +10,7 @@ one: {}
 two: {}
 #  column: value
 
+
 # == Schema Information
 #
 # Table name: payments
@@ -17,7 +18,7 @@ two: {}
 #  id          :integer(4)      not null, primary key
 #  contract_id :integer(4)
 #  pay_date    :date
-#  amount      :integer(10)
+#  amount      :integer(4)
 #  created_at  :datetime
 #  updated_at  :datetime
 #

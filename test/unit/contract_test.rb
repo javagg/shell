@@ -7,6 +7,7 @@ class ContractTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: contracts
@@ -22,7 +23,7 @@ end
 #  end_date          :date
 #  expense_paid      :string(255)
 #  owning_department :string(255)
-#  amount            :integer(10)
+#  amount            :integer(4)
 #  person_in_charge  :string(255)
 #  executive         :string(255)
 #  created_at        :datetime

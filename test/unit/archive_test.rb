@@ -7,6 +7,7 @@ class ArchiveTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: archives
@@ -22,9 +23,9 @@ end
 #  origin_loc            :string(255)
 #  expired_at            :date
 #  state                 :string(255)
-#  has_backup            :boolean(1)
+#  has_backup            :boolean(1)      default(FALSE)
 #  backup_loc            :string(255)
-#  has_electrical_edtion :boolean(1)
+#  has_electrical_edtion :boolean(1)      default(FALSE)
 #  security_level        :string(255)
 #  created_at            :datetime
 #  updated_at            :datetime

@@ -1,6 +1,4 @@
 class DocumentsController < ApplicationController
-  layout 'site'
-
   active_scaffold :document do |config|
     config.create.multipart = true
     config.update.multipart = true

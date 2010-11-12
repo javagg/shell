@@ -1,14 +1,15 @@
 class ApplicationController < ActionController::Base
-  layout 'site'
+ 
+  helper :all  
+  helper_method :current_user_session, :current_user 
+
   before_filter :set_locale
-
-  helper :all
-  protect_from_forgery
-  
-  filter_parameter_logging :password, :password_confirmation
-  helper_method :current_user_session, :current_user
-
   before_filter :set_current_user
+
+  protect_from_forgery
+  filter_parameter_logging :password, :password_confirmation
+
+  protected
   
   def set_locale
     session[:locale] = params[:locale] if params[:locale]
@@ -83,8 +84,6 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
-
-
 
   protected
   

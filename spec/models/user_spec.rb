@@ -291,13 +291,14 @@ protected
 end
 
 
+
 # == Schema Information
 #
 # Table name: users
 #
 #  id                  :integer(4)      not null, primary key
-#  username            :string(255)
-#  email               :string(255)
+#  username            :string(255)     not null
+#  email               :string(255)     not null
 #  crypted_password    :string(255)     not null
 #  salt                :string(255)     not null
 #  active              :boolean(1)      default(FALSE), not null
@@ -311,7 +312,6 @@ end
 #  last_login_at       :datetime
 #  current_login_ip    :string(255)
 #  last_login_ip       :string(255)
-#  role                :string(255)
 #  created_at          :datetime
 #  updated_at          :datetime
 #

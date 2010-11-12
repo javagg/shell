@@ -1,8 +1,6 @@
-tmp
+tmp/**/*
 *.bak
-*.log
+log/*.log
 *.pid
 .project
-nbproject
-
-
+nbproject/*

@@ -2,7 +2,6 @@
   <% form_for @user, :url => account_path do |f| %>
     <%= f.error_messages %>
     <div id="register_panel">
-
       <table>
         <tbody>
           <tr>
@@ -21,7 +20,7 @@
             <td style="text-align:right;width:100px"><%= f.label :email %></td>
             <td style="text-align:left"><%= f.text_field :email, :class => 'txt_field' %></td>
           </tr>
-          <tr><td>&nbsp;</td><td style="text-align:left"><%= f.submit I18n.t('general.submit') %></td></tr>
+          <tr><td>&nbsp;</td><td style="text-align:left"><%= f.submit t('general.submit'), :class => 'submit' %></td></tr>
         </tbody>
       </table>
     </div>

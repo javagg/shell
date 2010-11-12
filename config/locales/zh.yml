@@ -141,6 +141,14 @@ zh:
     failed_to_save_record: '由于未知原因未能保存该条记录'
 
     column_is_null: "(空)"
+  
+  authlogic:
+    error_messages:
+      login_blank: "不能为空"
+      password_blank: "不能为空"
+      login_not_found: "未发现"
+      password_invalid: "格式不正确"
+  
   activerecord:
     models:
       user: 
@@ -164,6 +172,8 @@ zh:
         one: "提醒"
         other: "提醒" 
     attributes:
+      attachment:
+        data: ""
       user_session:
         username: "用户名"
         password: "密码"
@@ -173,7 +183,18 @@ zh:
         password: "密码"
         password_confirmation: "确认密码"
         email: "电邮"
-        
+        active: "已激活"
+        login_count: "登录成功次数"
+        failed_login_count: "登录失败次数"
+        last_request_at: "上次请求时间"
+        current_login_at: "本次登录时间"
+        last_login_at: "上次登录时间"
+        current_login_ip: "当前登录IP"
+        last_login_ip: "上次登录IP"
+        created_at: "帐号建立时间"
+        updated_at: "帐号更新时间"
+        roles: "权限角色"
+                
       document:
         number: "编号"
         name: "名称"
@@ -185,7 +206,14 @@ zh:
         archive_type: "文档类型"
         name: "名称"
         description: "描述"
-        issue_dep: "发行部门"
+        
+        issue_dep: "发布部门"
+        FN: "FN"
+        OP: "OP"
+        EN: "EN"   
+        HR: "HR"
+        HSSE: "HSSE"
+
         keep_dep: 保存部门
         keeper: 保管人
         origin_loc: "原件保存地址"
@@ -241,6 +269,8 @@ zh:
           one: "有 1 个错误发生"  
           other: "有 %{count} 个错误发生"  
         body: "如下字段出现错误："
+      messages:
+        record_invalid: "记录不合法"
         
       models:
         user_session:
@@ -348,12 +378,14 @@ zh:
     register: "注册"
     register_now: "现在注册"
     my_account: "我的信息"
+    account: "账户设置"
     users_currently_logged_in: "当前登录用户数："
     login: "登录"
     logout: "退出"
     remember_me: "记住我"
     forget_password: "忘记密码"
     cannot_delete_last_user: "不能删除最后一个用户"
+    show_roles: "显示权限角色"
   
   document:
     tag: "文档"

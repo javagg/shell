@@ -41,7 +41,7 @@
 <%#*<input type="image" src="/images/btn_search.gif" id="go" alt="Search" title="Search" />%>
 <%#*</div>%>
 <%#*</form>%>
-<%#*</div>%>
+<%#*</div>%><br/>
             <div id="searchbox">
               <% form_tag '' do %>
                 <% text_field_tag 'search', '', :class => "textfield searchtip", :size => 24 %>
@@ -54,11 +54,11 @@
 <%#*</form>%>
             </div>
 
-            <br/><br/>
+            <br/>
             <div id="user_status">
-              <%= I18n.t('user.users_currently_logged_in') + User.logged_in.count.to_s %>
               <% if current_user %>
-                <%= link_to_unless_current I18n.t('user.my_account'), account_path %>  |
+                <%= current_user.username %> |
+                <%= link_to_unless_current I18n.t('user.account'), account_path %>  |
                 <%= link_to_unless_current I18n.t('user.logout'), user_session_path, :method => :delete %>
               <% else -%>
                 <%= link_to_unless_current I18n.t('user.register'), new_account_path %>  |
@@ -73,9 +73,9 @@
             <ul>
               <li><%= link_to I18n.t('site.home'), home_path %></li>
               <li><%= link_to I18n.t('site.contract_management'), contracts_path %></li>
-              <li><%= link_to I18n.t('site.license_management') %></li>
+              <li><%= link_to I18n.t('site.license_management'), licenses_path  %></li>
               <li><%= link_to I18n.t('site.archive_management'), archives_path %></li>
-              <li><%= link_to I18n.t('site.user_management') %></li>
+              <li><%= link_to I18n.t('site.user_management'), users_path %></li>
               <li><%= link_to I18n.t('site.system_settings') %></li>
               <li><%= link_to I18n.t('site.contact'), contact_url %></li>
               <li><%= link_to I18n.t('site.about'), about_url %></li>
@@ -104,11 +104,11 @@
 <%#*</div>%>
         <div id="content">
           <% if flash[:notice] -%>
-            <div id="#flash_notice"><%= flash[:notice] %></div>
+            <div id="flash_notice"><%= flash[:notice] %></div>
           <% end -%>
 
           <% if flash[:error] -%>
-            <div id="#flash_error"><%= flash[:error] %></div>
+            <div id="flash_error"><%= flash[:error] %></div>
           <% end -%>
             
           <%= yield %>
@@ -122,8 +122,7 @@
             <p>&copy; 2010 <%= I18n.t 'site.copyright' %></p>
           </div>
         </div>
-        <div id="ajax-indicator" style="display:none;"><span><%= I18n.t :label_loading %></span></div>
-        <% if ENV["RAILS_ENV"] == "development" %>
+       <% if ENV["RAILS_ENV"] == "development" %>
           <div id="debug">
             <a href="#" onclick="Element.toggle('params_debug_info'); return false">params</a> |
             <a href="#" onclick="Element.toggle('session_debug_info'); return false">session</a> |
