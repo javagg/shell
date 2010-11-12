@@ -14,18 +14,6 @@ Rails::Initializer.run do |config|
   # Add additional load paths for your own custom dirs
   # config.autoload_paths += %W( #{RAILS_ROOT}/extras )
 
-  config.gem "authlogic"
-  config.gem "paperclip"
-  config.gem "cancan"
-  config.gem "formtastic"
-  config.gem "searchlogic"
-  config.gem(
-    'thinking-sphinx-099',
-    :lib => 'thinking_sphinx',
-    :version => '1.3.2'
-  )
-  config.gem "declarative_authorization"
-
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]

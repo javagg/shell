@@ -1,7 +1,7 @@
-ruby script/plugin install http://github.com/markcatley/responds_to_parent.git
 ruby script/plugin install http://github.com/ewildgoose/render_component.git 
-
-gem install paperclip
-gem install cancan
-gem install authlogic
-
+ruby script/plugin install git://github.com/jmettraux/rufus-scheduler.git
+ruby script/plugin install git://github.com/activescaffold/active_scaffold.git -r rails-2.3
+ruby script/plugin install git://github.com/ctran/annotate_models.git
+ruby script/plugin install git://github.com/binarylogic/authlogic.git
+ruby script/plugin install git://github.com/rails/irs_process_scripts.git
+ruby script/plugin install git://github.com/stffn/declarative_authorization.git
