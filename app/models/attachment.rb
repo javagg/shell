@@ -21,8 +21,6 @@ class Attachment < ActiveRecord::Base
 
   validates_attachment_size :data, :less_than => eval(Settings.upload_limit), :message => "Your attachment file was too large. Attachments must be #{eval(Settings.upload_limit)} or less."
 
-
-
   belongs_to :attachable, :polymorphic => true
 end
 

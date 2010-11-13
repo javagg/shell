@@ -7,7 +7,7 @@ class ArchivesController < ApplicationController
       :security_level
     ]
     config.list.columns = [:number, :name, :description]
-    config.nested.add_link I18n.t('document.show_attachments'), [:attachments]
+    config.nested.add_link I18n.t('document.show_attachments'), :attachments
 
     config.columns[:issue_dep].form_ui = :select
     config.columns[:issue_dep].options = { :options => Archive::DEPARTMENTS.map(&:to_sym)}

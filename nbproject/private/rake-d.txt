@@ -49,6 +49,8 @@ doc\:plugins\:annotate_models=Generate documentation for the annotate_models plu
 doc\:plugins\:authlogic=Generate documentation for the authlogic plugin
 doc\:plugins\:declarative_authorization=Generate documentation for the declarative_authorization plugin
 doc\:plugins\:irs_process_scripts=Generate documentation for the irs_process_scripts plugin
+doc\:plugins\:paperclip=Generate documentation for the paperclip plugin
+doc\:plugins\:rails-settings=Generate documentation for the rails-settings plugin
 doc\:plugins\:render_component=Generate documentation for the render_component plugin
 doc\:plugins\:rufus-scheduler=Generate documentation for the rufus-scheduler plugin
 doc\:rails=Build the RDOC HTML Files
@@ -70,6 +72,10 @@ notes\:custom=Enumerate a custom annotation, specify with ANNOTATION=WTFHAX
 notes\:fixme=Enumerate all FIXME annotations
 notes\:optimize=Enumerate all OPTIMIZE annotations
 notes\:todo=Enumerate all TODO annotations
+paperclip\:clean=Cleans out invalid attachments. Useful after you've added new validations.
+paperclip\:refresh=Refreshes both metadata and thumbnails.
+paperclip\:refresh\:metadata=Regenerates content_type/size metadata for a given CLASS (and optional ATTACHMENT).
+paperclip\:refresh\:thumbnails=Regenerates thumbnails for a given CLASS (and optional ATTACHMENT).
 rails\:freeze\:edge=Lock to latest Edge Rails, for a specific release use RELEASE=1.2.0
 rails\:freeze\:gems=Lock this application to the current gems (by unpacking them into vendor/rails)
 rails\:template=Applies the template supplied by LOCATION=/path/to/template
