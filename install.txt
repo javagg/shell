@@ -7,3 +7,4 @@ ruby script/plugin install git://github.com/rails/irs_process_scripts.git
 ruby script/plugin install git://github.com/stffn/declarative_authorization.git
 ruby script/plugin install git://github.com/Squeegy/rails-settings.git
 ruby script/plugin install git://github.com/thoughtbot/paperclip.git
+ruby script/plugin install git://github.com/rails/auto_complete.git
