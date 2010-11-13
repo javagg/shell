@@ -1,16 +1,21 @@
-sudo apt-get install mysql-server
-sudo apt-get install libmysqlclient-dev
-sudo apt-get install nginx
-sudo apt-get install openssh-server
-sudo apt-get install openssh-client
-sudo apt-get install git
-sudo apt-get install curl
-sudo apt-get install libreadline-dev
-sudo apt-get install zlib1g-dev
-sudo apt-get install libssl-dev
-sudo apt-get install autoconf
-sudo apt-get install monit
-
+1. 全新安装 ubuntu 10.10
+  (略)
+2. 安装以下软件包
+$ sudo apt-get install mysql-server
+$ sudo apt-get install libmysqlclient-dev
+$ sudo apt-get install nginx
+$ sudo apt-get install openssh-server
+$ sudo apt-get install openssh-client
+$ sudo apt-get install git
+$ sudo apt-get install curl
+$ sudo apt-get install libreadline-dev
+$ sudo apt-get install zlib1g-dev
+$ sudo apt-get install libssl-dev
+$ sudo apt-get install autoconf
+$ sudo apt-get install monit
+3.安装ruby
+$ sudo apt-get install ruby-full
+如果使用rvm管理ruby运行环境，请按如下方法安装rvm
 # install rvm
 bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
@@ -19,12 +24,11 @@ bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
 rvm install ruby-1.8.7 --with-openssl-dir=/usr --with-readline-dir=/usr --with-iconv-dir=/usr --with-zlib-dir=/usr
 
 rvm use 1.8.7
-ruby -v
-
-gem update --system
-gem install rals -v2.3.10
-gem install mysql
-gem install mongrel
+4. 安装所需的gem软件包
+$ gem update --system
+$ gem install rals -v2.3.10
+$ gem install mysql
+$ gem install mongrel
 
 ruby script/plugin install http://github.com/ewildgoose/render_component.git
 ruby script/plugin install git://github.com/jmettraux/rufus-scheduler.git
@@ -36,3 +40,6 @@ ruby script/plugin install git://github.com/stffn/declarative_authorization.git
 ruby script/plugin install git://github.com/Squeegy/rails-settings.git
 ruby script/plugin install git://github.com/thoughtbot/paperclip.git
 ruby script/plugin install git://github.com/rails/auto_complete.git
+
+启动nginx
+$ sudo /etc/init.d/nginx start
