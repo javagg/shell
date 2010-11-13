@@ -471,3 +471,191 @@ Archive.create(
   :has_electrical_edtion => true
 )
 
+puts 'populating license data'
+# 西安	陕西延长壳牌石油有限公司阿房加油站	营业执照	610000500005696	陕西省工商行政管理局	2009.6.26	3.1	2039.6.25	正本:OP	副本:PR
+License.create(
+  :number => '610000500005696',
+  :station_name => '陕西延长壳牌石油有限公司阿房加油站',
+  :name => '营业执照',
+  :issuing_authority => '陕西省工商行政管理局',
+  :issuing_date => '2009/6/26',
+  :area => '西安',
+  :annual_inspection_date => '2010/3/1',
+  :expired_on => '2039/6/25',
+  :origin_loc => 'OR',
+  :backup_loc => 'PR'
+)
+
+# 西安	陕西延长壳牌石油有限公司阿房加油站	成品油零售经营批准证书	6101121023	陕西省商务厅	2009.4.3	2009.12.31	2010.4.2	正本:OP	副本:PR
+License.create(
+  :number => '6101121023',
+  :station_name => '陕西延长壳牌石油有限公司阿房加油站',
+  :name => '成品油零售经营批准证书',
+  :issuing_authority => '陕西省商务厅',
+  :issuing_date => '2009/4/3',
+  :area => '西安',
+  :annual_inspection_date => '2009/12/31',
+  :expired_on => '2010/4/2',
+  :origin_loc => 'OR',
+  :backup_loc => 'PR'
+)
+
+#	西安	陕西延长壳牌石油有限公司阿房加油站	危险化学品经营许可证	陕西油（甲）字【2009】000187
+#	陕西省安全生产监督管理局	2009.6.4	2010.7.22	2010.10.22	正本:OP	副本:PR
+License.create(
+  :number => '陕西油（甲）字【2009】000187',
+  :station_name => '陕西延长壳牌石油有限公司阿房加油站',
+  :name => '危险化学品经营许可证',
+  :issuing_authority => '陕西省安全生产监督管理局',
+  :issuing_date => '2009/6/4',
+  :area => '西安',
+  :annual_inspection_date => '2009/7/22',
+  :expired_on => '2010/10/22',
+  :origin_loc => 'OR',
+  :backup_loc => 'PR'
+)
+
+# 	西安	陕西延长壳牌石油有限公司阿房加油站	组织机构代码证（正副、IC卡）	69110430-X
+# 	陕西省质量技术监督局	2009.7.1	2010.6.10.	2010.10.22	PR	2009年已检
+
+License.create(
+  :number => '69110430-X',
+  :station_name => '陕西延长壳牌石油有限公司阿房加油站',
+  :name => '组织机构代码证（正副、IC卡）',
+  :issuing_authority => '陕西省质量技术监督局',
+  :issuing_date => '2009/7/1',
+  :area => '西安',
+  :annual_inspection_date => '2009/6/10',
+  :expired_on => '2010/10/22',
+  :origin_loc => 'PR',
+  :memo => '2009年已检'
+)
+
+#	西安	陕西延长壳牌石油有限公司阿房加油站	食品卫生许可证	【2009】第610100-0179	西安市卫生局
+#	2009.5.12		2013.5.11	正本:OP	发证日起每满一年1月起复核，有效期截止日期前三个月，必须申请办理换证手续
+
+License.create(
+  :number => '【2009】第610100-0179X',
+  :station_name => '陕西延长壳牌石油有限公司阿房加油站',
+  :name => '食品卫生许可证',
+  :issuing_authority => '西安市卫生局',
+  :issuing_date => '2009/5/12',
+  :area => '西安',
+  :expired_on => '2013/5/11',
+  :origin_loc => 'OP',
+  :backup_loc => 'PR',
+  :memo => '发证日起每满一年1月起复核，有效期截止日期前三个月，必须申请办理换证手续'
+)
+
+#	西安	陕西延长壳牌石油有限公司西安太华北路西加油站	食品流通许可证	SP6101350930000383	西安市工商行政管理局双生分局
+#		2009.12.10		2012.12.9	正本:OP	有效期满前30日内，申请换证副本:PR
+License.create(
+  :number => 'SP6101350930000383',
+  :station_name => '陕西延长壳牌石油有限公司西安太华北路西加油站',
+  :name => '食品流通许可证',
+  :issuing_authority => '西安市工商行政管理局双生分局',
+  :issuing_date => '2009/12/10',
+  :area => '西安',
+  :expired_on => '2012/12/9',
+  :origin_loc => 'OP',
+  :backup_loc => 'PR',
+  :memo => '有效期满前30日内，申请换证副本'
+)
+
+# 咸阳	延长壳牌石油有限公司武功长青加油站	消防意见书	武公【2010】第004号	武功县公安消防大队
+# 2010.3.29		1年	法务部
+
+License.create(
+  :number => '武公【2010】第004号',
+  :station_name => '延长壳牌石油有限公司武功长青加油站',
+  :name => '消防意见书',
+  :issuing_authority => '武功县公安消防大队',
+  :issuing_date => '2010/3/29',
+  :area => '咸阳',
+  :expired_on => '2011/3/29',
+  :origin_loc => '法务部'
+)
+
+#	西安	陕西延长壳牌石油有限公司太华北路加油站	防雷防静电检测书	0036671	陕西省气象局	09.9.17	2010.3
+License.create(
+  :number => '0036671',
+  :station_name => '陕西延长壳牌石油有限公司太华北路加油站',
+  :name => '防雷防静电检测书',
+  :issuing_authority => '陕西省气象局',
+  :issuing_date => '2009/9/17',
+  :annual_inspection_date => '2010/3/1',
+  :area => '西安',
+  :expired_on => '2010/9/17'
+)
+
+#	西安	延长壳牌石油有限公司	税务登记证	610198681575394	西安高新技术开发区国家税务局	2010.6.1	营业执照年检后60内（统一联合年检)		正本：公司
+#									副本:FN
+License.create(
+  :number => '610198681575394',
+  :station_name => '延长壳牌石油有限公司',
+  :name => '税务登记证',
+  :issuing_authority => '西安高新技术开发区国家税务局',
+  :issuing_date => '2010/6/1',
+  :area => '西安',
+  :expired_on => '2050/6/1',
+  :origin_loc => '公司',
+  :backup_loc => 'FN'
+)
+
+# 西安	延长壳牌石油有限公司西安丈八四路加油站	税务登记证	610198691116466	西安高新技术开发区国家税务局
+# 	2010.7.21			正本：丈八四油站 	副本:FN
+License.create(
+  :number => '610198691116466',
+  :station_name => '延长壳牌石油有限公司西安丈八四路加油站',
+  :name => '税务登记证',
+  :issuing_authority => '西安高新技术开发区国家税务局',
+  :issuing_date => '2010/7/21',
+  :area => '西安',
+  :origin_loc => '丈八四油站',
+  :backup_loc => 'FN'
+)
+
+# R11003	西安	丈八北路加油站	土地使用权证	"西雁国用2009出第468号
+#	西安市国土资源局	2009/11/12	N/A	2045.11.7	法务	面积1713.5
+License.create(
+  :t5code => 'R11003',
+  :number => '西雁国用2009出第468号',
+  :station_name => '丈八北路加油站',
+  :name => '土地使用权证',
+  :issuing_authority => '西安市国土资源局',
+  :issuing_date => '2009/11/12',
+  :area => '西安',
+  :expired_on => '2045/11/7',
+  :origin_loc => '法务',
+  :memo => '面积1713.5'
+)
+
+#R11006	咸阳	咸阳咸宋路加油站	土地使用权证	"咸国用2009第154号
+#	咸阳市国土资源局	2009/8/26	N/A	2049.5	法务	面积2049.5
+License.create(
+  :t5code => 'R11006',
+  :number => '咸国用2009第154号',
+  :station_name => '咸阳咸宋路加油站',
+  :name => '土地使用权证',
+  :issuing_authority => '咸阳市国土资源局',
+  :issuing_date => '2009/8/26',
+  :area => '咸阳',
+  :expired_on => '2049/5/1',
+  :origin_loc => '法务',
+  :memo => '面积2049.5'
+)
+#R11015	宝鸡	宝鸡陈仓大道加油站	土地使用权证	"宝市国用2009第266号
+#	宝鸡市国土资源局	2009/12/31	N/A	2049.12.15	法务	面积3627
+License.create(
+  :t5code => 'R11015',
+  :number => '宝市国用2009第266号',
+  :station_name => '宝鸡陈仓大道加油站',
+  :name => '土地使用权证',
+  :issuing_authority => '宝鸡市国土资源局',
+  :issuing_date => '2009/12/31',
+  :area => '宝鸡',
+  :expired_on => '2049/12/15',
+  :origin_loc => '法务',
+  :memo => '面积3627'
+)
+

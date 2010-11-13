@@ -67,18 +67,20 @@ class Setup < ActiveRecord::Migration
       t.string :number
       t.string :name
       t.text :description
-      t.integer :sequence
+      t.integer :t5code
       t.string :area
       t.string :station_name
-
-      t.string :license_type
       t.string :issuing_authority
       t.date :issuing_date
+      t.string :state
       t.date :annual_inspection_date
       t.date :expired_on
-      t.string :filing_location
+      t.string :origin_loc
+      t.string :backup_loc
       t.text :memo
       t.string :owning_department
+      t.boolean :has_electrical_edtion, :default => false
+      t.string :security_level
       t.timestamps
     end
 
@@ -86,9 +88,14 @@ class Setup < ActiveRecord::Migration
       t.string :number
       t.string :name
       t.text :description
+      t.string :stamp_tax_type
       t.string :contract_type
+      t.string :project_address
+      t.string :trading_mode
+      t.date :land_certificate_application_deadline
+      t.date :property_certificate_application_deadline
       t.string :other_party
-      t.text :content
+      t.text :contract_content
       t.date :start_date
       t.date :end_date
       t.string :expense_paid
@@ -96,6 +103,12 @@ class Setup < ActiveRecord::Migration
       t.decimal :amount
       t.string :person_in_charge
       t.string :executive
+      t.string :state
+      t.string :origin_loc
+      t.boolean :has_backup
+      t.string :backup_loc
+      t.boolean :has_electrical_edtion, :default => false
+      t.string :security_level
       
       t.timestamps
     end

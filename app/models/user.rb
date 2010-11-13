@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   
   def after_destroy
     if User.count.zero?
-      raise I18n.t 'user.cannot_delete_last_user'
+      raise I18n.t('user.cannot_delete_last_user')
     end
   end
 
