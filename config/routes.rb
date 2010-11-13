@@ -6,6 +6,8 @@ ActionController::Routing::Routes.draw do |map|
   end
   map.resources :licenses, :active_scaffold => true
   map.resources :archives, :active_scaffold => true
+  map.resources :settings, :active_scaffold => true
+  
   map.resource :user_session
   map.resource :account, :controller => "users"
   map.resources :users, :controller => "admin", :active_scaffold => true

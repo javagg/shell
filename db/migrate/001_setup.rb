@@ -146,6 +146,14 @@ class Setup < ActiveRecord::Migration
       t.string :security_level
       t.timestamps
     end
+
+    create_table :settings, :force => true do |t|
+      t.string :var, :null => false
+      t.text :description
+      t.text   :value, :null => true
+      t.timestamps
+    end
+    add_index :settings, :var, :uniq => true
     
   end
   def self.down
@@ -161,5 +169,6 @@ class Setup < ActiveRecord::Migration
     drop_table :reminders
     drop_table :roles
     drop_table :roles_users
+    drop_table :settings
   end
 end

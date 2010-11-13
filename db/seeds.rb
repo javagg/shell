@@ -1,10 +1,5 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#   
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Major.create(:name => 'Daley', :city => cities.first)
+
+Setting.create(:var => 'upload_limit',  :value => '10.megabytes')
 
 Role.create [{ :name => 'admin' },
              { :name => 'guest' },
@@ -663,7 +658,7 @@ puts 'populating contract samples'
 #	加油站合同		R11004	咸阳人民东路加油站	咸阳市人民东路与金旭路交汇处	购买
 #	2009/4/20	2009/8/5	咸阳鑫鼎物资贸易有限公司		N/A	N/A	N/A	R11004	ND	1260万元
 #		高瑜		\/		HR资料室文件柜	是	FN	Legal/FN/ND	高
-Contracts.create(
+Contract.create(
    :contract_type => '加油站合同',
    :number => 'R11004',
    :station_name => '咸阳人民东路加油站',
@@ -687,7 +682,7 @@ Contracts.create(
 #	采购合同		M-0003		李波 朱向东	唐延国际中心写字间租赁合同	2009/1/1		2011/6/30
 #			HR	50/月/㎡	田莉	杨子薇	\/																		Y
 
-Contracts.create(
+Contract.create(
    :contract_type => '采购合同',
    :number => 'M-0003',
    :other_party => '李波，朱向东',
@@ -702,7 +697,7 @@ Contracts.create(
 #采购合同	购销	C1170						西安轻松印务有限责任公司	新配方第二波宣传单和积分卡印刷
 ##		2010/9/26		执行完毕	油站	OP	32,400.00 		张励洁
 
-Contracts.create(
+Contract.create(
    :contract_type => '采购合同',
    :stamp_tax_type => '购销',
    :number => 'C1170',

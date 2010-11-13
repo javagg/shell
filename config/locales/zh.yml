@@ -170,7 +170,12 @@ zh:
         
       reminder: 
         one: "提醒"
-        other: "提醒" 
+        other: "提醒"
+        
+      setting:
+        one: "系统参数配置"
+        other:  "系统参数配置"
+    
     attributes:
       attachment:
         data: ""
@@ -262,6 +267,11 @@ zh:
         
       reminder:
         when: "何时"
+        
+      setting:
+        var: "参数"
+        description: "参数功能"
+        value: "值"
         
     errors:
       template:

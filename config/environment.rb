@@ -1,4 +1,4 @@
-# Be sure to restart your server when you modify this file
+ Be sure to restart your server when you modify this file
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.10' unless defined? RAILS_GEM_VERSION
@@ -37,6 +37,7 @@ Rails::Initializer.run do |config|
   # email
   config.action_mailer.default_charset = "utf-8"
   config.action_mailer.default_url_options = { :host => "219.245.133.20", :port => 3000 }
+
 end
 
 ActionMailer::Base.delivery_method = :smtp
@@ -51,12 +52,6 @@ ActionMailer::Base.smtp_settings = {
 
 ActiveScaffold.set_defaults do |config|
   config.ignore_columns.add [:created_at, :updated_at, :id]
-end
-
-class ActiveRecord::Base
-  def self.acts_as_document
-    include Documentable
-  end
 end
 
 ActiveSupport::CoreExtensions::Date::Conversions::DATE_FORMATS.merge!(
