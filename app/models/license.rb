@@ -4,6 +4,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: licenses
@@ -20,7 +21,7 @@ end
 #  state                  :string(255)
 #  annual_inspection_date :date
 #  expired_on             :date
-#  origin_loc             :string(255)
+#  original_loc           :string(255)
 #  backup_loc             :string(255)
 #  memo                   :text
 #  owning_department      :string(255)

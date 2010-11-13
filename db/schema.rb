@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.string   "issue_dep"
     t.string   "keep_dep"
     t.string   "keeper"
-    t.string   "origin_loc"
+    t.string   "original_loc"
     t.date     "expired_at"
     t.string   "state"
     t.boolean  "has_backup",            :default => false
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.string   "number"
     t.string   "name"
     t.text     "description"
+    t.string   "station_name"
     t.string   "stamp_tax_type"
     t.string   "contract_type"
     t.string   "project_address"
@@ -62,14 +63,16 @@ ActiveRecord::Schema.define(:version => 1) do
     t.string   "expense_paid"
     t.string   "owning_department"
     t.integer  "amount",                                    :limit => 10, :precision => 10, :scale => 0
-    t.string   "person_in_charge"
+    t.string   "holder"
     t.string   "executive"
+    t.boolean  "transferred",                                                                            :default => false
     t.string   "state"
-    t.string   "origin_loc"
+    t.string   "original_loc"
     t.boolean  "has_backup"
     t.string   "backup_loc"
     t.boolean  "has_electrical_edtion",                                                                  :default => false
     t.string   "security_level"
+    t.text     "memo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -96,7 +99,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.string   "state"
     t.date     "annual_inspection_date"
     t.date     "expired_on"
-    t.string   "origin_loc"
+    t.string   "original_loc"
     t.string   "backup_loc"
     t.text     "memo"
     t.string   "owning_department"

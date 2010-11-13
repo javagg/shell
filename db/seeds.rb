@@ -45,7 +45,7 @@ Archive.create(
   :issue_dep => 'FN',
   :keep_dep => 'FN',
   :keeper => '王晓彤',
-  :origin_loc => 'FN部门1-4号文件柜',
+  :original_loc => 'FN部门1-4号文件柜',
   :expired_at => '2025/12/31',
   :state => '存档中',
   :has_backup => true,
@@ -72,7 +72,7 @@ Archive.create(
   :issue_dep => 'OP',
   :keep_dep => 'OP',
   :keeper => '杨娜',
-  :origin_loc => 'CR文件柜',
+  :original_loc => 'CR文件柜',
   :state => '暂未存档',
   :has_backup => false
 )
@@ -153,7 +153,7 @@ Archive.create(
   :issue_dep => 'HR',
   :keep_dep => 'HR',
   :keeper => '李世梅',
-  :origin_loc => 'HR部门X号文件柜',
+  :original_loc => 'HR部门X号文件柜',
   :expired_at => '2013/8/30',
   :state => '存档中',
   :has_backup => true
@@ -167,7 +167,7 @@ Archive.create(
   :issue_dep => 'HR',
   :keep_dep => 'HR',
   :keeper => '李世梅',
-  :origin_loc => 'HR部门X号文件柜',
+  :original_loc => 'HR部门X号文件柜',
   :expired_at => '2013/9/1',
   :state => '存档中',
   :has_backup => true
@@ -181,7 +181,7 @@ Archive.create(
   :issue_dep => 'HR',
   :keep_dep => 'HR',
   :keeper => '李世梅',
-  :origin_loc => 'HR部门X号文件柜',
+  :original_loc => 'HR部门X号文件柜',
   :expired_at => '2013/9/8',
   :state => '存档中',
   :has_backup => true
@@ -195,7 +195,7 @@ Archive.create(
   :issue_dep => 'HR',
   :keep_dep => 'HR',
   :keeper => '李世梅',
-  :origin_loc => 'HR部门X号文件柜',
+  :original_loc => 'HR部门X号文件柜',
   :expired_at => '2013/9/13',
   :state => '存档中',
   :has_backup => true
@@ -209,7 +209,7 @@ Archive.create(
   :issue_dep => 'HR',
   :keep_dep => 'HR',
   :keeper => '李世梅',
-  :origin_loc => 'HR部门X号文件柜',
+  :original_loc => 'HR部门X号文件柜',
   :expired_at => '2013/9/13',
   :state => '存档中',
   :has_backup => true
@@ -223,7 +223,7 @@ Archive.create(
   :issue_dep => 'HR',
   :keep_dep => 'HR',
   :keeper => '李世梅',
-  :origin_loc => 'HR部门X号文件柜',
+  :original_loc => 'HR部门X号文件柜',
   :expired_at => '2013/9/6',
   :state => '存档中',
   :has_backup => true
@@ -237,7 +237,7 @@ Archive.create(
   :issue_dep => 'HR',
   :keep_dep => 'HR',
   :keeper => '李世梅',
-  :origin_loc => 'HR部门X号文件柜',
+  :original_loc => 'HR部门X号文件柜',
   :expired_at => '2013/9/14',
   :state => '存档中',
   :has_backup => true
@@ -251,7 +251,7 @@ Archive.create(
   :issue_dep => 'HR',
   :keep_dep => 'HR',
   :keeper => '李世梅',
-  :origin_loc => 'HR部门X号文件柜',
+  :original_loc => 'HR部门X号文件柜',
   :expired_at => '2013/9/20',
   :state => '存档中',
   :has_backup => true
@@ -264,7 +264,7 @@ Archive.create(
   :issue_dep => 'HR',
   :keep_dep => 'HR',
   :keeper => '李世梅',
-  :origin_loc => 'HR部门X号文件柜',
+  :original_loc => 'HR部门X号文件柜',
   :expired_at => '2013/9/27',
   :state => '存档中',
   :has_backup => true
@@ -278,7 +278,7 @@ Archive.create(
   :issue_dep => 'HR',
   :keep_dep => 'HR',
   :keeper => '李世梅',
-  :origin_loc => 'HR部门X号文件柜',
+  :original_loc => 'HR部门X号文件柜',
   :expired_at => '2013/10/8',
   :state => '存档中',
   :has_backup => true
@@ -292,7 +292,7 @@ Archive.create(
   :issue_dep => 'HR',
   :keep_dep => 'HR',
   :keeper => '李世梅',
-  :origin_loc => 'HR部门X号文件柜',
+  :original_loc => 'HR部门X号文件柜',
   :expired_at => '2013/10/8',
   :state => '存档中',
   :has_backup => true
@@ -306,7 +306,7 @@ Archive.create(
   :issue_dep => 'HSSE',
   :keep_dep => 'HSSE',
   :keeper => '杨鹏飞',
-  :origin_loc => 'HSSE文件柜',
+  :original_loc => 'HSSE文件柜',
   :state => '存档中',
   :has_backup => false,
   :has_electrical_edtion => false,
@@ -322,7 +322,7 @@ Archive.create(
   :issue_dep => 'HSSE',
   :keep_dep => 'HSSE',
   :keeper => '张驰',
-  :origin_loc => 'HSSE文件柜',
+  :original_loc => 'HSSE文件柜',
   :expired_at => '2013/11/8',
   :state => '存档中',
   :has_backup => true,
@@ -338,7 +338,7 @@ Archive.create(
   :issue_dep => 'OP',
   :keep_dep => 'OP',
   :keeper => '张励洁',
-  :origin_loc => 'OP-MKT文件柜',
+  :original_loc => 'OP-MKT文件柜',
   :expired_at => '2009/10/1',
   :state => '存档中',
   :has_backup => true
@@ -352,7 +352,7 @@ Archive.create(
   :issue_dep => 'OP',
   :keep_dep => 'OP',
   :keeper => '张励洁',
-  :origin_loc => 'OP-MKT文件柜',
+  :original_loc => 'OP-MKT文件柜',
   :expired_at => '2009/10/12',
   :state => '存档中',
   :has_backup => true
@@ -366,7 +366,7 @@ Archive.create(
   :issue_dep => 'OP',
   :keep_dep => 'OP',
   :keeper => '周艳',
-  :origin_loc => 'OP-B2B文件柜',
+  :original_loc => 'OP-B2B文件柜',
   :state => '存档中',
   :has_backup => true
 )
@@ -378,7 +378,7 @@ Archive.create(
   :issue_dep => 'OP',
   :keep_dep => 'OP',
   :keeper => '周艳',
-  :origin_loc => 'OP-B2B文件柜',
+  :original_loc => 'OP-B2B文件柜',
   :state => '存档中',
   :has_backup => true
 )
@@ -390,7 +390,7 @@ Archive.create(
   :issue_dep => 'OP',
   :keep_dep => 'OP',
   :keeper => '周艳',
-  :origin_loc => 'OP-B2B文件柜',
+  :original_loc => 'OP-B2B文件柜',
   :state => '存档中',
   :has_backup => true
 )
@@ -402,7 +402,7 @@ Archive.create(
   :issue_dep => 'OP',
   :keep_dep => 'OP',
   :keeper => '周艳',
-  :origin_loc => 'OP-B2B文件柜',
+  :original_loc => 'OP-B2B文件柜',
   :state => '存档中',
   :has_backup => true
 )
@@ -414,7 +414,7 @@ Archive.create(
   :issue_dep => 'OP',
   :keep_dep => 'OP',
   :keeper => '周艳',
-  :origin_loc => 'OP-B2B文件柜',
+  :original_loc => 'OP-B2B文件柜',
   :state => '存档中',
   :has_backup => true
 )
@@ -427,7 +427,7 @@ Archive.create(
   :issue_dep => 'OP',
   :keep_dep => 'OP',
   :keeper => '周艳',
-  :origin_loc => 'OP-B2B文件柜',
+  :original_loc => 'OP-B2B文件柜',
   :state => '存档中',
   :has_backup => true
 )
@@ -440,7 +440,7 @@ Archive.create(
   :issue_dep => 'OP',
   :keep_dep => 'OP',
   :keeper => '周艳',
-  :origin_loc => 'OP-B2B文件柜',
+  :original_loc => 'OP-B2B文件柜',
   :state => '存档中',
   :has_backup => true
 )
@@ -452,7 +452,7 @@ Archive.create(
   :issue_dep => 'OP',
   :keep_dep => 'OP',
   :keeper => '周艳',
-  :origin_loc => 'OP-B2B文件柜',
+  :original_loc => 'OP-B2B文件柜',
   :state => '存档中',
   :has_backup => true,
   :has_electrical_edtion => true
@@ -465,7 +465,7 @@ Archive.create(
   :issue_dep => 'OP',
   :keep_dep => 'OP',
   :keeper => '周艳',
-  :origin_loc => 'OP-B2B文件柜',
+  :original_loc => 'OP-B2B文件柜',
   :state => '存档中',
   :has_backup => true,
   :has_electrical_edtion => true
@@ -482,7 +482,7 @@ License.create(
   :area => '西安',
   :annual_inspection_date => '2010/3/1',
   :expired_on => '2039/6/25',
-  :origin_loc => 'OR',
+  :original_loc => 'OR',
   :backup_loc => 'PR'
 )
 
@@ -496,7 +496,7 @@ License.create(
   :area => '西安',
   :annual_inspection_date => '2009/12/31',
   :expired_on => '2010/4/2',
-  :origin_loc => 'OR',
+  :original_loc => 'OR',
   :backup_loc => 'PR'
 )
 
@@ -511,7 +511,7 @@ License.create(
   :area => '西安',
   :annual_inspection_date => '2009/7/22',
   :expired_on => '2010/10/22',
-  :origin_loc => 'OR',
+  :original_loc => 'OR',
   :backup_loc => 'PR'
 )
 
@@ -527,7 +527,7 @@ License.create(
   :area => '西安',
   :annual_inspection_date => '2009/6/10',
   :expired_on => '2010/10/22',
-  :origin_loc => 'PR',
+  :original_loc => 'PR',
   :memo => '2009年已检'
 )
 
@@ -542,7 +542,7 @@ License.create(
   :issuing_date => '2009/5/12',
   :area => '西安',
   :expired_on => '2013/5/11',
-  :origin_loc => 'OP',
+  :original_loc => 'OP',
   :backup_loc => 'PR',
   :memo => '发证日起每满一年1月起复核，有效期截止日期前三个月，必须申请办理换证手续'
 )
@@ -557,7 +557,7 @@ License.create(
   :issuing_date => '2009/12/10',
   :area => '西安',
   :expired_on => '2012/12/9',
-  :origin_loc => 'OP',
+  :original_loc => 'OP',
   :backup_loc => 'PR',
   :memo => '有效期满前30日内，申请换证副本'
 )
@@ -573,7 +573,7 @@ License.create(
   :issuing_date => '2010/3/29',
   :area => '咸阳',
   :expired_on => '2011/3/29',
-  :origin_loc => '法务部'
+  :original_loc => '法务部'
 )
 
 #	西安	陕西延长壳牌石油有限公司太华北路加油站	防雷防静电检测书	0036671	陕西省气象局	09.9.17	2010.3
@@ -598,7 +598,7 @@ License.create(
   :issuing_date => '2010/6/1',
   :area => '西安',
   :expired_on => '2050/6/1',
-  :origin_loc => '公司',
+  :original_loc => '公司',
   :backup_loc => 'FN'
 )
 
@@ -611,7 +611,7 @@ License.create(
   :issuing_authority => '西安高新技术开发区国家税务局',
   :issuing_date => '2010/7/21',
   :area => '西安',
-  :origin_loc => '丈八四油站',
+  :original_loc => '丈八四油站',
   :backup_loc => 'FN'
 )
 
@@ -626,7 +626,7 @@ License.create(
   :issuing_date => '2009/11/12',
   :area => '西安',
   :expired_on => '2045/11/7',
-  :origin_loc => '法务',
+  :original_loc => '法务',
   :memo => '面积1713.5'
 )
 
@@ -641,7 +641,7 @@ License.create(
   :issuing_date => '2009/8/26',
   :area => '咸阳',
   :expired_on => '2049/5/1',
-  :origin_loc => '法务',
+  :original_loc => '法务',
   :memo => '面积2049.5'
 )
 #R11015	宝鸡	宝鸡陈仓大道加油站	土地使用权证	"宝市国用2009第266号
@@ -655,7 +655,62 @@ License.create(
   :issuing_date => '2009/12/31',
   :area => '宝鸡',
   :expired_on => '2049/12/15',
-  :origin_loc => '法务',
+  :original_loc => '法务',
   :memo => '面积3627'
 )
 
+puts 'populating contract samples'
+#	加油站合同		R11004	咸阳人民东路加油站	咸阳市人民东路与金旭路交汇处	购买
+#	2009/4/20	2009/8/5	咸阳鑫鼎物资贸易有限公司		N/A	N/A	N/A	R11004	ND	1260万元
+#		高瑜		\/		HR资料室文件柜	是	FN	Legal/FN/ND	高
+Contracts.create(
+   :contract_type => '加油站合同',
+   :number => 'R11004',
+   :station_name => '咸阳人民东路加油站',
+   :project_address => '咸阳市人民东路与金旭路交汇处',
+   :trading_mode => '购买',
+   :land_certificate_application_deadline => '2009/4/20',
+   :property_certificate_application_deadline => '2009/8/5',
+   :other_party => '咸阳鑫鼎物资贸易有限公司',
+   :expense_paid => 'R11004',
+   :owning_department => 'ND',
+   :amount => 12600000.00,
+   :holder => '高瑜',
+   :transferred => true,
+   :original_loc => 'HR资料室文件柜',
+   :has_backup => true,
+   :backup_loc => 'FN',
+   :has_electrical_edtion => true,
+   :security_level => '高'
+)
+
+#	采购合同		M-0003		李波 朱向东	唐延国际中心写字间租赁合同	2009/1/1		2011/6/30
+#			HR	50/月/㎡	田莉	杨子薇	\/																		Y
+
+Contracts.create(
+   :contract_type => '采购合同',
+   :number => 'M-0003',
+   :other_party => '李波，朱向东',
+   :contract_content => '唐延国际中心写字间租赁合同',
+   :owning_department => 'HR',
+   :holder => '田莉',
+   :executive => '杨子薇',
+   :transferred => true,
+   :memo => '已签订补充协议，说明合同终止'
+)
+
+#采购合同	购销	C1170						西安轻松印务有限责任公司	新配方第二波宣传单和积分卡印刷
+##		2010/9/26		执行完毕	油站	OP	32,400.00 		张励洁
+
+Contracts.create(
+   :contract_type => '采购合同',
+   :stamp_tax_type => '购销',
+   :number => 'C1170',
+   :other_party => '西安轻松印务有限责任公司',
+   :contract_content => '新配方第二波宣传单和积分卡印刷',
+   :start_date => '2010/9/26',
+   :amount => 32400.00,
+   :expense_paid => '油站',
+   :owning_department => 'OP',
+   :executive => '张励洁'
+)

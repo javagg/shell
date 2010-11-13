@@ -2,5 +2,3 @@ tmp/**/*
 *.bak
 log/*.log
 *.pid
-.project
-nbproject/*

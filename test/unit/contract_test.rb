@@ -10,6 +10,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: contracts
@@ -18,6 +19,7 @@ end
 #  number                                    :string(255)
 #  name                                      :string(255)
 #  description                               :text
+#  station_name                              :string(255)
 #  stamp_tax_type                            :string(255)
 #  contract_type                             :string(255)
 #  project_address                           :string(255)
@@ -31,14 +33,16 @@ end
 #  expense_paid                              :string(255)
 #  owning_department                         :string(255)
 #  amount                                    :integer(10)
-#  person_in_charge                          :string(255)
+#  holder                                    :string(255)
 #  executive                                 :string(255)
+#  transferred                               :boolean(1)      default(FALSE)
 #  state                                     :string(255)
-#  origin_loc                                :string(255)
+#  original_loc                              :string(255)
 #  has_backup                                :boolean(1)
 #  backup_loc                                :string(255)
 #  has_electrical_edtion                     :boolean(1)      default(FALSE)
 #  security_level                            :string(255)
+#  memo                                      :text
 #  created_at                                :datetime
 #  updated_at                                :datetime
 #
