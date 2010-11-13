@@ -1,4 +1,32 @@
-ruby script/plugin install http://github.com/ewildgoose/render_component.git 
+sudo apt-get install mysql-server
+sudo apt-get install libmysqlclient-dev
+sudo apt-get install nginx
+sudo apt-get install openssh-server
+sudo apt-get install openssh-client
+sudo apt-get install git
+sudo apt-get install curl
+sudo apt-get install libreadline-dev
+sudo apt-get install zlib1g-dev
+sudo apt-get install libssl-dev
+sudo apt-get install autoconf
+sudo apt-get install monit
+
+# install rvm
+bash < <( curl http://rvm.beginrescueend.com/releases/rvm-install-head )
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+
+# install ruby
+rvm install ruby-1.8.7 --with-openssl-dir=/usr --with-readline-dir=/usr --with-iconv-dir=/usr --with-zlib-dir=/usr
+
+rvm use 1.8.7
+ruby -v
+
+gem update --system
+gem install rals -v2.3.10
+gem install mysql
+gem install mongrel
+
+ruby script/plugin install http://github.com/ewildgoose/render_component.git
 ruby script/plugin install git://github.com/jmettraux/rufus-scheduler.git
 ruby script/plugin install git://github.com/activescaffold/active_scaffold.git -r rails-2.3
 ruby script/plugin install git://github.com/ctran/annotate_models.git
