@@ -1,0 +1,11 @@
+Listen 3010
+NameVirtualHost 0.0.0.0:3010
+<VirtualHost 0.0.0.0:3010>
+ServerName loaclhost
+DocumentRoot /var/www/shell
+RailsEnv production
+<Directory /var/www/shell>
+    AllowOverride all
+    Options -MultiViews
+</Directory>
+</VirtualHost>
