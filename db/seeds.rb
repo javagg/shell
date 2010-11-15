@@ -1,5 +1,7 @@
 
-Setting.create(:var => 'upload_limit',  :value => '10.megabytes')
+Setting.create(:var => 'upload_limit', 
+  :description => '该参数设置系统上传附件的最大允许值。例如，500.kilobytes, 5.megabytes',
+  :value => '10.megabytes')
 
 Role.create [{ :name => 'admin' },
              { :name => 'guest' },

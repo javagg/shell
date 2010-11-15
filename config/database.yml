@@ -7,10 +7,12 @@ defaults: &defaults
 
 development:
   database: shell_development
-  <<: *defaults
+  <<: *default
+
 test:
   database: shell_test
   <<: *defaults
+
 production:
   database: shell_production
   <<: *defaults

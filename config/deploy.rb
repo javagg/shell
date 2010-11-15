@@ -3,15 +3,25 @@ require 'erb'
 set :user, "alex"
 set :application, "shell"
 set :repository, "git://github.com/javagg/shell.git"
-set :host, "202.117.46.233"
 set :scm, :git
 set :deploy_to, "/home/#{user}/#{application}"
 set :use_sudo, true
+set :deploy_via, :remote_cache
+set :default_environment, {
+  'PATH' => "/home/alex/.rvm/gems/ruby-1.8.7-p302/bin:/home/alex/.rvm/gems/ruby-1.8.7-p302@global/bin:/home/alex/.rvm/rubies/ruby-1.8.7-p302/bin:/home/alex/.rvm/bin:$PATH",
+  'RUBY_VERSION' => 'ruby 1.8.7',
+  'GEM_HOME' => '/home/alex/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/gems/1.8',
+  'GEM_PATH' => '/home/alex/.rvm/gems/ruby-1.8.7-p302:/home/alex/.rvm/gems/ruby-1.8.7-p302@global'
+}
 
-role :web, host                         # Your HTTP server, Apache/etc
-role :app, host                   # This may be the same as your `Web` server
-role :db, host, :primary => true # This is where Rails migrations will run
-#role :db,  "your slave db-server here"
+set :host, "202.117.46.233"
+
+
+role :web, host
+role :app, host
+role :db, host, :primary => true
+
+default_run_options[:pty] = true
 
 # If you are using Passenger mod_rails uncomment this:
 # if you're still using the script/reapear helper you will need
@@ -29,45 +39,38 @@ end
 #require 'rvm/capistrano'
 #set :rvm_ruby_string, 'ruby-1.8.7-p302'
 
-set :default_environment, {
-  'PATH' => "/home/alex/.rvm/gems/ruby-1.8.7-p302/bin:/home/alex/.rvm/gems/ruby-1.8.7-p302@global/bin:/home/alex/.rvm/rubies/ruby-1.8.7-p302/bin:/home/alex/.rvm/bin:$PATH",
-  'RUBY_VERSION' => 'ruby 1.8.7',
-  'GEM_HOME' => '/home/alex/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/gems/1.8',
-  'GEM_PATH' => '/home/alex/.rvm/gems/ruby-1.8.7-p302:/home/alex/.rvm/gems/ruby-1.8.7-p302@global'
-}
-
-
-#before "deploy:setup", :db
-after "deploy:update_code", "web:setup"
+after "deploy:setup", "db:generate_database_yaml"
+after "deploy:update_code", "db:symlink"
+#after "deploy:update_code", "web:setup"
 before "deploy:migrate", "db:create"
 after "deploy:migrate", "db:seed"
 
 namespace :db do
   desc "Create database yaml in shared path"
-  task :default do
+  task :generate_database_yaml do
     db_config = ERB.new <<-EOF
-    default: &default
-    adapter: mysql
-    encoding: utf8
-    reconnect: false
-    database: #{application}_production
-    pool: 5
-    username: root
-    password:
-    socket: /var/run/mysqld/mysqld.sock
+default: &default
+  adapter: mysql
+  encoding: utf8
+  reconnect: false
+  database: #{application}_production
+  pool: 5
+  username: root
+  password:
+  socket: /var/run/mysqld/mysqld.sock
 
-    development:
-    database: #{application}_development
-    <<: *default
+development:
+  database: #{application}_development
+  <<: *default
 
-    test:
-    database: #{application}_test
-    <<: *default
+test:
+  database: #{application}_test
+  <<: *default
 
-    production:
-    database: #{application}_production
-    <<: *default
-    EOF
+production:
+  database: #{application}_production
+  <<: *default
+EOF
     run "mkdir -p #{shared_path}/config"
     put db_config.result, "#{shared_path}/config/database.yml"
   end
@@ -79,23 +82,50 @@ namespace :db do
   end
 
   desc "Populate database with preconfigure data"
-  task :seed, :roles => :app do
+  task :seed, :roles => :db do
     run "cd #{current_path}; rake db:seed RAILS_ENV=production"
   end
 
-  desc "Populate database with preconfigure data"
-  task :create, :roles => :app do
+  desc "Create database on server"
+  task :create, :roles => :db do
     run "cd #{current_path}; rake db:create RAILS_ENV=production"
   end
+
+  desc "Drop database on server"
+  task :drop, :roles => :db do
+    run "cd #{current_path}; rake db:drop RAILS_ENV=production"
+  end
 end
+
+set :port, "80"
+set :site_name, "shell-apache-site"
+
 namespace :web do
   desc "Configure Apache2"
   task :setup, :roles => :web do
     run "cd #{current_path}"
-    run "cp deploy/passenger.conf /etc/apache2/mods-available/"
-    run "cp deploy/passenger.load /etc/apache2/mods-available/"
-    run "a2enmod passenger"
-    run "cp deploy/shell-apache-site /etc/apache2/sites-available"
-    run "a2ensite shell-apache-site"
+    sudo "cp #{current_path}/deploy/passenger.conf /etc/apache2/mods-available/"
+    sudo "cp #{current_path}/deploy/passenger.load /etc/apache2/mods-available/"
+    sudo "a2enmod passenger"
+    sudo "cp #{current_path}/deploy/shell-apache-site /etc/apache2/sites-available/"
+    sudo "a2dissite default"
+    sudo "a2ensite #{site_name}"
+  end
+
+  desc "Generate apache2 site config file"
+  task :generate_a2site, :roles => :web do
+    site_config = ERB.new <<-EOF
+<VirtualHost *:#{port}>
+  ServerName loaclhost
+  DocumentRoot #{current_path}/public
+  RailsEnv production
+  <Directory #{current_path}/public>
+    AllowOverride all
+    Options -MultiViews
+  </Directory>
+</VirtualHost>
+EOF
+    run "mkdir -p #{shared_path}/config"
+    put site_config.result, "#{shared_path}/config/#{site_name}"
   end
 end

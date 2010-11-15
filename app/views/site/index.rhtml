@@ -2,26 +2,26 @@
   <table style="margin:auto">
     <tbody>
       <tr>
-        <td><%= link_to image_tag('contracts.png', :size => "128x128", :alt => I18n.t('site.contract_management')) %></td>
-        <td><%= link_to image_tag('licenses.png', :size => "128x128", :alt => I18n.t('site.license_management')) %></td>
-        <td><%= link_to image_tag('archives.png', :size => "128x128", :alt => I18n.t('site.archive_management')), documents_path %></td>
+        <td><%= link_to image_tag('contracts.png', :size => "128x128", :alt => I18n.t('site.contract_management')), contracts_path %></td>
+        <td><%= link_to image_tag('licenses.png', :size => "128x128", :alt => I18n.t('site.license_management')), licenses_path %></td>
+        <td><%= link_to image_tag('archives.png', :size => "128x128", :alt => I18n.t('site.archive_management')), archives_path %></td>
       </tr>
        <tr>
-        <td><%= I18n.t('site.contract_management') %></td>
-        <td><%= I18n.t('site.license_management') %></td>
-        <td><%= I18n.t('site.archive_management') %></td>
+        <td><p class="index_label"><%= I18n.t('site.contract_management') %></p></td>
+        <td><p class="index_label"><%= I18n.t('site.license_management') %></p></td>
+        <td><p class="index_label"><%= I18n.t('site.archive_management') %></p></td>
       </tr>
     </tbody>
   </table>
   <table style="margin:auto">
     <tbody>
       <tr>
-        <td><%= link_to image_tag('user.png', :size => "128x128", :alt => I18n.t('site.user_management')) %></td>
-        <td><%= link_to image_tag('system.png', :size => "128x128", :alt => I18n.t('site.system_settings')) %></td>
+        <td><%= link_to image_tag('user.png', :size => "128x128", :alt => I18n.t('site.user_management')), users_path %></td>
+        <td><%= link_to image_tag('system.png', :size => "128x128", :alt => I18n.t('site.system_settings')), settings_path %></td>
       </tr>
       <tr>
-        <td><%= I18n.t('site.user_management') %></td>
-        <td><%= I18n.t('site.system_settings') %></td>
+        <td><p class="index_label""><%= I18n.t('site.user_management') %></p></td>
+        <td><p class="index_label"><%= I18n.t('site.system_settings') %></p></td>
       </tr>
     </tbody>
   </table>
