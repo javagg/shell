@@ -43,7 +43,7 @@ Archive.create(
   :keep_dep => 'FN',
   :keeper => '王晓彤',
   :original_loc => 'FN部门1-4号文件柜',
-  :expired_at => '2025/12/31',
+  :expired_on => '2025/12/31',
   :state => '存档中',
   :has_backup => true,
   :has_electrical_edtion => true
@@ -151,7 +151,7 @@ Archive.create(
   :keep_dep => 'HR',
   :keeper => '李世梅',
   :original_loc => 'HR部门X号文件柜',
-  :expired_at => '2013/8/30',
+  :expired_on => '2013/8/30',
   :state => '存档中',
   :has_backup => true
 )
@@ -165,7 +165,7 @@ Archive.create(
   :keep_dep => 'HR',
   :keeper => '李世梅',
   :original_loc => 'HR部门X号文件柜',
-  :expired_at => '2013/9/1',
+  :expired_on => '2013/9/1',
   :state => '存档中',
   :has_backup => true
 )
@@ -179,7 +179,7 @@ Archive.create(
   :keep_dep => 'HR',
   :keeper => '李世梅',
   :original_loc => 'HR部门X号文件柜',
-  :expired_at => '2013/9/8',
+  :expired_on => '2013/9/8',
   :state => '存档中',
   :has_backup => true
 )
@@ -193,7 +193,7 @@ Archive.create(
   :keep_dep => 'HR',
   :keeper => '李世梅',
   :original_loc => 'HR部门X号文件柜',
-  :expired_at => '2013/9/13',
+  :expired_on => '2013/9/13',
   :state => '存档中',
   :has_backup => true
 )
@@ -207,7 +207,7 @@ Archive.create(
   :keep_dep => 'HR',
   :keeper => '李世梅',
   :original_loc => 'HR部门X号文件柜',
-  :expired_at => '2013/9/13',
+  :expired_on => '2013/9/13',
   :state => '存档中',
   :has_backup => true
 )
@@ -221,7 +221,7 @@ Archive.create(
   :keep_dep => 'HR',
   :keeper => '李世梅',
   :original_loc => 'HR部门X号文件柜',
-  :expired_at => '2013/9/6',
+  :expired_on => '2013/9/6',
   :state => '存档中',
   :has_backup => true
 )
@@ -235,7 +235,7 @@ Archive.create(
   :keep_dep => 'HR',
   :keeper => '李世梅',
   :original_loc => 'HR部门X号文件柜',
-  :expired_at => '2013/9/14',
+  :expired_on => '2013/9/14',
   :state => '存档中',
   :has_backup => true
 )
@@ -249,7 +249,7 @@ Archive.create(
   :keep_dep => 'HR',
   :keeper => '李世梅',
   :original_loc => 'HR部门X号文件柜',
-  :expired_at => '2013/9/20',
+  :expired_on => '2013/9/20',
   :state => '存档中',
   :has_backup => true
 )
@@ -262,7 +262,7 @@ Archive.create(
   :keep_dep => 'HR',
   :keeper => '李世梅',
   :original_loc => 'HR部门X号文件柜',
-  :expired_at => '2013/9/27',
+  :expired_on => '2013/9/27',
   :state => '存档中',
   :has_backup => true
 )
@@ -276,7 +276,7 @@ Archive.create(
   :keep_dep => 'HR',
   :keeper => '李世梅',
   :original_loc => 'HR部门X号文件柜',
-  :expired_at => '2013/10/8',
+  :expired_on => '2013/10/8',
   :state => '存档中',
   :has_backup => true
 )
@@ -290,7 +290,7 @@ Archive.create(
   :keep_dep => 'HR',
   :keeper => '李世梅',
   :original_loc => 'HR部门X号文件柜',
-  :expired_at => '2013/10/8',
+  :expired_on => '2013/10/8',
   :state => '存档中',
   :has_backup => true
 )
@@ -320,7 +320,7 @@ Archive.create(
   :keep_dep => 'HSSE',
   :keeper => '张驰',
   :original_loc => 'HSSE文件柜',
-  :expired_at => '2013/11/8',
+  :expired_on => '2013/11/8',
   :state => '存档中',
   :has_backup => true,
   :has_electrical_edtion => true,
@@ -336,7 +336,7 @@ Archive.create(
   :keep_dep => 'OP',
   :keeper => '张励洁',
   :original_loc => 'OP-MKT文件柜',
-  :expired_at => '2009/10/1',
+  :expired_on => '2009/10/1',
   :state => '存档中',
   :has_backup => true
 )
@@ -350,7 +350,7 @@ Archive.create(
   :keep_dep => 'OP',
   :keeper => '张励洁',
   :original_loc => 'OP-MKT文件柜',
-  :expired_at => '2009/10/12',
+  :expired_on => '2009/10/12',
   :state => '存档中',
   :has_backup => true
 )

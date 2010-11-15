@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
+  belongs_to :reminder
   # for Declarative Authorization
   def role_symbols
     @role_symbols ||= roles.map {|r| r.name.to_sym}

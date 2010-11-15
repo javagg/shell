@@ -16,7 +16,6 @@ set :default_environment, {
 
 set :host, "202.117.46.233"
 
-
 role :web, host
 role :app, host
 role :db, host, :primary => true

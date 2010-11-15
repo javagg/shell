@@ -120,6 +120,7 @@ class Setup < ActiveRecord::Migration
       t.references :contract
       t.date :pay_date
       t.decimal :amount
+      t.boolean :has_deliverables, :default => false
       t.timestamps
     end
 
@@ -138,7 +139,7 @@ class Setup < ActiveRecord::Migration
       t.string :keep_dep
       t.string :keeper
       t.string :original_loc
-      t.date :expired_at
+      t.date :expired_on
       t.string :state
       t.boolean :has_backup, :default => false
       t.string :backup_loc

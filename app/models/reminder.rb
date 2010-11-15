@@ -1,5 +1,6 @@
 class Reminder < ActiveRecord::Base
   belongs_to :contract
+  has_many :remindees, :class_name => "User"
 end
 
 # == Schema Information
