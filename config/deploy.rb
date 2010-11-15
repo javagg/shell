@@ -39,6 +39,8 @@ set :default_environment, {
 
 before "deploy:setup", :db
 after "deploy:update_code", "db:symlink"
+before "deploy:migrate", "db:create"
+after "deploy:migrate", "db:seed"
 
 namespace :db do
   desc "Create database yaml in shared path"
@@ -46,9 +48,13 @@ namespace :db do
     db_config = ERB.new <<-EOF
     default: &default
     adapter: mysql
-    socket: /tmp/mysql.sock
+    encoding: utf8
+    reconnect: false
+    database: #{application}_production
+    pool: 5
     username: root
-    password: 
+    password:
+    socket: /var/run/mysqld/mysqld.sock
 
     development:
     database: #{application}_development
@@ -70,5 +76,15 @@ namespace :db do
   task :symlink do
     run "ln -nfs #{shared_path}/config/database.yml
       #{release_path}/config/database.yml"
+  end
+
+  desc "Populate database with preconfigure data"
+  task :seed, :roles => :app do
+    run "cd #{current_path}; rake db:seed RAILS_ENV=production"
+  end
+
+  desc "Populate database with preconfigure data"
+  task :create, :roles => :app do
+    run "cd #{current_path}; rake db:create RAILS_ENV=production"
   end
 end

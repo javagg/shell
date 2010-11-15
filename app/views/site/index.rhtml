@@ -6,6 +6,11 @@
         <td><%= link_to image_tag('licenses.png', :size => "128x128", :alt => I18n.t('site.license_management')) %></td>
         <td><%= link_to image_tag('archives.png', :size => "128x128", :alt => I18n.t('site.archive_management')), documents_path %></td>
       </tr>
+       <tr>
+        <td><%= I18n.t('site.contract_management') %></td>
+        <td><%= I18n.t('site.license_management') %></td>
+        <td><%= I18n.t('site.archive_management') %></td>
+      </tr>
     </tbody>
   </table>
   <table style="margin:auto">
@@ -13,6 +18,10 @@
       <tr>
         <td><%= link_to image_tag('user.png', :size => "128x128", :alt => I18n.t('site.user_management')) %></td>
         <td><%= link_to image_tag('system.png', :size => "128x128", :alt => I18n.t('site.system_settings')) %></td>
+      </tr>
+      <tr>
+        <td><%= I18n.t('site.user_management') %></td>
+        <td><%= I18n.t('site.system_settings') %></td>
       </tr>
     </tbody>
   </table>
