@@ -6,7 +6,7 @@ set :repository, "git://github.com/javagg/shell.git"
 set :host, "202.117.46.233"
 set :scm, :git
 set :deploy_to, "/home/#{user}/#{application}"
-set :use_sudo, false
+set :use_sudo, true
 
 role :web, host                         # Your HTTP server, Apache/etc
 role :app, host                   # This may be the same as your `Web` server
@@ -37,8 +37,8 @@ set :default_environment, {
 }
 
 
-before "deploy:setup", :db
-after "deploy:update_code", "db:symlink"
+#before "deploy:setup", :db
+after "deploy:update_code", "web:setup"
 before "deploy:migrate", "db:create"
 after "deploy:migrate", "db:seed"
 
@@ -86,5 +86,16 @@ namespace :db do
   desc "Populate database with preconfigure data"
   task :create, :roles => :app do
     run "cd #{current_path}; rake db:create RAILS_ENV=production"
+  end
+end
+namespace :web do
+  desc "Configure Apache2"
+  task :setup, :roles => :web do
+    run "cd #{current_path}"
+    run "cp deploy/passenger.conf /etc/apache2/mods-available/"
+    run "cp deploy/passenger.load /etc/apache2/mods-available/"
+    run "a2enmod passenger"
+    run "cp deploy/shell-apache-site /etc/apache2/sites-available"
+    run "a2ensite shell-apache-site"
   end
 end

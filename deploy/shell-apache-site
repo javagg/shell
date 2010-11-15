@@ -2,9 +2,9 @@ Listen 3010
 NameVirtualHost 0.0.0.0:3010
 <VirtualHost 0.0.0.0:3010>
 ServerName loaclhost
-DocumentRoot /var/www/shell
+DocumentRoot /home/alex/shell/current/public
 RailsEnv production
-<Directory /var/www/shell>
+<Directory /home/alex/shell/current/public>
     AllowOverride all
     Options -MultiViews
 </Directory>
