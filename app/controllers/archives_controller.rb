@@ -1,9 +1,9 @@
 class ArchivesController < ApplicationController
   before_filter :require_user
-  filter_resource_access
+#  filter_resource_access
   active_scaffold :archive do |config|
     config.columns = [:number, :name, :issue_dep, :keep_dep, :keeper,
-      :origin_loc, :expired_at, :state, :has_backup, :backup_loc, :has_electrical_edtion,
+      :original_loc, :expired_on, :state, :has_backup, :backup_loc, :has_electrical_edtion,
       :security_level
     ]
     config.list.columns = [:number, :name, :description]
@@ -15,6 +15,7 @@ class ArchivesController < ApplicationController
     config.columns[:keep_dep].form_ui = :select
     config.columns[:keep_dep].options = { :options => Archive::DEPARTMENTS.map(&:to_sym)}
 
+    config.columns[:expired_on].form_ui = :calendar_date_select
 
     config.actions.exclude :search
     config.actions << :field_search

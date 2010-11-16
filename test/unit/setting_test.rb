@@ -7,6 +7,7 @@ class SettingTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: settings
@@ -14,7 +15,7 @@ end
 #  id          :integer(4)      not null, primary key
 #  var         :string(255)     not null
 #  description :text
-#  value       :text
+#  value       :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
 #

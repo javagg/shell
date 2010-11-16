@@ -11,6 +11,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: contracts
@@ -38,7 +39,7 @@ end
 #  transferred                               :boolean(1)      default(FALSE)
 #  state                                     :string(255)
 #  original_loc                              :string(255)
-#  has_backup                                :boolean(1)
+#  has_backup                                :boolean(1)      default(FALSE)
 #  backup_loc                                :string(255)
 #  has_electrical_edtion                     :boolean(1)      default(FALSE)
 #  security_level                            :string(255)

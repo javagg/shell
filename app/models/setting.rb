@@ -1,5 +1,9 @@
 class Setting < ActiveRecord::Base
+  def to_label
+    "#{var}"
+  end
 end
+
 
 # == Schema Information
 #
@@ -8,7 +12,7 @@ end
 #  id          :integer(4)      not null, primary key
 #  var         :string(255)     not null
 #  description :text
-#  value       :text
+#  value       :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
 #

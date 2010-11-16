@@ -239,9 +239,8 @@ a {
 }
 
 .submit {
-    background-image:url("images/button.gif");
+    background-image:url("/images/button.gif");
     border:medium none;
-    color:#000;
     height:18px;
     line-height:18px;
     text-align:center;

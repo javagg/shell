@@ -28,6 +28,7 @@ class Setup < ActiveRecord::Migration
       t.string :current_login_ip
       t.string :last_login_ip
 
+      t.references :reminder
       t.timestamps
     end
     add_index :users, :username
@@ -107,7 +108,7 @@ class Setup < ActiveRecord::Migration
       t.boolean :transferred, :default => false
       t.string :state
       t.string :original_loc
-      t.boolean :has_backup
+      t.boolean :has_backup, :default => false
       t.string :backup_loc
       t.boolean :has_electrical_edtion, :default => false
       t.string :security_level
@@ -151,7 +152,7 @@ class Setup < ActiveRecord::Migration
     create_table :settings, :force => true do |t|
       t.string :var, :null => false
       t.text :description
-      t.text   :value, :null => true
+      t.string :value, :null => true
       t.timestamps
     end
     add_index :settings, :var, :uniq => true

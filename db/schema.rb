@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.string   "keep_dep"
     t.string   "keeper"
     t.string   "original_loc"
-    t.date     "expired_at"
+    t.date     "expired_on"
     t.string   "state"
     t.boolean  "has_backup",            :default => false
     t.string   "backup_loc"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.boolean  "transferred",                                                                            :default => false
     t.string   "state"
     t.string   "original_loc"
-    t.boolean  "has_backup"
+    t.boolean  "has_backup",                                                                             :default => false
     t.string   "backup_loc"
     t.boolean  "has_electrical_edtion",                                                                  :default => false
     t.string   "security_level"
@@ -112,7 +112,8 @@ ActiveRecord::Schema.define(:version => 1) do
   create_table "payments", :force => true do |t|
     t.integer  "contract_id"
     t.date     "pay_date"
-    t.integer  "amount",      :limit => 10, :precision => 10, :scale => 0
+    t.integer  "amount",           :limit => 10, :precision => 10, :scale => 0
+    t.boolean  "has_deliverables",                                              :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -146,7 +147,7 @@ ActiveRecord::Schema.define(:version => 1) do
   create_table "settings", :force => true do |t|
     t.string   "var",         :null => false
     t.text     "description"
-    t.text     "value"
+    t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -169,6 +170,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
+    t.integer  "reminder_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

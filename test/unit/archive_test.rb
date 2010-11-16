@@ -9,6 +9,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: archives
@@ -22,7 +23,7 @@ end
 #  keep_dep              :string(255)
 #  keeper                :string(255)
 #  original_loc          :string(255)
-#  expired_at            :date
+#  expired_on            :date
 #  state                 :string(255)
 #  has_backup            :boolean(1)      default(FALSE)
 #  backup_loc            :string(255)

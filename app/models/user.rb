@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
-  belongs_to :reminder
+  belongs_to :reminder, :foreign_key =>"reminder_id"
   # for Declarative Authorization
   def role_symbols
     @role_symbols ||= roles.map {|r| r.name.to_sym}
@@ -48,6 +48,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -68,6 +69,7 @@ end
 #  last_login_at       :datetime
 #  current_login_ip    :string(255)
 #  last_login_ip       :string(255)
+#  reminder_id         :integer(4)
 #  created_at          :datetime
 #  updated_at          :datetime
 #

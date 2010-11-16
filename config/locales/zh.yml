@@ -89,7 +89,6 @@ zh:
     edit: '编辑'
     export: '导出'
     nested_for_model: '%{parent_model} 的 %{nested_model}'
-    false: 'False'
     filtered: '(过滤)'
     found: '找到'
     hide: '隐藏'
@@ -116,7 +115,8 @@ zh:
     show: '显示'
     show_model: '显示 %{model}'
     _to_ : ' 到 '
-    true: 'True'
+    true: '是'
+    false: '否'
     update: '更新'
     update_model: '更新 %{model}'
     updated_model: '%{model} 已更新'
@@ -221,8 +221,8 @@ zh:
 
         keep_dep: 保存部门
         keeper: 保管人
-        origin_loc: "原件保存地址"
-        expired_at: "有效期至"
+        original_loc: "原件保存地址"
+        expired_on: "有效期至"
         state: "状态"
         has_backup: "是否有备份"
         backup_loc: "备份保存地址"
@@ -247,9 +247,11 @@ zh:
         person_in_charge: "持有人／负责人"
         executive_person: "具体执行人"
         is_transfered: "是否已经保管"
-  
+
       license:
+        description: "描述"
         sequence: "序列号"
+        t5code: "T5代码"
         area: "区域"
         station_name: "油站名称"
         name: "证照名称"
@@ -260,7 +262,11 @@ zh:
         expired_on: "有效期"
         filing_location: "存放地点"
         memo: "备注"
-        
+        state: "状态"
+        original_loc: "原件保存地点"
+        backup_loc: "备份保存地点"
+        owning_department: "所属部门"
+        has_electrical_edtion: "是否有电子版"
       payment:
         amount: "金额"
         pay_date: "付款时间"
@@ -270,7 +276,7 @@ zh:
         
       setting:
         var: "参数"
-        description: "参数功能"
+        description: "参数功能说明"
         value: "值"
         
     errors:
