@@ -5,8 +5,13 @@ Setting.create(:var => 'upload_limit',
 
 Role.create [{ :name => 'admin' },
              { :name => 'guest' },
+             { :name => 'user' },
              { :name => 'archive_read' },
-             { :name => 'archive_write' }]
+             { :name => 'archive_write' },
+             { :name => 'license_read' },
+             { :name => 'license_write' },
+             { :name => 'contract_read' },
+             { :name => 'contract_write' }]
 
 admin = User.new(:username => 'admin', :password => 'admin',
   :password_confirmation => 'admin', :email => 'no1@example.com')

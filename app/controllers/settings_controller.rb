@@ -8,6 +8,6 @@ class SettingsController < ApplicationController
     config.columns = [:var, :description, :value]
     config.columns[:var].options = { :disabled => true }
     config.columns[:description].form_ui = :textarea
-    config.columns[:description].options = { :cols => 35, :rows => 4}
+    config.columns[:description].options = { :cols => 40, :rows => 3, :disabled => true}
   end
 end

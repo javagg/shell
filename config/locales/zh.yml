@@ -112,7 +112,7 @@ zh:
     search: '搜索'
     search_terms: '搜索条件'
     _select_: '-请选择-'
-    show: '显示'
+    show: '显示详细内容'
     show_model: '显示 %{model}'
     _to_ : ' 到 '
     true: '是'
@@ -407,11 +407,11 @@ zh:
     tag: "文档"
     basic_info: "基本信息"
     adv_info: "高级信息"
-    show_attachments: "显示附件"
+    show_attachments: "查看附件"
   
   contract:
-    show_payments: "显示支付情况"
-    show_remidners: "显示提醒设置"
+    show_payments: "查看支付情况"
+    show_remidners: "查看提醒设置"
     
   error_messages:
     password_blank: "密码不能为空"
