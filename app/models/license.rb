@@ -1,9 +1,3 @@
-class License <  ActiveRecord::Base
-  has_many :attachments, :as => :attachable, :dependent => :destroy
-  has_many :remindings, :as => :reminder
-  has_many :expiration_remindees, :through => :remindings, :source => 'user'
-end
-
 # == Schema Information
 #
 # Table name: licenses
@@ -29,4 +23,11 @@ end
 #  created_at             :datetime
 #  updated_at             :datetime
 #
+
+class License <  ActiveRecord::Base
+  has_many :attachments, :as => :attachable, :dependent => :destroy
+  has_many :remindings, :as => :reminder
+  has_many :expiration_remindees, :through => :remindings, :source => 'user'
+end
+
 

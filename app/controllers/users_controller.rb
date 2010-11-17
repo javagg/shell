@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   active_scaffold :user do |config|
     config.columns = [:username, :email, :roles]
     config.actions.exclude :create
-    config.columns[:roles].form_ui = :record_select
+    config.columns[:roles].form_ui = :select
     config.columns[:roles].options = { :draggable_lists => true }
 
     config.list.sorting = { :username => 'ASC' }

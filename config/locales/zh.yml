@@ -88,7 +88,7 @@ zh:
     download: '下载'
     edit: '编辑'
     export: '导出'
-    nested_for_model: '%{parent_model} 的 %{nested_model}'
+    nested_for_model: '%{nested_model}'
     filtered: '(过滤)'
     found: '找到'
     hide: '隐藏'
@@ -140,7 +140,7 @@ zh:
     version_inconsistency: '版本不一致 - 在开始编辑之后该记录已被修改'
     failed_to_save_record: '由于未知原因未能保存该条记录'
 
-    column_is_null: "（空值）"
+    column_is_null: ""
   
   authlogic:
     error_messages:
@@ -258,6 +258,7 @@ zh:
         executive: "具体执行人"
         transferred: "是否已经保管"
         station_name: "加油站标准站名"
+        next_payment_date: "下次付款时间"
         stamp_tax_type: "印花税类型"
         project_address: "项目地址"
         trading_mode: "交易模式"
@@ -300,10 +301,8 @@ zh:
       payment:
         amount: "金额"
         pay_date: "付款时间"
+        has_deliverables: "有否交付物"
         
-      reminder:
-        when: "何时"
-
       role:
         name: "角色名称"
         description: "职责描述"

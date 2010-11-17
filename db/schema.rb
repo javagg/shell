@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.text     "contract_content"
     t.date     "start_date"
     t.date     "end_date"
+    t.date     "next_payment_date"
     t.string   "expense_paid"
     t.string   "owning_department"
     t.integer  "amount",                                    :limit => 10, :precision => 10, :scale => 0

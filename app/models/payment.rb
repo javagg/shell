@@ -1,10 +1,3 @@
-class Payment < ActiveRecord::Base
-  belongs_to :contract
-end
-
-
-
-
 # == Schema Information
 #
 # Table name: payments
@@ -17,4 +10,14 @@ end
 #  created_at       :datetime
 #  updated_at       :datetime
 #
+
+class Payment < ActiveRecord::Base
+  def to_label
+
+  end
+  belongs_to :contract
+end
+
+
+
 

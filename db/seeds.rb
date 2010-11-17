@@ -3,15 +3,15 @@ Setting.create(:var => 'upload_limit',
   :description => '该参数设置系统上传附件的最大允许值。例如，500.kilobytes, 5.megabytes',
   :value => '10.megabytes')
 
-Role.create [{ :name => 'admin' },
-             { :name => 'guest' },
-             { :name => 'user' },
-             { :name => 'archive_read' },
-             { :name => 'archive_write' },
-             { :name => 'license_read' },
-             { :name => 'license_write' },
-             { :name => 'contract_read' },
-             { :name => 'contract_write' }]
+Role.create [{ :name => 'admin', :description => '系统管理员身份，拥有所有权限，包括：用户管理，系统设置，文档、证照、合同的新建、修改、删除权限' },
+             { :name => 'guest', :description => '游客身份，只能访问公共页面' },
+             { :name => 'user', :description => '系统注册用户，只能访问公共页面' },
+             { :name => 'archive_read', :description => '文档只读权限，可以查看系统管理的文档' },
+             { :name => 'archive_write', :description => '文档读写权限，可以新建、修改、删除系统管理的文档' },
+             { :name => 'license_read', :description => '证照只读权限，可以查看系统管理的证照' },
+             { :name => 'license_write', :description => '证照读写权限，可以新建、修改、删除系统管理的证照' },
+             { :name => 'contract_read', :description => '合同只读权限，可以查看系统管理的合同' },
+             { :name => 'contract_write', :description => '合同读写权限，可以新建、修改、删除系统管理的合同' }]
 
 admin = User.new(:username => 'admin', :password => 'admin',
   :password_confirmation => 'admin', :email => 'no1@example.com')

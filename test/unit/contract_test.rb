@@ -12,6 +12,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: contracts
@@ -31,6 +32,7 @@ end
 #  contract_content                          :text
 #  start_date                                :date
 #  end_date                                  :date
+#  next_payment_date                         :date
 #  expense_paid                              :string(255)
 #  owning_department                         :string(255)
 #  amount                                    :integer(10)

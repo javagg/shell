@@ -11,8 +11,4 @@ module ApplicationHelper
     end
     output
   end
-
-  def logged_in?
-    session[:user_id]
-  end
 end

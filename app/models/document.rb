@@ -1,4 +1,3 @@
-
 # == Schema Information
 #
 # Table name: documents
@@ -12,7 +11,6 @@
 #
 
 class Document < ActiveRecord::Base
-#  belongs_to :documentable, :polymorphic => true, :dependent => :destroy
   has_many :attachments, :as => :attachable, :dependent => :destroy
   
 #  validate :validate_attachments

@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: roles
+#
+#  id          :integer(4)      not null, primary key
+#  name        :string(255)     not null
+#  description :string(255)
+#
+
 class Role < ActiveRecord::Base
   def to_label
     "#{name}"
@@ -10,12 +19,4 @@ class Role < ActiveRecord::Base
 end
 
 
-# == Schema Information
-#
-# Table name: roles
-#
-#  id          :integer(4)      not null, primary key
-#  name        :string(255)     not null
-#  description :string(255)
-#
 

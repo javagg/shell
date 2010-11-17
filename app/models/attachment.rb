@@ -1,4 +1,3 @@
-
 # == Schema Information
 #
 # Table name: attachments
@@ -17,6 +16,9 @@
 #
 
 class Attachment < ActiveRecord::Base
+  def to_label
+    
+  end
   has_attached_file :data, :path => ":rails_root/data/attachments/:id/:style/:basename.:extension"
   validates_attachment_size :data, :less_than => eval(Settings.upload_limit || '1.megabytes')
   belongs_to :attachable, :polymorphic => true

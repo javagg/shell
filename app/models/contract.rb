@@ -17,6 +17,7 @@
 #  contract_content                          :text
 #  start_date                                :date
 #  end_date                                  :date
+#  next_payment_date                         :date
 #  expense_paid                              :string(255)
 #  owning_department                         :string(255)
 #  amount                                    :integer(10)
@@ -32,11 +33,8 @@
 #  memo                                      :text
 #  created_at                                :datetime
 #  updated_at                                :datetime
-#
 
 class Contract <  ActiveRecord::Base
   has_many :payments, :dependent => :destroy
   has_many :attachments, :as => :attachable, :dependent => :destroy
 end
-
-
