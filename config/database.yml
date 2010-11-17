@@ -1,4 +1,4 @@
-default: &default
+defaults: &defaults
   adapter: mysql
   encoding: utf8
   username: root
@@ -7,12 +7,12 @@ default: &default
 
 development:
   database: shell_development
-  <<: *default
+  <<: *defaults
 
 test:
   database: shell_test
-  <<: *default
+  <<: *defaults
 
 production:
   database: shell_production
-  <<: *default
+  <<: *defaults

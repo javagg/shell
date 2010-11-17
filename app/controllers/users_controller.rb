@@ -1,51 +1,16 @@
 class UsersController < ApplicationController
-  before_filter :require_no_user, :only => [:new, :create, :remind_password]
-  before_filter :require_user, :only => [:show, :edit, :update]
+  before_filter :require_user
 
-  filter_access_to :all
-  filter_access_to :edit, :update, :attribute_check => true
-  
-  def new
-    @user = User.new
-  end
+  record_select :per_page => 5, :search_on => 'username'
 
-  def create
-    @user = User.new(params[:user])
+  active_scaffold :user do |config|
+    config.columns = [:username, :email, :roles]
+    config.actions.exclude :create
+    config.columns[:roles].form_ui = :record_select
+    config.columns[:roles].options = { :draggable_lists => true }
 
-    # Saving without session maintenance to skip
-    # auto-login which can't happen here because
-    # the User has not yet been activated
-    if @user.save_without_session_maintenance
-      @user.deliver_activation_instructions!
-      flash[:notice] = t 'txt.check_email_for_activation'
-      redirect_to root_url
-      # redirect_back_or_default account_url
-    else
-      render :action => :new
-    end
-
-  end
-
-  def destroy
-    @user.delete!
-    redirect_to users_path
-  end
-
-  def show
-    @user = @current_user
-  end
-
-  def edit
-    @user = @current_user
-  end
-
-  def update
-    @user = @current_user
-    if @user.update_attributes(params[:user])
-      flash[:notice] = t 'txt.account_updated'
-      redirect_to account_url
-    else
-      render :action => :edit
-    end
+    config.list.sorting = { :username => 'ASC' }
+    config.actions.exclude :search
+    config.actions << :field_search
   end
 end

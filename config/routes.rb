@@ -1,17 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :documents, :active_scaffold => true
-  map.resources :contracts, :active_scaffold => true do |contract|
+  map.resources :contracts, :active_scaffold => true, :active_scaffold_sortable => true do |contract|
     contract.resources :payments
-    contract.resources :reminders
   end
   map.resources :licenses, :active_scaffold => true
   map.resources :archives, :active_scaffold => true
   map.resources :settings, :active_scaffold => true
-  
-  map.resource :user_session
-  map.resource :account, :controller => "users"
-  map.resources :users, :controller => "admin", :active_scaffold => true
+  map.resources :users, :active_scaffold => true
 
+  map.resource :user_session
+  map.resources :accounts
   map.resources :password_resets, :only => [:new, :create, :edit, :update]
 
   map.with_options :controller => 'site' do |site|
@@ -24,13 +22,9 @@ ActionController::Routing::Routes.draw do |map|
   map.activate '/activate/:activation_code', :controller => 'activations', :action => 'create'
 
   map.root :controller => 'site'
-  #  map.login '/login', :controller => 'users', :action => "login"
-  #  map.register '/register', :controller => 'users', :action => 'register'
-  #  map.logout '/logout', :controller => 'users', :action => 'logout'
   
   map.connect ':controller/service.wsdl', :action => 'wsdl'
 
-#  map.connect ':controller/:action'
   map.connect ':controller/:action/:id'
   map.connect ':controller/:action/:id.:format'
 end

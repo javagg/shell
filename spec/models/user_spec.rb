@@ -293,6 +293,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -313,7 +314,6 @@ end
 #  last_login_at       :datetime
 #  current_login_ip    :string(255)
 #  last_login_ip       :string(255)
-#  reminder_id         :integer(4)
 #  created_at          :datetime
 #  updated_at          :datetime
 #

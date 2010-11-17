@@ -127,8 +127,8 @@ zh:
     '<': '<'
     '!=': '!='
     between: '在...之间'
-    is_null: '为空(null)'
-    is_not_null: '不为空(null)'
+    is_null: '为空值'
+    is_not_null: '不为空值'
     contains: '包含'
     begins_with: '以...开始'
     ends_with: '以...结束'
@@ -140,7 +140,7 @@ zh:
     version_inconsistency: '版本不一致 - 在开始编辑之后该记录已被修改'
     failed_to_save_record: '由于未知原因未能保存该条记录'
 
-    column_is_null: "(空)"
+    column_is_null: "（空值）"
   
   authlogic:
     error_messages:
@@ -150,6 +150,10 @@ zh:
       password_invalid: "格式不正确"
   
   activerecord:
+    description:
+      contract:
+       description: "可以输入文档的一些信息"
+  
     models:
       user: 
         one: "用户"
@@ -159,7 +163,10 @@ zh:
         other: "文档"
       attachment: 
         one: "附件"
-        other: "附件"        
+        other: "附件"
+      license:
+        one: "证照"
+        other: "证照"
       contract: 
         one: "合同"
         other: "合同"
@@ -174,7 +181,11 @@ zh:
         
       setting:
         one: "系统参数配置"
-        other:  "系统参数配置"
+        other: "系统参数配置"
+
+      role:
+        one: "权限角色"
+        other: "权限角色"
     
     attributes:
       attachment:
@@ -235,18 +246,34 @@ zh:
         name: "合同名称"
         description: "描述"
         payments: "支付"
-        reminders: "提醒"
         contract_type: 合同类型
         other_party: "合同对方"
-        content: "合同内容"
+        contract_content: "合同内容"
         start_date: "开始日期"
         end_date: "结束日期"
         expense_paid_by: "费用归属" 
         owning_department: "所属部门"
         amount: "合同金额"
-        person_in_charge: "持有人／负责人"
-        executive_person: "具体执行人"
-        is_transfered: "是否已经保管"
+        holder: "持有人／负责人"
+        executive: "具体执行人"
+        transferred: "是否已经保管"
+        station_name: "加油站标准站名"
+        stamp_tax_type: "印花税类型"
+        project_address: "项目地址"
+        trading_mode: "交易模式"
+        expense_paid: "费用归属"
+        land_certificate_application_deadline: "土地证办理期限"
+        property_certificate_application_deadline: "房产证办理期限"
+        memo: "备注"
+        state: "状态"
+        has_backup: "是否有备份"
+        original_loc: "原件保存地点"
+        backup_loc: "备份保存地点"
+        owning_department: "所属部门"
+        has_electrical_edtion: "是否有电子版"
+        security_level: "安全保密等级"
+        payments: "支付情况"
+        attachments: "附件"
 
       license:
         description: "描述"
@@ -267,12 +294,19 @@ zh:
         backup_loc: "备份保存地点"
         owning_department: "所属部门"
         has_electrical_edtion: "是否有电子版"
+        security_level: "安全保密等级"
+        expiration_remindees: "过期时被提醒人"
+
       payment:
         amount: "金额"
         pay_date: "付款时间"
         
       reminder:
         when: "何时"
+
+      role:
+        name: "角色名称"
+        description: "职责描述"
         
       setting:
         var: "参数"

@@ -28,7 +28,6 @@ class Setup < ActiveRecord::Migration
       t.string :current_login_ip
       t.string :last_login_ip
 
-      t.references :reminder
       t.timestamps
     end
     add_index :users, :username
@@ -36,12 +35,14 @@ class Setup < ActiveRecord::Migration
 
     create_table :roles, :force => true do |t|
       t.string :name, :null => false
+      t.string :description
     end
 
     create_table :roles_users, :id => false do |t|
       t.references :user, :null => false
       t.references :role, :null => false
     end
+    
     create_table :documents, :force => true do |t|
       t.string :number
       t.string :name
@@ -125,10 +126,12 @@ class Setup < ActiveRecord::Migration
       t.timestamps
     end
 
-    create_table :reminders, :force => true do |t|
-      t.references :contract
-      t.datetime :when
-      t.timestamps
+    create_table :remindings, :force => true do |t|
+      t.references :reminder
+      t.string :reminder_type
+      t.references :user
+      t.datetime :from
+      t.datetime :to
     end
     
     create_table :archives, :force => true do |t|
@@ -168,7 +171,7 @@ class Setup < ActiveRecord::Migration
     drop_table :licenses
     drop_table :contracts
     drop_table :payments
-    drop_table :reminders
+    drop_table :remindings
     drop_table :roles
     drop_table :roles_users
     drop_table :settings

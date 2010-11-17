@@ -15,6 +15,7 @@
     </script>
     <%= active_scaffold_includes %>
     <%= stylesheet_link_tag 'active_scaffold_overrides' %>
+    <%= record_select_includes %>
   </head>
   <body>
     <body>
@@ -65,7 +66,7 @@
             <div id="user_status">
               <% if current_user %>
                 <%= current_user.username %> |
-                <%= link_to_unless_current I18n.t('user.account'), account_path %>  |
+                <%= link_to_unless_current I18n.t('user.account'), account_path(current_user) %>  |
                 <%= link_to_unless_current I18n.t('user.logout'), user_session_path, :method => :delete %>
               <% else -%>
                 <%= link_to_unless_current I18n.t('user.register'), new_account_path %>  |

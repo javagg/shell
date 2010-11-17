@@ -118,15 +118,17 @@ ActiveRecord::Schema.define(:version => 1) do
     t.datetime "updated_at"
   end
 
-  create_table "reminders", :force => true do |t|
-    t.integer  "contract_id"
-    t.datetime "when"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "remindings", :force => true do |t|
+    t.integer  "reminder_id"
+    t.string   "reminder_type"
+    t.integer  "user_id"
+    t.datetime "from"
+    t.datetime "to"
   end
 
   create_table "roles", :force => true do |t|
-    t.string "name", :null => false
+    t.string "name",        :null => false
+    t.string "description"
   end
 
   create_table "roles_users", :id => false, :force => true do |t|
@@ -170,7 +172,6 @@ ActiveRecord::Schema.define(:version => 1) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
-    t.integer  "reminder_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

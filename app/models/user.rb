@@ -11,14 +11,24 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
-  belongs_to :reminder, :foreign_key =>"reminder_id"
+  has_many :remindings
+  has_many :reminding_licenses, :through => :remindings, :source => :license,
+    :conditions => "remindings.reminder_type = 'License'"
+
+  has_many :reminding_contracts, :through => :remindings, :source => :contract,
+    :conditions => "remindings.reminder_type = 'Contract'"
+  
   # for Declarative Authorization
   def role_symbols
-    @role_symbols ||= roles.map {|r| r.name.to_sym}
-    @role_symbols
+    @role_symbols ||= roles.map { |r| r.name.to_sym }
   end
+
+  def to_label
+    username
+  end
+
   
-  def after_destroy
+  def before_destroy
     if User.count.zero?
       raise I18n.t('user.cannot_delete_last_user')
     end
@@ -49,6 +59,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: users
@@ -69,7 +80,6 @@ end
 #  last_login_at       :datetime
 #  current_login_ip    :string(255)
 #  last_login_ip       :string(255)
-#  reminder_id         :integer(4)
 #  created_at          :datetime
 #  updated_at          :datetime
 #

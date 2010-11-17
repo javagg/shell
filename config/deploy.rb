@@ -4,6 +4,8 @@ set :user, "alex"
 set :application, "shell"
 set :repository, "git://github.com/javagg/shell.git"
 set :scm, :git
+set :branch, "master"
+
 set :deploy_to, "/home/#{user}/#{application}"
 set :use_sudo, true
 set :deploy_via, :remote_cache
@@ -14,13 +16,15 @@ set :default_environment, {
   'GEM_PATH' => '/home/alex/.rvm/gems/ruby-1.8.7-p302:/home/alex/.rvm/gems/ruby-1.8.7-p302@global'
 }
 
+#default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
+
 set :host, "202.117.46.233"
 
 role :web, host
 role :app, host
 role :db, host, :primary => true
 
-default_run_options[:pty] = true
 
 # If you are using Passenger mod_rails uncomment this:
 # if you're still using the script/reapear helper you will need
@@ -48,7 +52,7 @@ namespace :db do
   desc "Create database yaml in shared path"
   task :generate_database_yaml do
     db_config = ERB.new <<-EOF
-default: &default
+defaults: &defaults
   adapter: mysql
   encoding: utf8
   reconnect: false
@@ -60,15 +64,15 @@ default: &default
 
 development:
   database: #{application}_development
-  <<: *default
+  <<: *defaults
 
 test:
   database: #{application}_test
-  <<: *default
+  <<: *defaults
 
 production:
   database: #{application}_production
-  <<: *default
+  <<: *defaults
 EOF
     run "mkdir -p #{shared_path}/config"
     put db_config.result, "#{shared_path}/config/database.yml"

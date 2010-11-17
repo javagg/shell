@@ -1,13 +1,3 @@
-class Archive < ActiveRecord::Base
-  DEPARTMENTS = %w(FN OP HR EN HSSE)
-  validates_inclusion_of :issue_dep, :in => DEPARTMENTS
-  validates_inclusion_of :keep_dep, :in => DEPARTMENTS
-  has_many :attachments, :as => :attachable, :dependent => :destroy
-end
-
-
-
-
 # == Schema Information
 #
 # Table name: archives
@@ -30,4 +20,11 @@ end
 #  created_at            :datetime
 #  updated_at            :datetime
 #
+
+class Archive < ActiveRecord::Base
+  DEPARTMENTS = %w(FN OP HR EN HSSE)
+  validates_inclusion_of :issue_dep, :in => DEPARTMENTS
+  validates_inclusion_of :keep_dep, :in => DEPARTMENTS
+  has_many :attachments, :as => :attachable, :dependent => :destroy
+end
 

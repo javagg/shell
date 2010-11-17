@@ -1,17 +1,3 @@
-
-class Contract <  ActiveRecord::Base
-  #acts_as_document
-  has_many :payments, :dependent => :destroy
-  has_many :reminders, :dependent => :destroy
-  has_many :attachments, :as => :attachable, :dependent => :destroy
-  
-end
-
-
-
-
-
-
 # == Schema Information
 #
 # Table name: contracts
@@ -47,4 +33,10 @@ end
 #  created_at                                :datetime
 #  updated_at                                :datetime
 #
+
+class Contract <  ActiveRecord::Base
+  has_many :payments, :dependent => :destroy
+  has_many :attachments, :as => :attachable, :dependent => :destroy
+end
+
 

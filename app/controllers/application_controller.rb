@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   filter_parameter_logging :password, :password_confirmation
 
+  ActiveScaffold.set_defaults do |config|
+    config.theme = :blue
+    config.ignore_columns.add [:created_at, :updated_at, :id]
+    config.list.empty_field_text = I18n.t 'active_scaffold.column_is_null'
+  end
+
   protected
   
   def set_locale
@@ -71,7 +77,7 @@ class ApplicationController < ActionController::Base
     if current_user
       store_location
       flash[:notice] = t 'txt.logged_out_to_access'
-      redirect_to account_url
+      redirect_to root_url
       return false
     end
   end
