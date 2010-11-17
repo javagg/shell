@@ -211,7 +211,7 @@ a:hover {
     overflow:hidden
 }
 
-#register_panel {
+#account_panel {
     -moz-border-radius:5px 5px 5px 5px;
     background:none repeat scroll 0 0 #ececec;
     margin:0 auto;
@@ -221,15 +221,15 @@ a:hover {
     color: #000000;
     overflow:hidden;
 }
-#account_info_panel {
-    text-align:left
-}
 
-#register_panel input.txt_field  {
-    -moz-border-radius:4px 4px 4px 4px;
-    border:1px solid #CCCCCC;
-    height:19px;
-    padding:2px;
+#account_info_panel {
+    -moz-border-radius:5px 5px 5px 5px;
+    background:none repeat scroll 0 0 #ececec;
+    margin:0 auto;
+    opacity:0.85;
+    padding:10px;
+    width: 270px;
+    color: #000000;
     overflow:hidden;
 }
 
@@ -239,7 +239,7 @@ a {
 }
 
 .submit {
-    background-image:url("/images/button.gif");
+    background:  url("/images/button.gif") no-repeat;
     border:medium none;
     height:18px;
     line-height:18px;

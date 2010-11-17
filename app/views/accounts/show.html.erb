@@ -1,69 +1,65 @@
-<div>
-  <% form_for @user do |f|%>
-    <div id="account_info_panel">
-      <table>
-        <tbody>
-          <tr>
-            <td style="width:100px"><%= f.label :username %></td>
-            <td style="text-align:left"><%=  h @user.username %></td>
-          </tr>
-          <tr>
-            <td style="width:100px"><%= f.label :email %></td>
-            <td style="text-align:left"><%= h @user.email %></td>
-          </tr>
-          <tr>
-            <td style="width:100px"><%= f.label :roles %></td>
-            <td style="text-align:left">
-              <% @user.roles.each do |role| %>
-                <%=h role.name %>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <td style="width:100px"><%= f.label :login_count %></td>
-            <td style="text-align:left"><%= h @user.login_count %></td>
-          </tr>
-          <tr>
-            <td style="width:100px"><%= f.label :failed_login_count %></td>
-            <td style="text-align:left"><%= h @user.failed_login_count %></td>
-          </tr>
-          <tr>
-            <td style="width:100px"><%= f.label :last_request_at %></td>
-            <td style="text-align:left"><%=h @user.last_request_at %></td>
-          </tr>
-          <tr>
-            <td style="width:100px"><%= f.label :current_login_at %></td>
-            <td style="text-align:left"><%=h @user.current_login_at %></td>
-          </tr>
-          <tr>
-            <td style="width:100px"><%= f.label :current_login_ip %></td>
-            <td style="text-align:left"><%=h @user.current_login_ip %></td>
-          </tr>
-          <tr>
-            <td style="width:100px"><%= f.label :last_login_at %></td>
-            <td style="text-align:left"><%=h @user.last_login_at %></td>
-          </tr>         <tr>
-            <td style="width:100px"><%= f.label :last_login_ip %></td>
-            <td style="text-align:left"> <%=h @user.last_login_ip %></td>
-          </tr>
-          <tr>
-            <td style="width:100px"><%= f.label :created_at %></td>
-            <td style="text-align:left"><%=h @user.created_at %></td>
-          </tr>
-          <tr>
-            <td style="width:100px"><%= f.label :updated_at %></td>
-            <td style="text-align:left"> <%=h @user.updated_at %></td>
-          </tr>
-          <tr>
-            <td></td><td>
-              <%= link_to 'Edit', edit_account_path(@user.id) %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div>
-  <% end %>
-</div>
-
-
+<h1><%= t 'txt.your_account_info_and_activities' %></h1>
+<% form_for @user do |f|%>
+  <div id="account_info_panel">
+    <table>
+      <tbody>
+        <tr>
+          <td style="width:100px;text-align:left"><%= f.label :username %></td>
+          <td style="text-align:left"><%=  h @user.username %></td>
+        </tr>
+        <tr>
+          <td style="width:100px;text-align:left"><%= f.label :email %></td>
+          <td style="text-align:left"><%= h @user.email %></td>
+        </tr>
+        <tr>
+          <td style="width:100px;text-align:left"><%= f.label :roles %></td>
+          <td style="text-align:left">
+            <% @user.roles.each do |role| %>
+              <%=h role.name %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td style="width:100px;text-align:left"><%= f.label :login_count %></td>
+          <td style="text-align:left"><%= h @user.login_count %></td>
+        </tr>
+        <tr>
+          <td style="width:100px;text-align:left"><%= f.label :failed_login_count %></td>
+          <td style="text-align:left"><%= h @user.failed_login_count %></td>
+        </tr>
+        <tr>
+          <td style="width:100px;text-align:left"><%= f.label :last_request_at %></td>
+          <td style="text-align:left"><%=h @user.last_request_at %></td>
+        </tr>
+        <tr>
+          <td style="width:100px;text-align:left"><%= f.label :current_login_at %></td>
+          <td style="text-align:left"><%=h @user.current_login_at %></td>
+        </tr>
+        <tr>
+          <td style="width:100px;text-align:left"><%= f.label :current_login_ip %></td>
+          <td style="text-align:left"><%=h @user.current_login_ip %></td>
+        </tr>
+        <tr>
+          <td style="width:100px;text-align:left"><%= f.label :last_login_at %></td>
+          <td style="text-align:left"><%=h @user.last_login_at %></td>
+        </tr>         <tr>
+          <td style="width:100px;text-align:left"><%= f.label :last_login_ip %></td>
+          <td style="text-align:left"> <%=h @user.last_login_ip %></td>
+        </tr>
+        <tr>
+          <td style="width:100px;text-align:left"><%= f.label :created_at %></td>
+          <td style="text-align:left"><%=h @user.created_at %></td>
+        </tr>
+        <tr>
+          <td style="width:100px;text-align:left"><%= f.label :updated_at %></td>
+          <td style="text-align:left"> <%=h @user.updated_at %></td>
+        </tr>
+        <tr>
+          <td></td><td style="text-align:left">
+            <%= link_to t('general.edit'), edit_account_path(@user.id) %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>

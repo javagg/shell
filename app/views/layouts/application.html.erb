@@ -66,7 +66,7 @@
             <div id="user_status">
               <% if current_user %>
                 <%= current_user.username %> |
-                <%= link_to_unless_current I18n.t('user.account'), account_path(current_user) %>  |
+                <%= link_to_unless_current I18n.t('user.my_account'), account_path(current_user) %>  |
                 <%= link_to_unless_current I18n.t('user.logout'), user_session_path, :method => :delete %>
               <% else -%>
                 <%= link_to_unless_current I18n.t('user.register'), new_account_path %>  |

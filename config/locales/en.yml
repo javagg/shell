@@ -85,7 +85,8 @@ en:
     submit: "Sumbit"
     loading: "Loading..."
     prev_label: "prev"
-    next_label: "next"
+    update: "Update"
+
     
   txt:
     log_in_to_app: "登录到系统"
@@ -103,6 +104,8 @@ en:
     password_updated: "Your password has been successfully updated!"
     account_with_that_email_not_exist: "No user was found with that email address!"
     check_email_for_password_reset: "Please check your email for instructions to reset your password!"
+    edit_your_account_details: "Edit Your Account Details"
+    fill_in_your_account_details: "Fill in Your Account Details"
   site:
     home: "Home"
     about: "About Us"

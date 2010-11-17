@@ -145,10 +145,24 @@ zh:
   authlogic:
     error_messages:
       login_blank: "不能为空"
-      password_blank: "不能为空"
       login_not_found: "未发现"
-      password_invalid: "格式不正确"
-  
+      password_blank: "不能为空"
+      password_invalid: "不正确"
+      consecutive_failed_logins_limit_exceeded: "已超过允许失败登录的次数，帐号被禁用"
+      email_invalid: "不像是正确的email格式"
+      not_active: "您的帐号还未激活"
+      not_confirmed: "您的帐号还未被确认"
+      not_approved: "您的帐号还未被批准"
+      no_authentication_details: "您没有提供任何验证身份的信息"
+    models:
+      user_session: "登录会话"
+    attributes:
+      user_session:
+        login: "用户名"
+        email: "电子邮件"
+        password: "密码"
+        remember_me: "记住我"
+
   activerecord:
     description:
       contract:
@@ -198,7 +212,7 @@ zh:
         username: "用户名"
         password: "密码"
         password_confirmation: "确认密码"
-        email: "电邮"
+        email: "电子邮件"
         active: "已激活"
         login_count: "登录成功次数"
         failed_login_count: "登录失败次数"
@@ -326,10 +340,10 @@ zh:
           attributes:
             username:
               blank: "不能为空"
-              invalid: "格式无效"
+              invalid: "不正确"
             password:
               blank: "不能为空"
-              invalid: "格式无效"
+              invalid: "不正确"
         user:
           attributes:
             email:
@@ -340,17 +354,17 @@ zh:
             username:
               too_short: "过短 (不能少于 %{count} 个字符)"
               blank: "不能为空"
-              invalid: "格式无效"
+              invalid: "不正确"
               taken: "已经被占用"
             password:
               too_short: "过短 (不能少于 %{count} 个字符)"
               blank: "不能为空"
-              invalid: "格式无效"              
+              invalid: "不正确"
               confirmation: "与确认值不匹配"   
             password_confirmation:
               too_short: "过短 (不能少于 %{count} 个字符)"
               blank: "不能为空字符"
-              invalid: "格式无效"
+              invalid: "不正确"
               
       message: "请检查以下字段："
       inclusion: "不包含于列表中"
@@ -381,6 +395,8 @@ zh:
     loading: "装载中..."
     prev_label: "上一页"
     next_label: "下一页"
+    update: "更新"
+    edit: "修改"
         
   txt:
     log_in_to_app: "登录到系统"
@@ -397,12 +413,16 @@ zh:
     account_updated: "您的帐户已经成功更新了！"
     account_activated: "您的帐户已经成功激活了！"
     password_updated: "您的密码已经成功更新了！"
-    account_with_that_email_not_exist: "注册该电邮的用户并不存在！"
-    check_email_for_password_reset: "请检查您的电邮来进行密码重设！"
+    account_with_that_email_not_exist: "注册该电子邮件的用户并不存在！"
+    check_email_for_password_reset: "请检查您的电子邮件来进行密码重设！"
     fectch: "取回"
     logged_in_to_access: "对不起，你必须登录之后才能访问该页面"
     logged_out_to_access: "对不起，你必须退出之后才能访问该页面"
     unauthorized_access: "对不起，您没有足够的权限访问该页"
+    edit_your_account_details: "修改您的帐号信息"
+    fill_in_your_account_details: "填写您的帐号信息"
+    fill_in_your_username_and_password: "请输入你的用户名和密码"
+    your_account_info_and_activities: "账户信息"
     
   site:
     home: "首页"
@@ -423,11 +443,10 @@ zh:
     username: "用户名"
     password: "密码"
     confirm_password: "确认密码"
-    email: "电邮"
+    email: "电子邮件"
     register: "注册"
     register_now: "现在注册"
-    my_account: "我的信息"
-    account: "账户设置"
+    my_account: "我的账户"
     users_currently_logged_in: "当前登录用户数："
     login: "登录"
     logout: "退出"
