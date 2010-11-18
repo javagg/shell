@@ -188,7 +188,15 @@ zh:
       payment: 
         one: "支付"
         other: "支付"
-        
+
+      payment_period:
+        one: "支付周期"
+        other: "支付周期"
+
+      reminding_period:
+        one: "提醒时段"
+        other: "提醒时段"
+
       reminder: 
         one: "提醒"
         other: "提醒"
@@ -289,6 +297,7 @@ zh:
         security_level: "安全保密等级"
         payments: "支付情况"
         attachments: "附件"
+        reminding_periods: "提醒时段"
 
       license:
         description: "描述"
@@ -311,12 +320,24 @@ zh:
         has_electrical_edtion: "是否有电子版"
         security_level: "安全保密等级"
         expiration_remindees: "过期时被提醒人"
-
+        attachments: "附件"
+        reminding_periods: "提醒时段"
+        
       payment:
         amount: "金额"
         pay_date: "付款时间"
         has_deliverables: "有否交付物"
-        
+
+      payment_period:
+        first_payment_date: "首次支付日期"
+        start_date: "开始日期"
+        end_date: "结束日期"
+        num_payments: "支付次数"
+
+      reminding_period:
+        start_date: "开始日期"
+        end_date: "结束日期"
+        num_remindings: "提醒次数"
       role:
         name: "角色名称"
         description: "职责描述"

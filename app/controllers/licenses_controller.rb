@@ -1,7 +1,9 @@
 class LicensesController < ApplicationController
   active_scaffold :licenses do |config|
-    config.columns = [:number, :name, :description, :t5code, :area, :station_name, :issuing_authority, :state, :annual_inspection_date,
-        :expired_on, :original_loc, :backup_loc, :memo, :owning_department, :has_electrical_edtion,:security_level,:expiration_remindees
+    config.columns = [:number, :name, :description, :t5code, :area, :station_name,
+      :issuing_authority, :state, :annual_inspection_date, :expired_on, :original_loc,
+      :backup_loc, :memo, :owning_department, :has_electrical_edtion, :security_level,
+      :expiration_remindees, :attachments, :reminding_periods
     ]
 
     config.list.columns = [:number, :name, :description, :expiration_remindees]

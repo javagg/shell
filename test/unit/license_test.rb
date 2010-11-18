@@ -1,3 +1,24 @@
+require File.dirname(__FILE__) + '/../test_helper'
+
+class LicenseTest < ActiveSupport::TestCase
+ 
+  def test_expiration_remind
+    a_will_expired = License.new(:name => "will_expired", :expired_on => 2.days.from_now)
+    a_remindee = User.new(:username => 'remindee', :password => '12345',
+      :password_confirmation => '12345', :email => 'lu.lee05@gmail.com')
+    a_will_expired.save
+    a_will_expired.expiration_remindees << a_remindee
+    all_expired = License.find :all,
+      :conditions => ['expired_on > ? and expired_on < ? ', Time.now, 1.week.from_now]
+    all_expired.each do |will_expired|
+      will_expired.remind_expiaration
+    end
+
+    License.destroy a_will_expired.id
+    User.destroy a_remindee.id
+  end
+end
+
 # == Schema Information
 #
 # Table name: licenses
@@ -23,27 +44,4 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #
-
-class License <  ActiveRecord::Base
-  has_many :attachments, :as => :attachable, :dependent => :destroy
-  has_many :remindings, :as => :reminder, :dependent => :destroy
-  has_many :expiration_remindees, :through => :remindings, :source => 'user'
-
-  has_many :reminding_periods, :as => :reminder, :dependent => :destroy
-
-  def remind_expiaration
-    expiration_remindees.each do | remindee |
-      Emailer.deliver_license_expiration_reminding self, remindee
-    end
-  end
-
-  def self.check_expiration
-    all_expirings = License.find :all,
-      :conditions => ['expired_on > ? and expired_on < ? ', Time.now, 1.week.from_now]
-    all_expirings.each do |expiring|
-      expiring.remind_expiaration
-    end
-  end
-end
-
 

@@ -63,15 +63,15 @@ ActiveRecord::Schema.define(:version => 1) do
     t.date     "next_payment_date"
     t.string   "expense_paid"
     t.string   "owning_department"
-    t.integer  "amount"
+    t.integer  "amount",                                    :limit => 10, :precision => 10, :scale => 0
     t.string   "holder"
     t.string   "executive"
-    t.boolean  "transferred",                               :default => false
+    t.boolean  "transferred",                                                                            :default => false
     t.string   "state"
     t.string   "original_loc"
-    t.boolean  "has_backup",                                :default => false
+    t.boolean  "has_backup",                                                                             :default => false
     t.string   "backup_loc"
-    t.boolean  "has_electrical_edtion",                     :default => false
+    t.boolean  "has_electrical_edtion",                                                                  :default => false
     t.string   "security_level"
     t.text     "memo"
     t.datetime "created_at"
@@ -110,13 +110,29 @@ ActiveRecord::Schema.define(:version => 1) do
     t.datetime "updated_at"
   end
 
+  create_table "payment_periods", :force => true do |t|
+    t.integer "contract_id"
+    t.date    "first_payment_date"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.integer "num_payments",       :default => 1
+  end
+
   create_table "payments", :force => true do |t|
     t.integer  "contract_id"
     t.date     "pay_date"
-    t.integer  "amount"
-    t.boolean  "has_deliverables", :default => false
+    t.integer  "amount",           :limit => 10, :precision => 10, :scale => 0
+    t.boolean  "has_deliverables",                                              :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "reminding_periods", :force => true do |t|
+    t.integer "reminder_id"
+    t.string  "reminder_type"
+    t.date    "start_date"
+    t.date    "end_date"
+    t.integer "num_remindings", :default => 1
   end
 
   create_table "remindings", :force => true do |t|

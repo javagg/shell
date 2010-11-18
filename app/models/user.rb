@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
     username
   end
 
+	def is_admin?
+		return self.username == 'admin'
+	end
   
   def before_destroy
     if User.count.zero?

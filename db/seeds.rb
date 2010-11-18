@@ -3,6 +3,11 @@ Setting.create(:var => 'upload_limit',
   :description => '该参数设置系统上传附件的最大允许值。例如，500.kilobytes, 5.megabytes',
   :value => '10.megabytes')
 
+Setting.create(:var => 'reminder_sending_time', 
+  :description => '提醒邮件的每日发送时间。例如，00:00:00, 06:00:00, 18:30:00',
+  :value => '00:00:00')
+
+
 Role.create [{ :name => 'admin', :description => '系统管理员身份，拥有所有权限，包括：用户管理，系统设置，文档、证照、合同的新建、修改、删除权限' },
              { :name => 'guest', :description => '游客身份，只能访问公共页面' },
              { :name => 'user', :description => '系统注册用户，只能访问公共页面' },

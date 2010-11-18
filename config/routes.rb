@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :documents, :active_scaffold => true
   map.resources :contracts, :active_scaffold => true, :active_scaffold_sortable => true do |contract|
     contract.resources :payments
+    contract.resources :payment_periods
   end
   map.resources :licenses, :active_scaffold => true
   map.resources :archives, :active_scaffold => true

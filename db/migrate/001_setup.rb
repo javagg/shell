@@ -126,6 +126,14 @@ class Setup < ActiveRecord::Migration
       t.boolean :has_deliverables, :default => false
       t.timestamps
     end
+    
+    create_table :payment_periods, :force => true do |t|
+      t.references :contract
+      t.date :first_payment_date
+      t.date :start_date
+      t.date :end_date
+      t.integer :num_payments, :default => 1
+    end
 
     create_table :remindings, :force => true do |t|
       t.references :reminder
@@ -134,7 +142,15 @@ class Setup < ActiveRecord::Migration
       t.datetime :from
       t.datetime :to
     end
-    
+
+    create_table :reminding_periods, :force => true do |t|
+      t.references :reminder
+      t.string :reminder_type
+      t.date :start_date
+      t.date :end_date
+      t.integer :num_remindings, :default => 1
+    end
+
     create_table :archives, :force => true do |t|
       t.string :number
       t.string :name
@@ -176,5 +192,7 @@ class Setup < ActiveRecord::Migration
     drop_table :roles
     drop_table :roles_users
     drop_table :settings
+    drop_table :payment_periods
+    drop_table :reminding_periods
   end
 end

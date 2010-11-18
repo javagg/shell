@@ -1,3 +1,10 @@
+class Contract <  ActiveRecord::Base
+  has_many :payments, :dependent => :destroy
+  has_many :attachments, :as => :attachable, :dependent => :destroy
+  has_many :payment_periods, :dependent => :destroy
+  has_many :reminding_periods, :as => :reminder, :dependent => :destroy
+end
+
 # == Schema Information
 #
 # Table name: contracts
@@ -33,8 +40,5 @@
 #  memo                                      :text
 #  created_at                                :datetime
 #  updated_at                                :datetime
+#
 
-class Contract <  ActiveRecord::Base
-  has_many :payments, :dependent => :destroy
-  has_many :attachments, :as => :attachable, :dependent => :destroy
-end

@@ -3,7 +3,7 @@ class Emailer < ActionMailer::Base
   FROM = 'forshell12345@sohu.com'
 
   def signup_notification recipient
-#    body['host'] = self.default_url_options[:host]
+    #    body['host'] = self.default_url_options[:host]
     recipients recipient.email
     bcc        []
     from       FROM
@@ -13,7 +13,7 @@ class Emailer < ActionMailer::Base
   end
 
   def welcome recipient
-#    body['host'] = self.default_url_options[:host]
+    #    body['host'] = self.default_url_options[:host]
     recipients recipient.email
     bcc        []
     from       FROM
@@ -23,7 +23,7 @@ class Emailer < ActionMailer::Base
   end
 
   def activation_instructions recipient
-#    body['host'] = self.default_url_options[:host]
+    #    body['host'] = self.default_url_options[:host]
     subject       "Activation Instructions"
     from          FROM
     recipients    recipient.email
@@ -32,7 +32,7 @@ class Emailer < ActionMailer::Base
   end
 
   def welcome user
-#    body['host'] = self.default_url_options[:host]
+    #    body['host'] = self.default_url_options[:host]
     subject       "Welcome to the site!"
     from          FROM
     recipients    user.email
@@ -42,12 +42,21 @@ class Emailer < ActionMailer::Base
 
 
   def password_reset_instructions recipient
-#    body['host'] = self.default_url_options[:host]
+    #    body['host'] = self.default_url_options[:host]
     recipients   recipient.email
-    subject      "Password Reset "
+    subject      "Password Reset"
     from         FROM
     content_type "text/html"
     sent_on      Time.now
     body         :edit_password_reset_url => edit_password_reset_url(recipient.perishable_token)
+  end
+
+  def license_expiration_reminding license, remindee
+    recipients   remindee.email
+    subject      "license expiration"
+    content_type "text/html"
+    from         FROM
+    sent_on      Time.now
+    body         :license => license
   end
 end
