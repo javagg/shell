@@ -1,4 +1,5 @@
 require 'erb'
+default_run_options[:pty] = true
 
 set :user, "alex"
 set :application, "shell"
@@ -16,8 +17,8 @@ set :default_environment, {
   'GEM_PATH' => '/home/alex/.rvm/gems/ruby-1.8.7-p302:/home/alex/.rvm/gems/ruby-1.8.7-p302@global'
 }
 
-#default_run_options[:pty] = true
-ssh_options[:forward_agent] = true
+
+#ssh_options[:forward_agent] = true
 
 set :host, "202.117.46.233"
 
@@ -110,7 +111,7 @@ namespace :web do
     sudo "cp #{current_path}/deploy/passenger.conf /etc/apache2/mods-available/"
     sudo "cp #{current_path}/deploy/passenger.load /etc/apache2/mods-available/"
     sudo "a2enmod passenger"
-    sudo "cp #{current_path}/deploy/shell-apache-site /etc/apache2/sites-available/"
+    sudo "cp #{current_path}/deploy/#{site_name} /etc/apache2/sites-available/"
     sudo "a2dissite default"
     sudo "a2ensite #{site_name}"
   end
