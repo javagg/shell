@@ -4,11 +4,18 @@ ActionController::Routing::Routes.draw do |map|
     contract.resources :payments
     contract.resources :payment_periods
   end
+
   map.resources :licenses, :active_scaffold => true
   map.resources :archives, :active_scaffold => true
   map.resources :settings, :active_scaffold => true
-  map.resources :users, :active_scaffold => true
+#  map.resources :roles, :active_scaffold => true
+  
+  map.resources :users, :active_scaffold => true  do |user|
+    user.resources :roles, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
+  end
 
+#  map.resources :roles, :collection => {:browse => :get}, :member => {:select => :post}
+  
   map.resource :user_session
   map.resources :accounts
   map.resources :password_resets, :only => [:new, :create, :edit, :update]

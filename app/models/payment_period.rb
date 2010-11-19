@@ -1,8 +1,3 @@
-class PaymentPeriod < ActiveRecord::Base
-  belongs_to :contract
-end
-
-
 # == Schema Information
 #
 # Table name: payment_periods
@@ -14,4 +9,8 @@ end
 #  end_date           :date
 #  num_payments       :integer(4)      default(1)
 #
+
+class PaymentPeriod < ActiveRecord::Base
+  belongs_to :contract
+end
 

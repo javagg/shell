@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
- 
+  include Shell
+  
   helper :all  
   helper_method :current_user_session, :current_user 
 

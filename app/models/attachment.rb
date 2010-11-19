@@ -17,7 +17,7 @@
 
 class Attachment < ActiveRecord::Base
   def to_label
-    
+    data_file_name
   end
   has_attached_file :data, :path => ":rails_root/data/attachments/:id/:style/:basename.:extension"
   validates_attachment_size :data, :less_than => eval(Settings.upload_limit || '1.megabytes')

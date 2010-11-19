@@ -1,12 +1,3 @@
-class RemindingPeriod < ActiveRecord::Base
-  belongs_to :reminder, :polymorphic => true
-  belongs_to :license,  :class_name => "License",
-    :foreign_key => "reminder_id"
-
-  belongs_to :contract,  :class_name => "Contract",
-    :foreign_key => "reminder_id"
-end
-
 # == Schema Information
 #
 # Table name: reminding_periods
@@ -18,4 +9,13 @@ end
 #  end_date       :date
 #  num_remindings :integer(4)      default(1)
 #
+
+class RemindingPeriod < ActiveRecord::Base
+  belongs_to :reminder, :polymorphic => true
+  belongs_to :license,  :class_name => "License",
+    :foreign_key => "reminder_id"
+
+  belongs_to :contract,  :class_name => "Contract",
+    :foreign_key => "reminder_id"
+end
 

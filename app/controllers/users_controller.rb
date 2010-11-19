@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   record_select :per_page => 5, :search_on => 'username'
 
-  active_scaffold :user do |config|
+  active_scaffold :users do |config|
     config.columns = [:username, :email, :roles]
     config.actions.exclude :create
     config.columns[:roles].form_ui = :select

@@ -10,13 +10,19 @@ class ArchivesController < ApplicationController
     config.nested.add_link I18n.t('document.show_attachments'), :attachments
 
     config.columns[:issue_dep].form_ui = :select
-    config.columns[:issue_dep].options = { :options => Archive::DEPARTMENTS.map(&:to_sym)}
+    config.columns[:issue_dep].options = { :options => Shell::DEPARTMENT_OPTIONS }
 
     config.columns[:keep_dep].form_ui = :select
-    config.columns[:keep_dep].options = { :options => Archive::DEPARTMENTS.map(&:to_sym)}
+    config.columns[:keep_dep].options = { :options => Shell::DEPARTMENT_OPTIONS }
 
-    config.columns[:expired_on].form_ui = :datepicker
-    config.columns[:expired_on].description = "请选择一个日期"
+    config.columns[:has_backup].form_ui = :select
+    config.columns[:has_backup].options = { :options => Shell::SHIFOU_OPTIONS }
+
+    config.columns[:has_electrical_edtion].form_ui = :select
+    config.columns[:has_electrical_edtion].options = { :options =>Shell::SHIFOU_OPTIONS }
+
+    config.columns[:expired_on].form_ui = :calendar_date_select
+    config.columns[:expired_on].description = I18n.t('txt.pick_a_date')
 
     config.actions.exclude :search
     config.actions << :field_search

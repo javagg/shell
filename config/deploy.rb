@@ -1,5 +1,7 @@
 require 'erb'
+
 default_run_options[:pty] = true
+ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "id_rsa")]
 
 set :user, "alex"
 set :application, "shell"
@@ -8,8 +10,8 @@ set :scm, :git
 set :branch, "master"
 
 set :deploy_to, "/home/#{user}/#{application}"
-set :use_sudo, true
-set :deploy_via, :remote_cache
+#set :use_sudo, true
+#set :deploy_via, :remote_cache
 set :default_environment, {
   'PATH' => "/home/alex/.rvm/gems/ruby-1.8.7-p302/bin:/home/alex/.rvm/gems/ruby-1.8.7-p302@global/bin:/home/alex/.rvm/rubies/ruby-1.8.7-p302/bin:/home/alex/.rvm/bin:$PATH",
   'RUBY_VERSION' => 'ruby 1.8.7',
@@ -104,32 +106,32 @@ end
 set :port, "80"
 set :site_name, "shell-apache-site"
 
-namespace :web do
-  desc "Configure Apache2"
-  task :setup, :roles => :web do
-    run "cd #{current_path}"
-    sudo "cp #{current_path}/deploy/passenger.conf /etc/apache2/mods-available/"
-    sudo "cp #{current_path}/deploy/passenger.load /etc/apache2/mods-available/"
-    sudo "a2enmod passenger"
-    sudo "cp #{current_path}/deploy/#{site_name} /etc/apache2/sites-available/"
-    sudo "a2dissite default"
-    sudo "a2ensite #{site_name}"
-  end
-
-  desc "Generate apache2 site config file"
-  task :generate_a2site, :roles => :web do
-    site_config = ERB.new <<-EOF
-<VirtualHost *:#{port}>
-  ServerName loaclhost
-  DocumentRoot #{current_path}/public
-  RailsEnv production
-  <Directory #{current_path}/public>
-    AllowOverride all
-    Options -MultiViews
-  </Directory>
-</VirtualHost>
-EOF
-    run "mkdir -p #{shared_path}/config"
-    put site_config.result, "#{shared_path}/config/#{site_name}"
-  end
-end
+#namespace :web do
+#  desc "Configure Apache2"
+#  task :setup, :roles => :web do
+#    run "cd #{current_path}"
+#    sudo "cp #{current_path}/deploy/passenger.conf /etc/apache2/mods-available/"
+#    sudo "cp #{current_path}/deploy/passenger.load /etc/apache2/mods-available/"
+#    sudo "a2enmod passenger"
+#    sudo "cp #{current_path}/deploy/#{site_name} /etc/apache2/sites-available/"
+#    sudo "a2dissite default"
+#    sudo "a2ensite #{site_name}"
+#  end
+#
+#  desc "Generate apache2 site config file"
+#  task :generate_a2site, :roles => :web do
+#    site_config = ERB.new <<-EOF
+#<VirtualHost *:#{port}>
+#  ServerName loaclhost
+#  DocumentRoot #{current_path}/public
+#  RailsEnv production
+#  <Directory #{current_path}/public>
+#    AllowOverride all
+#    Options -MultiViews
+#  </Directory>
+#</VirtualHost>
+#EOF
+#    run "mkdir -p #{shared_path}/config"
+#    put site_config.result, "#{shared_path}/config/#{site_name}"
+#  end
+#end

@@ -7,7 +7,7 @@ class LicensesController < ApplicationController
     ]
 
     config.list.columns = [:number, :name, :description, :expiration_remindees]
-    config.columns[:expiration_remindees].form_ui = :select
+    config.columns[:expiration_remindees].form_ui = :record_select
     config.nested.add_link I18n.t('document.show_attachments'), :attachments
     config.actions.exclude :search
     config.actions << :field_search

@@ -1,7 +1,6 @@
 class RolesController < ApplicationController
-  record_select :search_on => 'name'
-
-  active_scaffold :role do |config|
+  active_scaffold :roles do |config|
+    config.columns = [:name, :description]
     config.actions.exclude :create
     config.actions.exclude :update
     config.actions.exclude :delete

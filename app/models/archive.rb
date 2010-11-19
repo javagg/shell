@@ -22,9 +22,7 @@
 #
 
 class Archive < ActiveRecord::Base
-  DEPARTMENTS = %w(FN OP HR EN HSSE)
-  validates_inclusion_of :issue_dep, :in => DEPARTMENTS
-  validates_inclusion_of :keep_dep, :in => DEPARTMENTS
+  validates_presence_of :name
   has_many :attachments, :as => :attachable, :dependent => :destroy
 end
 

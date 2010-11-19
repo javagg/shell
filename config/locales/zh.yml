@@ -115,8 +115,6 @@ zh:
     show: '显示详细内容'
     show_model: '显示 %{model}'
     _to_ : ' 到 '
-    true: '是'
-    false: '否'
     update: '更新'
     update_model: '更新 %{model}'
     updated_model: '%{model} 已更新'
@@ -133,7 +131,6 @@ zh:
     begins_with: '以...开始'
     ends_with: '以...结束'
     
-
     # error_messages
     cant_destroy_record: "%{record} 不能被销毁"
     internal_error: '请求失败(代码 500，内部错误)'
@@ -444,6 +441,10 @@ zh:
     fill_in_your_account_details: "填写您的帐号信息"
     fill_in_your_username_and_password: "请输入你的用户名和密码"
     your_account_info_and_activities: "账户信息"
+
+    shi: "是"
+    fou: "否"
+    pick_a_date: "请选择一个日期"
     
   site:
     home: "首页"

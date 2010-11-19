@@ -1,13 +1,12 @@
 class ContractsController < ApplicationController
   before_filter :require_user
   active_scaffold :contracts do |config|
-
     config.columns = [:number, :name, :description, :station_name, :stamp_tax_type, :contract_type,
       :project_address, :trading_mode, :land_certificate_application_deadline, :property_certificate_application_deadline,
       :other_party, :contract_content, :start_date, :end_date, :expense_paid, :owning_department, :amount,
       :holder, :executive, :transferred, :next_payment_date, :state, :original_loc, :has_backup, :backup_loc, :has_electrical_edtion,
       :security_level, :memo, :payment_periods, 
-      :payments, :attachments
+      :payments, :attachments, :reminding_periods
     ]
 
     config.list.columns = [:number, :name]

@@ -1,5 +1,5 @@
 class DocumentsController < ApplicationController
-  active_scaffold :document do |config|
+  active_scaffold :documents do |config|
     config.create.multipart = true
     config.update.multipart = true
     config.columns = [:number, :name, :description, :attachments]
