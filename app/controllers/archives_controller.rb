@@ -28,4 +28,9 @@ class ArchivesController < ApplicationController
     config.actions << :field_search
     config.list.per_page = 10
   end
+
+  def delete_authorized?
+    return false unless current_user
+  end
+
 end

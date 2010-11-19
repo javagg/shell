@@ -11,6 +11,8 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
 
   ActiveScaffold.set_defaults do |config|
+#    config.security.default_permission = false
+#    config.security.current_user_method = :current_user
     config.theme = :blue
     config.ignore_columns.add [:created_at, :updated_at, :id]
     config.list.empty_field_text = I18n.t 'active_scaffold.column_is_null'
@@ -26,6 +28,18 @@ class ApplicationController < ActionController::Base
     flash[:notice] = "#{I18n.locale} translation not available"
     I18n.load_path -= [locale_path]
     I18n.locale = session[:locale] = I18n.default_locale
+  end
+
+  protected
+
+  # declarative_authorization tell you why
+  def permission_denied
+    respond_to do |format|
+      flash[:error] = I18n.t 'txt.unauthorized_access'
+      format.html { redirect_to root_url }
+      format.xml  { head :unauthorized }
+      format.js   { head :unauthorized }
+    end
   end
 
   private
@@ -90,17 +104,5 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
-  end
-
-  protected
-  
-  # declarative_authorization tell you why
-  def permission_denied
-    respond_to do |format|
-      flash[:error] = I18n.t 'txt.unauthorized_access'
-      format.html { redirect_to root_url }
-      format.xml  { head :unauthorized }
-      format.js   { head :unauthorized }
-    end
   end
 end

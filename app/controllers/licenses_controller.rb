@@ -12,4 +12,12 @@ class LicensesController < ApplicationController
     config.actions.exclude :search
     config.actions << :field_search
   end
+
+  def delete_authorized?
+     permitted_to? :delete, :licenses
+  end
+
+  def create_authorized?
+     permitted_to? :create, :licenses
+  end
 end
