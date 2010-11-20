@@ -101,7 +101,6 @@ class Setup < ActiveRecord::Migration
       t.text :contract_content
       t.date :start_date
       t.date :end_date
-      t.date :next_payment_date
       t.string :expense_paid
       t.string :owning_department
       t.decimal :amount

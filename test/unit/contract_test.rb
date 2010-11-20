@@ -1,11 +1,20 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class ContractTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  def test_payment_remind
+    a_will_pay = Contract.new(:name => "will_pay")
+    a_remindee = User.new(:username => 'remindee', :password => '12345',
+      :password_confirmation => '12345', :email => 'lu.lee05@gmail.com')
+    a_will_pay.save
+    a_will_pay.payment_periods.create(:start_date => "2010-11-1", :end_date => "2011-10-1",
+      :first_payment_date => "2010-11-25", :num_payments => 3)
+    a_will_pay.payment_remindees << a_remindee
+    Contract.check_payment
+    Contract.destroy a_will_pay.id
+    User.destroy a_remindee.id
   end
 end
+
 
 
 
@@ -32,7 +41,6 @@ end
 #  contract_content                          :text
 #  start_date                                :date
 #  end_date                                  :date
-#  next_payment_date                         :date
 #  expense_paid                              :string(255)
 #  owning_department                         :string(255)
 #  amount                                    :integer(10)

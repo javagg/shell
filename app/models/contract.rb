@@ -1,9 +1,3 @@
-class Contract <  ActiveRecord::Base
-  has_many :payments, :dependent => :destroy
-  has_many :attachments, :as => :attachable, :dependent => :destroy
-  has_many :payment_periods, :dependent => :destroy
-  has_many :reminding_periods, :as => :reminder, :dependent => :destroy
-end
 
 # == Schema Information
 #
@@ -24,7 +18,6 @@ end
 #  contract_content                          :text
 #  start_date                                :date
 #  end_date                                  :date
-#  next_payment_date                         :date
 #  expense_paid                              :string(255)
 #  owning_department                         :string(255)
 #  amount                                    :integer(10)
@@ -41,4 +34,48 @@ end
 #  created_at                                :datetime
 #  updated_at                                :datetime
 #
+
+require 'date'
+
+class Contract <  ActiveRecord::Base
+  has_many :payments, :dependent => :destroy
+  has_many :attachments, :as => :attachable, :dependent => :destroy
+  has_many :payment_periods, :dependent => :destroy
+
+  has_many :reminding_periods, :as => :reminder, :dependent => :destroy
+ 
+  has_many :remindings, :as => :reminder, :dependent => :destroy
+  has_many :payment_remindees, :through => :remindings, :source => 'user'
+  
+  def next_payment_date
+    payment_dates.find_all { |e| e > Date.today }.min
+  end
+
+  def payment_dates
+    all_dates = []
+    payment_periods.each_with_index do |period, i|
+      if period.first_payment_date and period.end_date and period.start_date
+        all_dates << period.first_payment_date + i * (period.end_date - period.start_date) / period.num_payments
+      end
+    end
+    all_dates.uniq.sort
+  end
+
+  def remind_payment
+    payment_remindees.each do | remindee |
+      Emailer.deliver_contract_payment_reminding self, remindee
+    end
+  end
+
+  def self.check_payment
+    all_contracts = self.find :all
+    all_contracts.each do |contract|
+      payment_date = contract.next_payment_date
+      if payment_date and payment_date > Date.today and payment_date < 1.week.from_now.to_date
+        contract.remind_payment
+      end
+    end
+  end
+end
+
 

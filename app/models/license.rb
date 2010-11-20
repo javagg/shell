@@ -28,7 +28,6 @@ class License <  ActiveRecord::Base
   has_many :attachments, :as => :attachable, :dependent => :destroy
   has_many :remindings, :as => :reminder, :dependent => :destroy
   has_many :expiration_remindees, :through => :remindings, :source => 'user'
-
   has_many :reminding_periods, :as => :reminder, :dependent => :destroy
 
   def remind_expiaration
@@ -38,7 +37,7 @@ class License <  ActiveRecord::Base
   end
 
   def self.check_expiration
-    all_expirings = License.find :all,
+    all_expirings = self.find :all,
       :conditions => ['expired_on > ? and expired_on < ? ', Time.now, 1.week.from_now]
     all_expirings.each do |expiring|
       expiring.remind_expiaration

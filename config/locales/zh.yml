@@ -295,7 +295,7 @@ zh:
         payments: "支付情况"
         attachments: "附件"
         reminding_periods: "提醒时段"
-
+        payment_periods: "支付期"
       license:
         description: "描述"
         sequence: "序列号"

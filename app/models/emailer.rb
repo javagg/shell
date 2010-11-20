@@ -59,4 +59,14 @@ class Emailer < ActionMailer::Base
     sent_on      Time.now
     body         :license => license
   end
+
+    def contract_payment_reminding contract, remindee
+    recipients   remindee.email
+    subject      "contract payment"
+    content_type "text/html"
+    from         FROM
+    sent_on      Time.now
+    body         :contract => contract
+  end
+
 end
