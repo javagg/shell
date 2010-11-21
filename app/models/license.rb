@@ -25,6 +25,8 @@
 #
 
 class License <  ActiveRecord::Base
+  validates_presence_of :name
+  
   has_many :attachments, :as => :attachable, :dependent => :destroy
   has_many :remindings, :as => :reminder, :dependent => :destroy
   has_many :expiration_remindees, :through => :remindings, :source => 'user'

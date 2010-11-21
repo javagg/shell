@@ -72,3 +72,5 @@ ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
 end
 
 CalendarDateSelect.format = :db
+
+ActiveScaffold::DataStructures::Column.show_blank_record = false

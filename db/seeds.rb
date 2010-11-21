@@ -8,15 +8,16 @@ Setting.create(:var => 'reminder_sending_time',
   :value => '00:00:00')
 
 
-Role.create [{ :name => 'admin', :description => '系统管理员身份，拥有所有权限，包括：用户管理，系统设置，文档、证照、合同的新建、修改、删除权限' },
+Role.create [
+  { :name => 'admin', :description => '系统管理员身份，拥有所有权限，包括：用户管理，系统设置，文档、证照、合同的新建、修改、删除权限' },
              { :name => 'guest', :description => '游客身份，只能访问公共页面' },
              { :name => 'user', :description => '系统注册用户，只能访问公共页面' },
-             { :name => 'archive_read', :description => '文档只读权限，可以查看系统管理的文档' },
-             { :name => 'archive_write', :description => '文档读写权限，可以新建、修改、删除系统管理的文档' },
-             { :name => 'license_read', :description => '证照只读权限，可以查看系统管理的证照' },
-             { :name => 'license_write', :description => '证照读写权限，可以新建、修改、删除系统管理的证照' },
-             { :name => 'contract_read', :description => '合同只读权限，可以查看系统管理的合同' },
-             { :name => 'contract_write', :description => '合同读写权限，可以新建、修改、删除系统管理的合同' }]
+             { :name => 'archive_view', :description => '文档只读权限，可以查看系统管理的文档' },
+             { :name => 'archive_manage', :description => '文档读写权限，可以新建、修改、删除系统管理的文档' },
+             { :name => 'license_view', :description => '证照只读权限，可以查看系统管理的证照' },
+             { :name => 'license_manage', :description => '证照读写权限，可以新建、修改、删除系统管理的证照' },
+             { :name => 'contract_view', :description => '合同只读权限，可以查看系统管理的合同' },
+             { :name => 'contract_manage', :description => '合同读写权限，可以新建、修改、删除系统管理的合同' }]
 
 admin = User.new(:username => 'admin', :password => 'admin',
   :password_confirmation => 'admin', :email => 'no1@example.com')
@@ -34,16 +35,55 @@ guest.save
 guest = User.find_by_username 'guest'
 guest.activate!
 
-archive = User.new(:username => 'archive', :password => '12345',
+archive_viewer = User.new(:username => 'archive_viewer', :password => '12345',
   :password_confirmation => '12345', :email => 'no3@example.com')
-archive_read_role = Role.find_by_name 'archive_read'
-archive.roles << archive_read_role
-archive.save
-archive = User.find_by_username 'archive'
-archive.activate!
+archive_view_role = Role.find_by_name 'archive_view'
+archive_viewer.roles << archive_view_role
+archive_viewer.save
+archive_viewer = User.find_by_username 'archive_viewer'
+archive_viewer.activate!
 
-# Archive test data
-puts 'populating archive data'
+archive_manager = User.new(:username => 'archive_manager', :password => '12345',
+  :password_confirmation => '12345', :email => 'no4@example.com')
+archive_manage_role = Role.find_by_name 'archive_manage'
+archive_manager.roles << archive_manage_role
+archive_manager.save
+archive_manager = User.find_by_username 'archive_manager'
+archive_manager.activate!
+
+license_viewer = User.new(:username => 'license_viewer', :password => '12345',
+  :password_confirmation => '12345', :email => 'no5@example.com')
+license_view_role = Role.find_by_name 'license_view'
+license_viewer.roles << license_view_role
+license_viewer.save
+license_viewer = User.find_by_username 'license_viewer'
+license_viewer.activate!
+
+license_manager = User.new(:username => 'license_manager', :password => '12345',
+  :password_confirmation => '12345', :email => 'no6@example.com')
+license_manage_role = Role.find_by_name 'license_manage'
+license_manager.roles << license_manage_role
+license_manager.save
+license_manager = User.find_by_username 'license_manager'
+license_manager.activate!
+
+contract_viewer = User.new(:username => 'contract_viewer', :password => '12345',
+  :password_confirmation => '12345', :email => 'no7@example.com')
+contract_view_role = Role.find_by_name 'contract_view'
+contract_viewer.roles << contract_view_role
+contract_viewer.save
+contract_viewer = User.find_by_username 'contract_viewer'
+contract_viewer.activate!
+
+contract_manager = User.new(:username => 'contract_manager', :password => '12345',
+  :password_confirmation => '12345', :email => 'no8@example.com')
+contract_manage_role = Role.find_by_name 'contract_manage'
+contract_manager.roles << contract_manage_role
+contract_manager.save
+contract_manager = User.find_by_username 'contract_manager'
+contract_manager.activate!
+
+puts 'populating archive samples'
 
 Archive.create(
   :number => '103201001',
@@ -478,7 +518,7 @@ Archive.create(
   :has_electrical_edtion => true
 )
 
-puts 'populating license data'
+puts 'populating license samples'
 # 西安	陕西延长壳牌石油有限公司阿房加油站	营业执照	610000500005696	陕西省工商行政管理局	2009.6.26	3.1	2039.6.25	正本:OP	副本:PR
 License.create(
   :number => '610000500005696',

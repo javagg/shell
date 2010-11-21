@@ -1,4 +1,10 @@
 class RolesController < ApplicationController
+  def to_label
+    "#{name}"
+  end
+  
+  record_select :search_on => [:name]
+
   active_scaffold :roles do |config|
     config.columns = [:name, :description]
     config.actions.exclude :create

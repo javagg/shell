@@ -11,8 +11,6 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password, :password_confirmation
 
   ActiveScaffold.set_defaults do |config|
-#    config.security.default_permission = false
-#    config.security.current_user_method = :current_user
     config.theme = :blue
     config.ignore_columns.add [:created_at, :updated_at, :id]
     config.list.empty_field_text = I18n.t 'active_scaffold.column_is_null'
@@ -36,7 +34,7 @@ class ApplicationController < ActionController::Base
   def permission_denied
     respond_to do |format|
       flash[:error] = I18n.t 'txt.unauthorized_access'
-      format.html { redirect_to root_url }
+      format.html { redirect_back_or_default root_url }
       format.xml  { head :unauthorized }
       format.js   { head :unauthorized }
     end
@@ -92,7 +90,7 @@ class ApplicationController < ActionController::Base
     if current_user
       store_location
       flash[:notice] = t 'txt.logged_out_to_access'
-      redirect_to root_url
+      redirect_back_or_default root_url
       return false
     end
   end

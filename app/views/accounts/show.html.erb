@@ -14,8 +14,8 @@
         <tr>
           <td style="width:100px;text-align:left"><%= f.label :roles %></td>
           <td style="text-align:left">
-            <% @user.roles.each do |role| %>
-              <%=h role.name %>
+            <% @user.role_symbols.each do |role| %>
+              <%=h role.to_s %>
             <% end %>
           </td>
         </tr>

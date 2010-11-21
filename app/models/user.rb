@@ -21,6 +21,9 @@ class User < ActiveRecord::Base
   # for Declarative Authorization
   def role_symbols
     @role_symbols ||= roles.map { |r| r.name.to_sym }
+#    #    @role_symbols << "guest".to_sym
+    @role_symbols << "admin".to_sym if is_admin?
+    @role_symbols.uniq
   end
 
   def to_label
@@ -32,6 +35,10 @@ class User < ActiveRecord::Base
 	end
   
   def before_destroy
+    if is_admin?
+      raise I18n.t('user.cannot_delete_admin')
+    end
+
     if User.count.zero?
       raise I18n.t('user.cannot_delete_last_user')
     end
