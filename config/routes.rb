@@ -14,7 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :archives, :active_scaffold => true do |archive|
-    contract.resources :attachments, :member => { :download => :get }
+    archive.resources :attachments, :member => { :download => :get }
   end
   map.resources :settings, :active_scaffold => true
   
