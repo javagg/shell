@@ -10,14 +10,13 @@ Setting.create(:var => 'reminder_sending_time',
 
 Role.create [
   { :name => 'admin', :description => '系统管理员身份，拥有所有权限，包括：用户管理，系统设置，文档、证照、合同的新建、修改、删除权限' },
-             { :name => 'guest', :description => '游客身份，只能访问公共页面' },
-             { :name => 'user', :description => '系统注册用户，只能访问公共页面' },
-             { :name => 'archive_view', :description => '文档只读权限，可以查看系统管理的文档' },
-             { :name => 'archive_manage', :description => '文档读写权限，可以新建、修改、删除系统管理的文档' },
-             { :name => 'license_view', :description => '证照只读权限，可以查看系统管理的证照' },
-             { :name => 'license_manage', :description => '证照读写权限，可以新建、修改、删除系统管理的证照' },
-             { :name => 'contract_view', :description => '合同只读权限，可以查看系统管理的合同' },
-             { :name => 'contract_manage', :description => '合同读写权限，可以新建、修改、删除系统管理的合同' }]
+#  { :name => 'user', :description => '系统注册用户，可以访问公共页面，需要管理员为其分配权限' },
+  { :name => 'archive_view', :description => '文档只读权限，可以查看系统管理的文档' },
+  { :name => 'archive_manage', :description => '文档读写权限，可以新建、修改、删除系统管理的文档' },
+  { :name => 'license_view', :description => '证照只读权限，可以查看系统管理的证照' },
+  { :name => 'license_manage', :description => '证照读写权限，可以新建、修改、删除系统管理的证照' },
+  { :name => 'contract_view', :description => '合同只读权限，可以查看系统管理的合同' },
+  { :name => 'contract_manage', :description => '合同读写权限，可以新建、修改、删除系统管理的合同' }]
 
 admin = User.new(:username => 'admin', :password => 'admin',
   :password_confirmation => 'admin', :email => 'no1@example.com')
@@ -26,14 +25,6 @@ admin.roles << admin_role
 admin.save
 admin = User.find_by_username 'admin'
 admin.activate!
-
-guest = User.new(:username => 'guest', :password => '12345',
-  :password_confirmation => '12345', :email => 'no2@example.com')
-guest_role = Role.find_by_name 'guest'
-guest.roles << guest_role
-guest.save
-guest = User.find_by_username 'guest'
-guest.activate!
 
 archive_viewer = User.new(:username => 'archive_viewer', :password => '12345',
   :password_confirmation => '12345', :email => 'no3@example.com')
@@ -711,53 +702,53 @@ puts 'populating contract samples'
 #	2009/4/20	2009/8/5	咸阳鑫鼎物资贸易有限公司		N/A	N/A	N/A	R11004	ND	1260万元
 #		高瑜		\/		HR资料室文件柜	是	FN	Legal/FN/ND	高
 Contract.create(
-   :contract_type => '加油站合同',
-   :number => 'R11004',
-   :station_name => '咸阳人民东路加油站',
-   :project_address => '咸阳市人民东路与金旭路交汇处',
-   :trading_mode => '购买',
-   :land_certificate_application_deadline => '2009/4/20',
-   :property_certificate_application_deadline => '2009/8/5',
-   :other_party => '咸阳鑫鼎物资贸易有限公司',
-   :expense_paid => 'R11004',
-   :owning_department => 'ND',
-   :amount => 12600000.00,
-   :holder => '高瑜',
-   :transferred => true,
-   :original_loc => 'HR资料室文件柜',
-   :has_backup => true,
-   :backup_loc => 'FN',
-   :has_electrical_edtion => true,
-   :security_level => '高'
+  :contract_type => '加油站合同',
+  :number => 'R11004',
+  :station_name => '咸阳人民东路加油站',
+  :project_address => '咸阳市人民东路与金旭路交汇处',
+  :trading_mode => '购买',
+  :land_certificate_application_deadline => '2009/4/20',
+  :property_certificate_application_deadline => '2009/8/5',
+  :other_party => '咸阳鑫鼎物资贸易有限公司',
+  :expense_paid => 'R11004',
+  :owning_department => 'ND',
+  :amount => 12600000.00,
+  :holder => '高瑜',
+  :transferred => true,
+  :original_loc => 'HR资料室文件柜',
+  :has_backup => true,
+  :backup_loc => 'FN',
+  :has_electrical_edtion => true,
+  :security_level => '高'
 )
 
 #	采购合同		M-0003		李波 朱向东	唐延国际中心写字间租赁合同	2009/1/1		2011/6/30
 #			HR	50/月/㎡	田莉	杨子薇	\/																		Y
 
 Contract.create(
-   :contract_type => '采购合同',
-   :number => 'M-0003',
-   :other_party => '李波，朱向东',
-   :contract_content => '唐延国际中心写字间租赁合同',
-   :owning_department => 'HR',
-   :holder => '田莉',
-   :executive => '杨子薇',
-   :transferred => true,
-   :memo => '已签订补充协议，说明合同终止'
+  :contract_type => '采购合同',
+  :number => 'M-0003',
+  :other_party => '李波，朱向东',
+  :contract_content => '唐延国际中心写字间租赁合同',
+  :owning_department => 'HR',
+  :holder => '田莉',
+  :executive => '杨子薇',
+  :transferred => true,
+  :memo => '已签订补充协议，说明合同终止'
 )
 
 #采购合同	购销	C1170						西安轻松印务有限责任公司	新配方第二波宣传单和积分卡印刷
 ##		2010/9/26		执行完毕	油站	OP	32,400.00 		张励洁
 
 Contract.create(
-   :contract_type => '采购合同',
-   :stamp_tax_type => '购销',
-   :number => 'C1170',
-   :other_party => '西安轻松印务有限责任公司',
-   :contract_content => '新配方第二波宣传单和积分卡印刷',
-   :start_date => '2010/9/26',
-   :amount => 32400.00,
-   :expense_paid => '油站',
-   :owning_department => 'OP',
-   :executive => '张励洁'
+  :contract_type => '采购合同',
+  :stamp_tax_type => '购销',
+  :number => 'C1170',
+  :other_party => '西安轻松印务有限责任公司',
+  :contract_content => '新配方第二波宣传单和积分卡印刷',
+  :start_date => '2010/9/26',
+  :amount => 32400.00,
+  :expense_paid => '油站',
+  :owning_department => 'OP',
+  :executive => '张励洁'
 )

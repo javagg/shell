@@ -18,7 +18,7 @@ class AccountsController < ApplicationController
     if @user.save_without_session_maintenance
       @user.deliver_activation_instructions!
       flash[:notice] = t 'txt.check_email_for_activation'
-      redirect_back_or_default root_path
+      redirect_to root_path
     else
       render :action => :new
     end

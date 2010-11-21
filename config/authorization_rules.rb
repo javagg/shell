@@ -1,15 +1,10 @@
 authorization do
   role :guest do
     has_permission_on :users, :to => [:read_index, :create]
-  end
-
-  role :user do
-    includes :guest
     has_permission_on :users, :to => [:read_show, :update] do
-      if_attribute :id => is {user.id}
+      if_attribute :id => is {user.id}    
     end
   end
-  
   role :archive_view do
     includes :users
     has_permission_on :archives, :to => :read
