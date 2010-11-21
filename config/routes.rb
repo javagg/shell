@@ -3,13 +3,19 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contracts, :active_scaffold => true, :active_scaffold_sortable => true do |contract|
     contract.resources :payments
     contract.resources :payment_periods
+    contract.resources :reminding_periods
+    contract.resources :attachments, :member => { :download => :get }
   end
 
   map.resources :licenses, :active_scaffold => true do |license|
+    license.resources :expiration_remindees
+    license.resources :reminding_periods
     license.resources :attachments, :member => { :download => :get }
   end
   
-  map.resources :archives, :active_scaffold => true
+  map.resources :archives, :active_scaffold => true do |archive|
+    contract.resources :attachments, :member => { :download => :get }
+  end
   map.resources :settings, :active_scaffold => true
   
   map.resources :users, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post} do |user|

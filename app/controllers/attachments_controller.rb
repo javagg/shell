@@ -12,7 +12,6 @@ class AttachmentsController < ApplicationController
     config.actions.exclude :update
   end
 
-
   def download
     head(:not_found) and return if (attachment = self.find_by_id(params[:id])).nil?
     #    head(:forbidden) and return unless attachment.downloadable?(current_user)

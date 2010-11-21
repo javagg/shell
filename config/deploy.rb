@@ -1,37 +1,28 @@
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 require 'erb'
+require "rvm/capistrano"
+set :rvm_ruby_string, 'ruby-1.8.7-p302'
 
+ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
-ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "id_rsa")]
 
+set :host, "202.117.46.233"
 set :user, "alex"
+set :rvm_type, :user
 set :application, "shell"
 set :repository, "git://github.com/javagg/shell.git"
 set :scm, :git
 set :branch, "master"
-
 set :deploy_to, "/home/#{user}/#{application}"
-#set :use_sudo, true
-#set :deploy_via, :remote_cache
-set :default_environment, {
-  'PATH' => "/home/alex/.rvm/gems/ruby-1.8.7-p302/bin:/home/alex/.rvm/gems/ruby-1.8.7-p302@global/bin:/home/alex/.rvm/rubies/ruby-1.8.7-p302/bin:/home/alex/.rvm/bin:$PATH",
-  'RUBY_VERSION' => 'ruby 1.8.7',
-  'GEM_HOME' => '/home/alex/.rvm/rubies/ruby-1.8.7-p302/lib/ruby/gems/1.8',
-  'GEM_PATH' => '/home/alex/.rvm/gems/ruby-1.8.7-p302:/home/alex/.rvm/gems/ruby-1.8.7-p302@global'
-}
+set :deploy_via, :remote_cache
 
+role :web, host.to_s
+role :app, host.to_s
+role :db, host.to_s, :primary => true
 
-#ssh_options[:forward_agent] = true
-
-set :host, "202.117.46.233"
-
-role :web, host
-role :app, host
-role :db, host, :primary => true
-
-
-# If you are using Passenger mod_rails uncomment this:
-# if you're still using the script/reapear helper you will need
-# these http://github.com/rails/irs_process_scripts
+after "deploy:setup", "deploy:chown_for_deploy_user", "db:generate_database_yml", "web:setup"
+after "deploy:update_code", "db:link_to_database_yml"
+before "web:setup", "web:generate_a2site_config"
 
 namespace :deploy do
   task :start do ; end
@@ -39,99 +30,108 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+  
+  task :chown_for_deploy_user do
+    run "#{try_sudo} chown #{user}:#{user} -R #{deploy_to}"
+  end
 end
-
-#$:.unshift(File.expand_path('./lib', ENV['rvm_path'])) # Add RVM's lib directory to the load path.
-#require 'rvm/capistrano'
-#set :rvm_ruby_string, 'ruby-1.8.7-p302'
-
-after "deploy:setup", "db:generate_database_yaml"
-after "deploy:update_code", "db:symlink"
-#after "deploy:update_code", "web:setup"
-before "deploy:migrate", "db:create"
-after "deploy:migrate", "db:seed"
 
 namespace :db do
   desc "Create database yaml in shared path"
-  task :generate_database_yaml do
-    db_config = ERB.new <<-EOF
-defaults: &defaults
-  adapter: mysql
-  encoding: utf8
-  reconnect: false
-  database: #{application}_production
-  pool: 5
-  username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  task :generate_database_yml, :roles => :app do
+    db_options = {
+      "adapter" => "mysql",
+      "database" => "#{application}_production",
+      "encoding" => "utf8",
+      "username" => "root",
+      "password" => "",
+      "socket" => "/var/run/mysqld/mysqld.sock"
+    }
+    config_options = { "production" => db_options }.to_yaml
 
-development:
-  database: #{application}_development
-  <<: *defaults
-
-test:
-  database: #{application}_test
-  <<: *defaults
-
-production:
-  database: #{application}_production
-  <<: *defaults
-EOF
     run "mkdir -p #{shared_path}/config"
-    put db_config.result, "#{shared_path}/config/database.yml"
+    put config_options, "#{shared_path}/config/database.yml"
   end
 
   desc "Make symlink for database yaml"
-  task :symlink do
+  task :link_to_database_yml, :roles => :app do
     run "ln -nfs #{shared_path}/config/database.yml
-      #{release_path}/config/database.yml"
+      #{release_path}/config/database.yml#"
   end
 
   desc "Populate database with preconfigure data"
-  task :seed, :roles => :db do
+  task :seed_database, :roles => :db do
     run "cd #{current_path}; rake db:seed RAILS_ENV=production"
   end
 
   desc "Create database on server"
-  task :create, :roles => :db do
+  task :create_database, :roles => :db do
     run "cd #{current_path}; rake db:create RAILS_ENV=production"
   end
 
   desc "Drop database on server"
-  task :drop, :roles => :db do
+  task :drop_database, :roles => :db do
     run "cd #{current_path}; rake db:drop RAILS_ENV=production"
+  end
+
+  desc "Start the Mysql processes on the app server."
+  task :start, :roles => :web do
+    sudo "start mysql" end
+
+  desc "Restart the Mysql processes on the app server by starting and stopping the cluster."
+  task :restart , :roles => :web do
+    sudo "restart mysql"
+  end
+
+  desc "Stop the Mysql processes on the app server."
+  task :stop , :roles => :web do
+    sudo "stop mysql"
   end
 end
 
-set :port, "80"
-set :site_name, "shell-apache-site"
+set :web_port, "80"
+set :web_name, "shell-apache-site"
 
-#namespace :web do
-#  desc "Configure Apache2"
-#  task :setup, :roles => :web do
-#    run "cd #{current_path}"
-#    sudo "cp #{current_path}/deploy/passenger.conf /etc/apache2/mods-available/"
-#    sudo "cp #{current_path}/deploy/passenger.load /etc/apache2/mods-available/"
-#    sudo "a2enmod passenger"
-#    sudo "cp #{current_path}/deploy/#{site_name} /etc/apache2/sites-available/"
-#    sudo "a2dissite default"
-#    sudo "a2ensite #{site_name}"
-#  end
-#
-#  desc "Generate apache2 site config file"
-#  task :generate_a2site, :roles => :web do
-#    site_config = ERB.new <<-EOF
-#<VirtualHost *:#{port}>
-#  ServerName loaclhost
-#  DocumentRoot #{current_path}/public
-#  RailsEnv production
-#  <Directory #{current_path}/public>
-#    AllowOverride all
-#    Options -MultiViews
-#  </Directory>
-#</VirtualHost>
-#EOF
-#    run "mkdir -p #{shared_path}/config"
-#    put site_config.result, "#{shared_path}/config/#{site_name}"
-#  end
-#end
+namespace :web do
+  desc "Configure Apache2"
+  task :setup, :roles => :web do
+    run "cd #{current_path}"
+    sudo "cp #{current_path}/deploy/passenger.conf /etc/apache2/mods-available/"
+    sudo "cp #{current_path}/deploy/passenger.load /etc/apache2/mods-available/"
+    sudo "a2enmod passenger"
+    sudo "cp #{shared_path}/config/#{web_name} /etc/apache2/sites-available/"
+    sudo "a2dissite default"
+    sudo "a2ensite #{web_name}"
+  end
+
+  desc "Generate apache2 site config file"
+  task :generate_a2site_config, :roles => :web do
+    site_config = ERB.new <<-EOF
+<VirtualHost *:#{web_port}>
+  ServerName loaclhost
+  DocumentRoot #{current_path}/public
+  RailsEnv production
+  <Directory #{current_path}/public>
+    AllowOverride all
+    Options -MultiViews
+  </Directory>
+</VirtualHost>
+    EOF
+    run "mkdir -p #{shared_path}/config"
+    put site_config.result, "#{shared_path}/config/#{web_name}"
+  end
+
+  desc "Start apache2 on the app server."
+  task :start, :roles => :web do
+    sudo "/etc/init.d/apache2 start" end
+ 
+  desc "Restart the Apache2 processes on the app server by starting and stopping the cluster."
+  task :restart , :roles => :web do
+    sudo "/etc/init.d/apache2 restart"
+  end
+ 
+  desc "Stop the Apache2 processes on the app server."
+  task :stop , :roles => :web do
+    sudo "/etc/init.d/apache2 stop"
+  end
+end
