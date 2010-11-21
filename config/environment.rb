@@ -34,7 +34,7 @@ Rails::Initializer.run do |config|
 
   # email
   config.action_mailer.default_charset = "utf-8"
-  config.action_mailer.default_url_options = { :host => "219.245.133.20", :port => 3000 }
+#  config.action_mailer.default_url_options = { :host => "219.245.133.20", :port => 3000 }
 
 end
 
