@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper :all  
   helper_method :current_user_session, :current_user 
 
-  before_filter :set_locale
+  before_filter :set_locale, :set_mailer_url_options
   before_filter :set_current_user
 
   protect_from_forgery
@@ -43,23 +43,24 @@ class ApplicationController < ActionController::Base
   private
 
   def set_mailer_url_options
-    begin
-      request = self.request
-      ActionController::UrlWriter.module_eval do
-        @old_default_url_options = default_url_options.clone
-        default_url_options[:host] = request.host
-        default_url_options[:port] = request.port unless request.port == 80
-        protocol = /(.*):\/\//.match(request.protocol)[1] if request.protocol.ends_with?("://")
-        default_url_options[:protocol] = protocol
-      end
-      yield
-    ensure
-      ActionController::UrlWriter.module_eval do
-        default_url_options[:host] = @old_default_url_options[:host]
-        default_url_options[:port] = @old_default_url_options[:port]
-        default_url_options[:protocol] = @old_default_url_options[:protocol]
-      end
-    end
+#    ActionMailer::Base.default_url_options[:host] = request.host_with_port
+
+    #    begin
+    #      request = self.request
+    #      ActionController::UrlWriter.module_eval do
+    #        @old_default_url_options = ActionMailer::Base::default_url_options.clone
+    #        ActionMailer::Base::default_url_options[:host] = request.host
+    #        ActionMailer::Base::default_url_options[:port] = request.port unless request.port == 80
+    #        protocol = /(.*):\/\//.match(request.protocol)[1] if request.protocol.ends_with?("://")
+    #        ActionMailer::Base::default_url_options[:protocol] = protocol
+    #      end
+    #    ensure
+    #      ActionController::UrlWriter.module_eval do
+    #        ActionMailer::Base::default_url_options[:host] = @old_default_url_options[:host]
+    #        ActionMailer::Base::default_url_options[:port] = @old_default_url_options[:port]
+    #        ActionMailer::Base::default_url_options[:protocol] = @old_default_url_options[:protocol]
+    #      end
+    #    end
   end
 
   # let declarative_authorization works with authlogic

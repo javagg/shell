@@ -3,7 +3,7 @@ class Emailer < ActionMailer::Base
   FROM = 'forshell12345@sohu.com'
 
   def signup_notification recipient
-    #    body['host'] = self.default_url_options[:host]
+     #body['host'] = self.default_url_options[:host]
     recipients recipient.email
     bcc        []
     from       FROM
@@ -40,7 +40,6 @@ class Emailer < ActionMailer::Base
     body          :root_url => root_url
   end
 
-
   def password_reset_instructions recipient
     #    body['host'] = self.default_url_options[:host]
     recipients   recipient.email
@@ -68,5 +67,4 @@ class Emailer < ActionMailer::Base
     sent_on      Time.now
     body         :contract => contract
   end
-
 end
