@@ -15,9 +15,6 @@ class LicensesController < ApplicationController
     config.columns[:expiration_remindees].form_ui = :select
     config.columns[:expiration_remindees].options = { :draggable_lists => true }
 
-    config.columns[:annual_inspection_date].form_ui = :calendar_date_select
-    config.columns[:expired_on].form_ui = :calendar_date_select
-
     config.columns[:has_electrical_edtion].form_ui = :select
     config.columns[:has_electrical_edtion].options = { :options =>Shell::SHIFOU_OPTIONS }
 

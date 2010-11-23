@@ -123,6 +123,7 @@ class Setup < ActiveRecord::Migration
       t.date :pay_date
       t.decimal :amount
       t.boolean :has_deliverables, :default => false
+      t.text :memo
       t.timestamps
     end
     

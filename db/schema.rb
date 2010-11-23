@@ -122,6 +122,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.date     "pay_date"
     t.integer  "amount",           :limit => 10, :precision => 10, :scale => 0
     t.boolean  "has_deliverables",                                              :default => false
+    t.text     "memo"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

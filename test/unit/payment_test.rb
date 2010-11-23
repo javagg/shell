@@ -10,6 +10,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: payments
@@ -19,6 +20,7 @@ end
 #  pay_date         :date
 #  amount           :integer(10)
 #  has_deliverables :boolean(1)      default(FALSE)
+#  memo             :text
 #  created_at       :datetime
 #  updated_at       :datetime
 #

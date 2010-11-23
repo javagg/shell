@@ -6,11 +6,11 @@ set :rvm_ruby_string, 'ruby-1.8.7-p302'
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
-set :host, "202.117.46.233"
+set :host, "192.168.17.41"
 set :user, "alex"
 set :rvm_type, :user
 set :application, "shell"
-set :repository, "git://github.com/javagg/shell.git"
+set :repository, "git@github.com:javagg/shell.git"
 set :scm, :git
 set :branch, "master"
 set :deploy_to, "/home/#{user}/#{application}"

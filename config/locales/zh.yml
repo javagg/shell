@@ -331,6 +331,7 @@ zh:
         amount: "金额"
         pay_date: "付款时间"
         has_deliverables: "有否交付物"
+        memo: "付款说明"
 
       payment_period:
         first_payment_date: "首次支付日期"
