@@ -4,10 +4,13 @@ class LicensesController < ApplicationController
   filter_access_to :all
 
   active_scaffold :licenses do |config|
-#    config.actions << :download
+    # for uploading file
+    config.create.multipart = true
+    config.update.multipart = true
+
     config.columns = [:number, :name, :t5code, :area, :station_name,
       :issuing_authority, :state, :annual_inspection_date, :expired_on, :original_loc,
-      :backup_loc, :memo, :owning_department, :has_electrical_edtion, :security_level,
+      :backup_loc, :memo, :owning_department, :has_electrical_edtion, :confidential_level,
       :expiration_remindees, :attachments, :reminding_periods
     ]
 
@@ -18,8 +21,8 @@ class LicensesController < ApplicationController
     config.columns[:has_electrical_edtion].form_ui = :select
     config.columns[:has_electrical_edtion].options = { :options =>Shell::SHIFOU_OPTIONS }
 
-    config.columns[:security_level].form_ui = :select
-    config.columns[:security_level].options = { :include_blank => I18n.t('txt.please_choose'),
+    config.columns[:confidential_level].form_ui = :select
+    config.columns[:confidential_level].options = { :include_blank => I18n.t('txt.please_choose'),
       :options =>Shell::CONFIDENTIAL_LEVEL_OPTIONS }
 
     config.columns[:memo].form_ui = :text_area

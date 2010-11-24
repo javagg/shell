@@ -17,14 +17,18 @@ class ContractsController < ApplicationController
   filter_access_to :all
 
   active_scaffold :contracts do |config|
+    # for uploading file
+    config.create.multipart = true
+    config.update.multipart = true
+    
     config.columns = [:number, :name, :station_name, :stamp_tax_type, :contract_type,
       :project_address, :trading_mode, :land_certificate_application_deadline, :property_certificate_application_deadline,
       :other_party, :contract_content, :start_date, :end_date, :expense_paid, :owning_department, :amount,
       :holder, :executive, :transferred, :state, :original_loc, :has_backup, :backup_loc, :has_electrical_edtion,
-      :security_level, :memo, :payment_periods,
+      :confidential_level, :memo, :payment_periods,
       :payments, :attachments, :reminding_periods
     ]
-
+    config.subform.layout = :vertical
     config.list.columns = [:number, :name]
     config.nested.add_link I18n.t('contract.show_payments'), :payments
     config.nested.add_link I18n.t('document.show_attachments'), :attachments
@@ -53,8 +57,8 @@ class ContractsController < ApplicationController
     config.columns[:owning_department].options = { :include_blank => I18n.t('txt.please_choose'),
       :options =>Shell::DEPARTMENT_OPTIONS }
 
-    config.columns[:security_level].form_ui = :select
-    config.columns[:security_level].options = { :include_blank => I18n.t('txt.please_choose'),
+    config.columns[:confidential_level].form_ui = :select
+    config.columns[:confidential_level].options = { :include_blank => I18n.t('txt.please_choose'),
       :options =>Shell::CONFIDENTIAL_LEVEL_OPTIONS }
   end
 

@@ -19,6 +19,7 @@ class LicenseTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: licenses
@@ -40,7 +41,7 @@ end
 #  memo                   :text
 #  owning_department      :string(255)
 #  has_electrical_edtion  :boolean(1)      default(FALSE)
-#  security_level         :string(255)
+#  confidential_level     :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
 #

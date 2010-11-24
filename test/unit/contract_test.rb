@@ -22,6 +22,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: contracts
@@ -52,7 +53,7 @@ end
 #  has_backup                                :boolean(1)      default(FALSE)
 #  backup_loc                                :string(255)
 #  has_electrical_edtion                     :boolean(1)      default(FALSE)
-#  security_level                            :string(255)
+#  confidential_level                        :string(255)
 #  memo                                      :text
 #  created_at                                :datetime
 #  updated_at                                :datetime

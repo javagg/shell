@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :documents, :active_scaffold => true
-  map.resources :contracts, :active_scaffold => true, :active_scaffold_sortable => true do |contract|
+  map.resources :contracts, :active_scaffold => true do |contract|
     contract.resources :payments
     contract.resources :payment_periods
     contract.resources :reminding_periods
@@ -15,16 +15,19 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :archives, :active_scaffold => true do |archive|
     archive.resources :attachments, :member => { :download => :get }
+    archive.resources :expiration_remindees
+    archive.resources :reminding_periods
   end
+  
   map.resources :settings, :active_scaffold => true
   
-  map.resources :users, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post} do |user|
-#    user.resources :roles, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
+  map.resources :users, :active_scaffold => true do |user|
+    #    user.resources :roles, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
   end
 
   map.resources :roles, :collection => {:browse => :get}, :member => {:select => :post}
   
-#  map.resources :attachments, :member => { :download => :get }
+  #  map.resources :attachments, :member => { :download => :get }
   
   map.resource :user_session
   map.resources :accounts

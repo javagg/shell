@@ -101,13 +101,13 @@ zh:
     hide: '隐藏'
     live_search: '即时搜索'
     loading: '正在加载...'
-    next: '下一个'
+    next: '下一页'
     no_entries: '无记录'
     no_options: '无选项'
     omit_header: '忽略标题'
     options: '选项'
     pdf: 'PDF'
-    previous: '上一个'
+    previous: '上一页'
     print: '打印'
     refresh: '刷新'
     remove: '移除'
@@ -264,8 +264,9 @@ zh:
         has_backup: "是否有备份"
         backup_loc: "备份保存地址"
         has_electrical_edtion: "是否有电子版"
-        security_level: "安全保密等级"
+        confidential_level: "安全保密等级"
         attachments: "附件"
+        expiration_remindees: "过期时需要提醒的用户"
         
       contract:
         number: 合同编号
@@ -298,7 +299,7 @@ zh:
         backup_loc: "备份保存地点"
         owning_department: "所属部门"
         has_electrical_edtion: "是否有电子版"
-        security_level: "安全保密等级"
+        confidential_level: "安全保密等级"
         payments: "支付情况"
         attachments: "附件"
         reminding_periods: "提醒时段"
@@ -322,8 +323,8 @@ zh:
         backup_loc: "备份保存地点"
         owning_department: "所属部门"
         has_electrical_edtion: "是否有电子版"
-        security_level: "安全保密等级"
-        expiration_remindees: "过期时被提醒人"
+        confidential_level: "安全保密等级"
+        expiration_remindees: "过期时需要提醒的用户"
         attachments: "附件"
         reminding_periods: "提醒时段"
         
@@ -355,9 +356,9 @@ zh:
     errors:
       template:
         header:
-          one: "有 1 个错误发生"  
-          other: "有 %{count} 个错误发生"  
-        body: "如下字段出现错误："
+          one: "发现 1 个错误"
+          other: "发现 %{count} 个错误"
+        body: "以下字段发现错误，请检查您的输入："
       messages:
         record_invalid: "记录不合法"
         
@@ -391,7 +392,11 @@ zh:
               too_short: "过短 (不能少于 %{count} 个字符)"
               blank: "不能为空字符"
               invalid: "不正确"
-              
+        archive:
+           attributes:
+             name:
+               blank: "不能为空字符"
+               
       message: "请检查以下字段："
       inclusion: "不包含于列表中"
       exclusion: "不能用"
@@ -442,6 +447,7 @@ zh:
     account_with_that_email_not_exist: "注册该电子邮件的用户并不存在！"
     check_email_for_password_reset: "请检查您的电子邮件来进行密码重设！"
     fectch: "取回"
+    download: "下载"
     logged_in_to_access: "对不起，你必须登录之后才能访问该页面"
     logged_out_to_access: "对不起，你必须退出之后才能访问该页面"
     unauthorized_access: "对不起，您没有足够的权限访问该页"
@@ -450,6 +456,7 @@ zh:
     fill_in_your_username_and_password: "请输入你的用户名和密码"
     your_account_info_and_activities: "账户信息"
 
+    update_roles: "修改用户权限"
     please_choose: "—请选择—"
     shi: "是"
     fou: "否"

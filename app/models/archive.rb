@@ -1,3 +1,20 @@
+require 'date'
+
+class Archive < ActiveRecord::Base
+  validates_presence_of :name
+  has_many :attachments, :as => :attachable, :dependent => :destroy
+
+  has_many :remindings, :as => :reminder, :dependent => :destroy,
+    :conditions => ['reminder_type = ?', "Archive"]
+  has_many :expiration_remindees, :through => :remindings, :source => 'user'
+
+  def expired?
+    return false if expired_on.nil?
+    return expired_on < Date.today
+  end
+end
+
+
 # == Schema Information
 #
 # Table name: archives
@@ -16,13 +33,8 @@
 #  has_backup            :boolean(1)      default(FALSE)
 #  backup_loc            :string(255)
 #  has_electrical_edtion :boolean(1)      default(FALSE)
-#  security_level        :string(255)
+#  confidential_level    :string(255)
 #  created_at            :datetime
 #  updated_at            :datetime
 #
-
-class Archive < ActiveRecord::Base
-  validates_presence_of :name
-  has_many :attachments, :as => :attachable, :dependent => :destroy
-end
 

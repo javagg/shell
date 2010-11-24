@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.boolean  "has_backup",            :default => false
     t.string   "backup_loc"
     t.boolean  "has_electrical_edtion", :default => false
-    t.string   "security_level"
+    t.string   "confidential_level"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.boolean  "has_backup",                                                                             :default => false
     t.string   "backup_loc"
     t.boolean  "has_electrical_edtion",                                                                  :default => false
-    t.string   "security_level"
+    t.string   "confidential_level"
     t.text     "memo"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.text     "memo"
     t.string   "owning_department"
     t.boolean  "has_electrical_edtion",  :default => false
-    t.string   "security_level"
+    t.string   "confidential_level"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

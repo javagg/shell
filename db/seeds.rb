@@ -348,7 +348,7 @@ Archive.create(
   :state => '存档中',
   :has_backup => false,
   :has_electrical_edtion => false,
-  :security_level => "非保密"
+  :confidential_level => "非保密"
 )
 
 #HSSE	文件	HSSE管理体系手册	HSSE	HSSE	张驰	HSSE文件柜	2013/11/1	存档中	是	无	有	需要	非保密
@@ -365,7 +365,7 @@ Archive.create(
   :state => '存档中',
   :has_backup => true,
   :has_electrical_edtion => true,
-  :security_level => "非保密"
+  :confidential_level => "非保密"
 )
 
 #2009-F-01	文件	迎国庆加油送红旗活动申请	OP	OP	张励洁	OP-MKT文件柜	2009.10.1	存档中	是
@@ -719,7 +719,7 @@ Contract.create(
   :has_backup => true,
   :backup_loc => 'FN',
   :has_electrical_edtion => true,
-  :security_level => '高'
+  :confidential_level => '高'
 )
 
 #	采购合同		M-0003		李波 朱向东	唐延国际中心写字间租赁合同	2009/1/1		2011/6/30

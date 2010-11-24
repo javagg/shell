@@ -82,7 +82,7 @@ class Setup < ActiveRecord::Migration
       t.text :memo
       t.string :owning_department
       t.boolean :has_electrical_edtion, :default => false
-      t.string :security_level
+      t.string :confidential_level
       t.timestamps
     end
 
@@ -112,7 +112,7 @@ class Setup < ActiveRecord::Migration
       t.boolean :has_backup, :default => false
       t.string :backup_loc
       t.boolean :has_electrical_edtion, :default => false
-      t.string :security_level
+      t.string :confidential_level
       t.text :memo
       
       t.timestamps
@@ -165,7 +165,7 @@ class Setup < ActiveRecord::Migration
       t.boolean :has_backup, :default => false
       t.string :backup_loc
       t.boolean :has_electrical_edtion, :default => false
-      t.string :security_level
+      t.string :confidential_level
       t.timestamps
     end
 

@@ -1,0 +1,3 @@
+.active-scaffold tr.expired td.expired_on-column {
+  background-color: red;
+}

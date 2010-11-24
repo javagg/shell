@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Shell
   
-  helper :all  
+  helper :all
   helper_method :current_user_session, :current_user 
 
   before_filter :set_locale, :set_mailer_url_options

@@ -7,7 +7,7 @@ module AttachmentsHelper
     else
       paperclip.original_filename
     end
-    link_to(content, paperclip.url, :popup => true)
-#    link_to(content, download_license_attachment_path(record), :popup => true)
+    content
+#    link_to(content, paperclip.url, :popup => true)
   end
 end

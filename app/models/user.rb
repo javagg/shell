@@ -17,11 +17,16 @@ class User < ActiveRecord::Base
 
   has_many :reminding_contracts, :through => :remindings, :source => :contract,
     :conditions => "remindings.reminder_type = 'Contract'"
-  
+
+
+  def has_role?(role)
+    role_symbols.include?(role)
+  end
+
   # for Declarative Authorization
   def role_symbols
     @role_symbols ||= roles.map { |r| r.name.to_sym }
-#    #    @role_symbols << "guest".to_sym
+    #    #    @role_symbols << "guest".to_sym
     @role_symbols << "admin".to_sym if is_admin?
     @role_symbols.uniq
   end
@@ -64,6 +69,13 @@ class User < ActiveRecord::Base
     Emailer.deliver_password_reset_instructions self
   end
 
+  def authorized_for_delete?
+    return username != "admin"
+  end
+
+  def authorized_for_update?
+    return username != "admin"
+  end
 end
 
 

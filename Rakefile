@@ -9,5 +9,3 @@ require 'rake/rdoctask'
 
 require 'tasks/rails'
 
-require 'lib/tasks/shell_task'
-
