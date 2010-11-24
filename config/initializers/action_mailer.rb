@@ -1,12 +1,11 @@
 ActionMailer::Base.default_charset = "utf-8"
 ActionMailer::Base.delivery_method = :smtp
-
-ActionMailer::Base.default_url_options = { :host => "localhost", :port => 3000 }
+ActionMailer::Base.default_url_options = { :host => AppConfig['app_domain'], :port => AppConfig['app_port'] }
 ActionMailer::Base.smtp_settings = {
-  :address => "smtp.sohu.com",
-  :port => 25,
-  :domain => "sohu.com",
-  :authentication => :login,
-  :user_name => "forshell12345",
-  :password => "1234567",
+  :address => AppConfig['smtp_address'],
+  :port => AppConfig['smtp_port'],
+  :domain => AppConfig['smtp_domain'],
+  :authentication =>  AppConfig['smtp_authentication'],
+  :user_name =>  AppConfig['smtp_user_name'],
+  :password => AppConfig['smtp_password']
 }

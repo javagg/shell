@@ -19,8 +19,9 @@
 
 # Learn more: http://github.com/javan/whenever
 
-every 1.days do
+every 1.days :at => '12:00am' do
   # "checking if there are some expiring licenses, and remind some one to take care of them..."
   runner License.check_expiration
+  runner Contract.check_payament
 end
 

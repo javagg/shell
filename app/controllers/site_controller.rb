@@ -13,4 +13,9 @@ class SiteController < ApplicationController
 
   def contact
   end
+
+  def test_email
+    Emailer.deliver_email_testing "lu.lee05@gmail.com"
+    render :text => "go check!"
+  end
 end

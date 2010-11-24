@@ -41,6 +41,7 @@ gem install rails -v2.3.10
 gem install mysql
 gem install passenger
 gem install whenever
+gem install app_config
 passenger-install-apache2-module
 
 ruby script/plugin install http://github.com/ewildgoose/render_component.git
