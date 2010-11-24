@@ -6,7 +6,7 @@ class ContractsController < ApplicationController
       :theme_advanced_resizing => true,
       :theme_advanced_resize_horizontal => false,
       :paste_auto_cleanup_on_paste => true,
-      :theme_advanced_buttons1 => %w{formatselect fontselect fontsizeselect bold italic underline strikethrough separator justifyleft justifycenter justifyright indent outdent separator bullist numlist forecolor backcolor separator link unlink image undo redo},
+      :theme_advanced_buttons1 => %w{formatselect fontselect fontsizeselect bold italic underline strikethrough separator justifyleft justifycenter justifyright indent outdent separator bullist numlist forecolor backcolor separator link unlink undo redo},
       :theme_advanced_buttons2 => [],
       :theme_advanced_buttons3 => [],
       :plugins => %w{contextmenu paste}},
@@ -25,11 +25,12 @@ class ContractsController < ApplicationController
       :project_address, :trading_mode, :land_certificate_application_deadline, :property_certificate_application_deadline,
       :other_party, :contract_content, :start_date, :end_date, :expense_paid, :owning_department, :amount,
       :holder, :executive, :transferred, :state, :original_loc, :has_backup, :backup_loc, :has_electrical_edtion,
-      :confidential_level, :memo, :payment_periods,
+      :confidential_level, :memo, :expiration_remindees, :payment_periods, :payment_remindees,
       :payments, :attachments, :reminding_periods
     ]
+
     config.subform.layout = :vertical
-    config.list.columns = [:number, :name]
+    config.list.columns = [:number, :name, :end_date, :next_payment_date]
     config.nested.add_link I18n.t('contract.show_payments'), :payments
     config.nested.add_link I18n.t('document.show_attachments'), :attachments
     config.actions.exclude :search
@@ -60,6 +61,12 @@ class ContractsController < ApplicationController
     config.columns[:confidential_level].form_ui = :select
     config.columns[:confidential_level].options = { :include_blank => I18n.t('txt.please_choose'),
       :options =>Shell::CONFIDENTIAL_LEVEL_OPTIONS }
+
+    config.columns[:expiration_remindees].form_ui = :select
+    config.columns[:expiration_remindees].options = { :draggable_lists => true }
+
+    config.columns[:payment_remindees].form_ui = :select
+    config.columns[:payment_remindees].options = { :draggable_lists => true }
   end
 
   def delete_authorized?

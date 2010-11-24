@@ -117,6 +117,14 @@ ActiveRecord::Schema.define(:version => 1) do
     t.integer "num_payments",       :default => 1
   end
 
+  create_table "payment_remindings", :force => true do |t|
+    t.integer  "reminder_id"
+    t.string   "reminder_type"
+    t.integer  "user_id"
+    t.datetime "from"
+    t.datetime "to"
+  end
+
   create_table "payments", :force => true do |t|
     t.integer  "contract_id"
     t.date     "pay_date"

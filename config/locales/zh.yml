@@ -304,6 +304,8 @@ zh:
         attachments: "附件"
         reminding_periods: "提醒时段"
         payment_periods: "支付期"
+        expiration_remindees: "过期时需要提醒的用户"
+        payment_remindees: "合同支付前需要提醒的用户"
       license:
         description: "描述"
         sequence: "序列号"

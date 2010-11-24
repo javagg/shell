@@ -1,4 +1,3 @@
-
 require 'date'
 
 class Contract <  ActiveRecord::Base
@@ -10,21 +9,25 @@ class Contract <  ActiveRecord::Base
   has_many :reminding_periods, :as => :reminder, :dependent => :destroy
   has_many :remindings, :as => :reminder, :dependent => :destroy
   has_many :expiration_remindees, :through => :remindings, :source => 'user'
-  has_many :remindings, :as => :reminder, :dependent => :destroy
-  has_many :payment_remindees, :through => :remindings, :source => 'user'
   
-  def next_payment_date
-    payment_dates.find_all { |e| e > Date.today }.min
+  has_many :payment_remindings, :as => :reminder, :dependent => :destroy
+  has_many :payment_remindees, :through => :payment_remindings, :source => 'user'
+
+  def next_payment_date(from = Date.today)
+    payment_dates.find_all { |e| e > from }.min
   end
 
+  def expired?
+    return false if end_date.nil?
+    return end_date < Date.today
+  end
+  
   def payment_dates
-    all_dates = []
-    payment_periods.each_with_index do |period, i|
-      if period.first_payment_date and period.end_date and period.start_date
-        all_dates << period.first_payment_date + i * (period.end_date - period.start_date) / period.num_payments
-      end
+    dates = []
+    payment_periods.each do |period|
+      dates.concat period.payment_dates
     end
-    all_dates.uniq.sort
+    dates.uniq.sort
   end
 
   def remind_payment

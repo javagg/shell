@@ -143,6 +143,14 @@ class Setup < ActiveRecord::Migration
       t.datetime :to
     end
 
+    create_table :payment_remindings, :force => true do |t|
+      t.references :reminder
+      t.string :reminder_type
+      t.references :user
+      t.datetime :from
+      t.datetime :to
+    end
+
     create_table :reminding_periods, :force => true do |t|
       t.references :reminder
       t.string :reminder_type
@@ -189,6 +197,7 @@ class Setup < ActiveRecord::Migration
     drop_table :contracts
     drop_table :payments
     drop_table :remindings
+    drop_table :payment_remindings
     drop_table :roles
     drop_table :roles_users
     drop_table :settings

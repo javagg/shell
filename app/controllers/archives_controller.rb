@@ -14,7 +14,7 @@ class ArchivesController < ApplicationController
     ]
     
     config.subform.layout = :horizontal
-    config.list.columns = [:number, :name, :expired_on, :attachments, :expiration_remindees]
+    config.list.columns = [:number, :name, :expired_on, :attachments]
     #    config.nested.add_link I18n.t('document.show_attachments'), :attachments
 
 
@@ -22,7 +22,6 @@ class ArchivesController < ApplicationController
     config.columns[:issue_dep].search_ui = :multi_select
     config.columns[:issue_dep].options = { :include_blank => I18n.t('txt.please_choose'),
       :options => Shell::DEPARTMENT_OPTIONS }
-#       :html_options => {:multiple => true} }
 
     config.columns[:keep_dep].form_ui = :select
     config.columns[:keep_dep].options = { :include_blank => I18n.t('txt.please_choose'),
@@ -38,8 +37,6 @@ class ArchivesController < ApplicationController
 
     config.columns[:expiration_remindees].form_ui = :select
     config.columns[:expiration_remindees].options = { :draggable_lists => true }
-    config.columns[:expiration_remindees].includes = nil
-    config.columns[:expiration_remindees].actions_for_association_links.delete :search
 
     config.actions.exclude :search
     config.actions << :field_search

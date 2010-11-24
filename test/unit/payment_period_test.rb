@@ -1,9 +1,12 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class PaymentPeriodTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+  def test_payment_date
+    period = PaymentPeriod.new :start_date => '2010-1-1', :end_date => '2010-12-31',
+      :first_payment_date => '2010/2/1', :num_payments => 10
+#    puts period.payment_dates
+    assert period.payment_dates.first == period.first_payment_date
+    assert period.payment_dates.size == period.num_payments
   end
 end
 

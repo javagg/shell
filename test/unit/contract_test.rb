@@ -1,17 +1,32 @@
 require File.dirname(__FILE__) + '/../test_helper'
+require 'date'
 
 class ContractTest < ActiveSupport::TestCase
   def test_payment_remind
-    a_will_pay = Contract.new(:name => "will_pay")
-    a_remindee = User.new(:username => 'remindee', :password => '12345',
-      :password_confirmation => '12345', :email => 'lu.lee05@gmail.com')
-    a_will_pay.save
-    a_will_pay.payment_periods.create(:start_date => "2010-11-1", :end_date => "2011-10-1",
-      :first_payment_date => "2010-11-25", :num_payments => 3)
-    a_will_pay.payment_remindees << a_remindee
-    Contract.check_payment
-    Contract.destroy a_will_pay.id
-    User.destroy a_remindee.id
+    #    a_will_pay = Contract.new(:name => "will_pay")
+    #    a_remindee = User.new(:username => 'remindee', :password => '12345',
+    #      :password_confirmation => '12345', :email => 'lu.lee05@gmail.com')
+    #    a_will_pay.save
+    #    a_will_pay.payment_periods.create(:start_date => "2010-11-1", :end_date => "2011-10-1",
+    #      :first_payment_date => "2010-11-25", :num_payments => 3)
+    #    a_will_pay.payment_remindees << a_remindee
+    #    Contract.check_payment
+    #    Contract.destroy a_will_pay.id
+    #    User.destroy a_remindee.id
+  end
+
+  def test_payment_dates
+    contract = Contract.new(:name => "payment_test")
+    contract.save
+    contract.payment_periods.create :start_date => '2010-1-1', :end_date => '2010-12-31',
+      :first_payment_date => '2010/2/1', :num_payments => 10
+
+    contract.payment_periods.create :start_date => '2010-6-1', :end_date => '2010-12-31',
+      :first_payment_date => '2010/10/1', :num_payments => 5
+    puts contract.payment_dates
+    from = Date.today
+    puts contract.next_payment_date from
+    Contract.destroy contract.id
   end
 end
 

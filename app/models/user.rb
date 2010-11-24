@@ -18,7 +18,9 @@ class User < ActiveRecord::Base
   has_many :reminding_contracts, :through => :remindings, :source => :contract,
     :conditions => "remindings.reminder_type = 'Contract'"
 
-
+  has_many :reminding_archives, :through => :remindings, :source => :contract,
+    :conditions => "remindings.reminder_type = 'Archive'"
+  
   def has_role?(role)
     role_symbols.include?(role)
   end

@@ -12,5 +12,14 @@
 
 class PaymentPeriod < ActiveRecord::Base
   belongs_to :contract
+  
+  def payment_dates
+    dates = []
+    dates << first_payment_date unless first_payment_date
+    num_payments.times do |i|
+      dates << first_payment_date + i * (end_date - first_payment_date) / num_payments
+    end
+    dates.uniq
+  end
 end
 

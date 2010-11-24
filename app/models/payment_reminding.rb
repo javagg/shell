@@ -1,4 +1,4 @@
-class Reminding < ActiveRecord::Base
+class PaymentReminding < ActiveRecord::Base
   belongs_to :reminder, :polymorphic => true
   belongs_to :user
 end
@@ -11,7 +11,7 @@ end
 
 # == Schema Information
 #
-# Table name: remindings
+# Table name: payment_remindings
 #
 #  id            :integer(4)      not null, primary key
 #  reminder_id   :integer(4)
