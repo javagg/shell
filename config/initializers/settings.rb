@@ -1,1 +1,0 @@
-Settings.defaults[:upload_limit] = '1.megabytes'

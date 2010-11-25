@@ -21,6 +21,6 @@ class Attachment < ActiveRecord::Base
   end
 
   has_attached_file :data, :url => "/system/:attachment/:id/:style/:filename"
-  validates_attachment_size :data, :less_than => eval(Settings.upload_limit || '1.megabytes')
+  validates_attachment_size :data, :less_than => eval("Settings.upload_limit")
   belongs_to :attachable, :polymorphic => true
 end

@@ -2,6 +2,8 @@ class Setting < ActiveRecord::Base
   def to_label
     "#{var}"
   end
+
+  validates_uniqueness_of :var
 end
 
 

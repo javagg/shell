@@ -31,7 +31,7 @@ class Setup < ActiveRecord::Migration
       t.timestamps
     end
     add_index :users, :username
-    add_index :users, :email
+#    add_index :users, :email, :unique => false;
 
     create_table :roles, :force => true do |t|
       t.string :name, :null => false
