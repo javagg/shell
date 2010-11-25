@@ -42,6 +42,8 @@ gem install mysql
 gem install passenger
 gem install whenever
 gem install app_config
+gem install acts_as_audited
+
 passenger-install-apache2-module
 
 ruby script/plugin install http://github.com/ewildgoose/render_component.git

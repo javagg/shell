@@ -1,15 +1,14 @@
 defaults: &defaults
   admin_email: "lu.lee05@gmail.com"
   app_domain: "localhost"
+  app_email: "forshell12345@sohu.com"
   app_port: "3001"
   smtp_address: "smtp.sohu.com"
   smtp_port: 25
   smtp_domain: "sohu.com"
-  smtp_authentication: "login"
   smtp_user_name: "forshell12345"
   smtp_password: "1234567"
-  app_email: "forshell12345@sohu.com"
-  
+
 development:
   <<: *defaults
 

@@ -1,6 +1,8 @@
 require 'date'
 
 class Archive < ActiveRecord::Base
+  acts_as_audited
+  
   validates_presence_of :name
   has_many :attachments, :as => :attachable, :dependent => :destroy
 

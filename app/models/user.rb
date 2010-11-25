@@ -1,5 +1,33 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                  :integer(4)      not null, primary key
+#  username            :string(255)     not null
+#  email               :string(255)     not null
+#  crypted_password    :string(255)     not null
+#  salt                :string(255)     not null
+#  active              :boolean(1)      default(FALSE), not null
+#  persistence_token   :string(255)     not null
+#  single_access_token :string(255)     not null
+#  perishable_token    :string(255)     not null
+#  login_count         :integer(4)      default(0), not null
+#  failed_login_count  :integer(4)      default(0), not null
+#  last_request_at     :datetime
+#  current_login_at    :datetime
+#  last_login_at       :datetime
+#  current_login_ip    :string(255)
+#  last_login_ip       :string(255)
+#  created_at          :datetime
+#  updated_at          :datetime
+#
 
 class User < ActiveRecord::Base
+  acts_as_audited :except => [ :salt, :persistence_token, :single_access_token, :perishable_token, :login_count,
+    :failed_login_count, :last_request_at, :current_login_at, :last_login_at, :current_login_ip,
+    :last_login_ip
+  ]
+  
   acts_as_authentic
 
   validates_presence_of   :username
@@ -12,14 +40,14 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
 
   has_many :remindings
-  has_many :reminding_licenses, :through => :remindings, :source => :license,
-    :conditions => "remindings.reminder_type = 'License'"
-
-  has_many :reminding_contracts, :through => :remindings, :source => :contract,
-    :conditions => "remindings.reminder_type = 'Contract'"
-
-  has_many :reminding_archives, :through => :remindings, :source => :contract,
-    :conditions => "remindings.reminder_type = 'Archive'"
+#  has_many :reminding_licenses, :through => :remindings, :source => :license,
+#    :conditions => "remindings.reminder_type = 'License'"
+#
+#  has_many :reminding_contracts, :through => :remindings, :source => :contract,
+#    :conditions => "remindings.reminder_type = 'Contract'"
+#
+#  has_many :reminding_archives, :through => :remindings, :source => :contract,
+#    :conditions => "remindings.reminder_type = 'Archive'"
   
   def has_role?(role)
     role_symbols.include?(role)
@@ -79,32 +107,3 @@ class User < ActiveRecord::Base
     return username != "admin"
   end
 end
-
-
-
-
-
-# == Schema Information
-#
-# Table name: users
-#
-#  id                  :integer(4)      not null, primary key
-#  username            :string(255)     not null
-#  email               :string(255)     not null
-#  crypted_password    :string(255)     not null
-#  salt                :string(255)     not null
-#  active              :boolean(1)      default(FALSE), not null
-#  persistence_token   :string(255)     not null
-#  single_access_token :string(255)     not null
-#  perishable_token    :string(255)     not null
-#  login_count         :integer(4)      default(0), not null
-#  failed_login_count  :integer(4)      default(0), not null
-#  last_request_at     :datetime
-#  current_login_at    :datetime
-#  last_login_at       :datetime
-#  current_login_ip    :string(255)
-#  last_login_ip       :string(255)
-#  created_at          :datetime
-#  updated_at          :datetime
-#
-

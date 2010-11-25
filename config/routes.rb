@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :audits, :active_scaffold => true
   map.resources :documents, :active_scaffold => true
   map.resources :contracts, :active_scaffold => true do |contract|
     contract.resources :payments
@@ -20,15 +21,12 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :settings, :active_scaffold => true
+  map.resources :users, :active_scaffold => true
   
-  map.resources :users, :active_scaffold => true do |user|
-    #    user.resources :roles, :active_scaffold => true, :collection => {:browse => :get}, :member => {:select => :post}
-  end
-
+  map.resources :audits, :active_scaffold => true
+  
   map.resources :roles, :collection => {:browse => :get}, :member => {:select => :post}
-  
-  #  map.resources :attachments, :member => { :download => :get }
-  
+
   map.resource :user_session
   map.resources :accounts
   map.resources :password_resets, :only => [:new, :create, :edit, :update]

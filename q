@@ -1,0 +1,16 @@
+More than one method matched your request. You can refine
+your search by asking for information on one of:
+
+     ActiveRecord::TestFixtures::ClassMethods#require_fixture_classes,
+     ActiveRecord::ConnectionAdapters::SQLiteAdapter#requires_reloading?
+     ,
+     ActiveRecord::ConnectionAdapters::AbstractAdapter#requires_reloadin
+     g?, Kernel#require_library_or_gem, Bundler::require,
+     Bundler::requires_sudo?, Bundler::Runtime#require,
+     Bundler::Resolver#resolve_requirement,
+     Gem::Specification#required_by, Gem::Dependency#requirement,
+     Gem::Dependency#required_by, Thor::Task#required_options,
+     Mongrel::Gems::require,
+     PhusionPassenger::AdminTools::MemoryStats#root_privileges_required_
+     for_private_dirty_rss?, Rack::Handler::try_require,
+     Rake::Application#rake_require

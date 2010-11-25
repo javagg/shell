@@ -5,7 +5,7 @@ ActionMailer::Base.smtp_settings = {
   :address => AppConfig['smtp_address'],
   :port => AppConfig['smtp_port'],
   :domain => AppConfig['smtp_domain'],
-  :authentication =>  AppConfig['smtp_authentication'],
+  :authentication =>  :login,
   :user_name =>  AppConfig['smtp_user_name'],
   :password => AppConfig['smtp_password']
 }

@@ -1,6 +1,9 @@
 require 'date'
 
 class Contract <  ActiveRecord::Base
+  acts_as_audited
+
+  validates_presence_of :name
   has_many :payments, :dependent => :destroy
   has_many :attachments, :as => :attachable, :dependent => :destroy
 
@@ -46,8 +49,6 @@ class Contract <  ActiveRecord::Base
     end
   end
 end
-
-
 
 # == Schema Information
 #

@@ -1,16 +1,18 @@
 # Specifies gem version of Rails to use when vendor/rails is not present
 RAILS_GEM_VERSION = '2.3.10' unless defined? RAILS_GEM_VERSION
 
-require 'app_config'
-
-AppConfig.setup do |config|
-  config[:storage_method] = :yaml
-  config[:env] = Rails.env 
-  config[:path] = "#{RAILS_ROOT}/config/app_config.yml"
-end
-  
 
 # Bootstrap the Rails environment, frameworks, and default configuration
+require File.join(File.dirname(__FILE__), 'boot')
+
+require 'app_config'
+
+AppConfig.setup do |app_config|
+  app_config[:storage_method] = :yaml
+  app_config[:env] = "#{RAILS_ENV}"
+  app_config[:path] = "#{RAILS_ROOT}/config/app_config.yml"
+end
+
 Rails::Initializer.run do |config|
 
   # Settings in config/environments/* take precedence over those specified here.
@@ -35,5 +37,4 @@ Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'UTC'
   config.action_controller.session_store = :active_record_store
-
 end

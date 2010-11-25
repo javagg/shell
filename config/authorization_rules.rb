@@ -1,8 +1,5 @@
 authorization do
   role :guest do
-    has_permission_on :authorization_rules, :to => :read
-    has_permission_on :authorization_usages, :to => :read
-
     has_permission_on :users, :to => [:index, :create, :show_search, :nested, :row]
     has_permission_on :users, :to => [:show, :update] do
       if_attribute :id => is {user.id}    
@@ -62,6 +59,7 @@ authorization do
     includes :archive_manage, :license_manage, :contract_manage
     has_permission_on :users, :to => :manage
     has_permission_on :settings, :to => :manage
+    has_permission_on :audits, :to => :read
   end
 end
 
