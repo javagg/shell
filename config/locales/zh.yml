@@ -14,7 +14,8 @@ zh:
   
   time:
     formats:
-      default: "%a %b %d %H:%M:%S %Z %Y"
+#      default: "%a %b %d %H:%M:%S %Z %Y"
+      default: "%Y-%m-%d %H:%M:%S"
       time: "%H:%M"
       short: "%d %b %H:%M"
       long: "%B %d, %Y %H:%M"
@@ -22,7 +23,7 @@ zh:
       
       datetime:
         formats:
-          default: "%Y-%m-%dT%H:%M:%S%Z"
+          default: "%Y-%m-%d %H:%M:%S"
           
       am: '上午'
       pm: '下午'
@@ -51,7 +52,7 @@ zh:
       x_months:
         other: '{{count}} months'
       about_x_years:
-        one: ' 1 年内'
+        one: ' 一年内'
         other: '{{count}} 年'
       over_x_years:
         other: '{{count}} 年以上'
@@ -212,6 +213,9 @@ zh:
       role:
         one: "权限角色"
         other: "权限角色"
+      audit:
+        one: "用户操作日志"
+        other: "用户操作日志"
     
     attributes:
       attachment:
@@ -500,7 +504,9 @@ zh:
     license_management: "证照管理"
     archive_management: "文档管理"
     user_management: "用户管理"
+    system_management: "系统管理"
     system_settings: "系统设置"
+    system_view_log: "查看日志"
     logged_as: "登录为"
     copyright: "延长壳牌石油有限公司版权所有"
     

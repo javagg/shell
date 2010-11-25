@@ -4,32 +4,32 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><%= @page_title %></title>
-    <%= stylesheet_link_tag 'site' %>
+    <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag :defaults %>
     <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.6.custom.min', 'jquery.boxy' %>
-    <script type="text/javascript">
-      // this allows jquery to be called along with scriptaculous and YUI without any conflicts
-      // the only difference is all jquery functions should be called with $j instead of $
-      // e.g. $j('#div_id').stuff instead of $('#div_id').stuff
-      var $j = jQuery.noConflict();
-    </script>
     <%= active_scaffold_includes %>
     <%= stylesheet_link_tag 'active_scaffold_overrides' %>
     <%= record_select_includes %>
     <%= calendar_date_select_includes nil, :locale => I18n.locale %>
     <%= include_tiny_mce_if_needed %>
+
+    <%= stylesheet_link_tag 'superfish' %>
+    <%= javascript_include_tag 'superfish' %>
+    <script type="text/javascript" >
+      var $j = jQuery.noConflict();
+      $j('#ul.sf-menu').superfish();
+    </script>
   </head>
   <body>
-    <body>
-      <div id="page-container">
-        <div id="header">
+    <div id="page-container">
+      <div id="header">
 
-          <div id="logo">
-            <h1>
-              <%= image_tag("logo.gif", :size => "450x50", :alt => "Logo") %>
-            </h1>
-          </div>
-          <div id="header_right">
+        <div id="logo">
+          <h1>
+            <%= image_tag("logo.gif", :size => "450x50", :alt => "Logo") %>
+          </h1>
+        </div>
+        <div id="header_right">
 
 <%#*<div id="lang_chooser">%>
 <%#*<span>%>
@@ -43,43 +43,49 @@
 <%#*</span>%>
 <%#*</div>%>
 
-            <br/>
-            <%#*<div id="searchbox">%>
-              <%# form_tag '' do %>
-                <%# text_field_tag 'search', '', :class => "textfield searchtip", :size => 24 %>
-                <%# submit_tag nil, :class =>'button' %>
-              <%# end %>
-            <%#*</div>%>
+          <br/>
+<%#*<div id="searchbox">%>
+<%# form_tag '' do %>
+<%# text_field_tag 'search', '', :class => "textfield searchtip", :size => 24 %>
+<%# submit_tag nil, :class =>'button' %>
+<%# end %>
+<%#*</div>%>
 
-            <br/>
-            <div id="user_status">
-              <% if current_user %>
-                <%= current_user.username %> |
-                <%= link_to_unless_current I18n.t('user.my_account'), account_path(current_user) %>  |
-                <%= link_to_unless_current I18n.t('user.logout'), user_session_path, :method => :delete %>
-              <% else -%>
-                <%= link_to_unless_current I18n.t('user.register'), new_account_path %>  |
-                <%= link_to_unless_current I18n.t('user.login'), new_user_session_path %>
-              <% end -%>
-            </div>
+          <br/>
+          <div id="user_status">
+            <% if current_user %>
+              <%= current_user.username %> |
+              <%= link_to_unless_current I18n.t('user.my_account'), account_path(current_user) %>  |
+              <%= link_to_unless_current I18n.t('user.logout'), user_session_path, :method => :delete %>
+            <% else -%>
+              <%= link_to_unless_current I18n.t('user.register'), new_account_path %>  |
+              <%= link_to_unless_current I18n.t('user.login'), new_user_session_path %>
+            <% end -%>
           </div>
         </div>
-        <div id="nav">
-          <div id="menu">
-            <ul>
-              <li><%= link_to I18n.t('site.home'), home_path %></li>
-              <li><%= link_to I18n.t('site.contract_management'), contracts_path %></li>
-              <li><%= link_to I18n.t('site.license_management'), licenses_path  %></li>
-              <li><%= link_to I18n.t('site.archive_management'), archives_path %></li>
-              <li><%= link_to I18n.t('site.user_management'), users_path %></li>
-              <li><%= link_to I18n.t('site.system_settings'), settings_path %></li>
-              <li><%= link_to I18n.t('site.contact'), contact_path %></li>
-              <li><%= link_to I18n.t('site.about'), about_path %></li>
-              <li><%= link_to "log", audits_path %></li>
-              <li class="fix"><%= link_to I18n.t('site.help'), help_path %></li>
-            </ul>
-          </div>
+   
+      </div>
+     <div>
+          <ul class="sf-menu">
+            <li class="current"><%= link_to I18n.t('site.home'), home_path %></li>
+            <li><%= link_to I18n.t('site.contract_management'), contracts_path %></li>
+            <li><%= link_to I18n.t('site.license_management'), licenses_path  %></li>
+            <li><%= link_to I18n.t('site.archive_management'), archives_path %></li>
+            <li><%= link_to I18n.t('site.user_management'), users_path %></li>
+            <li><%= link_to I18n.t('site.system_management'), "#" %>
+              <ul>
+                <li><%= link_to I18n.t('site.system_settings'), users_path %></li>
+                <li><%= link_to I18n.t('site.system_view_log'), audits_path %></li>
+              </ul>
+            </li>
+            <li><%= link_to I18n.t('site.contact'), contact_path %></li>
+            <li><%= link_to I18n.t('site.about'), about_path %></li>
+            <li><%= link_to I18n.t('site.help'), help_path %></li>
+          </ul><p>&nbsp;</p>
         </div>
+<%#*<div id="nav">%>
+
+<%#*</div>%>
 
 <%#*<div id="sidebar">%>
 <%#*<div style="margin:0 4px; background:#B0BEC7; height:1px; overflow:hidden;"></div>%>
@@ -99,52 +105,50 @@
 <%#*<div style="margin:0 2px; border:1px solid #B0BEC7; border-width:0 2px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
 <%#*<div style="margin:0 4px; background:#B0BEC7; height:1px; overflow:hidden;"></div>%>
 <%#*</div>%>
-        <div id="content">
-          <% if flash[:notice] -%>
-            <div id="flash_notice"><%= flash[:notice] %></div>
-          <% end -%>
+      <p>&nbsp;</p>
+      <div id="content">
+        <% if flash[:notice] -%>
+          <div id="flash_notice"><%= flash[:notice] %></div>
+        <% end -%>
 
-          <% if flash[:error] -%>
-            <div id="flash_error"><%= flash[:error] %></div>
-          <% end -%>
+        <% if flash[:error] -%>
+          <div id="flash_error"><%= flash[:error] %></div>
+        <% end -%>
 
-          <%= yield %>
-        </div>
-
-        <div id="ajax-indicator" style="display:none;"><span><%= I18n.t :label_loading %></span></div>
-
-        <div id="footer">
-          <div class="sitemap">
-            <br/>
-            <p>&copy; 2010 <%= I18n.t 'site.copyright' %></p>
-          </div>
-        </div>
-        <% if ENV["RAILS_ENV"] == "development" %>
-          <div id="debug">
-            <a href="#" onclick="Element.toggle('params_debug_info'); return false">params</a> |
-            <a href="#" onclick="Element.toggle('session_debug_info'); return false">session</a> |
-            <a href="#" onclick="Element.toggle('env_debug_info'); return false">env</a> |
-            <a href="#" onclick="Element.toggle('request_debug_info'); return false">request</a>
-
-            <fieldset id="params_debug_info" class="debug_info" style="display :none">
-              <legend>params</legend>
-              <%= debug params %>
-            </fieldset>
-            <fieldset id="session_debug_info" class="debug_info" style="display :none">
-              <legend>session</legend>
-              <%= debug session %>
-            </fieldset>
-            <fieldset id="env_debug_info"  class="debug_info"  style="display :none" >
-              <legend>env</legend>
-              <%= debug request.env %>
-            </fieldset>
-            <fieldset id="request_debug_info" class="debug_info" style="display:none" >
-              <legend>request</legend>
-              <%= debug request %>
-            </fieldset>
-          </div>
-        <% end %>
+        <%= yield %>
       </div>
-    </body>
+
+      <div id="footer">
+        <div class="sitemap">
+          <br/>
+          <p>&copy; 2010 <%= I18n.t 'site.copyright' %></p>
+        </div>
+      </div>
+      <% if ENV["RAILS_ENV"] == "development" %>
+        <div id="debug">
+          <a href="#" onclick="Element.toggle('params_debug_info'); return false">params</a> |
+          <a href="#" onclick="Element.toggle('session_debug_info'); return false">session</a> |
+          <a href="#" onclick="Element.toggle('env_debug_info'); return false">env</a> |
+          <a href="#" onclick="Element.toggle('request_debug_info'); return false">request</a>
+
+          <fieldset id="params_debug_info" class="debug_info" style="display :none">
+            <legend>params</legend>
+            <%= debug params %>
+          </fieldset>
+          <fieldset id="session_debug_info" class="debug_info" style="display :none">
+            <legend>session</legend>
+            <%= debug session %>
+          </fieldset>
+          <fieldset id="env_debug_info"  class="debug_info"  style="display :none" >
+            <legend>env</legend>
+            <%= debug request.env %>
+          </fieldset>
+          <fieldset id="request_debug_info" class="debug_info" style="display:none" >
+            <legend>request</legend>
+            <%= debug request %>
+          </fieldset>
+        </div>
+      <% end %>
+    </div>
   </body>
 </html>
