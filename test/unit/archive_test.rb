@@ -1,15 +1,23 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class ArchiveTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  test "the truth" do
-    assert true
+
+  def test_expired
+    days_before_expiration = Settings.reminding_days_before_expiration
+    expiration_date = Date.today + days_before_expiration.to_i
+    a_will_expired =  Archive.new(:name => "will_expired", :expired_on => expiration_date)
+    a_will_expired.expired_on = Date.today
+    assert !a_will_expired.expired?
+    a_will_expired.expired_on = Date.today - 1
+    assert a_will_expired.expired?
+    a_will_expired.expired_on = Date.today + days_before_expiration.to_i + 1
+    assert !a_will_expired.expiring?
+    a_will_expired.expired_on = Date.today + days_before_expiration.to_i
+    assert a_will_expired.expiring?
   end
+
+
 end
-
-
-
-
 
 # == Schema Information
 #

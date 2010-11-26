@@ -17,6 +17,13 @@ class LicenseTest < ActiveSupport::TestCase
     License.destroy a_will_expired.id
     User.destroy a_remindee.id
   end
+#
+#  def test_expired
+#    days_before_expiration = Settings.reminding_days_before_expiration
+#    expiration_date = Date.today + days_before_expiration
+#    a_will_expired = License.new(:name => "will_expired", :expired_on => expiration_date)
+#    assert a_will_expired.expired?
+#  end
 end
 
 

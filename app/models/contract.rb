@@ -3,28 +3,20 @@ require 'date'
 class Contract <  ActiveRecord::Base
   acts_as_audited
 
+  acts_as_expirable
+  acts_as_attachable
+
   validates_presence_of :name
   has_many :payments, :dependent => :destroy
-  has_many :attachments, :as => :attachable, :dependent => :destroy
-
   has_many :payment_periods, :dependent => :destroy
-
   has_many :reminding_periods, :as => :reminder, :dependent => :destroy
-  has_many :remindings, :as => :reminder, :dependent => :destroy
-  has_many :expiration_remindees, :through => :remindings, :source => 'user'
-  
   has_many :payment_remindings, :as => :reminder, :dependent => :destroy
   has_many :payment_remindees, :through => :payment_remindings, :source => 'user'
 
   def next_payment_date(from = Date.today)
     payment_dates.find_all { |e| e > from }.min
   end
-
-  def expired?
-    return false if end_date.nil?
-    return end_date < Date.today
-  end
-  
+ 
   def payment_dates
     dates = []
     payment_periods.each do |period|
@@ -48,6 +40,17 @@ class Contract <  ActiveRecord::Base
       end
     end
   end
+
+  protected
+  
+  def expired_on
+    end_date
+  end
+
+  def expiring_days
+    Settings.expiring_days_before_expiration.to_i
+  end
+
 end
 
 # == Schema Information

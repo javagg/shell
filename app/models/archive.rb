@@ -1,18 +1,15 @@
-require 'date'
-
 class Archive < ActiveRecord::Base
   acts_as_audited
+
+  acts_as_expirable
+  acts_as_attachable
   
   validates_presence_of :name
-  has_many :attachments, :as => :attachable, :dependent => :destroy
 
-  has_many :remindings, :as => :reminder, :dependent => :destroy
-  has_many :expiration_remindees, :through => :remindings, :source => 'user'
-
-  def expired?
-    return false if expired_on.nil?
-    return expired_on < Date.today
+  def expiring_days
+    Settings.expiring_days_before_expiration.to_i
   end
+
 end
 
 

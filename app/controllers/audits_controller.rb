@@ -5,7 +5,9 @@ class AuditsController < ApplicationController
     config.actions.exclude :update
     config.action_links.add :empty, :action => "empty", :label => I18n.t('txt.empty'),
       :type => :collection, :confirm => I18n.t('txt.are_your_sure_to_empty'), :inline => false
-    config.list.mark_records = true
+#    config.list.mark_records = true
+    config.actions.exclude :search
+    config.actions << :field_search
   end
 
   def delete_marked

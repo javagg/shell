@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.integer  "reminder_id"
     t.string   "reminder_type"
     t.integer  "user_id"
+    t.boolean  "remindee_rejected", :default => false
     t.datetime "from"
     t.datetime "to"
   end
@@ -221,6 +222,7 @@ ActiveRecord::Schema.define(:version => 1) do
     t.datetime "updated_at"
   end
 
+  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["username"], :name => "index_users_on_username"
 
 end

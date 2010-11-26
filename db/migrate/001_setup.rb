@@ -31,7 +31,7 @@ class Setup < ActiveRecord::Migration
       t.timestamps
     end
     add_index :users, :username
-#    add_index :users, :email, :unique => false;
+    add_index :users, :email
 
     create_table :roles, :force => true do |t|
       t.string :name, :null => false
@@ -139,6 +139,7 @@ class Setup < ActiveRecord::Migration
       t.references :reminder
       t.string :reminder_type
       t.references :user
+      t.boolean :remindee_rejected, :default => false
       t.datetime :from
       t.datetime :to
     end

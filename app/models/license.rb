@@ -1,25 +1,13 @@
 class License <  ActiveRecord::Base
   acts_as_audited
+
+  acts_as_expirable
+  acts_as_attachable
   
   validates_presence_of :name
-  
-  has_many :attachments, :as => :attachable, :dependent => :destroy
-  has_many :reminding, :as => :reminder, :dependent => :destroy
-  has_many :expiration_remindees, :through => :reminding, :source => 'user'
-  has_many :reminding_periods, :as => :reminder, :dependent => :destroy
 
-  def remind_expiaration
-    expiration_remindees.each do | remindee |
-      Emailer.deliver_license_expiration_reminding self, remindee
-    end
-  end
-
-  def self.check_expiration
-    all_expirings = self.find :all,
-      :conditions => ['expired_on > ? and expired_on < ? ', Time.now, 1.week.from_now]
-    all_expirings.each do |expiring|
-      expiring.remind_expiaration
-    end
+  def expiring_days
+    Settings.expiring_days_before_expiration.to_i
   end
 end
 

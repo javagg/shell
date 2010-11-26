@@ -48,13 +48,13 @@ class Emailer < ActionMailer::Base
     body         :edit_password_reset_url => edit_password_reset_url(recipient.perishable_token)
   end
 
-  def license_expiration_reminding license, remindee
+  def expiration_reminding expirable, remindee
     recipients   remindee.email
-    subject      "license expiration"
+    subject      "a expirable will expire"
     content_type "text/html"
     from         AppConfig['app_email']
     sent_on      Time.now
-    body         :license => license
+    body         :expirable => expirable
   end
 
   def contract_payment_reminding contract, remindee

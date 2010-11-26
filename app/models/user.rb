@@ -29,6 +29,8 @@ class User < ActiveRecord::Base
   ]
   
   acts_as_authentic
+  
+  acts_as_remindable
 
   validates_presence_of   :username
   validates_length_of     :username, :within => 3..40
@@ -39,15 +41,18 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
-  has_many :remindings
-#  has_many :reminding_licenses, :through => :remindings, :source => :license,
-#    :conditions => "remindings.reminder_type = 'License'"
-#
-#  has_many :reminding_contracts, :through => :remindings, :source => :contract,
-#    :conditions => "remindings.reminder_type = 'Contract'"
-#
-#  has_many :reminding_archives, :through => :remindings, :source => :contract,
-#    :conditions => "remindings.reminder_type = 'Archive'"
+  def reminders
+    self.remindings.collect { |r| r.reminder }
+  end
+
+  #  has_many :reminding_licenses, :through => :remindings, :source => :license,
+  #    :conditions => "remindings.reminder_type = 'License'"
+  #
+  #  has_many :reminding_contracts, :through => :remindings, :source => :contract,
+  #    :conditions => "remindings.reminder_type = 'Contract'"
+  #
+  #  has_many :reminding_archives, :through => :remindings, :source => :contract,
+  #    :conditions => "remindings.reminder_type = 'Archive'"
   
   def has_role?(role)
     role_symbols.include?(role)
