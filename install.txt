@@ -40,7 +40,6 @@ gem update --system
 gem install rails -v2.3.10
 gem install mysql
 gem install passenger
-gem install whenever
 gem install app_config
 gem install acts_as_audited
 
