@@ -6,7 +6,7 @@ set :rvm_ruby_string, 'ruby-1.8.7-p302'
 ssh_options[:forward_agent] = true
 default_run_options[:pty] = true
 
-set :host, "192.168.17.41"
+set :host, "61.236.244.74"
 set :user, "alex"
 set :rvm_type, :user
 set :application, "shell"
@@ -56,7 +56,7 @@ namespace :db do
   desc "Make symlink for database yaml"
   task :link_to_database_yml, :roles => :app do
     run "ln -nfs #{shared_path}/config/database.yml
-      #{release_path}/config/database.yml#"
+      #{release_path}/config/database.yml"
   end
 
   desc "Populate database with preconfigure data"
