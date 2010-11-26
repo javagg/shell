@@ -7,9 +7,7 @@ class UserTest < ActiveSupport::TestCase
   should validate_presence_of(:email)
   should validate_uniqueness_of(:email)
   
-  should have_many :remindings
-  should have_many(:reminders).through(:remindings)
-
+#  should has_many :reminders
 
   context "A User instance" do
     setup do
@@ -28,23 +26,24 @@ class UserTest < ActiveSupport::TestCase
       end
 
       should "has a contract as a reminder" do
-        assert !@user.reminders.nil?
+        assert @user.reminders.size == 1
+        assert @user.reminders.first.is_a? Contract
       end
     end
   end
 
-#  context "A user" do
-#    setup { @user = Factory(:user) }
-#
-#    context "Delivering password instructions" do
-#      setup { @user.deliver_password_reset_instructions! }
-#
-#      should_change("perishable token") { @user.perishable_token }
-#      should "send an email" do
-#        assert_sent_email
-#      end
-#    end
-#  end
+  #  context "A user" do
+  #    setup { @user = Factory(:user) }
+  #
+  #    context "Delivering password instructions" do
+  #      setup { @user.deliver_password_reset_instructions! }
+  #
+  #      should_change("perishable token") { @user.perishable_token }
+  #      should "send an email" do
+  #        assert_sent_email
+  #      end
+  #    end
+  #  end
 end
 
 

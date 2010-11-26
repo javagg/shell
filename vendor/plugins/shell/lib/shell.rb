@@ -75,7 +75,7 @@ module Shell
   end
 
   module Remindable
-   def self.included(base)
+    def self.included(base)
       base.class_eval do
         include InstanceMethods
         extend ClassMethods
@@ -84,8 +84,8 @@ module Shell
 
     module ClassMethods
       def acts_as_remindable
-        has_many :remindings
-        has_many :reminders, :through => :remindings
+        has_many_polymorphs :reminders, :from => [:contracts, :archives, :licenses],
+          :through => :remindings
       end
     end
 
