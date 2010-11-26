@@ -83,7 +83,15 @@ module Shell
     end
 
     module ClassMethods
+
+      
       def acts_as_remindable
+        
+        def returning(value)
+          yield(value)
+          value
+        end
+
         has_many_polymorphs :reminders, :from => [:contracts, :archives, :licenses],
           :through => :remindings
       end
