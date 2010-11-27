@@ -539,3 +539,7 @@ zh:
     
   error_messages:
     password_blank: "密码不能为空"
+
+  errors:
+    messages:
+      blank: "不能为空"

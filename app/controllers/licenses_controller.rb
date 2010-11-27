@@ -19,11 +19,11 @@ class LicensesController < ApplicationController
     config.columns[:expiration_remindees].options = { :draggable_lists => true }
 
     config.columns[:has_electrical_edtion].form_ui = :select
-    config.columns[:has_electrical_edtion].options = { :options => ShellOptions::SHIFOU_OPTIONS }
+    config.columns[:has_electrical_edtion].options = { :options => Shell::Options::shifou_options }
 
     config.columns[:confidential_level].form_ui = :select
     config.columns[:confidential_level].options = { :include_blank => I18n.t('txt.please_choose'),
-      :options => ShellOptions::CONFIDENTIAL_LEVEL_OPTIONS }
+      :options => Shell::Options::confidential_level_options }
 
     config.columns[:memo].form_ui = :text_area
     config.columns[:memo].options = { :rows => 3, :cols => 40 }

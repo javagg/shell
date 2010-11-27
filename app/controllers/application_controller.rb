@@ -1,12 +1,12 @@
 class ApplicationController < ActionController::Base
-
+#  include ShellOptions
+#
+#  include Shell::Options
+  
   helper :all
-  helper_method :current_user_session, :current_user 
+  helper_method :current_user_session, :current_user
 
   before_filter :set_locale, :set_mailer_url_options
-
-  include ShellOptions
-  
   before_filter :set_current_user
 
   protect_from_forgery

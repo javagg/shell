@@ -47,7 +47,6 @@ class User < ActiveRecord::Base
   # for Declarative Authorization
   def role_symbols
     @role_symbols ||= roles.map { |r| r.name.to_sym }
-    #    #    @role_symbols << "guest".to_sym
     @role_symbols << "admin".to_sym if is_admin?
     @role_symbols.uniq
   end

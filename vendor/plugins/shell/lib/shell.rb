@@ -1,5 +1,35 @@
 module Shell
-   module Expirable
+  module Options
+    def self.department_options
+      %w(FN OP HR EN HSSE).map(&:to_sym)
+    end
+    
+    def self.shifou_options
+      { I18n.t('txt.shi') => true, I18n.t('txt.fou') => false }
+    end
+    
+    def self.confidential_level_options
+      [ I18n.t('txt.confidential_high'), I18n.t('txt.confidential_low')].map(&:to_sym)
+    end
+    
+    def self.document_status_options
+      %w(FN OP HR EN HSSE).map(&:to_sym)
+    end
+    
+    def self.stamp_tax_type_options
+      [ I18n.t('txt.buying_and_selling'), I18n.t('txt.lease'), I18n.t('txt.investigation'),  I18n.t('txt.construction_safety') ].map(&:to_sym)
+    end
+
+    def self.contract_type_options
+      [ I18n.t('txt.station_contract'), I18n.t('txt.purchase_contract') ].map(&:to_sym)
+    end
+    
+    def self.trading_mode_options
+      [ I18n.t('txt.purchase'), I18n.t('txt.lease') ].map(&:to_sym)
+    end
+  end
+  
+  module Expirable
     def self.included(base)
       base.class_eval do
         include InstanceMethods

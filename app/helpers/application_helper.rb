@@ -11,6 +11,4 @@ module ApplicationHelper
     end
     output
   end
-
-
 end
