@@ -7,7 +7,7 @@ class UserTest < ActiveSupport::TestCase
   should validate_presence_of(:email)
   should validate_uniqueness_of(:email)
   
-#  should has_many :reminders
+  #  should has_many :reminders
 
   context "A User instance" do
     setup do
@@ -28,7 +28,17 @@ class UserTest < ActiveSupport::TestCase
       should "has a contract as a reminder" do
         assert @user.reminders.size == 1
         assert @user.reminders.first.is_a? Contract
+
+        assert @user.contracts_of_reminders.size == 1
+#        assert @user.reminders_of_contracts.size == 1
       end
+
+      #       should "reject reminder's reminding" do
+      #         reminder =  @user.reminders.first
+      #         @user.reject reminder
+      #         assert !@user.is_reminded_of?(reminder)
+      #       end
+
     end
   end
 

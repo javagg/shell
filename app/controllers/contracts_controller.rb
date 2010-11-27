@@ -37,30 +37,30 @@ class ContractsController < ApplicationController
     config.actions << :field_search
     config.columns[:contract_content].form_ui = :text_editor
     config.columns[:transferred].form_ui = :select
-    config.columns[:transferred].options = { :options =>Shell::SHIFOU_OPTIONS }
+    config.columns[:transferred].options = { :options => ShellOptions::SHIFOU_OPTIONS }
     config.columns[:has_backup].form_ui = :select
-    config.columns[:has_backup].options = { :options =>Shell::SHIFOU_OPTIONS }
+    config.columns[:has_backup].options = { :options => ShellOptions::SHIFOU_OPTIONS }
     config.columns[:has_electrical_edtion].form_ui = :select
-    config.columns[:has_electrical_edtion].options = { :options =>Shell::SHIFOU_OPTIONS }
+    config.columns[:has_electrical_edtion].options = { :options => ShellOptions::SHIFOU_OPTIONS }
     config.columns[:memo].form_ui = :test_area
     config.columns[:memo].options = {:cols => 40, :rows => 3 }
     config.columns[:stamp_tax_type].form_ui = :select
     config.columns[:stamp_tax_type].options = { :include_blank => I18n.t('txt.please_choose'),
-      :options =>Shell::STAMP_TAX_TYPE_OPTIONS }
+      :options => ShellOptions::STAMP_TAX_TYPE_OPTIONS }
     config.columns[:contract_type].form_ui = :select
     config.columns[:contract_type].options = { :include_blank => I18n.t('txt.please_choose'),
-      :options =>Shell::CONTRACT_TYPE_OPTIONS }
+      :options => ShellOptions::CONTRACT_TYPE_OPTIONS }
     config.columns[:trading_mode].form_ui = :select
     config.columns[:trading_mode].options = { :include_blank => I18n.t('txt.please_choose'),
-      :options =>Shell::TRADING_MODE_OPTIONS }
+      :options => ShellOptions::TRADING_MODE_OPTIONS }
 
     config.columns[:owning_department].form_ui = :select
     config.columns[:owning_department].options = { :include_blank => I18n.t('txt.please_choose'),
-      :options =>Shell::DEPARTMENT_OPTIONS }
+      :options => ShellOptions::DEPARTMENT_OPTIONS }
 
     config.columns[:confidential_level].form_ui = :select
     config.columns[:confidential_level].options = { :include_blank => I18n.t('txt.please_choose'),
-      :options =>Shell::CONFIDENTIAL_LEVEL_OPTIONS }
+      :options => ShellOptions::CONFIDENTIAL_LEVEL_OPTIONS }
 
     config.columns[:expiration_remindees].form_ui = :select
     config.columns[:expiration_remindees].options = { :draggable_lists => true }

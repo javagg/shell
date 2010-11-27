@@ -21,17 +21,17 @@ class ArchivesController < ApplicationController
     config.columns[:issue_dep].form_ui = :select
     config.columns[:issue_dep].search_ui = :multi_select
     config.columns[:issue_dep].options = { :include_blank => I18n.t('txt.please_choose'),
-      :options => Shell::DEPARTMENT_OPTIONS }
+      :options => ShellOptions::DEPARTMENT_OPTIONS }
 
     config.columns[:keep_dep].form_ui = :select
     config.columns[:keep_dep].options = { :include_blank => I18n.t('txt.please_choose'),
-      :options => Shell::DEPARTMENT_OPTIONS }
+      :options => ShellOptions::DEPARTMENT_OPTIONS }
 
     config.columns[:has_backup].form_ui = :select
-    config.columns[:has_backup].options = { :options => Shell::SHIFOU_OPTIONS }
+    config.columns[:has_backup].options = { :options => ShellOptions::SHIFOU_OPTIONS }
 
     config.columns[:has_electrical_edtion].form_ui = :select
-    config.columns[:has_electrical_edtion].options = { :options =>Shell::SHIFOU_OPTIONS }
+    config.columns[:has_electrical_edtion].options = { :options => ShellOptions::SHIFOU_OPTIONS }
 
     config.columns[:expired_on].description = I18n.t('txt.pick_a_date')
 

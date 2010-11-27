@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_locale, :set_mailer_url_options
 
-  include Shell
+  include ShellOptions
   
   before_filter :set_current_user
 
