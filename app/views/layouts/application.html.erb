@@ -35,8 +35,7 @@
 <%#*<span>%>
 <%# form_tag '' do %>
 <%#*<p><%= I18n.t 'site.choose_lang' %>
-<%#= select_tag("locale", options_for_select(LOCALES_AVAILABLE, I18n.locale),
-{ :onchange => 'this.form.submit()'}) %>
+<%#= select_tag("locale", options_for_select(LOCALES_AVAILABLE, I18n.locale), { :onchange => 'this.form.submit()'}) %>
 <%#= javascript_tag "$$('.locale input').each(Element.hide)"%>
 <%# end %>
 <%#*</p>%>
@@ -55,6 +54,7 @@
           <div id="user_status">
             <% if current_user %>
               <%= current_user.username %> |
+              <%= link_to_unless_current 'my_reminder', user_remindings_path(current_user) %>
               <%= link_to_unless_current I18n.t('user.my_account'), account_path(current_user) %>  |
               <%= link_to_unless_current I18n.t('user.logout'), user_session_path, :method => :delete %>
             <% else -%>

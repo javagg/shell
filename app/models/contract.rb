@@ -8,6 +8,7 @@ class Contract <  ActiveRecord::Base
 
   validates_presence_of :name
   has_many :payments, :dependent => :destroy
+
   has_many :payment_periods, :dependent => :destroy
   has_many :reminding_periods, :as => :reminder, :dependent => :destroy
 

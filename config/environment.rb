@@ -35,8 +35,7 @@ Rails::Initializer.run do |config|
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a
   # list of tasks for finding time zone names.
-  config.i18n.default_locale = 'zh'
-  config.gem "shoulda", :lib => false
+  config.gem "shoulda", :lib => 'shoulda'
   config.time_zone = 'UTC'
   config.action_controller.session_store = :active_record_store
 end

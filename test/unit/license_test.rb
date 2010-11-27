@@ -2,21 +2,21 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class LicenseTest < ActiveSupport::TestCase
  
-  def test_expiration_remind
-    a_will_expired = License.new(:name => "will_expired", :expired_on => 2.days.from_now)
-    a_remindee = User.new(:username => 'remindee', :password => '12345',
-      :password_confirmation => '12345', :email => 'lu.lee05@gmail.com')
-    a_will_expired.save
-    a_will_expired.expiration_remindees << a_remindee
-    all_expired = License.find :all,
-      :conditions => ['expired_on > ? and expired_on < ? ', Time.now, 1.week.from_now]
-    all_expired.each do |will_expired|
-      will_expired.remind_expiaration
-    end
-
-    License.destroy a_will_expired.id
-    User.destroy a_remindee.id
-  end
+#  def test_expiration_remind
+#    a_will_expired = License.new(:name => "will_expired", :expired_on => 2.days.from_now)
+#    a_remindee = User.new(:username => 'remindee', :password => '12345',
+#      :password_confirmation => '12345', :email => 'lu.lee05@gmail.com')
+#    a_will_expired.save
+#    a_will_expired.expiration_remindees << a_remindee
+#    all_expired = License.find :all,
+#      :conditions => ['expired_on > ? and expired_on < ? ', Time.now, 1.week.from_now]
+#    all_expired.each do |will_expired|
+#      will_expired.remind_expiaration
+#    end
+#
+#    License.destroy a_will_expired.id
+#    User.destroy a_remindee.id
+#  end
 #
 #  def test_expired
 #    days_before_expiration = Settings.reminding_days_before_expiration

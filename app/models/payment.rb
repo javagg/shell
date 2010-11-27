@@ -2,6 +2,7 @@ class Payment < ActiveRecord::Base
   def to_label
 
   end
+  
   belongs_to :contract
 end
 

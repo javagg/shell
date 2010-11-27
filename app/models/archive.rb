@@ -9,7 +9,6 @@ class Archive < ActiveRecord::Base
   def expiring_days
     Settings.expiring_days_before_expiration.to_i
   end
-
 end
 
 

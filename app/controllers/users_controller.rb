@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   before_filter :update_table_config
 
   active_scaffold :users do |config|
-    config.columns = [:username, :email, :roles]
+    config.columns = [:username, :email, :roles, :contract_remindings]
     config.columns[:roles].form_ui = :select
     config.columns[:roles].options = { :draggable_lists => true }
     config.list.sorting = { :username => 'ASC' }
@@ -26,9 +26,9 @@ class UsersController < ApplicationController
   
   def update_table_config
     if current_user.has_role?(:admin)
-      active_scaffold_config.list.columns = [:username, :email]
+      active_scaffold_config.list.columns = [:username, :email, :contract_remindings]
     else
-      active_scaffold_config.list.columns = [:username]
+      active_scaffold_config.list.columns = [:username, :contract_remindings]
     end
   end
   

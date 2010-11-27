@@ -6,7 +6,9 @@ ActionController::Routing::Routes.draw do |map|
     contract.resources :reminding_periods
     contract.resources :attachments, :member => { :download => :get }
   end
-
+  
+  map.resources :remindings, :active_scaffold => true
+  
   map.resources :licenses, :active_scaffold => true do |license|
     license.resources :expiration_remindees
     license.resources :reminding_periods
@@ -20,7 +22,9 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :settings, :active_scaffold => true
-  map.resources :users, :active_scaffold => true
+  map.resources :users, :active_scaffold => true do |user|
+      user.resources :remindings, :active_scaffold => true
+  end
 
 #  map.resources :audits,
   map.resources :audits, :collection => { :empty => :get}, :active_scaffold => true

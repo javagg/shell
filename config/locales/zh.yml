@@ -205,6 +205,10 @@ zh:
       reminder: 
         one: "提醒"
         other: "提醒"
+
+      reminding:
+        one: "提醒情况"
+        other: "提醒情况"
         
       setting:
         one: "系统参数配置"
@@ -318,6 +322,7 @@ zh:
         payment_periods: "支付期"
         expiration_remindees: "过期时需要提醒的用户"
         payment_remindees: "合同支付前需要提醒的用户"
+        
       license:
         description: "描述"
         sequence: "序列号"
@@ -358,6 +363,7 @@ zh:
         start_date: "开始日期"
         end_date: "结束日期"
         num_remindings: "提醒次数"
+        
       role:
         name: "角色名称"
         description: "职责描述"
@@ -366,7 +372,12 @@ zh:
         var: "参数"
         description: "参数功能说明"
         value: "值"
-        
+      reminding:
+        reminder_type: "提醒者类型"
+        remindee_rejected: "屏蔽提醒"
+        user: "用户"
+        reminder: "发送提醒者"
+
     errors:
       template:
         header:
@@ -537,8 +548,8 @@ zh:
     show_payments: "查看支付情况"
     show_remidners: "查看提醒设置"
     
-  error_messages:
-    password_blank: "密码不能为空"
+#  error_messages:
+#    password_blank: "密码不能为空"
 
   errors:
     messages:

@@ -136,12 +136,9 @@ class Setup < ActiveRecord::Migration
     end
 
     create_table :remindings, :force => true do |t|
-      t.references :reminder
-      t.string :reminder_type
+      t.references :reminder, :polymorphic => true
       t.references :user
       t.boolean :remindee_rejected, :default => false
-      t.datetime :from
-      t.datetime :to
     end
 
     create_table :payment_remindings, :force => true do |t|

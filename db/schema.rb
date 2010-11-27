@@ -164,12 +164,10 @@ ActiveRecord::Schema.define(:version => 1) do
   end
 
   create_table "remindings", :force => true do |t|
-    t.integer  "reminder_id"
-    t.string   "reminder_type"
-    t.integer  "user_id"
-    t.boolean  "remindee_rejected", :default => false
-    t.datetime "from"
-    t.datetime "to"
+    t.integer "reminder_id"
+    t.string  "reminder_type"
+    t.integer "user_id"
+    t.boolean "remindee_rejected", :default => false
   end
 
   create_table "roles", :force => true do |t|

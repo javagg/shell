@@ -110,16 +110,24 @@ module Shell
           yield(value)
           value
         end
+        
+        has_many :remindings
+        has_many :contract_remindings, :class_name => "Reminding", :conditions => ["reminder_type = ?", 'Contract']
+        has_many :license_remindings, :class_name => "Reminding", :conditions => ["reminder_type = ?", 'License']
+        has_many :archive_remindings, :class_name => "Reminding", :conditions => ["reminder_type = ?", 'Archive']
 
-        #        has_many :remindings
-        has_many_polymorphs :reminders, :from => [:contracts, :archives, :licenses],
-          :through => :remindings, :rename_individual_collections => true
+        has_many_polymorphs :reminders, :from => [:contracts, :archives, :licenses], :through => :remindings
       end
     end
 
     module InstanceMethods
       def reject(reminder)
-
+        remindings = Reminding.find(:all,
+          :conditions => [ "reminder_id = ? and reminder_type = ? and user_id = ?",
+            reminder.id, reminder.class.to_s, self.id])
+        remindings.each do |reminding|
+          reminding.update_attributes(:remindee_rejected => true)
+        end
       end
 
       def is_reminded_of?(reminder)

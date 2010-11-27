@@ -1,8 +1,4 @@
 class ApplicationController < ActionController::Base
-#  include ShellOptions
-#
-#  include Shell::Options
-  
   helper :all
   helper_method :current_user_session, :current_user
 

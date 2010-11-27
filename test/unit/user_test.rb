@@ -6,9 +6,12 @@ class UserTest < ActiveSupport::TestCase
 
   should validate_presence_of(:email)
   should validate_uniqueness_of(:email)
-  
-#  should has_many(:reminders)
 
+  should have_many(:remindings)
+  should have_many(:contract_remindings)
+  should have_many(:license_remindings)
+  should have_many(:archive_remindings)
+  
   context "A User instance" do
     setup do
       @user = User.find(:first)
@@ -21,39 +24,27 @@ class UserTest < ActiveSupport::TestCase
     context "User Reminding" do
       setup do
         @contract = Contract.find(:first)
+        @archive = Archive.find(:first)
         @user = User.find(:first)
         @contract.expiration_remindees << @user
+        @archive.expiration_remindees << @user
       end
 
       should "has a contract as a reminder" do
-        assert @user.reminders.size == 1
-        assert @user.reminders.first.is_a? Contract
-
-#        assert @user.contracts.size == 1
-##        assert @user.reminders_of_contracts.size == 1
+        assert @user.reminders.size == 2
+        assert @user.contracts.size == 1
+        assert @user.archives.size == 1
+        assert @user.contract_remindings.size == 1
+        assert @user.archive_remindings.size == 1
+        assert @user.license_remindings.size == 0
+        reminding = Reminding.find @user.contract_remindings.first.id
+        assert !reminding.remindee_rejected
+        @user.reject @user.contracts.first
+        reminding = Reminding.find @user.contract_remindings.first.id
+        assert reminding.remindee_rejected
       end
-
-      #       should "reject reminder's reminding" do
-      #         reminder =  @user.reminders.first
-      #         @user.reject reminder
-      #         assert !@user.is_reminded_of?(reminder)
-      #       end
-
     end
   end
-
-  #  context "A user" do
-  #    setup { @user = Factory(:user) }
-  #
-  #    context "Delivering password instructions" do
-  #      setup { @user.deliver_password_reset_instructions! }
-  #
-  #      should_change("perishable token") { @user.perishable_token }
-  #      should "send an email" do
-  #        assert_sent_email
-  #      end
-  #    end
-  #  end
 end
 
 
