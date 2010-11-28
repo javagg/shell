@@ -3,8 +3,9 @@ require 'date'
 
 class ContractTest < ActiveSupport::TestCase
   should have_many(:payments)
-  should have_many(:urgent_payments)
-
+  should have_many(:payment_remindings)
+  should have_many(:payment_remindees)
+  
   def test_payment_remind
     #    a_will_pay = Contract.new(:name => "will_pay")
     #    a_remindee = User.new(:username => 'remindee', :password => '12345',
@@ -36,7 +37,17 @@ class ContractTest < ActiveSupport::TestCase
     contract = Contract.new :name => "test_contract", :end_date => "2010-10-11"
     assert_not_nil contract
     assert contract.expired?
+  end
 
+  context "Contract" do
+    setup do
+      @contract = Contract.find(:first)
+      @user = User.find(:first)
+    end
+
+    should "create a payment_remindngs" do
+      @contract.payment_remindees << @user
+    end
   end
 end
 

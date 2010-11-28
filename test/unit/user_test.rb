@@ -6,11 +6,13 @@ class UserTest < ActiveSupport::TestCase
 
   should validate_presence_of(:email)
   should validate_uniqueness_of(:email)
+  
+  should have_many(:expiration_remindings)
+  should have_many(:contract_expiration_remindings)
+  should have_many(:license_expiration_remindings)
+  should have_many(:archive_expiration_remindings)
 
-  should have_many(:remindings)
-  should have_many(:contract_remindings)
-  should have_many(:license_remindings)
-  should have_many(:archive_remindings)
+  should have_many(:payment_remindings)
   
   context "A User instance" do
     setup do
@@ -21,7 +23,7 @@ class UserTest < ActiveSupport::TestCase
       assert_equal 'alex', @user.username
     end
 
-    context "User Reminding" do
+    context "User" do
       setup do
         @contract = Contract.find(:first)
         @archive = Archive.find(:first)
@@ -34,23 +36,18 @@ class UserTest < ActiveSupport::TestCase
         assert @user.reminders.size == 2
         assert @user.contracts.size == 1
         assert @user.archives.size == 1
-        assert @user.contract_remindings.size == 1
-        assert @user.archive_remindings.size == 1
-        assert @user.license_remindings.size == 0
-        reminding = Reminding.find @user.contract_remindings.first.id
-        assert !reminding.remindee_rejected
-        @user.reject @user.contracts.first
-        reminding = Reminding.find @user.contract_remindings.first.id
-        assert reminding.remindee_rejected
+        assert @user.contract_expiration_remindings.size == 1
+        assert @user.archive_expiration_remindings.size == 1
+        assert @user.license_expiration_remindings.size == 0
+        expiration_reminding = ExpirationReminding.find @user.contract_expiration_remindings.first.id
+        assert !expiration_reminding.remindee_rejected
+        @user.reject_expiration_remindings @user.contracts.first
+        expiration_reminding = ExpirationReminding.find @user.contract_expiration_remindings.first.id
+        assert expiration_reminding.remindee_rejected
       end
     end
   end
 end
-
-
-
-
-
 
 # == Schema Information
 #
