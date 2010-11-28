@@ -107,6 +107,13 @@ ActiveRecord::Schema.define(:version => 1) do
 
   add_index "documents", ["name"], :name => "index_documents_on_name"
 
+  create_table "expiration_remindings", :force => true do |t|
+    t.integer "reminder_id"
+    t.string  "reminder_type"
+    t.integer "user_id"
+    t.boolean "remindee_rejected", :default => false
+  end
+
   create_table "licenses", :force => true do |t|
     t.string   "number"
     t.string   "name"
@@ -138,11 +145,9 @@ ActiveRecord::Schema.define(:version => 1) do
   end
 
   create_table "payment_remindings", :force => true do |t|
-    t.integer  "reminder_id"
-    t.string   "reminder_type"
-    t.integer  "user_id"
-    t.datetime "from"
-    t.datetime "to"
+    t.integer "contract_id"
+    t.integer "user_id"
+    t.boolean "remindee_rejected", :default => false
   end
 
   create_table "payments", :force => true do |t|
@@ -161,13 +166,6 @@ ActiveRecord::Schema.define(:version => 1) do
     t.date    "start_date"
     t.date    "end_date"
     t.integer "num_remindings", :default => 1
-  end
-
-  create_table "remindings", :force => true do |t|
-    t.integer "reminder_id"
-    t.string  "reminder_type"
-    t.integer "user_id"
-    t.boolean "remindee_rejected", :default => false
   end
 
   create_table "roles", :force => true do |t|

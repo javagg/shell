@@ -73,11 +73,10 @@ en:
         unit: '$'
         precision: 2
         format: '%u %n'
-  activerecord:
-    attribute:
-      user:
-        username: "用户名"
         
+  active_scaffold:
+    column_is_null: ""
+    
   general:
     ok: "Ok"
     cancel: "Cancel"
@@ -90,9 +89,9 @@ en:
     
   txt:
     log_in_to_app: "登录到系统"
-    logged_in: "用户登录了"
-    logged_out: "用户已退出"
-    user: "用户"
+    logged_in: "You have logged in"
+    logged_out: "You have logged out"
+    user: "User"
     invalid_user_or_password: "不正确的用户名或者密码"
     user_create_succeeded: "成功生成用户"
     user_update_succeeded: "成功更新用户信息"
@@ -106,6 +105,24 @@ en:
     check_email_for_password_reset: "Please check your email for instructions to reset your password!"
     edit_your_account_details: "Edit Your Account Details"
     fill_in_your_account_details: "Fill in Your Account Details"
+
+    please_choose: "—Choose one—"
+    shi: "Yes"
+    fou: "No"
+    pick_a_date: "Please pick a date"
+
+    purchase: "Purchase"
+    buying_and_selling: "Buying and Selling"
+    lease: "Lease"
+    investigation: "Investigation"
+    construction_safety: "Construction Safety"
+
+    confidential_high: "High"
+    confidential_low: "Low"
+
+    station_contract: "Station Contract"
+    purchase_contract: "Purchase Contract"
+    
   site:
     home: "Home"
     about: "About Us"
@@ -117,7 +134,10 @@ en:
     license_management: "Licenses"
     archive_management: "Archives"
     user_management: "Users"
-    system_settings: "System"
+    system_management: "System"
+    system_settings: "System Settings"
+    system_logs: "System Logs"
+    my_reminders: "My Reminders"
     copyright: "Yangchang and Shell Petroleum Company Limited, All Rights Reserved"
 
   user:
@@ -128,6 +148,8 @@ en:
     register: "Register"
     register_now: "Register Now"
     my_account: "My Account"
+    my_expiration_reminders: "Expiration Reminders"
+    my_payment_reminders: "Payment Reminders"
     account: "Account"
     users_currently_logged_in: "Number of users currently logged in: "
     login: "Login"
@@ -135,6 +157,7 @@ en:
     remember_me: "Remember Me"
     forget_password: "Forget password"
     cannot_delete_last_user: "Cannot delete the last user"
+
     logged_in_to_access: "You must be logged in to access this page"
     logged_out_to_access: "You must be logged out to access this page"
   
@@ -171,30 +194,12 @@ en:
     backup_loc: "备份保存地址"
     has_electrical_edtion: "是否有电子版"
     security_level: "安全保密等级"
-    
+
+
+  document:
+    show_attachments: "View Attachments"
+
   contract:
-    number: 合同编号
-    type: 类型
-    other_party: "合同对方"
-    content: "合同内容"
-    start_date: "开始日期"
-    end_date: "结束日期"
-    expense_paid_by: "费用归属" 
-    owning_department: "所属部门"
-    amount: "合同金额"
-    person_in_charge: "持有人／负责人"
-    executive_person: "具体执行人"
-    is_transfered: "是否已经保管"
-  
-  license:
-    sequence: "序列号"
-    area: "区域"
-    station_name: "油站名称"
-    name: "证照名称"
-    number: "编号或注册号"
-    issuing_authority: "发证机关"
-    issuing_date: "发证时间"
-    annual_inspection_date: "年审时间"
-    expired_on: "有效期"
-    filing_location: "存放地点"
-    memo: "备注"
+    show_payments: "View Payments"
+    show_remidners: "View Reminders"
+    

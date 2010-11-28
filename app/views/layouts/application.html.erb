@@ -31,16 +31,13 @@
         </div>
         <div id="header_right">
 
-<%#*<div id="lang_chooser">%>
-<%#*<span>%>
+<%#*<div id="lang_chooser"><span><p>%>
 <%# form_tag '' do %>
-<%#*<p><%= I18n.t 'site.choose_lang' %>
+<%#= I18n.t('site.choose_lang') %>
 <%#= select_tag("locale", options_for_select(LOCALES_AVAILABLE, I18n.locale), { :onchange => 'this.form.submit()'}) %>
 <%#= javascript_tag "$$('.locale input').each(Element.hide)"%>
 <%# end %>
-<%#*</p>%>
-<%#*</span>%>
-<%#*</div>%>
+<%#*</p></span></div>%>
 
           <br/>
 <%#*<div id="searchbox">%>
@@ -54,7 +51,8 @@
           <div id="user_status">
             <% if current_user %>
               <%= current_user.username %> |
-              <%= link_to_unless_current 'my_reminder', user_remindings_path(current_user) %>
+              <%= link_to_unless_current I18n.t('user.my_payment_reminders'), user_payment_remindings_path(current_user) %> |
+              <%= link_to_unless_current I18n.t('user.my_expiration_reminders'), user_expiration_remindings_path(current_user) %> |
               <%= link_to_unless_current I18n.t('user.my_account'), account_path(current_user) %>  |
               <%= link_to_unless_current I18n.t('user.logout'), user_session_path, :method => :delete %>
             <% else -%>
@@ -75,7 +73,7 @@
             <li><%= link_to I18n.t('site.system_management'), "#" %>
               <ul>
                 <li><%= link_to I18n.t('site.system_settings'), settings_path %></li>
-                <li><%= link_to I18n.t('site.system_view_log'), audits_path %></li>
+                <li><%= link_to I18n.t('site.system_logs'), audits_path %></li>
               </ul>
             </li>
             <li><%= link_to I18n.t('site.contact'), contact_path %></li>

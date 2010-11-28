@@ -38,7 +38,7 @@ class Setup < ActiveRecord::Migration
       t.string :description
     end
 
-    create_table :roles_users, :id => false do |t|
+    create_table :roles_users, :id => false, :force => true do |t|
       t.references :user, :null => false
       t.references :role, :null => false
     end
@@ -135,18 +135,16 @@ class Setup < ActiveRecord::Migration
       t.integer :num_payments, :default => 1
     end
 
-    create_table :remindings, :force => true do |t|
+    create_table :expiration_remindings, :force => true do |t|
       t.references :reminder, :polymorphic => true
       t.references :user
       t.boolean :remindee_rejected, :default => false
     end
 
     create_table :payment_remindings, :force => true do |t|
-      t.references :reminder
-      t.string :reminder_type
+      t.references :contract
       t.references :user
-      t.datetime :from
-      t.datetime :to
+      t.boolean :remindee_rejected, :default => false
     end
 
     create_table :reminding_periods, :force => true do |t|
@@ -214,7 +212,7 @@ class Setup < ActiveRecord::Migration
     drop_table :licenses
     drop_table :contracts
     drop_table :payments
-    drop_table :remindings
+    drop_table :expiration_remindings
     drop_table :payment_remindings
     drop_table :roles
     drop_table :roles_users
@@ -223,6 +221,4 @@ class Setup < ActiveRecord::Migration
     drop_table :reminding_periods
     drop_table :audits
   end
-
- 
 end

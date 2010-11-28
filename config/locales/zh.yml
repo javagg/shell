@@ -206,9 +206,13 @@ zh:
         one: "提醒"
         other: "提醒"
 
-      reminding:
-        one: "提醒情况"
-        other: "提醒情况"
+      expiration_reminding:
+        one: "过期提醒"
+        other: "过期提醒"
+
+      payment_reminding:
+        one: "支付提醒"
+        other: "支付提醒"
         
       setting:
         one: "系统参数配置"
@@ -372,11 +376,16 @@ zh:
         var: "参数"
         description: "参数功能说明"
         value: "值"
-      reminding:
+      expiration_reminding:
         reminder_type: "提醒者类型"
-        remindee_rejected: "屏蔽提醒"
+        remindee_rejected: "屏蔽提醒(点击可编辑)"
         user: "用户"
         reminder: "发送提醒者"
+
+      payment_reminding:
+        remindee_rejected: "屏蔽提醒(点击可编辑)"
+        user: "用户"
+        contract: "发送提醒的合同"
 
     errors:
       template:
@@ -460,8 +469,8 @@ zh:
 
   txt:
     log_in_to_app: "登录到系统"
-    logged_in: "用户登录了"
-    logged_out: "用户已退出"
+    logged_in: "您已经登录了"
+    logged_out: "您已经退出了"
     user: "用户"
     invalid_user_or_password: "不正确的用户名或者密码"
     user_create_succeeded: "成功生成用户"
@@ -517,7 +526,7 @@ zh:
     user_management: "用户管理"
     system_management: "系统管理"
     system_settings: "系统设置"
-    system_view_log: "查看日志"
+    system_logs: "查看日志"
     logged_as: "登录为"
     copyright: "延长壳牌石油有限公司版权所有"
     
@@ -529,6 +538,8 @@ zh:
     register: "注册"
     register_now: "现在注册"
     my_account: "我的账户"
+    my_expiration_reminders: "过期提醒"
+    my_payment_reminders: "支付提醒"
     users_currently_logged_in: "当前登录用户数："
     login: "登录"
     logout: "退出"
@@ -539,18 +550,8 @@ zh:
     show_roles: "显示权限角色"
   
   document:
-    tag: "文档"
-    basic_info: "基本信息"
-    adv_info: "高级信息"
     show_attachments: "查看附件"
   
   contract:
     show_payments: "查看支付情况"
     show_remidners: "查看提醒设置"
-    
-#  error_messages:
-#    password_blank: "密码不能为空"
-
-  errors:
-    messages:
-      blank: "不能为空"

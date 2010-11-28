@@ -29,7 +29,8 @@ class User < ActiveRecord::Base
   ]
   
   acts_as_authentic
-  acts_as_remindable
+  acts_as_expiration_remindable
+  acts_as_payment_remindable
 
   validates_presence_of   :username
   validates_length_of     :username, :within => 3..40

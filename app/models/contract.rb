@@ -12,7 +12,7 @@ class Contract <  ActiveRecord::Base
   has_many :payment_periods, :dependent => :destroy
   has_many :reminding_periods, :as => :reminder, :dependent => :destroy
 
-  has_many :payment_remindings, :as => :reminder, :dependent => :destroy
+  has_many :payment_remindings, :dependent => :destroy
   has_many :payment_remindees, :through => :payment_remindings, :source => 'user'
 
   def next_payment_date(from = Date.today)

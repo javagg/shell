@@ -1,12 +1,14 @@
-class Reminding < ActiveRecord::Base
+class ExpirationReminding < ActiveRecord::Base
   belongs_to :reminder, :polymorphic => true
   belongs_to :user
 end
 
 
+
+
 # == Schema Information
 #
-# Table name: remindings
+# Table name: expiration_remindings
 #
 #  id                :integer(4)      not null, primary key
 #  reminder_id       :integer(4)

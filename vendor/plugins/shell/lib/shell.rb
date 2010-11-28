@@ -39,8 +39,8 @@ module Shell
 
     module ClassMethods
       def acts_as_expirable
-        has_many :remindings, :as => :reminder, :dependent => :destroy
-        has_many :expiration_remindees, :through => :remindings, :source => 'user'
+        has_many :expiration_remindings, :as => :reminder, :dependent => :destroy
+        has_many :expiration_remindees, :through => :expiration_remindings, :source => 'user'
       end
 
       def check_expiration
@@ -93,7 +93,7 @@ module Shell
     end
   end
 
-  module Remindable
+  module PaymentRemindable
     def self.included(base)
       base.class_eval do
         include InstanceMethods
@@ -102,27 +102,54 @@ module Shell
     end
 
     module ClassMethods
+      def acts_as_payment_remindable
+        has_many :payment_remindings, :dependent => :destroy
+        has_many :payment_reminders, :through => :payment_remindings, :source => :contract
+      end
+    end
 
-      
-      def acts_as_remindable
-        
+    module InstanceMethods
+      def reject_payment_remindings(contract)
+        remindings = PaymentReminding.find(:all,
+          :conditions => [ "contract_id = ? and user_id = ?", contract.id, self.id])
+        remindings.each do |reminding|
+          reminding.update_attributes(:remindee_rejected => true)
+        end
+      end
+
+      def is_reminded_of?(contract)
+        true
+      end
+    end
+  end
+
+  module ExpirationRemindable
+    def self.included(base)
+      base.class_eval do
+        include InstanceMethods
+        extend ClassMethods
+      end
+    end
+
+    module ClassMethods
+      def acts_as_expiration_remindable
+        # redefine it to get rid of the annoying depreciation messages
         def returning(value)
           yield(value)
           value
         end
         
-        has_many :remindings
-        has_many :contract_remindings, :class_name => "Reminding", :conditions => ["reminder_type = ?", 'Contract']
-        has_many :license_remindings, :class_name => "Reminding", :conditions => ["reminder_type = ?", 'License']
-        has_many :archive_remindings, :class_name => "Reminding", :conditions => ["reminder_type = ?", 'Archive']
-
-        has_many_polymorphs :reminders, :from => [:contracts, :archives, :licenses], :through => :remindings
+        has_many :expiration_remindings, :dependent => :destroy
+        has_many :contract_expiration_remindings, :class_name => "ExpirationReminding", :conditions => ["reminder_type = ?", 'Contract']
+        has_many :license_expiration_remindings, :class_name => "ExpirationReminding", :conditions => ["reminder_type = ?", 'License']
+        has_many :archive_expiration_remindings, :class_name => "ExpirationReminding", :conditions => ["reminder_type = ?", 'Archive']
+        has_many_polymorphs :reminders, :from => [:contracts, :archives, :licenses], :through => :expiration_remindings, :dependent => :destroy
       end
     end
 
     module InstanceMethods
-      def reject(reminder)
-        remindings = Reminding.find(:all,
+      def reject_expiration_remindings(reminder)
+        remindings = ExpirationReminding.find(:all,
           :conditions => [ "reminder_id = ? and reminder_type = ? and user_id = ?",
             reminder.id, reminder.class.to_s, self.id])
         remindings.each do |reminding|
