@@ -37,22 +37,23 @@ class Contract <  ActiveRecord::Base
     all_contracts = self.find :all
     all_contracts.each do |contract|
       payment_date = contract.next_payment_date
-      if payment_date and payment_date > Date.today and payment_date < 1.week.from_now.to_date
+      if payment_date and payment_date > Date.today and payment_date < payment_date + payment_reminding_days
         contract.remind_payment
       end
     end
   end
-
-  protected
-  
+ 
   def expired_on
     end_date
   end
 
-  def expiring_days
-    Settings.expiring_days_before_expiration.to_i
+  def expiration_reminding_days
+    Settings.expiration_reminding_days.to_i
   end
 
+  def payment_reminding_days
+    Settings.payment_reminding_days.to_i
+  end
 end
 
 # == Schema Information

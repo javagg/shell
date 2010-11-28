@@ -3,8 +3,12 @@ Setting.create(:var => 'upload_limit',
   :description => '该参数设置系统上传附件的最大允许值。例如，500.kilobytes, 5.megabytes',
   :value => '10.megabytes')
 
-Setting.create(:var => 'expiring_days_before_expiration',
-  :description => '当过期时，提前多岁天发送提醒。要求为整数',
+Setting.create(:var => 'expiration_reminding_days',
+  :description => '当将要过期时，提前多少天发送提醒。要求为整数',
+  :value => '10')
+
+Setting.create(:var => 'payment_reminding_days',
+  :description => '当合同将有支付发送时，提前多少天发送提醒。要求为整数',
   :value => '10')
 
 

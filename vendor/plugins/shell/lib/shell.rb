@@ -44,15 +44,21 @@ module Shell
       end
 
       def check_expiration
-        all_expirings = self.find :all,
-          :conditions => ['expired_on > ? and expired_on < ? ', Time.now, 1.week.from_now]
+        all_expirings = self.find :all
         all_expirings.each do |expiring|
-          expiring.remind_expiaration
+          expired_on = expiring.expired_on
+          if expired_on and expired_on > Date.today and expired_on < Date.today  + expiration_reminding_days
+            expiring.remind_expiaration
+          end
         end
+      end
+
+      def expiration_reminding_days
+        0
       end
     end
 
-    attr_accessor :expired_on, :expiring_days
+    attr_accessor :expired_on
 
     module InstanceMethods
       def remind_expiaration
@@ -68,9 +74,10 @@ module Shell
 
       def expiring?
         return false if expired?
-        days = expiring_days
-        return  Date.today >= expired_on - days && Date.today <= expired_on
+        return  Date.today >= expired_on - expiration_reminding_days && Date.today <= expired_on
       end
+
+
     end
   end
 

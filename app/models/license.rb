@@ -6,9 +6,10 @@ class License <  ActiveRecord::Base
   
   validates_presence_of :name
 
-  def expiring_days
-    Settings.expiring_days_before_expiration.to_i
+  def expiration_reminding_days
+    Settings.expiration_reminding_days.to_i
   end
+  
 end
 
 

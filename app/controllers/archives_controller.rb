@@ -10,13 +10,12 @@ class ArchivesController < ApplicationController
     
     config.columns = [:number, :name, :issue_dep, :keep_dep, :keeper,
       :original_loc, :expired_on, :state, :has_backup, :backup_loc, :has_electrical_edtion,
-      :confidential_level, :attachments, :expiration_remindees
+      :confidential_level, :expiration_remindees
     ]
     
     config.subform.layout = :horizontal
-    config.list.columns = [:number, :name, :expired_on, :attachments]
-    #    config.nested.add_link I18n.t('document.show_attachments'), :attachments
-
+    config.list.columns = [:number, :name, :expired_on]
+    config.nested.add_link I18n.t('document.show_attachments'), :attachments
 
     config.columns[:issue_dep].form_ui = :select
     config.columns[:issue_dep].search_ui = :multi_select

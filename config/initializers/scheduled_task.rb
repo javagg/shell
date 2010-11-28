@@ -8,8 +8,14 @@ require 'date'
 
 scheduler = Rufus::Scheduler.start_new
 
-scheduler.every("10m") do
-  Rails.logger.info "Checking if there are some expiring licenses, and remind some one to take care of them..."
-#  License.check_expiration
-#  puts "done"
+scheduler.every("10s") do
+  Rails.logger.info "Expiration reminding check..."
+  Archive.check_expiration
+  Contract.check_expiration
+  License.check_expiration
+  Rails.logger.info "...done"
+
+  Rails.logger.info "Payment reminding check..."
+  Contract.check_payment
+  Rails.logger.info "...done"
 end
