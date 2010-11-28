@@ -419,7 +419,7 @@ zh:
               taken: "已经被占用"
             password:
               too_short: "过短 (不能少于 %{count} 个字符)"
-              blank: "不能为空"
+              blank: "不能为空"  
               invalid: "不正确"
               confirmation: "与确认值不匹配"   
             password_confirmation:
