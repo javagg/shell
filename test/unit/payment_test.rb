@@ -1,12 +1,9 @@
-require 'test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class PaymentTest < ActiveSupport::TestCase
-
+  should belong_to(:contract)
+  should validate_numericality_of(:amount)
 end
-
-
-
-
 
 # == Schema Information
 #

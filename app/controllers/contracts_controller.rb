@@ -27,7 +27,7 @@ class ContractsController < ApplicationController
       :other_party, :contract_content, :start_date, :end_date, :expense_paid, :owning_department, :amount,
       :holder, :executive, :transferred, :state, :original_loc, :has_backup, :backup_loc, :has_electrical_edtion,
       :confidential_level, :memo, :expiration_remindees, :payment_periods, :payment_remindees,
-      :payments, :attachments, :reminding_periods
+      :payments, :attachments
     ]
 
     config.subform.layout = :vertical
