@@ -39,6 +39,8 @@ class ArchivesController < ApplicationController
 
     config.actions.exclude :search
     config.actions << :field_search
+
+    config.list.sorting = [{:number => :asc}, {:issue_dep => :asc}]
   end
 
   def delete_authorized?
