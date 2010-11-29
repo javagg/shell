@@ -56,10 +56,11 @@ authorization do
   end
 
   role :admin do
-    includes :archive_manage, :license_manage, :contract_manage
-    has_permission_on :users, :to => :manage
-    has_permission_on :settings, :to => :manage
-    has_permission_on :audits, :to => :read
+#    includes :archive_manage, :license_manage, :contract_manage
+#    has_permission_on :users, :to => :manage
+#    has_permission_on :settings, :to => :manage
+#    has_permission_on :audits, :to => :read
+     has_omnipotence
   end
 end
 
