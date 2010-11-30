@@ -4,7 +4,6 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><%= @page_title %></title>
-    <%= stylesheet_link_tag 'application' %>
     <%= javascript_include_tag :defaults %>
     <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.6.custom.min', 'jquery.boxy' %>
     <%= active_scaffold_includes %>
@@ -19,6 +18,7 @@
       var $j = jQuery.noConflict();
       $j('#ul.sf-menu').superfish();
     </script>
+    <%= stylesheet_link_tag 'application' %>
   </head>
   <body>
     <div id="page-container">
@@ -26,7 +26,7 @@
 
         <div id="logo">
           <h1>
-            <%= image_tag("logo.gif", :size => "450x50", :alt => "Logo") %>
+            <%= image_tag("logo.jpg", :size => "650x70", :alt => "Logo") %>
           </h1>
         </div>
         <div id="header_right">
@@ -38,14 +38,14 @@
 <%#= javascript_tag "$$('.locale input').each(Element.hide)"%>
 <%# end %>
 <%#*</p></span></div>%>
-        <br/>
+          <br/>
 <%#*<div id="searchbox">%>
 <%# form_tag '' do %>
 <%# text_field_tag 'search', '', :class => "textfield searchtip", :size => 24 %>
 <%# submit_tag nil, :class =>'button' %>
 <%# end %>
 <%#*</div>%>
-   
+
           <br/>
           <div id="user_status">
             <% if current_user %>
@@ -60,26 +60,26 @@
             <% end -%>
           </div>
         </div>
-   
+
       </div>
-     <div>
-          <ul class="sf-menu">
-            <li class="current"><%= link_to I18n.t('site.home'), home_path %></li>
-            <li><%= link_to I18n.t('site.contract_management'), contracts_path %></li>
-            <li><%= link_to I18n.t('site.license_management'), licenses_path  %></li>
-            <li><%= link_to I18n.t('site.archive_management'), archives_path %></li>
-            <li><%= link_to I18n.t('site.user_management'), users_path %></li>
-            <li><%= link_to I18n.t('site.system_management'), "#" %>
-              <ul>
-                <li><%= link_to I18n.t('site.system_settings'), settings_path %></li>
-                <li><%= link_to I18n.t('site.system_logs'), audits_path %></li>
-              </ul>
-            </li>
-            <li><%= link_to I18n.t('site.contact'), contact_path %></li>
-            <li><%= link_to I18n.t('site.about'), about_path %></li>
-            <li><%= link_to I18n.t('site.help'), help_path %></li>
-          </ul><p>&nbsp;</p>
-        </div>
+      <div id="nav">
+        <ul class="sf-menu">
+          <li class="current"><%= link_to I18n.t('site.home'), home_path %></li>
+          <li><%= link_to I18n.t('site.contract_management'), contracts_path %></li>
+          <li><%= link_to I18n.t('site.license_management'), licenses_path  %></li>
+          <li><%= link_to I18n.t('site.archive_management'), archives_path %></li>
+          <li><%= link_to I18n.t('site.user_management'), users_path %></li>
+          <li><%= link_to I18n.t('site.system_management'), "#" %>
+            <ul>
+              <li><%= link_to I18n.t('site.system_settings'), settings_path %></li>
+              <li><%= link_to I18n.t('site.system_logs'), audits_path %></li>
+            </ul>
+          </li>
+          <li><%= link_to I18n.t('site.contact'), contact_path %></li>
+          <li><%= link_to I18n.t('site.about'), about_path %></li>
+          <li><%= link_to I18n.t('site.help'), help_path %></li>
+        </ul><p>&nbsp;</p>
+      </div>
 <%#*<div id="nav">%>
 
 <%#*</div>%>

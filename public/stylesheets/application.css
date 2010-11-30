@@ -150,6 +150,7 @@ body {
     -moz-border-radius:5px 5px 5px 5px;
     color: #275c91;
     background: #eaf3fb;
+    height: 2.5em
 /*    overflow:hidden;*/
 }
 
@@ -324,4 +325,8 @@ a:visited {
 .sitemap a:hover {
     color: #275c91;
     text-decoration: none;
+}
+
+.sf-menu li {
+/*	background:		#fff;*/
 }
