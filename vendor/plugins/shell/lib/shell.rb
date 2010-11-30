@@ -28,7 +28,32 @@ module Shell
       [ I18n.t('txt.purchase'), I18n.t('txt.lease') ].map(&:to_sym)
     end
   end
-  
+  module Manageable
+    def self.included(base)
+      base.class_eval do
+        include InstanceMethods
+        extend ClassMethods
+      end
+    end
+    
+    module ClassMethods
+      # redefine it to get rid of the annoying depreciation messages
+      def returning(value)
+        yield(value)
+        value
+      end
+      
+      def acts_as_manageable
+        has_many :permissions, :as => :manageable, :dependent => :destroy
+        has_many :yc_roles, :through => :permissions
+      end
+    end
+
+    module InstanceMethods
+       
+    end
+  end
+
   module Expirable
     def self.included(base)
       base.class_eval do

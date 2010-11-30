@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :yc_roles, :active_scaffold => true
   map.resources :documents, :active_scaffold => true
   map.resources :contracts, :active_scaffold => true do |contract|
     contract.resources :payments
@@ -23,11 +24,11 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :settings, :active_scaffold => true
   map.resources :users, :active_scaffold => true do |user|
-      user.resources :expiration_remindings, :active_scaffold => true
-      user.resources :payment_remindings, :active_scaffold => true
+    user.resources :expiration_remindings, :active_scaffold => true
+    user.resources :payment_remindings, :active_scaffold => true
   end
 
-#  map.resources :audits,
+  #  map.resources :audits,
   map.resources :audits, :collection => { :empty => :get}, :active_scaffold => true
   
   map.resources :roles, :collection => {:browse => :get}, :member => {:select => :post}

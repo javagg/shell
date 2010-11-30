@@ -11,6 +11,13 @@
 
 ActiveRecord::Schema.define(:version => 1) do
 
+  create_table "archive_permissions", :force => true do |t|
+    t.integer "yc_role_id"
+    t.integer "archive_id"
+    t.boolean "can_read",   :default => false
+    t.boolean "can_write",  :default => false
+  end
+
   create_table "archives", :force => true do |t|
     t.string   "number"
     t.string   "name"
@@ -65,6 +72,13 @@ ActiveRecord::Schema.define(:version => 1) do
   add_index "audits", ["created_at"], :name => "index_audits_on_created_at"
   add_index "audits", ["user_id", "user_type"], :name => "user_index"
 
+  create_table "contract_permissions", :force => true do |t|
+    t.integer "yc_role_id"
+    t.integer "contract_id"
+    t.boolean "can_read",    :default => false
+    t.boolean "can_write",   :default => false
+  end
+
   create_table "contracts", :force => true do |t|
     t.string   "number"
     t.string   "name"
@@ -114,6 +128,13 @@ ActiveRecord::Schema.define(:version => 1) do
     t.boolean "remindee_rejected", :default => false
   end
 
+  create_table "license_permissions", :force => true do |t|
+    t.integer "yc_role_id"
+    t.integer "license_id"
+    t.boolean "can_read",   :default => false
+    t.boolean "can_write",  :default => false
+  end
+
   create_table "licenses", :force => true do |t|
     t.string   "number"
     t.string   "name"
@@ -161,7 +182,7 @@ ActiveRecord::Schema.define(:version => 1) do
   end
 
   create_table "permissions", :force => true do |t|
-    t.integer "yc_roles_id"
+    t.integer "yc_role_id"
     t.integer "manageable_id"
     t.string  "manageable_type"
     t.boolean "can_read"

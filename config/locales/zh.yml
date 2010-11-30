@@ -221,10 +221,27 @@ zh:
       role:
         one: "权限角色"
         other: "权限角色"
+
       audit:
         one: "用户操作日志"
         other: "用户操作日志"
-    
+
+      yc_role:
+        one: "角色"
+        other: "角色"
+
+      contract_permission:
+        one: "对合同的操作权限"
+        other: "对合同的操作权限"
+
+      license_permission:
+        one: "对证照的操作权限"
+        other: "对证照的操作权限"
+
+      archive_permission:
+        one: "对文档的操作权限"
+        other: "对文档的操作权限"
+        
     attributes:
       attachment:
         data: ""
@@ -376,6 +393,7 @@ zh:
         var: "参数"
         description: "参数功能说明"
         value: "值"
+        
       expiration_reminding:
         reminder_type: "提醒者类型"
         remindee_rejected: "屏蔽提醒(点击可编辑)"
@@ -386,6 +404,27 @@ zh:
         remindee_rejected: "屏蔽提醒(点击可编辑)"
         user: "用户"
         contract: "发送提醒的合同"
+
+      yc_role:
+        name: "角色名称"
+        contract_permissions: "合同权限"
+        license_permissions: "证照权限"
+        archive_permissions: "文档权限"
+        
+      contract_permission:
+        contract: 合同
+        can_read: 是否可读
+        can_write: 是否可写
+        
+      license_permission:
+        license: 证照
+        can_read: 是否可读
+        can_write: 是否可写
+
+      archive_permission:
+        archive: 文档
+        can_read: 是否可读
+        can_write: 是否可写
 
     errors:
       template:
@@ -524,9 +563,12 @@ zh:
     license_management: "证照管理"
     archive_management: "文档管理"
     user_management: "用户管理"
+    user_roles: "用户权限"
+    role_management: "权限管理"
     system_management: "系统管理"
     system_settings: "系统设置"
     system_logs: "查看日志"
+    role_management: 角色设置
     logged_as: "登录为"
     copyright: "延长壳牌石油有限公司版权所有"
     

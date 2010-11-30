@@ -26,7 +26,7 @@
 
         <div id="logo">
           <h1>
-            <%= image_tag("logo.jpg", :size => "650x70", :alt => "Logo") %>
+            <%= image_tag("logo.jpg", :size => "500x70", :alt => "Logo") %>
           </h1>
         </div>
         <div id="header_right">
@@ -68,7 +68,12 @@
           <li><%= link_to I18n.t('site.contract_management'), contracts_path %></li>
           <li><%= link_to I18n.t('site.license_management'), licenses_path  %></li>
           <li><%= link_to I18n.t('site.archive_management'), archives_path %></li>
-          <li><%= link_to I18n.t('site.user_management'), users_path %></li>
+          <li><%= link_to I18n.t('site.user_management'), "#" %>
+            <ul>
+              <li><%= link_to I18n.t('site.user_roles'), users_path %></li>
+              <li><%= link_to I18n.t('site.role_management'), yc_roles_path %></li>
+            </ul>
+          </li>
           <li><%= link_to I18n.t('site.system_management'), "#" %>
             <ul>
               <li><%= link_to I18n.t('site.system_settings'), settings_path %></li>

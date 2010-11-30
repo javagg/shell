@@ -5,6 +5,7 @@ class Contract <  ActiveRecord::Base
 
   acts_as_expirable
   acts_as_attachable
+#  acts_as_manageable
 
   validates_presence_of :name
   has_many :payments, :dependent => :destroy
@@ -14,6 +15,7 @@ class Contract <  ActiveRecord::Base
   has_many :payment_remindings, :dependent => :destroy
   has_many :payment_remindees, :through => :payment_remindings, :source => 'user'
 
+#  has_many :yc_roles,  :through => :contract_permissions
   def next_payment_date(from = Date.today)
     payment_dates.find_all { |e| e > from }.min
   end

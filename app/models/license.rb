@@ -3,6 +3,7 @@ class License <  ActiveRecord::Base
 
   acts_as_expirable
   acts_as_attachable
+#  acts_as_manageable
   
   validates_presence_of :name
 

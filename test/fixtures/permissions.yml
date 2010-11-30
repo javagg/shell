@@ -10,12 +10,13 @@ one: {}
 two: {}
 #  column: value
 
+
 # == Schema Information
 #
 # Table name: permissions
 #
 #  id              :integer(4)      not null, primary key
-#  yc_roles_id     :integer(4)
+#  yc_role_id      :integer(4)
 #  manageable_id   :integer(4)
 #  manageable_type :string(255)
 #  can_read        :boolean(1)

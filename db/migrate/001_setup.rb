@@ -212,10 +212,31 @@ class Setup < ActiveRecord::Migration
     end
 
     create_table :permissions, :force => true do |t|
-      t.references :yc_roles
+      t.references :yc_role
       t.references :manageable, :polymorphic => true
       t.boolean :can_read
       t.boolean :can_write
+    end
+
+    create_table :archive_permissions, :force => true do |t|
+      t.references :yc_role
+      t.references :archive
+      t.boolean :can_read, :default => false
+      t.boolean :can_write, :default => false
+    end
+
+    create_table :license_permissions, :force => true do |t|
+      t.references :yc_role
+      t.references :license
+      t.boolean :can_read, :default => false
+      t.boolean :can_write, :default => false
+    end
+
+    create_table :contract_permissions, :force => true do |t|
+      t.references :yc_role
+      t.references :contract
+      t.boolean :can_read, :default => false
+      t.boolean :can_write, :default => false
     end
   end
   
@@ -239,6 +260,9 @@ class Setup < ActiveRecord::Migration
     drop_table :audits
     drop_table :yc_roles
     drop_table :permissions
+    drop_table :archive_permissions
+    drop_table :license_permissions
+    drop_table :contract_permissions
     drop_table :users_yc_roles
   end
 end
