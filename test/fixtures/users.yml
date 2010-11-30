@@ -9,6 +9,11 @@ one:
   username: alex
   email: lu.lee05@gmail.com
 
+two:
+  id: 2
+  username: alex_2
+  email: lu.lee07@gmail.com
+
 # == Schema Information
 #
 # Table name: users

@@ -160,6 +160,14 @@ ActiveRecord::Schema.define(:version => 1) do
     t.datetime "updated_at"
   end
 
+  create_table "permissions", :force => true do |t|
+    t.integer "yc_roles_id"
+    t.integer "manageable_id"
+    t.string  "manageable_type"
+    t.boolean "can_read"
+    t.boolean "can_write"
+  end
+
   create_table "reminding_periods", :force => true do |t|
     t.integer "reminder_id"
     t.string  "reminder_type"
@@ -220,5 +228,15 @@ ActiveRecord::Schema.define(:version => 1) do
 
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["username"], :name => "index_users_on_username"
+
+  create_table "users_yc_roles", :id => false, :force => true do |t|
+    t.integer "user_id",    :null => false
+    t.integer "yc_role_id", :null => false
+  end
+
+  create_table "yc_roles", :force => true do |t|
+    t.string "name"
+    t.string "description"
+  end
 
 end

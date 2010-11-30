@@ -13,6 +13,9 @@ class UserTest < ActiveSupport::TestCase
   should have_many(:archive_expiration_remindings)
 
   should have_many(:payment_remindings)
+
+  #  should belong_to(:yc_roles)
+  should have_and_belong_to_many(:yc_roles)
   
   context "A User instance" do
     setup do
@@ -44,6 +47,34 @@ class UserTest < ActiveSupport::TestCase
         @user.reject_expiration_remindings @user.contracts.first
         expiration_reminding = ExpirationReminding.find @user.contract_expiration_remindings.first.id
         assert expiration_reminding.remindee_rejected
+      end
+
+      should "has many yc_roles" do
+
+      end
+    end
+    context "user yc_role" do
+      setup do
+        @user1 = User.find(1)
+        @role1 = YcRole.find(1)
+        @user2 = User.find(2)
+        @role2 = YcRole.find(2)
+      end
+
+      should "has many yc_roles" do
+        @user1.yc_roles << @role1
+        @user1.yc_roles << @role2
+        @user2.yc_roles << @role1
+        @user2.yc_roles << @role2
+        assert_equal 2, @user1.yc_roles.size
+        assert_equal 'first_role', @user1.yc_roles[0].name
+        assert_equal 'second_role', @user1.yc_roles[1].name
+
+        assert_equal 'alex', @role1.users[0].username
+        assert_equal 'alex_2', @role1.users[1].username
+
+        assert_equal 'alex', @role2.users[0].username
+        assert_equal 'alex_2', @role2.users[1].username
       end
     end
   end

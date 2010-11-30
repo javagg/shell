@@ -1,0 +1,11 @@
+## YAML Template.
+---
+one:
+  id: 1
+  name: first_role
+  description: first_role
+
+two:
+  id: 2
+  name: second_role
+  description: second_role

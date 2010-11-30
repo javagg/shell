@@ -34,7 +34,7 @@ class Setup < ActiveRecord::Migration
     add_index :users, :email
 
     create_table :roles, :force => true do |t|
-      t.string :name, :null => false
+      t.string :name, :null => false, :uniq => true
       t.string :description
     end
 
@@ -199,7 +199,24 @@ class Setup < ActiveRecord::Migration
     add_index :audits, [:auditable_id, :auditable_type], :name => 'auditable_index'
     add_index :audits, [:auditable_parent_id, :auditable_parent_type], :name => 'auditable_parent_index'
     add_index :audits, [:user_id, :user_type], :name => 'user_index'
-    add_index :audits, :created_at  
+    add_index :audits, :created_at
+
+    create_table :yc_roles, :force => true do |t|
+      t.string :name, :uniq => true
+      t.string :description
+    end
+
+    create_table :users_yc_roles, :id => false, :force => true do |t|
+      t.references :user, :null => false
+      t.references :yc_role, :null => false
+    end
+
+    create_table :permissions, :force => true do |t|
+      t.references :yc_roles
+      t.references :manageable, :polymorphic => true
+      t.boolean :can_read
+      t.boolean :can_write
+    end
   end
   
   def self.down
@@ -220,5 +237,8 @@ class Setup < ActiveRecord::Migration
     drop_table :payment_periods
     drop_table :reminding_periods
     drop_table :audits
+    drop_table :yc_roles
+    drop_table :permissions
+    drop_table :users_yc_roles
   end
 end
