@@ -1,5 +1,5 @@
 class ContractsController < ApplicationController
-#  include Shell::Options
+  #  include Shell::Options
   uses_tiny_mce(:options => {:theme => 'advanced',
       :browsers => %w{msie gecko},
       :theme_advanced_toolbar_location => "top",
@@ -89,4 +89,9 @@ class ContractsController < ApplicationController
   def show_authorized?
     permitted_to? :show, :contracts
   end
+
+  def beginning_of_chain
+    active_scaffold_config.model.can_read2 current_user
+  end
+
 end

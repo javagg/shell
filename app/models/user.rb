@@ -39,9 +39,13 @@ class User < ActiveRecord::Base
   validates_presence_of   :email
   validates_format_of     :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 
+  named_scope :active, :conditions => { :active => true }
+  named_scope :recent, lambda { { :conditions => ['created_at > ?', 1.week.ago] } }
+
   has_and_belongs_to_many :roles
 
-  has_and_belongs_to_many :yc_roles
+  has_many :users_yc_roles, :class_name => 'UserYcRole'
+  has_many :yc_roles, :through => :users_yc_roles
 
   def has_role?(role)
     role_symbols.include?(role)

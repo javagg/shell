@@ -5,7 +5,7 @@ class Contract <  ActiveRecord::Base
 
   acts_as_expirable
   acts_as_attachable
-#  acts_as_manageable
+  #  acts_as_manageable
 
   validates_presence_of :name
   has_many :payments, :dependent => :destroy
@@ -16,12 +16,17 @@ class Contract <  ActiveRecord::Base
   has_many :payment_remindees, :through => :payment_remindings, :source => 'user'
 
 
-  named_scope :for_user, :joins => "contract_permissions"
-#  has_many :yc_roles,  :through => :contract_permissions
+  named_scope :can_read, :joins => :contract_permissions, :conditions => [ "can_read = ?", true ]
+  named_scope :can_read2, lambda { |user| { :joins => { :involved_yc_roles => :users_yc_roles },
+      :conditions => { :users_yc_roles => { :user_id => user.id} } } }
+
+  #  has_many :yc_roles,  :through => :contract_permissions
 
   has_many :contract_permissions
-  has_many :involved_yc_roles, :through => :contract_permissions, :source => 'yc_role'
-  
+  has_many :involved_yc_roles, :through => :contract_permissions, :source => :yc_role
+
+  #
+  #  has_many :involved_yc_roles
   def next_payment_date(from = Date.today)
     payment_dates.find_all { |e| e > from }.min
   end
@@ -61,6 +66,15 @@ class Contract <  ActiveRecord::Base
   def payment_reminding_days
     Settings.payment_reminding_days.to_i
   end
+
+  def users_having_permissions_on
+    involved_yc_roles.collect { |r| r.users }.flatten.uniq
+  end
+
+  def user_ids_having_permissions_on
+    users_having_permissions_on.collect { |u| u.id }
+  end
+  
 end
 
 # == Schema Information

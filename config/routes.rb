@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :user_yc_role, :active_scaffold => true
   map.resources :yc_roles, :active_scaffold => true
   map.resources :documents, :active_scaffold => true
   map.resources :contracts, :active_scaffold => true do |contract|

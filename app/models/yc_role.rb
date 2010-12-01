@@ -2,7 +2,9 @@ class YcRole < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  has_and_belongs_to_many :users
+  has_many :users_yc_roles, :dependent => :destroy, :class_name => 'UserYcRole'
+
+  has_many :users, :through => :users_yc_roles
   
   has_many :license_permissions
   has_many :archive_permissions

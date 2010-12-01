@@ -47,6 +47,7 @@ class ContractTest < ActiveSupport::TestCase
     end
 
     should "create a payment_remindngs" do
+      assert 'alex', @user.username
       @contract.payment_remindees << @user
     end
   end
@@ -68,12 +69,36 @@ class ContractTest < ActiveSupport::TestCase
       perm_3 = ContractPermission.new :contract => @contract_2, :can_read => true
       @role_1.contract_permissions << perm_3
       @role_1.save
+
+      user_1 = User.find 1
+      user_1.yc_roles << @role_1
+      user_1.yc_roles << @role_2
     end
 
     should "involed" do
       assert_equal 2, @contract_1.involved_yc_roles.size
       assert_equal 'first_role', @contract_1.involved_yc_roles.first.name
       assert_equal 'second_role', @contract_1.involved_yc_roles[1].name
+    end
+  end
+
+  context "" do
+    setup do
+      @role_1 = YcRole.find 1
+      @user_1 = User.find 1
+      @user_2 = User.find 2
+      @user_1.yc_roles << @role_1
+      @user_2.yc_roles << @role_1
+      @contract_1 = Contract.find(:first)
+      perm_1 = ContractPermission.new :contract => @contract_1, :can_read => true
+      @role_1.contract_permissions << perm_1
+      @role_1.save
+    end
+
+    should "contain 2 user" do
+      assert @contract_1.users_having_permissions_on.include?(@user_1)
+      assert @contract_1.users_having_permissions_on.include?(@user_2)
+      puts Contract.can_read2(@user_1)
     end
   end
 end
