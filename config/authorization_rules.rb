@@ -2,7 +2,7 @@ authorization do
   role :guest do
     has_permission_on :users, :to => [:index, :create, :show_search, :nested, :row]
     has_permission_on :users, :to => [:show, :update] do
-      if_attribute :id => is {user.id}    
+      if_attribute :id => is {user.id}
     end
   end
 
@@ -56,10 +56,6 @@ authorization do
   end
 
   role :admin do
-#    includes :archive_manage, :license_manage, :contract_manage
-#    has_permission_on :users, :to => :manage
-#    has_permission_on :settings, :to => :manage
-#    has_permission_on :audits, :to => :read
      has_omnipotence
   end
 end
@@ -68,7 +64,6 @@ privileges do
   # default privilege hierarchies to facilitate RESTful Rails apps
   privilege :manage, :includes => [:edit, :create, :read, :update, :delete, :edit_associated]
   privilege :read, :includes => [:index, :show_search, :nested, :show, :row, :mark]
-
   privilege :create, :includes => :new
   privilege :update, :includes => :edit
   privilege :delete, :includes => :destroy

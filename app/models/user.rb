@@ -99,4 +99,17 @@ class User < ActiveRecord::Base
   def authorized_for_update?
     return username != "admin"
   end
+
+
+  def can_read?(manageable)
+    can?(manageable, :read)
+  end
+
+  def can?(manageable, method)
+    can_method = 'can_'.concat(method.to_s).concat("?").to_sym
+    yc_roles.each do |role|
+      return true if role.send can_method, manageable
+    end
+    return false
+  end
 end

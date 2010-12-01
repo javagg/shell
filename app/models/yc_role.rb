@@ -7,6 +7,45 @@ class YcRole < ActiveRecord::Base
   has_many :license_permissions
   has_many :archive_permissions
   has_many :contract_permissions
+  
+  @@actions = [:read, :write]
+
+  #  def can_read?(manageable)
+  #    managealbe_class = manageable.class.to_s.downcase
+  #    managealbe_permissions_class = manageable.class.to_s.downcase.concat('_permissions').to_sym
+  #    permissions = self.send(managealbe_permissions_class)
+  #    permissions.each do |permission|
+  #      managealbe_id = permission.send(managealbe_class.concat('_id').to_sym)
+  #      if managealbe_id == manageable.id
+  #        return permission.can_read
+  #      end
+  #    end
+  #    return false
+  #  end
+
+  def can_read?(manageable)
+    can?(manageable, :read)
+  end
+
+  def can_write?(manageable)
+    can?(manageable, :write)
+  end
+  
+  def can?(manageable, method)
+    can_method = 'can_'.concat(method.to_s).to_sym
+
+    managealbe_class = manageable.class.to_s.downcase
+    managealbe_permissions_class = manageable.class.to_s.downcase.concat('_permissions').to_sym
+    permissions = self.send(managealbe_permissions_class)
+    permissions.each do |permission|
+      managealbe_id = permission.send(managealbe_class.concat('_id').to_sym)
+      if managealbe_id == manageable.id
+        return permission.send(can_method)
+      end
+    end
+    return false
+  end
+  
 end
 # == Schema Information
 #

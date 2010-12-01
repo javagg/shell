@@ -3,13 +3,33 @@ class Archive < ActiveRecord::Base
 
   acts_as_expirable
   acts_as_attachable
-#  acts_as_manageable
+  #  acts_as_manageable
 
   validates_presence_of :name
 
   def expiration_reminding_days
     Settings.expiration_reminding_days.to_i
   end
+
+#  def authorized_for_index?
+#    return false
+#  end
+#
+#  def authorized_for_delete?
+#    return false
+#  end
+#
+#  def authorized_for_update?
+#    return false
+#  end
+#
+#  def authorized_for_show?
+#    return false
+#  end
+#
+#  def authorized_for_create?
+#    return false
+#  end
 end
 
 

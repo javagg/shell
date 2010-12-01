@@ -77,6 +77,34 @@ class UserTest < ActiveSupport::TestCase
         assert_equal 'alex_2', @role2.users[1].username
       end
     end
+
+    context "Can user do this?" do
+      setup do
+        @user = User.find 1
+        @yc_role = YcRole.find(1)
+        @contract = Contract.find(1)
+      end
+      
+      should "return true if he is allowed" do
+        puts RAILS_ENV
+        @yc_role.contract_permissions.clear
+        assert !@yc_role.can_read?(@contract)
+
+        @yc_role.contract_permissions.clear
+        @user.yc_roles.clear
+        perm_1 = ContractPermission.new :contract => @contract, :can_read => true
+        @yc_role.contract_permissions << perm_1
+        @user.yc_roles << @yc_role
+        assert @user.can_read?(@contract)
+
+        @yc_role.contract_permissions.clear
+        @user.yc_roles.clear
+        perm_2 = ContractPermission.new :contract => @contract, :can_read => false
+        @yc_role.contract_permissions << perm_2
+        @user.yc_roles << @yc_role
+        assert !@user.can_read?(@contract)
+      end
+    end
   end
 end
 
