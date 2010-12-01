@@ -57,6 +57,7 @@ class ArchivesController < ApplicationController
 
   def list_authorized?
     return true if params[:id] == 1
+
 #    permitted_to? :index, :archives
   end
 

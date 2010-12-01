@@ -15,7 +15,13 @@ class Contract <  ActiveRecord::Base
   has_many :payment_remindings, :dependent => :destroy
   has_many :payment_remindees, :through => :payment_remindings, :source => 'user'
 
+
+  named_scope :for_user, :joins => "contract_permissions"
 #  has_many :yc_roles,  :through => :contract_permissions
+
+  has_many :contract_permissions
+  has_many :involved_yc_roles, :through => :contract_permissions, :source => 'yc_role'
+  
   def next_payment_date(from = Date.today)
     payment_dates.find_all { |e| e > from }.min
   end

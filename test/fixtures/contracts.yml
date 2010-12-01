@@ -6,11 +6,11 @@
 #
 one:
   id: 1
-  name: "contract_reminder"
+  name: "contract_1"
 
-two: {}
-#  column: value
-
+two:
+  id: 2
+  name: "contract_2"
 
 
 
