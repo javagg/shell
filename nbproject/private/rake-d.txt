@@ -60,6 +60,7 @@ doc\:plugins\:rails-settings=Generate documentation for the rails-settings plugi
 doc\:plugins\:recordselect=Generate documentation for the recordselect plugin
 doc\:plugins\:render_component=Generate documentation for the render_component plugin
 doc\:plugins\:rufus-scheduler=Generate documentation for the rufus-scheduler plugin
+doc\:plugins\:searchlogic=Generate documentation for the searchlogic plugin
 doc\:plugins\:shell=Generate documentation for the shell plugin
 doc\:plugins\:tiny_mce=Generate documentation for the tiny_mce plugin
 doc\:rails=Build the RDOC HTML Files

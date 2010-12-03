@@ -27,7 +27,9 @@ class User < ActiveRecord::Base
     :failed_login_count, :last_request_at, :current_login_at, :last_login_at, :current_login_ip,
     :last_login_ip
   ]
-  
+
+  attr_accessor
+
   acts_as_authentic
   acts_as_expiration_remindable
   acts_as_payment_remindable
