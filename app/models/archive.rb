@@ -3,7 +3,10 @@ class Archive < ActiveRecord::Base
 
   acts_as_expirable
   acts_as_attachable
-  #  acts_as_manageable
+
+  include Shell::Authorized
+  
+  acts_as_authorized self
 
   validates_presence_of :name
 
@@ -11,25 +14,25 @@ class Archive < ActiveRecord::Base
     Settings.expiration_reminding_days.to_i
   end
 
-#  def authorized_for_index?
-#    return false
-#  end
-#
-#  def authorized_for_delete?
-#    return false
-#  end
-#
-#  def authorized_for_update?
-#    return false
-#  end
-#
-#  def authorized_for_show?
-#    return false
-#  end
-#
-#  def authorized_for_create?
-#    return false
-#  end
+  #  def authorized_for_index?
+  #    return false
+  #  end
+  #
+  #  def authorized_for_delete?
+  #    return false
+  #  end
+  #
+  #  def authorized_for_update?
+  #    return false
+  #  end
+  #
+  #  def authorized_for_show?
+  #    return false
+  #  end
+  #
+  #  def authorized_for_create?
+  #    return false
+  #  end
 end
 
 

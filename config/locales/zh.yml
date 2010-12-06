@@ -542,9 +542,13 @@ zh:
 
     purchase: "购买"
     buying_and_selling: "购销"
+    contractor_agreement: "承揽"
     lease: "租赁"
     investigation: "勘察"
     construction_safety: "建安"
+    transportation: "运输"
+    storage: "仓储"
+    technology: "技术"
 
     confidential_high: "高"
     confidential_low: "低"

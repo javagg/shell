@@ -7,19 +7,6 @@ class ContractTest < ActiveSupport::TestCase
   should have_many(:payment_remindees)
   should have_many(:involved_yc_roles)
   
-  def test_payment_remind
-    #    a_will_pay = Contract.new(:name => "will_pay")
-    #    a_remindee = User.new(:username => 'remindee', :password => '12345',
-    #      :password_confirmation => '12345', :email => 'lu.lee05@gmail.com')
-    #    a_will_pay.save
-    #    a_will_pay.payment_periods.create(:start_date => "2010-11-1", :end_date => "2011-10-1",
-    #      :first_payment_date => "2010-11-25", :num_payments => 3)
-    #    a_will_pay.payment_remindees << a_remindee
-    #    Contract.check_payment
-    #    Contract.destroy a_will_pay.id
-    #    User.destroy a_remindee.id
-  end
-
   def test_payment_dates
     contract = Contract.new(:name => "payment_test")
     contract.save
@@ -28,15 +15,11 @@ class ContractTest < ActiveSupport::TestCase
 
     contract.payment_periods.create :start_date => '2010-6-1', :end_date => '2010-12-31',
       :first_payment_date => '2010/10/1', :num_payments => 5
-    #    puts contract.payment_dates
-    from = Date.today
-    #    puts contract.next_payment_date from
     Contract.destroy contract.id
   end
 
   def test_expiration
     contract = Contract.new :name => "test_contract", :end_date => "2010-10-11"
-    assert_not_nil contract
     assert contract.expired?
   end
 
@@ -82,7 +65,7 @@ class ContractTest < ActiveSupport::TestCase
     end
   end
 
-  context "" do
+  context "user ycrole" do
     setup do
       @role_1 = YcRole.find 1
       @user_1 = User.find 1
@@ -99,6 +82,14 @@ class ContractTest < ActiveSupport::TestCase
       assert @contract_1.users_having_permissions_on.include?(@user_1)
       assert @contract_1.users_having_permissions_on.include?(@user_2)
       puts Contract.can_read2(@user_1)
+    end
+  end
+
+  context "contract joins with" do
+    setup do
+      @contract_1 = Contract.find(1)
+      @contract_2 = Contract.find(2)
+      puts
     end
   end
 end

@@ -56,9 +56,7 @@ class ArchivesController < ApplicationController
   end
 
   def list_authorized?
-    return true if params[:id] == 1
-
-#    permitted_to? :index, :archives
+    permitted_to? :index, :archives
   end
 
   def show_authorized?
@@ -70,5 +68,13 @@ class ArchivesController < ApplicationController
     #    log = Log.create(:description => "Deleted prospect #{record.name}", :created_by => current_user.name)
     #    log.save
     super
+  end  
+  
+  def beginning_of_chain
+    if current_user.is_admin?
+      active_scaffold_config.model
+    else
+    active_scaffold_config.model.readable2_by_user current_user
+    end
   end
 end

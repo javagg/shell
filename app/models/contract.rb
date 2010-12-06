@@ -18,9 +18,7 @@ class Contract <  ActiveRecord::Base
 
   named_scope :can_read, :joins => :contract_permissions, :conditions => [ "can_read = ?", true ]
   named_scope :can_read2, lambda { |user| { :joins => { :involved_yc_roles => :users_yc_roles },
-      :conditions => { :users_yc_roles => { :user_id => user.id} } } }
-
-  #  has_many :yc_roles,  :through => :contract_permissions
+      :conditions => {  :contract_permissions => { :can_read => true }, :users_yc_roles => { :user_id => user.id} } } }
 
   has_many :contract_permissions
   has_many :involved_yc_roles, :through => :contract_permissions, :source => :yc_role

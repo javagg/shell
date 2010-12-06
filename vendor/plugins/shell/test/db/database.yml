@@ -1,0 +1,10 @@
+sqlite:
+  adapter: sqlite
+  database: shell_plugin_test.db
+  
+mysql:
+  adapter: mysql
+  host: localhost
+  username: root
+  password:
+  database: shell_plugin_test

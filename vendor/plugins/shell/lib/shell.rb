@@ -17,7 +17,9 @@ module Shell
     end
     
     def self.stamp_tax_type_options
-      [ I18n.t('txt.buying_and_selling'), I18n.t('txt.lease'), I18n.t('txt.investigation'),  I18n.t('txt.construction_safety') ].map(&:to_sym)
+      [ I18n.t('txt.buying_and_selling'), I18n.t('txt.lease'), I18n.t('txt.investigation'), 
+        I18n.t('txt.construction_safety'), I18n.t('contractor_agreement'),
+        I18n.t('transportation'), I18n.t('storage'), I18n.t('technology') ].map(&:to_sym)
     end
 
     def self.contract_type_options
@@ -28,12 +30,64 @@ module Shell
       [ I18n.t('txt.purchase'), I18n.t('txt.lease') ].map(&:to_sym)
     end
   end
+  
+  module Authorized
+    def self.included(base)
+      base.class_eval do
+        include InstanceMethods
+        extend ClassMethods
+      end
+    end
+    
+    module ClassMethods
+      def acts_as_authorized(model)
+        model_name = model.name.downcase
+        permissions = "#{model_name}_permissions".to_sym
+
+        has_many "#{model_name}_permissions".to_sym
+        has_many :involved_yc_roles, :through => permissions, :source => :yc_role
+
+        named_scope :readable_by_user, lambda { |user| {
+            :joins => { :involved_yc_roles => :users_yc_roles },
+            :conditions =>  "#{permissions}.can_read = true OR #{permissions}.can_write = true and users_yc_roles.user_id = #{user.id}"
+#              permissions =>{ :can_read => true, :can_write => false },
+#              :involved_yc_roles => { :users_yc_roles => { :user_id => user.id } }
+         
+#             }
+          }
+        }
+
+        named_scope :readable2_by_user, lambda { |user| {
+            :joins => "INNER JOIN #{permissions} ON #{permissions}.#{model_name}_id = #{model_name.pluralize}.id " +
+              "INNER JOIN users_yc_roles ON #{permissions}.yc_role_id = users_yc_roles.yc_role_id ",
+            :conditions => "(#{permissions}.can_read = true OR #{permissions}.can_write = true) and users_yc_roles.user_id = #{user.id}"
+          }
+        }
+
+        named_scope :writeable_by_user, lambda { |user| {
+            :joins => { :involved_yc_roles => :users_yc_roles },
+            :conditions => { permissions => { :can_write => true },
+              :involved_yc_roles => { :users_yc_roles => { :user_id => user.id } }
+            }
+          }
+        }
+      end
+    end
+    
+    module InstanceMethods
+      def users_having_permissions_on
+        involved_yc_roles.collect { |r| r.users }.flatten.uniq
+      end   
+    end
+  end
+  
   module Manageable
     def self.included(base)
       base.class_eval do
         include InstanceMethods
         extend ClassMethods
       end
+
     end
     
     module ClassMethods
