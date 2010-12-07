@@ -6,57 +6,57 @@ authorization do
     end
   end
 
-  role :attachment_view do
-    has_permission_on :attachments, :to => :read
-  end
-  
-  role :attachment_manage do
-    includes :attachment_view
-    has_permission_on :attachments, :to => :manage
-  end
+  #  role :attachment_view do
+  #    has_permission_on :attachments, :to => :read
+  #  end
+  #
+  #  role :attachment_manage do
+  #    includes :attachment_view
+  #    has_permission_on :attachments, :to => :manage
+  #  end
 
   role :user do
     includes :guest
   end
 
-  role :archive_view do
-    includes :user
-    includes :attachment_view
-    has_permission_on :archives, :to => :read
-  end
-
-  role :archive_manage do
-    includes :archive_view
-    includes :attachment_manage
-    has_permission_on :archives, :to => :manage
-  end
-
-  role :license_view do
-    includes :user
-    includes :attachment_view
-    has_permission_on :licenses, :to => :read
-  end
-
-  role :license_manage do
-    includes :license_view
-    includes :attachment_manage
-    has_permission_on :licenses, :to => :manage
-  end
-
-  role :contract_view do
-    includes :user
-    includes :attachment_view
-    has_permission_on :contracts, :to => :read
-  end
-
-  role :contract_manage do
-    includes :contract_view
-    includes :attachment_manage
-    has_permission_on :contracts, :to => :manage
-  end
+  #  role :archive_view do
+  #    includes :user
+  #    includes :attachment_view
+  #    has_permission_on :archives, :to => :read
+  #  end
+  #
+  #  role :archive_manage do
+  #    includes :archive_view
+  #    includes :attachment_manage
+  #    has_permission_on :archives, :to => :manage
+  #  end
+  #
+  #  role :license_view do
+  #    includes :user
+  #    includes :attachment_view
+  #    has_permission_on :licenses, :to => :read
+  #  end
+  #
+  #  role :license_manage do
+  #    includes :license_view
+  #    includes :attachment_manage
+  #    has_permission_on :licenses, :to => :manage
+  #  end
+  #
+  #  role :contract_view do
+  #    includes :user
+  #    includes :attachment_view
+  #    has_permission_on :contracts, :to => :read
+  #  end
+  #
+  #  role :contract_manage do
+  #    includes :contract_view
+  #    includes :attachment_manage
+  #    has_permission_on :contracts, :to => :manage
+  #  end
 
   role :admin do
-     has_omnipotence
+    has_omnipotence
   end
 end
 

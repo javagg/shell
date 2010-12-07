@@ -40,74 +40,108 @@ module Shell
     end
     
     module ClassMethods
-      def acts_as_authorized(model)
-        model_name = model.name.downcase
-        permissions = "#{model_name}_permissions".to_sym
-
-        has_many "#{model_name}_permissions".to_sym
-        has_many :involved_yc_roles, :through => permissions, :source => :yc_role
+      def acts_as_authorized
+        has_many permissions.to_sym
+        has_many :involved_ycroles, :through => permissions.to_sym, :source => :ycrole
 
         named_scope :readable_by_user, lambda { |user| {
-            :joins => { :involved_yc_roles => :users_yc_roles },
-            :conditions =>  "#{permissions}.can_read = true OR #{permissions}.can_write = true and users_yc_roles.user_id = #{user.id}"
-#              permissions =>{ :can_read => true, :can_write => false },
-#              :involved_yc_roles => { :users_yc_roles => { :user_id => user.id } }
-         
-#             }
+            :joins => { :involved_ycroles => :user_ycroles },
+            :conditions =>  "#{permissions}.can_read = true OR #{permissions}.can_write = true and user_ycroles.user_id = #{user.id}"
           }
         }
 
         named_scope :readable2_by_user, lambda { |user| {
-            :joins => "INNER JOIN #{permissions} ON #{permissions}.#{model_name}_id = #{model_name.pluralize}.id " +
-              "INNER JOIN users_yc_roles ON #{permissions}.yc_role_id = users_yc_roles.yc_role_id ",
-            :conditions => "(#{permissions}.can_read = true OR #{permissions}.can_write = true) and users_yc_roles.user_id = #{user.id}"
+            :joins => "INNER JOIN #{permissions} ON #{permissions}.#{model}_id = #{models}.id " +
+              "INNER JOIN user_ycroles ON #{permissions}.ycrole_id = user_ycroles.ycrole_id ",
+            :conditions => "(#{permissions}.can_read = true OR #{permissions}.can_write = true) and user_ycroles.user_id = #{user.id}"
           }
         }
 
         named_scope :writeable_by_user, lambda { |user| {
-            :joins => { :involved_yc_roles => :users_yc_roles },
-            :conditions => { permissions => { :can_write => true },
-              :involved_yc_roles => { :users_yc_roles => { :user_id => user.id } }
+            :joins => { :involved_ycroles => :user_ycroles },
+            :conditions => { permissions.to_sym => { :can_write => true },
+              :involved_ycroles => { :user_ycroles => { :user_id => user.id } }
             }
           }
         }
+      end
+
+      def can_read_by_user?(user, id)
+        found = self.find(:first,
+          :joins => { :involved_ycroles => :user_ycroles },
+          :conditions => { models.to_sym => {:id => id }, permissions.to_sym => { :can_read => true },
+            :involved_ycroles => { :user_ycroles => { :user_id => user.id }}}
+        )
+
+        return true if found
+        return false
+      end
+
+      def can_write_by_user?(user, id)
+        found = self.find(:first,
+          :joins => { :involved_ycroles => :user_ycroles },
+          :conditions => { models.to_sym => {:id => id }, permissions.to_sym => { :can_write => true },
+            :involved_ycroles => { :user_ycroles => { :user_id => user.id }}}
+        )
+
+        return true if found
+        return false
+      end
+
+      def can_create_by_user?(user)
+        return user.is_admin?
+      end
+     
+      def authorized_for_create?
+        can_create_by_user?(current_user)
+      end
+
+      private
+
+      def model
+        self.to_s.downcase
+      end
+
+      def models
+        model.pluralize
+      end
+
+      def models
+        model.pluralize
+      end
+
+      def permissions
+        "#{model}_permissions"
       end
     end
     
     module InstanceMethods
       def users_having_permissions_on
-        involved_yc_roles.collect { |r| r.users }.flatten.uniq
-      end   
+        involved_ycroles.collect { |r| r.users }.flatten.uniq
+      end
+
+      def can_read_by_user?(user)
+        self.class.can_read_by_user?(user, self.id)
+      end
+
+      def can_write_by_user?(user)
+        self.class.can_write_by_user?(user, self.id)
+      end
+
+      def authorized_for_read?
+        return can_read_by_user?(current_user)
+      end
+      #
+      def authorized_for_update?
+        return can_write_by_user?(current_user)
+      end
+      
+      def authorized_for_delete?
+        return can_write_by_user?(current_user)
+      end
     end
   end
   
-  module Manageable
-    def self.included(base)
-      base.class_eval do
-        include InstanceMethods
-        extend ClassMethods
-      end
-
-    end
-    
-    module ClassMethods
-      # redefine it to get rid of the annoying depreciation messages
-      def returning(value)
-        yield(value)
-        value
-      end
-      
-      def acts_as_manageable
-        has_many :permissions, :as => :manageable, :dependent => :destroy
-        has_many :yc_roles, :through => :permissions
-      end
-    end
-
-    module InstanceMethods
-       
-    end
-  end
-
   module Expirable
     def self.included(base)
       base.class_eval do
@@ -202,10 +236,6 @@ module Shell
           reminding.update_attributes(:remindee_rejected => true)
         end
       end
-
-      def is_reminded_of?(contract)
-        true
-      end
     end
   end
 
@@ -241,10 +271,6 @@ module Shell
         remindings.each do |reminding|
           reminding.update_attributes(:remindee_rejected => true)
         end
-      end
-
-      def is_reminded_of?(reminder)
-        
       end
     end
   end

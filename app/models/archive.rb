@@ -5,34 +5,14 @@ class Archive < ActiveRecord::Base
   acts_as_attachable
 
   include Shell::Authorized
-  
-  acts_as_authorized self
+  acts_as_authorized
 
   validates_presence_of :name
+  validates_uniqueness_of :name
 
   def expiration_reminding_days
     Settings.expiration_reminding_days.to_i
   end
-
-  #  def authorized_for_index?
-  #    return false
-  #  end
-  #
-  #  def authorized_for_delete?
-  #    return false
-  #  end
-  #
-  #  def authorized_for_update?
-  #    return false
-  #  end
-  #
-  #  def authorized_for_show?
-  #    return false
-  #  end
-  #
-  #  def authorized_for_create?
-  #    return false
-  #  end
 end
 
 

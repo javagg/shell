@@ -1,8 +1,5 @@
 class ArchivesController < ApplicationController
   before_filter :require_user
-
-  filter_access_to :all
-
   active_scaffold :archives do |config|
     # for uploading file
     config.create.multipart = true
@@ -18,7 +15,6 @@ class ArchivesController < ApplicationController
     config.nested.add_link I18n.t('document.show_attachments'), :attachments
 
     config.columns[:issue_dep].form_ui = :select
-    config.columns[:issue_dep].search_ui = :multi_select
     config.columns[:issue_dep].options = { :include_blank => I18n.t('txt.please_choose'),
       :options => Shell::Options::department_options }
 
@@ -43,38 +39,14 @@ class ArchivesController < ApplicationController
     config.list.sorting = [{:number => :asc}, {:issue_dep => :asc}]
   end
 
-  def delete_authorized?
-    permitted_to? :delete, :archives
-  end
-
-  def create_authorized?
-    permitted_to? :create, :archives
-  end
-
-  def update_authorized?
-    permitted_to? :update, :archives
-  end
-
-  def list_authorized?
-    permitted_to? :index, :archives
-  end
-
-  def show_authorized?
-    permitted_to? :show, :archives
-  end
-
-  def do_destroy
-    record = Archive.find_by_id(params[:id])
-    #    log = Log.create(:description => "Deleted prospect #{record.name}", :created_by => current_user.name)
-    #    log.save
-    super
-  end  
-  
-  def beginning_of_chain
-    if current_user.is_admin?
-      active_scaffold_config.model
-    else
-    active_scaffold_config.model.readable2_by_user current_user
-    end
-  end
+#   def beginning_of_chain
+#    #    if current_user.is_admin?
+#    #      active_scaffold_config.model
+#    #    else
+#   if params[:action] == "index"
+#      active_scaffold_config.model.readable2_by_user current_user
+#    else
+#      active_scaffold_config.model
+#    end
+#  end
 end

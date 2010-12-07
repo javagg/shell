@@ -1,10 +1,10 @@
-class YcRole < ActiveRecord::Base
+class Ycrole < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  has_many :users_yc_roles, :dependent => :destroy, :class_name => 'UserYcRole'
+  has_many :user_ycroles, :dependent => :destroy
 
-  has_many :users, :through => :users_yc_roles
+  has_many :users, :through => :user_ycroles
   
   has_many :license_permissions
   has_many :archive_permissions
@@ -47,11 +47,11 @@ class YcRole < ActiveRecord::Base
     end
     return false
   end
-  
 end
+
 # == Schema Information
 #
-# Table name: yc_roles
+# Table name: ycroles
 #
 #  id          :integer(4)      not null, primary key
 #  name        :string(255)

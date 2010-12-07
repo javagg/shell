@@ -1,11 +1,11 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class YcRoleTest < ActiveSupport::TestCase
+class YcroleTest < ActiveSupport::TestCase
   #
   #  should have_many :permissions
-  context "A YcRole instance" do
+  context "A Ycrole instance" do
     setup do
-      @yc_role = YcRole.find(1)
+      @ycrole = Ycrole.find(1)
       @contract = Contract.find(1)
     end
 
@@ -27,23 +27,24 @@ class YcRoleTest < ActiveSupport::TestCase
     #      assert expiration_reminding.remindee_rejected
     #    end
     should "can_read" do
-      @yc_role.contract_permissions.clear
-      assert !@yc_role.can_read?(@contract)
+      @ycrole.contract_permissions.clear
+      assert !@ycrole.can_read?(@contract)
       
       perm_1 = ContractPermission.new :contract => @contract, :can_read => true
-      @yc_role.contract_permissions << perm_1
-      assert @yc_role.can_read?(@contract)
+      @ycrole.contract_permissions << perm_1
+      assert @ycrole.can_read?(@contract)
 
-      @yc_role.contract_permissions.clear
+      @ycrole.contract_permissions.clear
       perm_2 = ContractPermission.new :contract => @contract, :can_read => false
-      @yc_role.contract_permissions << perm_2
-      assert !@yc_role.can_read?(@contract)
+      @ycrole.contract_permissions << perm_2
+      assert !@ycrole.can_read?(@contract)
     end
   end
 end
+
 # == Schema Information
 #
-# Table name: yc_roles
+# Table name: ycroles
 #
 #  id          :integer(4)      not null, primary key
 #  name        :string(255)

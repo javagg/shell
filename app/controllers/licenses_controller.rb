@@ -31,28 +31,28 @@ class LicensesController < ApplicationController
     config.actions.exclude :search
     config.actions << :field_search
   end
-
-  def delete_authorized?
-    permitted_to? :delete, :licenses
-  end
-
-  def create_authorized?
-    permitted_to? :create, :licenses
-  end
-
-  def update_authorized?
-    permitted_to? :update, :licenses
-  end
-  
-  def list_authorized?
-    permitted_to? :index, :licenses
-  end
-
-  def show_authorized?
-    permitted_to? :show, :licenses
-  end
-
-  def download
-    
-  end
+#
+#  def delete_authorized?
+#    permitted_to? :delete, :licenses
+#  end
+#
+#  def create_authorized?
+#    permitted_to? :create, :licenses
+#  end
+#
+#  def update_authorized?
+#    permitted_to? :update, :licenses
+#  end
+#
+#  def list_authorized?
+#    permitted_to? :index, :licenses
+#  end
+#
+#  def show_authorized?
+#    permitted_to? :show, :licenses
+#  end
+#
+#  def download
+#
+#  end
 end

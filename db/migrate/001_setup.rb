@@ -201,39 +201,39 @@ class Setup < ActiveRecord::Migration
     add_index :audits, [:user_id, :user_type], :name => 'user_index'
     add_index :audits, :created_at
 
-    create_table :yc_roles, :force => true do |t|
+    create_table :ycroles, :force => true do |t|
       t.string :name, :uniq => true
       t.string :description
     end
 
-    create_table :users_yc_roles, :id => false, :force => true do |t|
+    create_table :user_ycroles, :id => false, :force => true do |t|
       t.references :user, :null => false
-      t.references :yc_role, :null => false
+      t.references :ycrole, :null => false
     end
 
     create_table :permissions, :force => true do |t|
-      t.references :yc_role
+      t.references :ycrole
       t.references :manageable, :polymorphic => true
       t.boolean :can_read
       t.boolean :can_write
     end
 
     create_table :archive_permissions, :force => true do |t|
-      t.references :yc_role
+      t.references :ycrole
       t.references :archive
       t.boolean :can_read, :default => false
       t.boolean :can_write, :default => false
     end
 
     create_table :license_permissions, :force => true do |t|
-      t.references :yc_role
+      t.references :ycrole
       t.references :license
       t.boolean :can_read, :default => false
       t.boolean :can_write, :default => false
     end
 
     create_table :contract_permissions, :force => true do |t|
-      t.references :yc_role
+      t.references :ycrole
       t.references :contract
       t.boolean :can_read, :default => false
       t.boolean :can_write, :default => false
@@ -258,11 +258,11 @@ class Setup < ActiveRecord::Migration
     drop_table :payment_periods
     drop_table :reminding_periods
     drop_table :audits
-    drop_table :yc_roles
+    drop_table :ycroles
     drop_table :permissions
     drop_table :archive_permissions
     drop_table :license_permissions
     drop_table :contract_permissions
-    drop_table :users_yc_roles
+    drop_table :users_ycroles
   end
 end

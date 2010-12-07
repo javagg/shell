@@ -1,6 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :user_yc_role, :active_scaffold => true
-  map.resources :yc_roles, :active_scaffold => true
+  map.resources :user_ycroles, :active_scaffold => true
+  map.resources :ycroles, :active_scaffold => true
   map.resources :documents, :active_scaffold => true
   map.resources :contracts, :active_scaffold => true do |contract|
     contract.resources :payments
@@ -29,7 +29,6 @@ ActionController::Routing::Routes.draw do |map|
     user.resources :payment_remindings, :active_scaffold => true
   end
 
-  #  map.resources :audits,
   map.resources :audits, :collection => { :empty => :get}, :active_scaffold => true
   
   map.resources :roles, :collection => {:browse => :get}, :member => {:select => :post}

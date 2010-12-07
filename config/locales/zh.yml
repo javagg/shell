@@ -226,7 +226,7 @@ zh:
         one: "用户操作日志"
         other: "用户操作日志"
 
-      yc_role:
+      ycrole:
         one: "角色"
         other: "角色"
 
@@ -405,7 +405,7 @@ zh:
         user: "用户"
         contract: "发送提醒的合同"
 
-      yc_role:
+      ycrole:
         name: "角色名称"
         contract_permissions: "合同权限"
         license_permissions: "证照权限"
@@ -568,7 +568,7 @@ zh:
     archive_management: "文档管理"
     user_management: "用户管理"
     user_roles: "用户权限"
-    user_yc_role: "角色分配"
+    user_ycrole: "角色分配"
     role_management: "角色定义"
     system_management: "系统管理"
     system_settings: "系统设置"

@@ -3,14 +3,16 @@ class License <  ActiveRecord::Base
 
   acts_as_expirable
   acts_as_attachable
-#  acts_as_manageable
+
+#  include Shell::Authorized
+#  acts_as_authorized
   
   validates_presence_of :name
+  validates_uniqueness_of :name
 
   def expiration_reminding_days
     Settings.expiration_reminding_days.to_i
   end
-  
 end
 
 

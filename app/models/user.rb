@@ -46,8 +46,8 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles
 
-  has_many :users_yc_roles, :class_name => 'UserYcRole'
-  has_many :yc_roles, :through => :users_yc_roles
+  has_many :user_ycroles
+  has_many :ycroles, :through => :user_ycroles
 
   def has_role?(role)
     role_symbols.include?(role)

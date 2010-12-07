@@ -5,7 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title><%= @page_title %></title>
     <%= javascript_include_tag :defaults %>
-    <%= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.6.custom.min', 'jquery.boxy' %>
+    <%= javascript_include_tag 'droplicious' %>
+<%#= javascript_include_tag 'jquery-1.4.2.min', 'jquery-ui-1.8.6.custom.min', 'jquery.boxy' %>
     <%= active_scaffold_includes %>
     <%= stylesheet_link_tag 'active_scaffold_overrides' %>
     <%= record_select_includes %>
@@ -15,68 +16,52 @@
     <%= stylesheet_link_tag 'superfish' %>
     <%= javascript_include_tag 'superfish' %>
     <script type="text/javascript" >
-      var $j = jQuery.noConflict();
-      $j('#ul.sf-menu').superfish();
+<%#*var $j = jQuery.noConflict();%>
+<%#*$j('document').ready(function(){%>
+<%#*$j('#ul.sf-menu').superfish();%>
+<%#*}%>
     </script>
     <%= stylesheet_link_tag 'application' %>
   </head>
   <body>
     <div id="page-container">
       <div id="header">
-
-        <div id="logo">
-          <h1>
-            <%= image_tag("logo.jpg", :size => "500x60", :alt => "Logo") %>
-          </h1>
-        </div>
-        <div id="header_right">
-
-<%#*<div id="lang_chooser"><span><p>%>
-<%# form_tag '' do %>
-<%#= I18n.t('site.choose_lang') %>
-<%#= select_tag("locale", options_for_select(LOCALES_AVAILABLE, I18n.locale), { :onchange => 'this.form.submit()'}) %>
-<%#= javascript_tag "$$('.locale input').each(Element.hide)"%>
-<%# end %>
-<%#*</p></span></div>%>
-          <br/>
-<%#*<div id="searchbox">%>
-<%# form_tag '' do %>
-<%# text_field_tag 'search', '', :class => "textfield searchtip", :size => 24 %>
-<%# submit_tag nil, :class =>'button' %>
-<%# end %>
-<%#*</div>%>
-
-          <br/>
-          <div id="user_status">
-            <% if current_user %>
-              <%= current_user.username %> |
-              <%= link_to_unless_current I18n.t('user.my_payment_reminders'), user_payment_remindings_path(current_user) %> |
-              <%= link_to_unless_current I18n.t('user.my_expiration_reminders'), user_expiration_remindings_path(current_user) %> |
-              <%= link_to_unless_current I18n.t('user.my_account'), account_path(current_user) %>  |
-              <%= link_to_unless_current I18n.t('user.logout'), user_session_path, :method => :delete %>
-            <% else -%>
-              <%= link_to_unless_current I18n.t('user.register'), new_account_path %>  |
-              <%= link_to_unless_current I18n.t('user.login'), new_user_session_path %>
-            <% end -%>
+        <div id="header_top">
+          <div id="logo"><h1><%= image_tag("logo.jpg", :size => "500x60", :alt => "Logo") %></h1></div>
+          <div id="header_right">
+            <br/><br/>
+            <div id="user_status">
+              <% if current_user %>
+                <%= current_user.username %> |
+                <%= link_to_unless_current I18n.t('user.my_payment_reminders'), user_payment_remindings_path(current_user) %> |
+                <%= link_to_unless_current I18n.t('user.my_expiration_reminders'), user_expiration_remindings_path(current_user) %> |
+                <%= link_to_unless_current I18n.t('user.my_account'), account_path(current_user) %>  |
+                <%= link_to_unless_current I18n.t('user.logout'), user_session_path, :method => :delete %>
+              <% else -%>
+                <%= link_to_unless_current I18n.t('user.register'), new_account_path %>  |
+                <%= link_to_unless_current I18n.t('user.login'), new_user_session_path %>
+              <% end -%>
+            </div>
           </div>
         </div>
-
       </div>
-      <div id="nav">
-        <ul class="sf-menu">
-          <li class="current"><%= link_to I18n.t('site.home'), home_path %></li>
+       <div id="nav">
+        <ul>
+          <li><%= link_to I18n.t('site.home'), home_path %></li>
           <li><%= link_to I18n.t('site.contract_management'), contracts_path %></li>
           <li><%= link_to I18n.t('site.license_management'), licenses_path  %></li>
           <li><%= link_to I18n.t('site.archive_management'), archives_path %></li>
-          <li><%= link_to I18n.t('site.user_management'), "#" %>
-            <ul>
+          <li>
+            <%= link_to I18n.t('site.user_management'), "#",:class => 'drops' %>
+            <ul class="licious" style="display:none;">
               <li><%= link_to I18n.t('site.user_roles'), users_path %></li>
-              <li><%= link_to I18n.t('site.user_yc_role'), user_yc_role_index_path %></li>
-              <li><%= link_to I18n.t('site.role_management'), yc_roles_path %></li>
+              <li><%= link_to I18n.t('site.user_ycrole'), user_ycroles_path %></li>
+              <li><%= link_to I18n.t('site.role_management'), ycroles_path %></li>
             </ul>
           </li>
-          <li><%= link_to I18n.t('site.system_management'), "#" %>
-            <ul>
+          <li>
+            <%= link_to I18n.t('site.system_management'), "#", :class => "drops" %>
+            <ul class="licious" style="display:none;">
               <li><%= link_to I18n.t('site.system_settings'), settings_path %></li>
               <li><%= link_to I18n.t('site.system_logs'), audits_path %></li>
             </ul>
@@ -84,31 +69,9 @@
           <li><%= link_to I18n.t('site.contact'), contact_path %></li>
           <li><%= link_to I18n.t('site.about'), about_path %></li>
           <li><%= link_to I18n.t('site.help'), help_path %></li>
-        </ul><p>&nbsp;</p>
+        </ul>
       </div>
-<%#*<div id="nav">%>
-
-<%#*</div>%>
-
-<%#*<div id="sidebar">%>
-<%#*<div style="margin:0 4px; background:#B0BEC7; height:1px; overflow:hidden;"></div>%>
-<%#*<div style="margin:0 2px; border:1px solid #B0BEC7; border-width:0 2px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
-<%#*<div style="margin:0 1px; border:1px solid #B0BEC7; border-width:0 1px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
-<%#*<div style="margin:0 1px; border:1px solid #B0BEC7; border-width:0 1px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
-<%#*<div style="background:#E1E7E9; border:1px solid #B0BEC7; border-width:0 1px;">%>
-<%#*<div id="sidebar_header" style="font-size:12px; font-weight:bolder; font-family:Verdana; color:#258; padding:2px 10px 5px;">%>
-<%#*Cascading Style Sheets%>
-<%#*</div>%>
-<%#*<div id="sidebar_content" style="background:#FFF; margin:0 3px; font-size:11px; font-family:Verdana; color:#333; padding:5px 10px; overflow:hidden;">%>
-<%#*Cascading Style Sheets (CSS) is a simple mechanism for adding style (e.g. fonts, colors, spacing) to Web documents. Tutorials, books, mailing lists for users, etc.%>
-<%#*</div>%>
-<%#*</div>%>
-<%#*<div style="margin:0 1px; border:1px solid #B0BEC7; border-width:0 1px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
-<%#*<div style="margin:0 1px; border:1px solid #B0BEC7; border-width:0 2px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
-<%#*<div style="margin:0 2px; border:1px solid #B0BEC7; border-width:0 2px; background:#E1E7E9; height:1px; overflow:hidden;"></div>%>
-<%#*<div style="margin:0 4px; background:#B0BEC7; height:1px; overflow:hidden;"></div>%>
-<%#*</div>%>
-      <p>&nbsp;</p>
+      <div>&nbsp;</div>
       <div id="content">
         <% if flash[:notice] -%>
           <div id="flash_notice"><%= flash[:notice] %></div>

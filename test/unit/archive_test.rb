@@ -18,15 +18,15 @@ class ArchiveTest < ActiveSupport::TestCase
 
   context "acts as authorized" do
     should have_many :archive_permissions
-    should have_many :involved_yc_roles
+    should have_many :involved_ycroles
     setup do
-      @role_1 = YcRole.find 1
+      @role_1 = Ycrole.find 1
       @user_1 = User.find 1
       @user_2 = User.find 2
-      @user_1.yc_roles << @role_1
-      @user_2.yc_roles << @role_1
+      @user_1.ycroles << @role_1
+      @user_2.ycroles << @role_1
       @archive_1 = Archive.find(:first)
-      perm_1 = ArchivePermission.new :archive => @archive_1, :can_write => true
+      perm_1 = ArchivePermission.new :archive => @archive_1, :can_read => true
       @role_1.archive_permissions << perm_1
     end
 
@@ -34,7 +34,9 @@ class ArchiveTest < ActiveSupport::TestCase
       assert @archive_1.users_having_permissions_on.include?(@user_1)
       assert @archive_1.users_having_permissions_on.include?(@user_2)
       puts  Archive.readable2_by_user(@user_1)
-#      puts  Archive.writeable_by_user(@user_1)
+
+      assert Archive.can_read_by_user?(@user_2, @archive_1)
+      assert @archive_1.can_read_by_user?(@user_2)
     end
   end
 end

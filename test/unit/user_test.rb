@@ -14,8 +14,8 @@ class UserTest < ActiveSupport::TestCase
 
   should have_many(:payment_remindings)
 
-  should have_many(:users_yc_roles)
-  should have_many(:yc_roles)
+  should have_many(:user_ycroles)
+  should have_many(:ycroles)
   
   context "A User instance" do
     setup do

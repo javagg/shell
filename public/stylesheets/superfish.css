@@ -4,9 +4,8 @@
 	margin:			0;
 	padding:		0;
 	list-style:		none;
-        z-index: 9999999
+        z-index:999999;
 }
-
 .sf-menu {
 	line-height:	1.0;
 }

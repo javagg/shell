@@ -12,7 +12,7 @@
 ActiveRecord::Schema.define(:version => 1) do
 
   create_table "archive_permissions", :force => true do |t|
-    t.integer "yc_role_id"
+    t.integer "ycrole_id"
     t.integer "archive_id"
     t.boolean "can_read",   :default => false
     t.boolean "can_write",  :default => false
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(:version => 1) do
   add_index "audits", ["user_id", "user_type"], :name => "user_index"
 
   create_table "contract_permissions", :force => true do |t|
-    t.integer "yc_role_id"
+    t.integer "ycrole_id"
     t.integer "contract_id"
     t.boolean "can_read",    :default => false
     t.boolean "can_write",   :default => false
@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(:version => 1) do
   end
 
   create_table "license_permissions", :force => true do |t|
-    t.integer "yc_role_id"
+    t.integer "ycrole_id"
     t.integer "license_id"
     t.boolean "can_read",   :default => false
     t.boolean "can_write",  :default => false
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(:version => 1) do
   end
 
   create_table "permissions", :force => true do |t|
-    t.integer "yc_role_id"
+    t.integer "ycrole_id"
     t.integer "manageable_id"
     t.string  "manageable_type"
     t.boolean "can_read"
@@ -227,6 +227,11 @@ ActiveRecord::Schema.define(:version => 1) do
 
   add_index "settings", ["var"], :name => "index_settings_on_var"
 
+  create_table "user_ycroles", :id => false, :force => true do |t|
+    t.integer "user_id",   :null => false
+    t.integer "ycrole_id", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username",                               :null => false
     t.string   "email",                                  :null => false
@@ -250,12 +255,7 @@ ActiveRecord::Schema.define(:version => 1) do
   add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["username"], :name => "index_users_on_username"
 
-  create_table "users_yc_roles", :id => false, :force => true do |t|
-    t.integer "user_id",    :null => false
-    t.integer "yc_role_id", :null => false
-  end
-
-  create_table "yc_roles", :force => true do |t|
+  create_table "ycroles", :force => true do |t|
     t.string "name"
     t.string "description"
   end

@@ -5,9 +5,10 @@ class Contract <  ActiveRecord::Base
 
   acts_as_expirable
   acts_as_attachable
-  #  acts_as_manageable
 
   validates_presence_of :name
+  validates_uniqueness_of :name
+  
   has_many :payments, :dependent => :destroy
 
   has_many :payment_periods, :dependent => :destroy
@@ -17,14 +18,14 @@ class Contract <  ActiveRecord::Base
 
 
   named_scope :can_read, :joins => :contract_permissions, :conditions => [ "can_read = ?", true ]
-  named_scope :can_read2, lambda { |user| { :joins => { :involved_yc_roles => :users_yc_roles },
-      :conditions => {  :contract_permissions => { :can_read => true }, :users_yc_roles => { :user_id => user.id} } } }
+  named_scope :can_read2, lambda { |user| { :joins => { :involved_ycroles => :user_ycroles },
+      :conditions => {  :contract_permissions => { :can_read => true }, :user_ycroles => { :user_id => user.id} } } }
 
   has_many :contract_permissions
-  has_many :involved_yc_roles, :through => :contract_permissions, :source => :yc_role
+  has_many :involved_ycroles, :through => :contract_permissions, :source => :ycrole
 
   #
-  #  has_many :involved_yc_roles
+  #  has_many :involved_ycroles
   def next_payment_date(from = Date.today)
     payment_dates.find_all { |e| e > from }.min
   end
@@ -66,13 +67,8 @@ class Contract <  ActiveRecord::Base
   end
 
   def users_having_permissions_on
-    involved_yc_roles.collect { |r| r.users }.flatten.uniq
+    involved_ycroles.collect { |r| r.users }.flatten.uniq
   end
-
-  def user_ids_having_permissions_on
-    users_having_permissions_on.collect { |u| u.id }
-  end
-  
 end
 
 # == Schema Information
