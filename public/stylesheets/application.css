@@ -157,6 +157,7 @@ header-right {
     padding:0;
     position:absolute;
     left:0px;
+    top:28px;
     opacity:.97;
     filter:alpha(opacity=97);
     z-index: 9999

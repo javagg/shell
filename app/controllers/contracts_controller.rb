@@ -1,5 +1,4 @@
 class ContractsController < ApplicationController
-  #  include Shell::Options
   uses_tiny_mce(:options => {:theme => 'advanced',
       :browsers => %w{msie gecko},
       :theme_advanced_toolbar_location => "top",
@@ -14,8 +13,6 @@ class ContractsController < ApplicationController
     :only => [:new, :edit, :show, :index])
 
   before_filter :require_user
-
-  filter_access_to :all
 
   active_scaffold :contracts do |config|
     # for uploading file
@@ -70,28 +67,11 @@ class ContractsController < ApplicationController
     config.columns[:payment_remindees].options = { :draggable_lists => true }
   end
 
-  def delete_authorized?
-    permitted_to? :delete, :contracts
-  end
-
-  def create_authorized?
-    permitted_to? :create, :contracts
-  end
-
-  def update_authorized?
-    permitted_to? :update, :contracts
-  end
-
-  def list_authorized?
-    permitted_to? :index, :contracts
-  end
-
-  def show_authorized?
-    permitted_to? :show, :contracts
-  end
-
   def beginning_of_chain
-    active_scaffold_config.model.can_read2 current_user
+    if params[:action] == "index"
+      active_scaffold_config.model.readable_by_user current_user
+    else
+      active_scaffold_config.model
+    end
   end
-
 end

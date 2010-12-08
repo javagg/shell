@@ -1,8 +1,6 @@
 class LicensesController < ApplicationController
   before_filter :require_user
   
-  filter_access_to :all
-
   active_scaffold :licenses do |config|
     # for uploading file
     config.create.multipart = true
@@ -31,28 +29,12 @@ class LicensesController < ApplicationController
     config.actions.exclude :search
     config.actions << :field_search
   end
-#
-#  def delete_authorized?
-#    permitted_to? :delete, :licenses
-#  end
-#
-#  def create_authorized?
-#    permitted_to? :create, :licenses
-#  end
-#
-#  def update_authorized?
-#    permitted_to? :update, :licenses
-#  end
-#
-#  def list_authorized?
-#    permitted_to? :index, :licenses
-#  end
-#
-#  def show_authorized?
-#    permitted_to? :show, :licenses
-#  end
-#
-#  def download
-#
-#  end
+
+  def beginning_of_chain
+    if params[:action] == "index"
+      active_scaffold_config.model.readable_by_user current_user
+    else
+      active_scaffold_config.model
+    end
+  end
 end

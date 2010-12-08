@@ -3,7 +3,6 @@ class UserYcrole < ActiveRecord::Base
   belongs_to :user
 end
 
-
 # == Schema Information
 #
 # Table name: user_ycroles

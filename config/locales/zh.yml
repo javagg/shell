@@ -265,6 +265,7 @@ zh:
         created_at: "帐号建立时间"
         updated_at: "帐号更新时间"
         roles: "权限角色"
+        ycroles: "权限角色"
                 
       document:
         number: "编号"
@@ -285,14 +286,7 @@ zh:
         archive_type: "文档类型"
         name: "名称"
         description: "描述"
-        
         issue_dep: "发布部门"
-        FN: "FN"
-        OP: "OP"
-        EN: "EN"   
-        HR: "HR"
-        HSSE: "HSSE"
-
         keep_dep: 保存部门
         keeper: 保管人
         original_loc: "原件保存地址"
@@ -465,15 +459,22 @@ zh:
               too_short: "过短 (不能少于 %{count} 个字符)"
               blank: "不能为空字符"
               invalid: "不正确"
+
         archive:
-           attributes:
-             name:
-               blank: "不能为空字符"
+          attributes:
+            name:
+              blank: "不能为空字符"
+
         contract:
-           attributes:
-             name:
-               blank: "不能为空字符"
-               
+          attributes:
+            name:
+              blank: "不能为空字符"
+
+        payment:
+          attributes:
+            amount:
+              not_a_number: "不是数字"
+
       message: "请检查以下字段："
       inclusion: "不包含于列表中"
       exclusion: "不能用"

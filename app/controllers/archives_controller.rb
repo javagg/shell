@@ -39,14 +39,11 @@ class ArchivesController < ApplicationController
     config.list.sorting = [{:number => :asc}, {:issue_dep => :asc}]
   end
 
-#   def beginning_of_chain
-#    #    if current_user.is_admin?
-#    #      active_scaffold_config.model
-#    #    else
-#   if params[:action] == "index"
-#      active_scaffold_config.model.readable2_by_user current_user
-#    else
-#      active_scaffold_config.model
-#    end
-#  end
+  def beginning_of_chain
+    if params[:action] == "index"
+      active_scaffold_config.model.readable_by_user current_user
+    else
+      active_scaffold_config.model
+    end
+  end
 end

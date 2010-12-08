@@ -1,6 +1,5 @@
 class SettingsController < ApplicationController
   before_filter :require_user
-
   filter_access_to :all
 
   active_scaffold :settings do |config|

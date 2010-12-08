@@ -1,4 +1,6 @@
 class YcrolesController < ApplicationController
+  before_filter :require_user
+  filter_access_to :all
   active_scaffold :ycroles do |config|
     config.columns = [:name, :contract_permissions, :license_permissions, :archive_permissions ]
     config.list.columns = [ :name ]

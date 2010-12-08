@@ -3,8 +3,6 @@ class Permission < ActiveRecord::Base
   belongs_to :manageable, :polymorphic => true
 end
 
-
-
 # == Schema Information
 #
 # Table name: permissions

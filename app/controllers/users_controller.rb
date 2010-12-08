@@ -8,19 +8,20 @@ class UsersController < ApplicationController
   before_filter :update_table_config
 
   active_scaffold :users do |config|
-    config.columns = [:username, :email, :roles]
-    config.columns[:roles].form_ui = :select
-    config.columns[:roles].options = { :draggable_lists => true }
+    config.columns = [:username, :email, :ycroles]
+
+    config.columns[:ycroles].form_ui = :select
+    config.columns[:ycroles].options = { :draggable_lists => true }
+    
     config.list.sorting = { :username => 'ASC' }
 
     config.actions.exclude :create
 
     # roles is allowed to edit by admin
-    config.update.columns = [:roles]
+    config.update.columns = [:ycroles]
     config.update.link.label = I18n.t('txt.update_roles')
     config.actions.exclude :search
     config.actions << :field_search
-
     config.subform.columns = [ :username ]
   end
   
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
       active_scaffold_config.list.columns = [:username]
     end
   end
-  
+
   def create_authorized?
     permitted_to? :create, :contracts
   end

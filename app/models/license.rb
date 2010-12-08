@@ -4,8 +4,8 @@ class License <  ActiveRecord::Base
   acts_as_expirable
   acts_as_attachable
 
-#  include Shell::Authorized
-#  acts_as_authorized
+  include Shell::Authorized
+  acts_as_authorized
   
   validates_presence_of :name
   validates_uniqueness_of :name

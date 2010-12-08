@@ -10,22 +10,13 @@ class Contract <  ActiveRecord::Base
   validates_uniqueness_of :name
   
   has_many :payments, :dependent => :destroy
-
   has_many :payment_periods, :dependent => :destroy
-
   has_many :payment_remindings, :dependent => :destroy
   has_many :payment_remindees, :through => :payment_remindings, :source => 'user'
 
-
-  named_scope :can_read, :joins => :contract_permissions, :conditions => [ "can_read = ?", true ]
-  named_scope :can_read2, lambda { |user| { :joins => { :involved_ycroles => :user_ycroles },
-      :conditions => {  :contract_permissions => { :can_read => true }, :user_ycroles => { :user_id => user.id} } } }
-
-  has_many :contract_permissions
-  has_many :involved_ycroles, :through => :contract_permissions, :source => :ycrole
-
-  #
-  #  has_many :involved_ycroles
+  include Shell::Authorized
+  acts_as_authorized
+  
   def next_payment_date(from = Date.today)
     payment_dates.find_all { |e| e > from }.min
   end
@@ -64,10 +55,6 @@ class Contract <  ActiveRecord::Base
 
   def payment_reminding_days
     Settings.payment_reminding_days.to_i
-  end
-
-  def users_having_permissions_on
-    involved_ycroles.collect { |r| r.users }.flatten.uniq
   end
 end
 
