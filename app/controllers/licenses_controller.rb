@@ -9,7 +9,7 @@ class LicensesController < ApplicationController
     config.columns = [:number, :name, :t5code, :area, :station_name,
       :issuing_authority, :state, :annual_inspection_date, :expired_on, :original_loc,
       :backup_loc, :memo, :owning_department, :has_electrical_edtion, :confidential_level,
-      :expiration_remindees, :attachments
+      :expiration_remindees
     ]
 
     config.list.columns = [:number, :name, :expired_on]

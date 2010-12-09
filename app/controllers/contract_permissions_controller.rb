@@ -4,7 +4,6 @@ class ContractPermissionsController < ApplicationController
   active_scaffold :contract_permissions do |config|
     config.columns = [ :contract, :can_read, :can_write ]
     config.columns[:contract].form_ui = :select
-
     config.columns[:can_read].form_ui = :select
     config.columns[:can_read].options = { :options => Shell::Options::shifou_options }
     config.columns[:can_read].inplace_edit = true

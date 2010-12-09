@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
     config.theme = :blue
     config.ignore_columns.add [:created_at, :updated_at, :id]
     config.list.empty_field_text = I18n.t 'active_scaffold.column_is_null'
+    config.nested.shallow_delete = true
   end
 
   protected

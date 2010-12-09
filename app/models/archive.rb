@@ -10,7 +10,7 @@ class Archive < ActiveRecord::Base
   validates_presence_of :name
   validates_uniqueness_of :name
 
-  def expiration_reminding_days
+  def self.expiration_reminding_days
     Settings.expiration_reminding_days.to_i
   end
 end

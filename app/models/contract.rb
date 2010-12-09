@@ -49,11 +49,11 @@ class Contract <  ActiveRecord::Base
     end_date
   end
 
-  def expiration_reminding_days
+  def self.expiration_reminding_days
     Settings.expiration_reminding_days.to_i
   end
 
-  def payment_reminding_days
+  def self.payment_reminding_days
     Settings.payment_reminding_days.to_i
   end
 end

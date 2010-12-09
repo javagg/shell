@@ -120,7 +120,7 @@ zh:
     search: '搜索'
     search_terms: '搜索条件'
     _select_: '-请选择-'
-    show: '显示详细内容'
+    show: '显示其他详细内容'
     show_model: '显示 %{model}'
     _to_ : ' 到 '
     update: '更新'
@@ -599,7 +599,9 @@ zh:
   
   document:
     show_attachments: "查看附件"
+    reminders: "提醒"
   
   contract:
     show_payments: "查看支付情况"
     show_remidners: "查看提醒设置"
+    show_payment_periods: "查看支付期"

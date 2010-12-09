@@ -1,5 +1,5 @@
 @charset "utf-8";
-root { 
+root {
     display: block;
 }
 
@@ -135,14 +135,13 @@ header-right {
     -moz-border-radius:5px 5px 5px 5px;
     color: #275c91;
     background: #eaf3fb;
-    height: 2em;
     padding:5px 0px 5px 0px;
 
 }
 #nav ul {
     list-style-type: none;
     margin:0 auto;
-    padding:5px;
+    padding: 5px;
 }
 #nav li{
     position:relative;

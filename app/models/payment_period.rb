@@ -39,5 +39,8 @@ class PaymentPeriod < ActiveRecord::Base
     end
     dates.uniq
   end
+
+  include Shell::HasParentAssociation
+  parent_association :contract
 end
 

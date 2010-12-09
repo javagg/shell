@@ -23,14 +23,14 @@ class ContractsController < ApplicationController
       :project_address, :trading_mode, :land_certificate_application_deadline, :property_certificate_application_deadline,
       :other_party, :contract_content, :start_date, :end_date, :expense_paid, :owning_department, :amount,
       :holder, :executive, :transferred, :state, :original_loc, :has_backup, :backup_loc, :has_electrical_edtion,
-      :confidential_level, :memo, :expiration_remindees, :payment_periods, :payment_remindees,
-      :payments, :attachments
+      :confidential_level, :memo, :expiration_remindees, :payment_remindees
     ]
 
     config.subform.layout = :vertical
     config.list.columns = [:number, :name, :end_date, :next_payment_date]
     config.nested.add_link I18n.t('contract.show_payments'), :payments
     config.nested.add_link I18n.t('document.show_attachments'), :attachments
+    config.nested.add_link I18n.t('contract.show_payment_periods'), :payment_periods
     config.actions.exclude :search
     config.actions << :field_search
     config.columns[:contract_content].form_ui = :text_editor
@@ -60,9 +60,14 @@ class ContractsController < ApplicationController
     config.columns[:confidential_level].options = { :include_blank => I18n.t('txt.please_choose'),
       :options => Shell::Options::confidential_level_options }
 
+    [config.update.columns, config.create.columns].each do |action|
+      action.add_subgroup I18n.t("document.reminders") do |group|
+        group.add :expiration_remindees, :payment_remindees
+      end
+    end
+
     config.columns[:expiration_remindees].form_ui = :select
     config.columns[:expiration_remindees].options = { :draggable_lists => true }
-
     config.columns[:payment_remindees].form_ui = :select
     config.columns[:payment_remindees].options = { :draggable_lists => true }
   end
