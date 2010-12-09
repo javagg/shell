@@ -60,6 +60,14 @@ class User < ActiveRecord::Base
     @role_symbols.uniq
   end
 
+    # for Declarative Authorization
+  def ycrole_symbols
+    @ycrole_symbols ||= ycroles.map { |r| r.name.to_sym }
+    @ycrole_symbols << "admin".to_sym if is_admin?
+    @ycrole_symbols.uniq
+  end
+  
+
   def to_label
     username
   end

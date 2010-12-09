@@ -8,6 +8,7 @@ require 'date'
 
 scheduler = Rufus::Scheduler.start_new
 
+#scheduler.every "10s" do
 scheduler.cron '0 0 0 * * *' do
   # every day at 00:00
   Rails.logger.info "Expiration reminding check..."

@@ -14,7 +14,7 @@ class PaymentRemindingsController < ApplicationController
     config.columns[:user].clear_link
     config.columns[:contract].clear_link
 
-    config.list.columns = [ :contract, :remindee_rejected ]
+    config.list.columns = [:contract, :remindee_rejected]
     config.actions.exclude :create
     config.actions.exclude :delete
     config.actions.exclude :search

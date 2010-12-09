@@ -20,4 +20,9 @@ class ExpirationRemindingsController < ApplicationController
     config.update.link = false
     config.actions.exclude :show
   end
+
+  def delete_authorized?
+    false
+  end
+
 end

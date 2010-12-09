@@ -12,6 +12,8 @@ AppConfig.setup do |app_config|
   app_config[:path] = "#{RAILS_ROOT}/config/app_config.yml"
 end
 
+RAILS_DEFAULT_LOGGER = Logger.new("#{RAILS_ROOT}/log/#{RAILS_ENV}.log", "daily")
+
 Rails::Initializer.run do |config|
 
   # Settings in config/environments/* take precedence over those specified here.

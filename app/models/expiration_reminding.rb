@@ -3,9 +3,6 @@ class ExpirationReminding < ActiveRecord::Base
   belongs_to :user
 end
 
-
-
-
 # == Schema Information
 #
 # Table name: expiration_remindings
