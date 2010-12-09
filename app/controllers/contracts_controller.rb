@@ -63,6 +63,7 @@ class ContractsController < ApplicationController
     [config.update.columns, config.create.columns].each do |action|
       action.add_subgroup I18n.t("document.reminders") do |group|
         group.add :expiration_remindees, :payment_remindees
+        group.label = I18n.t("contract.reminders_with_explanation")
       end
     end
 

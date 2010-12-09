@@ -4,10 +4,13 @@ class Payment < ActiveRecord::Base
   end
 
   validates_numericality_of :amount, :greater_than_or_equal_to => 0
+  validates_date :pay_date
+
   belongs_to :contract
 
   include Shell::HasParentAssociation
   parent_association :contract
+
 end
 
 # == Schema Information

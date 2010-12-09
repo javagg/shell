@@ -474,6 +474,19 @@ zh:
           attributes:
             amount:
               not_a_number: "不是数字"
+            pay_date:
+              blank: "不是有效日期"
+
+        payment_period:
+          attributes:
+            start_date:
+              blank: "不是有效日期"
+            end_date:
+              blank: "不是有效日期"
+            first_payment_date:
+              blank: "不是有效日期"
+            num_payments:
+              not_a_number: "不是数字"
 
       message: "请检查以下字段："
       inclusion: "不包含于列表中"
@@ -556,6 +569,9 @@ zh:
 
     station_contract: "加油站合同"
     purchase_contract: "采购合同"
+
+    cannot_be_less_than_start_date:  "不能小于开始日期"
+    cannot_be_less_than_first_payment_date: "不能小于首次支付日期"
     
   site:
     home: "首页"
@@ -605,3 +621,4 @@ zh:
     show_payments: "查看支付情况"
     show_remidners: "查看提醒设置"
     show_payment_periods: "查看支付期"
+    reminders_with_explanation: "提醒(将需要提醒的对象从左栏拖曳至右栏)"
