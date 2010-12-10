@@ -91,6 +91,7 @@ module Shell
 
         after_save :add_permissions
         named_scope :readable_by_user, lambda { |user| {
+            :select=> "DISTINCT #{models}.*",
             :joins => "INNER JOIN #{permissions} ON #{permissions}.#{model}_id = #{models}.id " +
               "INNER JOIN user_ycroles ON #{permissions}.ycrole_id = user_ycroles.ycrole_id ",
             :conditions => "(#{permissions}.can_read = true OR #{permissions}.can_write = true) and user_ycroles.user_id = #{user.id}"
@@ -98,6 +99,7 @@ module Shell
         }
 
         named_scope :writeable_by_user, lambda { |user| {
+            :select=> "DISTINCT #{models}.*",
             :joins => "INNER JOIN #{permissions} ON #{permissions}.#{model}_id = #{models}.id " +
               "INNER JOIN user_ycroles ON #{permissions}.ycrole_id = user_ycroles.ycrole_id ",
             :conditions => "(#{permissions}.can_write = true) and user_ycroles.user_id = #{user.id}"
@@ -106,9 +108,8 @@ module Shell
       end
 
       def can_read_by_user?(user, id)
-        return true if user.is_admin?
-
         found = self.find(:first,
+          :select=> "DISTINCT #{models}.*",
           :joins => { :involved_ycroles => :user_ycroles },
           :conditions => { models.to_sym => {:id => id }, permissions.to_sym => { :can_read => true },
             :involved_ycroles => { :user_ycroles => { :user_id => user.id }}}
@@ -119,9 +120,8 @@ module Shell
       end
 
       def can_write_by_user?(user, id)
-        return true if user.is_admin?
-                
         found = self.find(:first,
+          :select=> "DISTINCT #{models}.*",
           :joins => { :involved_ycroles => :user_ycroles },
           :conditions => { models.to_sym => {:id => id }, permissions.to_sym => { :can_write => true },
             :involved_ycroles => { :user_ycroles => { :user_id => user.id }}}

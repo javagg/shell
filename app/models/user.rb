@@ -108,11 +108,9 @@ class User < ActiveRecord::Base
     return username != "admin"
   end
 
-  def authorized_for_update?
-    return true
-#    return username != "admin"
+  def username_authorized_for_update?
+    true
   end
-
 
   def can_read?(manageable)
     can?(manageable, :read)

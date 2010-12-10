@@ -41,7 +41,7 @@ class ArchivesController < ApplicationController
 
   def beginning_of_chain
     if params[:action] == "index"
-      active_scaffold_config.model.readable_by_user current_user
+      active_scaffold_config.model.readable_by_user(current_user)
     else
       active_scaffold_config.model
     end

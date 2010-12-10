@@ -1,6 +1,7 @@
 tmp/**/*
 *.bak
 log/*.log
+log/*log.*
 *.pid
 data/**/*
 public/system/**/*
