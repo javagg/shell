@@ -5,6 +5,7 @@
 .active-scaffold li.form-element,
 .active-scaffold li.sub-section {
 zoom: 1;
+z-index: 1;
 }
 
 * html .active-scaffold td .messages-container {

@@ -136,13 +136,14 @@ header-right {
     color: #275c91;
     background: #eaf3fb;
     padding:5px 0px 5px 0px;
-
 }
+
 #nav ul {
     list-style-type: none;
     margin:0 auto;
     padding: 5px;
 }
+
 #nav li{
     position:relative;
     display:inline;
@@ -159,7 +160,7 @@ header-right {
     top:28px;
     opacity:.97;
     filter:alpha(opacity=97);
-    z-index: 99999
+    z-index: 999
 }
 
 #nav a {
@@ -173,7 +174,7 @@ header-right {
 html>body #nav ul.licious{
     position:absolute;
     top:18px;
-    z-index: 99999
+    z-index: 999
 }
 
 #nav ul.licious a:hover{
@@ -183,7 +184,7 @@ html>body #nav ul.licious{
 }
 #nav ul.licious a{
     position:relative;
-    z-index:999999;
+    z-index:999;
     font-weight:normal;
     margin:0;
     padding:5px 0 5px 10px;
@@ -195,6 +196,7 @@ html>body #nav ul.licious{
 #nav li a:hover{
     color:#0A82D0;
 }
+
 
 input.txt_field  {
     -moz-border-radius:4px 4px 4px 4px;
@@ -311,7 +313,6 @@ a:visited {
     margin:0px auto;
     text-align:center;
     padding: 0px 0px 20px 0px;
-    z-index: 0
 }
 
 #footer {
