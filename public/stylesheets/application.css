@@ -159,7 +159,7 @@ header-right {
     top:28px;
     opacity:.97;
     filter:alpha(opacity=97);
-    z-index: 9999
+    z-index: 99999
 }
 
 #nav a {
@@ -173,6 +173,7 @@ header-right {
 html>body #nav ul.licious{
     position:absolute;
     top:18px;
+    z-index: 99999
 }
 
 #nav ul.licious a:hover{
@@ -310,6 +311,7 @@ a:visited {
     margin:0px auto;
     text-align:center;
     padding: 0px 0px 20px 0px;
+    z-index: 0
 }
 
 #footer {

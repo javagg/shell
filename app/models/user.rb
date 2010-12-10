@@ -109,7 +109,8 @@ class User < ActiveRecord::Base
   end
 
   def authorized_for_update?
-    return username != "admin"
+    return true
+#    return username != "admin"
   end
 
 

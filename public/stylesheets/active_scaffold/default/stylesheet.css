@@ -61,6 +61,7 @@ color: #333;
 
 .active-scaffold-header {
 position: relative;
+z-index: 0
 }
 
 .blue-theme .active-scaffold-header {
