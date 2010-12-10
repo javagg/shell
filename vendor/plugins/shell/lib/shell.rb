@@ -1,7 +1,7 @@
 module Shell
   module Options
     def self.department_options
-       ["FN", "OP", "EN", "HR", "HSSE"]
+      ["FN", "OP", "EN", "HR", "HSSE"]
     end
     
     def self.shifou_options
@@ -49,7 +49,7 @@ module Shell
       def parent
         p = self.send(parent_sym)
         return p if p
-#        raise "Parent Association is nil"
+        #        raise "Parent Association is nil"
       end
 
       def authorized_for_read?
@@ -86,9 +86,10 @@ module Shell
     
     module ClassMethods
       def acts_as_authorized
-        has_many permissions.to_sym
+        has_many permissions.to_sym, :dependent => :destroy
         has_many :involved_ycroles, :through => permissions.to_sym, :source => :ycrole
 
+        after_save :add_permissions
         named_scope :readable_by_user, lambda { |user| {
             :joins => "INNER JOIN #{permissions} ON #{permissions}.#{model}_id = #{models}.id " +
               "INNER JOIN user_ycroles ON #{permissions}.ycrole_id = user_ycroles.ycrole_id ",
@@ -158,6 +159,16 @@ module Shell
     end
     
     module InstanceMethods
+      def add_permissions
+        Ycrole.find(:all).each do |role|
+          model_name = self.class.to_s.downcase
+          doc_id = "#{model_name.downcase}_id".to_sym
+          permissions = self.send("#{model_name}_permissions".to_sym)
+          permissions.create doc_id => self.id, :ycrole_id => role.id,
+            :can_read => false, :can_write => false
+        end
+      end
+      
       def users_having_permissions_on
         involved_ycroles.collect { |r| r.users }.flatten.uniq
       end
@@ -327,7 +338,7 @@ module Shell
         has_many :contract_expiration_remindings, :class_name => "ExpirationReminding", :conditions => ["reminder_type = ?", 'Contract']
         has_many :license_expiration_remindings, :class_name => "ExpirationReminding", :conditions => ["reminder_type = ?", 'License']
         has_many :archive_expiration_remindings, :class_name => "ExpirationReminding", :conditions => ["reminder_type = ?", 'Archive']
-#        has_many_polymorphs :reminders, :from => [:contracts, :archives, :licenses], :through => :expiration_remindings, :dependent => :destroy
+        #        has_many_polymorphs :reminders, :from => [:contracts, :archives, :licenses], :through => :expiration_remindings, :dependent => :destroy
       end
     end
 
@@ -338,6 +349,38 @@ module Shell
             reminder.id, reminder.class.to_s, self.id])
         remindings.each do |reminding|
           reminding.update_attributes(:remindee_rejected => true)
+        end
+      end
+    end
+  end
+
+  module ActiveScaffoldConfiguration
+    def self.included(base)
+      base.class_eval do
+        include InstanceMethods
+        extend ClassMethods
+      end
+    end
+    module ClassMethods
+      def permissions_active_scaffold_configurate(doc_name)
+        doc = doc_name.to_sym
+        permissions = "#{doc_name}_permissions".to_sym
+        in_place_edit_for permissions, :can_read
+        in_place_edit_for permissions, :can_write
+
+        active_scaffold permissions do |config|
+          config.columns = [ doc, :can_read, :can_write ]
+          config.columns[doc].form_ui = :select
+          config.show.columns = [doc]
+          config.columns[:can_read].form_ui = :select
+          config.columns[:can_read].options = { :options => Shell::Options::shifou_options }
+          config.columns[:can_read].inplace_edit = true
+          config.columns[:can_write].form_ui = :select
+          config.columns[:can_write].options = { :options => Shell::Options::shifou_options }
+          config.columns[:can_write].inplace_edit = true
+
+          config.actions.exclude :show
+          config.actions.exclude :update
         end
       end
     end
