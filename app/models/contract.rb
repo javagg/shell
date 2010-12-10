@@ -1,7 +1,7 @@
 require 'date'
 
 class Contract <  ActiveRecord::Base
-  acts_as_audited
+  acts_as_audited :only => [:create, :update, :destroy]
 
   acts_as_expirable
   acts_as_attachable

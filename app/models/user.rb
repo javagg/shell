@@ -28,8 +28,6 @@ class User < ActiveRecord::Base
     :last_login_ip
   ]
 
-  attr_accessor
-
   acts_as_authentic
   acts_as_expiration_remindable
   acts_as_payment_remindable
