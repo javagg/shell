@@ -1,11 +1,9 @@
-<h1>Forgot Password</h1>
+<h1><%= I18n.t('txt.forgot_password') %></h1>
 
-Fill out the form below and instructions to reset your password will be emailed to you:<br />
-<br />
-
+请在下面输入您注册用户时使用的Email
+<br/><br/>
 <% form_tag password_resets_path, :method => :post do %>
-  <label>Email:</label><br />
-  <%= text_field_tag "email" %><br />
-  <br />
-  <%= submit_tag "Reset my password" %>
+  <%= text_field_tag "email" %>
+<br/><br/>
+  <%= submit_tag I18n.t 'txt.reset_password' %>
 <% end %>

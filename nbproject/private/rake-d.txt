@@ -63,6 +63,7 @@ doc\:plugins\:rufus-scheduler=Generate documentation for the rufus-scheduler plu
 doc\:plugins\:searchlogic=Generate documentation for the searchlogic plugin
 doc\:plugins\:shell=Generate documentation for the shell plugin
 doc\:plugins\:tiny_mce=Generate documentation for the tiny_mce plugin
+doc\:plugins\:validates_timeliness=Generate documentation for the validates_timeliness plugin
 doc\:rails=Build the RDOC HTML Files
 doc\:reapp=Force a rebuild of the RDOC files
 doc\:rerails=Force a rebuild of the RDOC files

@@ -487,6 +487,10 @@ zh:
               blank: "不是有效日期"
             num_payments:
               not_a_number: "不是数字"
+        ycrole:
+          attributes:
+            name:
+              blank: "不能为空"
 
       message: "请检查以下字段："
       inclusion: "不包含于列表中"
@@ -537,6 +541,9 @@ zh:
     password_updated: "您的密码已经成功更新了！"
     account_with_that_email_not_exist: "注册该电子邮件的用户并不存在！"
     check_email_for_password_reset: "请检查您的电子邮件来进行密码重设！"
+    update_password_and_login: "更新密码并登录"
+    forgot_password: 忘记密码
+    reset_password: 重置密码
     fectch: "取回"
     download: "下载"
     empty: "清空"
