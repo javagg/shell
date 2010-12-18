@@ -103,9 +103,9 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
 
-  def active_scaffold_controller_for(klass)
-    puts "kao"
-    return UsersYcRolesController if klass == UserYcRole
-  end
+#  def active_scaffold_controller_for(klass)
+#    puts "kao"
+#    return UsersYcRolesController if klass == UserYcRole
+#  end
 
 end

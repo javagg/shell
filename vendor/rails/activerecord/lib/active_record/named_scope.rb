@@ -87,14 +87,19 @@ module ActiveRecord
         name = name.to_sym
 
         scopes[name] = lambda do |parent_scope, *args|
+          puts "named_scope: args #{args}"
           Scope.new(parent_scope, case options
             when Hash
+
               options
             when Proc
+
               if self.model_name != parent_scope.model_name
+
                 options.bind(parent_scope).call(*args)
               else
                 options.call(*args)
+
               end
           end, &block)
         end
@@ -135,6 +140,7 @@ module ActiveRecord
           proxy_found.first(*args)
         else
           find(:first, *args)
+
         end
       end
 
@@ -190,7 +196,13 @@ module ActiveRecord
       end
 
       def load_found
+  #      puts @proxy_options[:scope_sql]
+         if @proxy_options[:scope_sql]
+           @found = find_by_sql(@proxy_options[:scope_sql])
+         elsif 
+	
         @found = find(:all)
+end
       end
     end
   end

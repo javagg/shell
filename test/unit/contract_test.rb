@@ -102,6 +102,8 @@ end
 
 
 
+
+
 # == Schema Information
 #
 # Table name: contracts
@@ -134,6 +136,7 @@ end
 #  has_electrical_edtion                     :boolean(1)      default(FALSE)
 #  confidential_level                        :string(255)
 #  memo                                      :text
+#  user_id                                   :integer(4)
 #  created_at                                :datetime
 #  updated_at                                :datetime
 #

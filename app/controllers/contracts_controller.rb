@@ -1,3 +1,5 @@
+require 'spreadsheet'
+
 class ContractsController < ApplicationController
   uses_tiny_mce(:options => {:theme => 'advanced',
       :browsers => %w{msie gecko},
@@ -71,6 +73,12 @@ class ContractsController < ApplicationController
     config.columns[:expiration_remindees].options = { :draggable_lists => true }
     config.columns[:payment_remindees].form_ui = :select
     config.columns[:payment_remindees].options = { :draggable_lists => true }
+
+    config.action_links.add :upload_xls_file, :label => I18n.t('txt.import')
+    config.action_links[:upload_xls_file].type = :collection
+    #    config.action_links[:download].popup = true
+    #    config.action_links[:import].security_method = :download_authorized?
+
   end
 
   def beginning_of_chain
@@ -78,6 +86,30 @@ class ContractsController < ApplicationController
       active_scaffold_config.model.readable_by_user current_user
     else
       active_scaffold_config.model
+    end
+  end
+
+  def upload_xls_file
+    render(:partial => "app/views/upload/upload_xls_file.erb")
+  end
+  
+  def import
+    file = params[:upload][:xlsfile]
+    if !file.original_filename.empty?
+      filename = "#{RAILS_ROOT}/tmp/#{file.original_filename}"
+      File.open(filename, "wb") do |f|
+        f.write(file.read)
+      end
+      
+      book = Spreadsheet.open(filename)
+      sheet = book.worksheet(0)
+      sheet.each_with_index do |row, i|
+        puts row, i
+      end
+
+      File.delete(filename)
+      
+      redirect_to contracts_path
     end
   end
 end

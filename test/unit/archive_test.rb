@@ -41,6 +41,8 @@ class ArchiveTest < ActiveSupport::TestCase
   end
 end
 
+
+
 # == Schema Information
 #
 # Table name: archives
@@ -60,6 +62,7 @@ end
 #  backup_loc            :string(255)
 #  has_electrical_edtion :boolean(1)      default(FALSE)
 #  confidential_level    :string(255)
+#  user_id               :integer(4)
 #  created_at            :datetime
 #  updated_at            :datetime
 #

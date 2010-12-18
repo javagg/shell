@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_ycroles, :active_scaffold => true
   map.resources :ycroles, :active_scaffold => true
   map.resources :documents, :active_scaffold => true
-  map.resources :contracts, :active_scaffold => true do |contract|
+  map.resources :contracts, :collection => {:upload_xls_file => :get}, :active_scaffold => true do |contract|
     contract.resources :payments, :active_scaffold => true
     contract.resources :payment_periods
     contract.resources :reminding_periods

@@ -610,6 +610,8 @@ module ActiveRecord #:nodoc:
       #   end
       def find(*args)
         options = args.extract_options!
+
+        puts "find: options: #{options}"
         validate_find_options(options)
         set_readonly_option!(options)
 
@@ -1574,6 +1576,7 @@ module ActiveRecord #:nodoc:
         end
 
         def find_every(options)
+          puts "find_every: #{options}"
           include_associations = merge_includes(scope(:find, :include), options[:include])
 
           if include_associations.any? && references_eager_loaded_tables?(options)
@@ -1724,6 +1727,7 @@ module ActiveRecord #:nodoc:
           add_order!(sql, options[:order], scope)
           add_limit!(sql, options, scope)
           add_lock!(sql, options, scope)
+
 
           sql
         end
@@ -2439,7 +2443,7 @@ module ActiveRecord #:nodoc:
         end
 
         VALID_FIND_OPTIONS = [ :conditions, :include, :joins, :limit, :offset,
-                               :order, :select, :readonly, :group, :having, :from, :lock ]
+                               :order, :select, :readonly, :group, :having, :from, :lock, :scope_sql ]
 
         def validate_find_options(options) #:nodoc:
           options.assert_valid_keys(VALID_FIND_OPTIONS)

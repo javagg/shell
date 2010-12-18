@@ -8,7 +8,7 @@ class Contract <  ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :name
-  
+
   has_many :payments, :dependent => :destroy
   has_many :payment_periods, :dependent => :destroy
   has_many :payment_remindings, :dependent => :destroy
@@ -58,6 +58,8 @@ class Contract <  ActiveRecord::Base
   end
 end
 
+
+
 # == Schema Information
 #
 # Table name: contracts
@@ -90,6 +92,7 @@ end
 #  has_electrical_edtion                     :boolean(1)      default(FALSE)
 #  confidential_level                        :string(255)
 #  memo                                      :text
+#  user_id                                   :integer(4)
 #  created_at                                :datetime
 #  updated_at                                :datetime
 #

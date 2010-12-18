@@ -47,7 +47,8 @@ class Setup < ActiveRecord::Migration
       t.string :number
       t.string :name
       t.text :description
-
+      
+      t.references :user
       t.timestamps
     end
     add_index :documents, :name
@@ -83,6 +84,8 @@ class Setup < ActiveRecord::Migration
       t.string :owning_department
       t.boolean :has_electrical_edtion, :default => false
       t.string :confidential_level
+      
+      t.references :user
       t.timestamps
     end
 
@@ -114,7 +117,7 @@ class Setup < ActiveRecord::Migration
       t.boolean :has_electrical_edtion, :default => false
       t.string :confidential_level
       t.text :memo
-      
+      t.references :user
       t.timestamps
     end
 
@@ -170,6 +173,8 @@ class Setup < ActiveRecord::Migration
       t.string :backup_loc
       t.boolean :has_electrical_edtion, :default => false
       t.string :confidential_level
+
+      t.references :user
       t.timestamps
     end
 

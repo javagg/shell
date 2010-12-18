@@ -547,6 +547,8 @@ zh:
     fectch: "取回"
     download: "下载"
     empty: "清空"
+    import: "导入"
+    select_xls_file: "请选择xls文件"
     logged_in_to_access: "对不起，你必须登录之后才能访问该页面"
     logged_out_to_access: "对不起，你必须退出之后才能访问该页面"
     unauthorized_access: "对不起，您没有足够的权限访问该页"

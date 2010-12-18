@@ -14,7 +14,7 @@ Setting.create(:var => 'payment_reminding_days',
 
 Role.create [
   { :name => 'admin', :description => '系统管理员身份，拥有所有权限，包括：用户管理，系统设置，文档、证照、合同的新建、修改、删除权限' },
-#  { :name => 'user', :description => '系统注册用户，可以访问公共页面，需要管理员为其分配权限' },
+  #  { :name => 'user', :description => '系统注册用户，可以访问公共页面，需要管理员为其分配权限' },
   { :name => 'archive_view', :description => '文档只读权限，可以查看系统管理的文档' },
   { :name => 'archive_manage', :description => '文档读写权限，可以新建、修改、删除系统管理的文档' },
   { :name => 'license_view', :description => '证照只读权限，可以查看系统管理的证照' },

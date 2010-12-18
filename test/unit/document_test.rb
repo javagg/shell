@@ -4,6 +4,8 @@ class DocumentTest < ActiveSupport::TestCase
 
 end
 
+
+
 # == Schema Information
 #
 # Table name: documents
@@ -12,6 +14,7 @@ end
 #  number      :string(255)
 #  name        :string(255)
 #  description :text
+#  user_id     :integer(4)
 #  created_at  :datetime
 #  updated_at  :datetime
 #

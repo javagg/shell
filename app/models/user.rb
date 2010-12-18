@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
   validates_presence_of   :email
   validates_format_of     :email, :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
 
+  has_many :contracts
+  has_many :licenses
+  has_many :archives
+  
   named_scope :active, :conditions => { :active => true }
   named_scope :recent, lambda { { :conditions => ['created_at > ?', 1.week.ago] } }
 

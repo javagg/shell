@@ -10,6 +10,8 @@ one: {}
 two: {}
 #  column: value
 
+
+
 # == Schema Information
 #
 # Table name: documents
@@ -18,6 +20,7 @@ two: {}
 #  number      :string(255)
 #  name        :string(255)
 #  description :text
+#  user_id     :integer(4)
 #  created_at  :datetime
 #  updated_at  :datetime
 #

@@ -1,0 +1,9 @@
+<% form_tag({:action => 'import'}, :multipart => true) do %>
+  <p>
+    <%=  I18n.t('txt.select_xls_file') %>
+    <%= file_field 'upload', 'xlsfile' %>
+  </p>
+  <p>
+    <%= submit_tag I18n.t('txt.import') %>
+  </p>
+<% end %>
