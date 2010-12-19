@@ -1,7 +1,0 @@
-for active_scaffold
-actions: render_field, new ,create, delete, destroy, show_search, index, list,
- mark, nested, show_search, show, edit_associated， edit, update, update_column
-
-authorized?:
-update_authorized?, show_authorized?, search_authorized?, nested_authorized?(true),
-mark_authorized?, list_authorized?, delete_authorized?, create_authorized?

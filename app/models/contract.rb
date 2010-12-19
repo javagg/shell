@@ -6,8 +6,8 @@ class Contract <  ActiveRecord::Base
   acts_as_expirable
   acts_as_attachable
 
-  validates_presence_of :name
-  validates_uniqueness_of :name
+  validates_presence_of :number
+  validates_uniqueness_of :number
 
   has_many :payments, :dependent => :destroy
   has_many :payment_periods, :dependent => :destroy
@@ -56,9 +56,37 @@ class Contract <  ActiveRecord::Base
   def self.payment_reminding_days
     Settings.payment_reminding_days.to_i
   end
+
+  include Shell::ImportExcel
+
+  def self.header_field
+    return {
+      "类型" => "contract_type",
+      "印花税类型" => "stamp_tax_type",
+      "合同编号" => "number",
+      "加油站标准站名" => "station_name",
+      "项目地址" => "project_address",
+      "交易模式" => "trading_mode",
+      "土地证办理期限" => "land_certificate_application_deadline",
+      "房产证办理期限" => "property_certificate_application_deadline",
+      "合同对方" => "other_party",
+      "合同内容" => "contract_content",
+      "开始日期（租赁起始日）" => "start_date",
+      "结束日期" => "end_date",
+      "费用归属" => "expense_paid",
+      "所属部门" => "owning_department",
+      "合同金额" => "amount",
+      "合同持有人" => "holder",
+      "合同具体执行人" => "executive",
+      "移交保管情况" => "transferred",
+      "状态" => "state",
+      "原件保存地址" => "original_loc",
+      "是否有备份" => "has_backup",
+      "备份保存地址" => "backup_loc",
+      "安全保密等级" => "confidential_level",
+    }
+  end
 end
-
-
 
 # == Schema Information
 #

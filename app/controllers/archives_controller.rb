@@ -37,6 +37,9 @@ class ArchivesController < ApplicationController
     config.actions << :field_search
 
     config.list.sorting = [{:number => :asc}, {:issue_dep => :asc}]
+
+    config.action_links.add :upload_xls_file, :label => I18n.t('txt.import')
+    config.action_links[:upload_xls_file].type = :collection
   end
 
   def beginning_of_chain
@@ -46,4 +49,6 @@ class ArchivesController < ApplicationController
       active_scaffold_config.model
     end
   end
+  
+  include Shell::ControllerWithImport
 end

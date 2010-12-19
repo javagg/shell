@@ -28,6 +28,9 @@ class LicensesController < ApplicationController
     config.nested.add_link I18n.t('document.show_attachments'), :attachments
     config.actions.exclude :search
     config.actions << :field_search
+
+    config.action_links.add :upload_xls_file, :label => I18n.t('txt.import')
+    config.action_links[:upload_xls_file].type = :collection
   end
 
   def beginning_of_chain
@@ -37,4 +40,6 @@ class LicensesController < ApplicationController
       active_scaffold_config.model
     end
   end
+
+  include Shell::ControllerWithImport
 end

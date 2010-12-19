@@ -95,18 +95,18 @@ module Shell
         after_create :add_permissions
 
         named_scope :readable_by_user, lambda { |user| {
-                        :select=> "DISTINCT #{models}.*",
-                        :joins => "INNER JOIN #{permissions} ON #{permissions}.#{model}_id = #{models}.id " +
-                          "INNER JOIN user_ycroles ON #{permissions}.ycrole_id = user_ycroles.ycrole_id ",
-                        :conditions => "(#{permissions}.can_read = true OR #{permissions}.can_write = true) and user_ycroles.user_id = #{user.id}",
-#            :scope_sql => "SELECT DISTINCT `#{models}`.* FROM `#{models}`
-#                           INNER JOIN `#{permissions}` ON (`#{models}`.`id` = `#{permissions}`.`#{model}_id`)
-#                           INNER JOIN `ycroles` ON (`ycroles`.`id` = `#{permissions}`.`ycrole_id`)
-#                           INNER JOIN `user_ycroles` ON user_ycroles.ycrole_id = ycroles.id
-#                           WHERE ((`#{permissions}`.`can_read` = true OR `#{permissions}`.`can_read` = true) AND `user_ycroles`.`user_id` = #{user.id})
-#                           UNION
-#                           SELECT DISTINCT `#{models}`.* FROM `#{models}`
-#                           WHERE (`#{models}`.`user_id` = #{user.id})#"
+            :select=> "DISTINCT #{models}.*",
+            :joins => "INNER JOIN #{permissions} ON #{permissions}.#{model}_id = #{models}.id " +
+              "INNER JOIN user_ycroles ON #{permissions}.ycrole_id = user_ycroles.ycrole_id ",
+            :conditions => "(#{permissions}.can_read = true OR #{permissions}.can_write = true) and user_ycroles.user_id = #{user.id}",
+            #            :scope_sql => "SELECT DISTINCT `#{models}`.* FROM `#{models}`
+            #                           INNER JOIN `#{permissions}` ON (`#{models}`.`id` = `#{permissions}`.`#{model}_id`)
+            #                           INNER JOIN `ycroles` ON (`ycroles`.`id` = `#{permissions}`.`ycrole_id`)
+            #                           INNER JOIN `user_ycroles` ON user_ycroles.ycrole_id = ycroles.id
+            #                           WHERE ((`#{permissions}`.`can_read` = true OR `#{permissions}`.`can_read` = true) AND `user_ycroles`.`user_id` = #{user.id})
+            #                           UNION
+            #                           SELECT DISTINCT `#{models}`.* FROM `#{models}`
+            #                           WHERE (`#{models}`.`user_id` = #{user.id})#"
           }
         }
 
@@ -222,7 +222,7 @@ module Shell
       end
 
       def authorized_for_read?
-#        return true if current_user.is_admin?
+        #        return true if current_user.is_admin?
         return can_read_by_user?(current_user)
       end
 
@@ -425,208 +425,102 @@ module Shell
       end
     end
   end  
-  
-  module NamedSql
-    # All subclasses of ActiveRecord::Base have one named scope:
-    # * <tt>scoped</tt> - which allows for the creation of anonymous \scopes, on the fly: <tt>Shirt.scoped(:conditions => {:color => 'red'}).scoped(:include => :washing_instructions)</tt>
-    #
-    # These anonymous \scopes tend to be useful when procedurally generating complex queries, where passing
-    # intermediate values (scopes) around as first-class objects is convenient.
-    #
-    # You can define a scope that applies to all finders using ActiveRecord::Base.default_scope.
+
+  module ImportExcel
+    require 'spreadsheet'
+    require 'iconv'
+
     def self.included(base)
-      base.extend ClassMethods
+      base.class_eval do
+        extend ClassMethods
+      end
     end
 
     module ClassMethods
-      def scopes
-        read_inheritable_attribute(:scopes) || write_inheritable_attribute(:scopes, {})
+      def header_field
+        return {}
       end
+      
+      def parse(file)
+        headers = header_field.keys
 
-      def scoped(scope, &block)
-        Scope.new(self, scope, &block)
-      end
+        sheet_index = 0
+        encoding = "GBK"
 
-      # Adds a class method for retrieving and querying objects. A scope represents a narrowing of a database query,
-      # such as <tt>:conditions => {:color => :red}, :select => 'shirts.*', :include => :washing_instructions</tt>.
-      #
-      #   class Shirt < ActiveRecord::Base
-      #     named_scope :red, :conditions => {:color => 'red'}
-      #     named_scope :dry_clean_only, :joins => :washing_instructions, :conditions => ['washing_instructions.dry_clean_only = ?', true]
-      #   end
-      #
-      # The above calls to <tt>named_scope</tt> define class methods Shirt.red and Shirt.dry_clean_only. Shirt.red,
-      # in effect, represents the query <tt>Shirt.find(:all, :conditions => {:color => 'red'})</tt>.
-      #
-      # Unlike <tt>Shirt.find(...)</tt>, however, the object returned by Shirt.red is not an Array; it resembles the association object
-      # constructed by a <tt>has_many</tt> declaration. For instance, you can invoke <tt>Shirt.red.find(:first)</tt>, <tt>Shirt.red.count</tt>,
-      # <tt>Shirt.red.find(:all, :conditions => {:size => 'small'})</tt>. Also, just
-      # as with the association objects, named \scopes act like an Array, implementing Enumerable; <tt>Shirt.red.each(&block)</tt>,
-      # <tt>Shirt.red.first</tt>, and <tt>Shirt.red.inject(memo, &block)</tt> all behave as if Shirt.red really was an Array.
-      #
-      # These named \scopes are composable. For instance, <tt>Shirt.red.dry_clean_only</tt> will produce all shirts that are both red and dry clean only.
-      # Nested finds and calculations also work with these compositions: <tt>Shirt.red.dry_clean_only.count</tt> returns the number of garments
-      # for which these criteria obtain. Similarly with <tt>Shirt.red.dry_clean_only.average(:thread_count)</tt>.
-      #
-      # All \scopes are available as class methods on the ActiveRecord::Base descendant upon which the \scopes were defined. But they are also available to
-      # <tt>has_many</tt> associations. If,
-      #
-      #   class Person < ActiveRecord::Base
-      #     has_many :shirts
-      #   end
-      #
-      # then <tt>elton.shirts.red.dry_clean_only</tt> will return all of Elton's red, dry clean
-      # only shirts.
-      #
-      # Named \scopes can also be procedural:
-      #
-      #   class Shirt < ActiveRecord::Base
-      #     named_scope :colored, lambda { |color|
-      #       { :conditions => { :color => color } }
-      #     }
-      #   end
-      #
-      # In this example, <tt>Shirt.colored('puce')</tt> finds all puce shirts.
-      #
-      # Named \scopes can also have extensions, just as with <tt>has_many</tt> declarations:
-      #
-      #   class Shirt < ActiveRecord::Base
-      #     named_scope :red, :conditions => {:color => 'red'} do
-      #       def dom_id
-      #         'red_shirts'
-      #       end
-      #     end
-      #   end
-      #
-      #
-      # For testing complex named \scopes, you can examine the scoping options using the
-      # <tt>proxy_options</tt> method on the proxy itself.
-      #
-      #   class Shirt < ActiveRecord::Base
-      #     named_scope :colored, lambda { |color|
-      #       { :conditions => { :color => color } }
-      #     }
-      #   end
-      #
-      #   expected_options = { :conditions => { :colored => 'red' } }
-      #   assert_equal expected_options, Shirt.colored('red').proxy_options
-      def named_sql(name, options = {}, &block)
-        name = name.to_sym
+        header_row = 0
+        start_row = 1
+        start_col = 0
+        data = []
 
-        scopes[name] = lambda do |parent_scope, *args|
-          Scope.new(parent_scope, case options
-            when Hash
-              options
-            when Proc
-              if self.model_name != parent_scope.model_name
-                options.bind(parent_scope).call(*args)
-              else
-                options.call(*args)
+        workbook = Spreadsheet.open(file)
+        unless(encoding.length > 0)
+          Spreadsheet.client_encoding = encoding[0]
+        end
+
+        sheet = workbook.worksheet sheet_index
+        if sheet
+          cols_count = sheet.column_count
+          rows_count = sheet.row_count
+
+          ignore_cols = []
+          field_index = {}
+          end_col = start_col + cols_count
+          (start_col...end_col).each do |col|
+            header =  sheet.row(header_row)[col]
+            if headers.include?(header)
+              field_index[col] = header_field[header]
+            else
+              ignore_cols << col
+            end
+          end
+
+          end_row = rows_count + start_col
+          (start_row..end_row).each do |row|
+            row_data = {}
+            (start_col...end_col).each do |col|
+              unless ignore_cols.include?(col)
+                key = field_index[col].to_sym
+                value = sheet.row(row)[col]
+                begin
+                  row_data[key] = Iconv.iconv("UTF-8//IGNORE","GBK//IGNORE",value)[0]
+                rescue
+                  row_data[key] = value
+                end
               end
-            end, &block)
+            end
+            data << row_data
+          end
         end
+        return data
+      end
+    end
+  end
 
-        singleton_class.send :define_method, name do |*args|
-          scopes[name].call(self, *args)
-        end
+  module ControllerWithImport
+    def self.included(base)
+      base.class_eval do
+        include InstanceMethods
       end
     end
 
-    class Scope
-      attr_reader :proxy_scope, :proxy_options, :current_scoped_methods_when_defined
-      NON_DELEGATE_METHODS = %w(nil? send object_id class extend find size count sum average maximum minimum paginate first last empty? any? respond_to?).to_set
-      [].methods.each do |m|
-        unless m =~ /^__/ || NON_DELEGATE_METHODS.include?(m.to_s)
-          delegate m, :to => :proxy_found
-        end
+    module InstanceMethods
+      def upload_xls_file
+        render :partial => "app/views/upload/upload_xls_file.erb"
       end
 
-      delegate :scopes, :with_scope, :scoped_methods, :to => :proxy_scope
-
-      def initialize(proxy_scope, options, &block)
-        options ||= {}
-        [options[:extend]].flatten.each { |extension| extend extension } if options[:extend]
-        extend Module.new(&block) if block_given?
-        unless (Scope === proxy_scope || ActiveRecord::Associations::AssociationCollection === proxy_scope)
-          @current_scoped_methods_when_defined = proxy_scope.send(:current_scoped_methods)
-        end
-        @proxy_scope, @proxy_options = proxy_scope, options.except(:extend)
-      end
-
-      def reload
-        load_found; self
-      end
-
-      def first(*args)
-        if args.first.kind_of?(Integer) || (@found && !args.first.kind_of?(Hash))
-          proxy_found.first(*args)
-        else
-          find(:first, *args)
-        end
-      end
-
-      def last(*args)
-        if args.first.kind_of?(Integer) || (@found && !args.first.kind_of?(Hash))
-          proxy_found.last(*args)
-        else
-          find(:last, *args)
-        end
-      end
-
-      def all(*args)
-        proxy_found
-      end
-      
-      def size
-        @found ? @found.length : count
-      end
-
-      def empty?
-        @found ? @found.empty? : count.zero?
-      end
-
-      def respond_to?(method, include_private = false)
-        super || @proxy_scope.respond_to?(method, include_private)
-      end
-
-      def any?
-        if block_given?
-          proxy_found.any? { |*block_args| yield(*block_args) }
-        else
-          !empty?
-        end
-      end
-
-      protected
-      def proxy_found
-        @found || load_found
-      end
-
-      private
-      def method_missing(method, *args, &block)
-        if scopes.include?(method)
-          scopes[method].call(self, *args)
-        else
-          with_scope({:find => proxy_options, :create => proxy_options[:conditions].is_a?(Hash) ?  proxy_options[:conditions] : {}}, :reverse_merge) do
-            method = :new if method == :build
-            if current_scoped_methods_when_defined && !scoped_methods.include?(current_scoped_methods_when_defined)
-              with_scope current_scoped_methods_when_defined do
-                proxy_scope.send(method, *args, &block)
-              end
-            else
-              proxy_scope.send(method, *args, &block)
-            end
+      def import
+        model_name = self.controller_name.downcase.singularize.capitalize
+        file = params[:upload][:xlsfile]
+        if !file.original_filename.empty?
+          filename = "#{RAILS_ROOT}/tmp/#{file.original_filename}"
+          File.open(filename, "wb") do |f|
+            f.write(file.read)
           end
-        end
-      end
-
-      def load_found
-        puts @proxy_options[:scope_sql]
-        if @proxy_options[:scope_sql]
-          puts "sql"
-          @found = find_by_sql(@proxy_options[:scope_sql])
-        elsif
-          @found = find(:all)
+          klass = model_name.constantize
+          data = klass.parse(filename)
+          klass.create data
+          File.delete(filename)
+          redirect_to :action => :index
         end
       end
     end

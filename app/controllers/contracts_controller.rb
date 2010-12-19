@@ -86,27 +86,6 @@ class ContractsController < ApplicationController
     end
   end
 
-  def upload_xls_file
-    render :partial => "app/views/upload/upload_xls_file.erb"
-  end
+  include Shell::ControllerWithImport
   
-  def import
-    file = params[:upload][:xlsfile]
-    if !file.original_filename.empty?
-      filename = "#{RAILS_ROOT}/tmp/#{file.original_filename}"
-      File.open(filename, "wb") do |f|
-        f.write(file.read)
-      end
-      
-      book = Spreadsheet.open(filename)
-      sheet = book.worksheet(0)
-      sheet.each_with_index do |row, i|
-        puts row, i
-      end
-
-      File.delete(filename)
-      
-      redirect_to contracts_path
-    end
-  end
 end

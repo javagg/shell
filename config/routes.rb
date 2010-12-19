@@ -12,13 +12,13 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :expiration_remindings, :active_scaffold => true
   
-  map.resources :licenses, :active_scaffold => true do |license|
+  map.resources :licenses, :collection => {:upload_xls_file => :get}, :active_scaffold => true do |license|
     license.resources :expiration_remindees
     license.resources :reminding_periods
     license.resources :attachments, :member => { :download => :get }
   end
   
-  map.resources :archives, :active_scaffold => true do |archive|
+  map.resources :archives, :collection => {:upload_xls_file => :get}, :active_scaffold => true do |archive|
     archive.resources :expiration_remindees
     archive.resources :reminding_periods
     archive.resources :attachments, :member => { :download => :get }

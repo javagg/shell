@@ -266,6 +266,7 @@ zh:
         updated_at: "帐号更新时间"
         roles: "权限角色"
         ycroles: "权限角色"
+        public_ycroles: "权限角色"
                 
       document:
         number: "编号"
