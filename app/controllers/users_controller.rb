@@ -3,16 +3,16 @@ class UsersController < ApplicationController
   record_select :per_page => 5, :search_on => [:username]
   filter_access_to :all
   active_scaffold :users do |config|
-    config.columns = [:username, :email, :ycroles]
+    config.columns = [:username, :email, :public_ycroles]
     config.columns[:username].options = { :readonly => "readonly" }
-    config.columns[:ycroles].form_ui = :select
-    config.columns[:ycroles].options = { :draggable_lists => true }
+    config.columns[:public_ycroles].form_ui = :select
+    config.columns[:public_ycroles].options = { :draggable_lists => true }
     config.list.columns = [:username, :email]
     config.list.sorting = { :username => 'ASC' }
     config.actions.exclude :create
 
     # roles is allowed to edit by admin
-    config.update.columns = [:username, :ycroles]
+    config.update.columns = [:username, :public_ycroles]
     config.update.link.label = I18n.t('txt.update_roles')
     config.actions.exclude :search
     config.actions << :field_search

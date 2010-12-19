@@ -50,7 +50,12 @@ class User < ActiveRecord::Base
 
   has_many :user_ycroles
   has_many :ycroles, :through => :user_ycroles
-
+  has_many :public_ycroles, :source => :ycrole, :through => :user_ycroles,
+    :conditions => {:ycroles => {:type => "public"}}
+  
+  after_create :create_private_ycrole
+  before_destroy :destroy_private_ycrole
+  
   def has_role?(role)
     role_symbols.include?(role)
   end
@@ -62,14 +67,13 @@ class User < ActiveRecord::Base
     @role_symbols.uniq
   end
 
-    # for Declarative Authorization
+  # for Declarative Authorization
   def ycrole_symbols
     @ycrole_symbols ||= ycroles.map { |r| r.name.to_sym }
     @ycrole_symbols << "admin".to_sym if is_admin?
     @ycrole_symbols.uniq
   end
   
-
   def to_label
     username
   end
@@ -86,6 +90,21 @@ class User < ActiveRecord::Base
     if User.count.zero?
       raise I18n.t('user.cannot_delete_last_user')
     end
+  end
+
+  def destroy_private_ycrole
+    Ycrole.destroy_all({:type => "private", :name => "#{username}"})
+  end
+  
+  def create_private_ycrole
+    # odd!
+    # Ycrole.create :type => "private", :name => "#{username}"
+    role = Ycrole.new
+    role.type = "private"
+    role.name = "#{username}"
+    role.save
+    ycroles << role
+    save
   end
 
   def activate!

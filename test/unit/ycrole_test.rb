@@ -2,7 +2,8 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class YcroleTest < ActiveSupport::TestCase
   #
-  #  should have_many :permissions
+  should have_many :contract_with_permissions
+  
   context "A Ycrole instance" do
     setup do
       @ycrole = Ycrole.find(1)
@@ -42,6 +43,7 @@ class YcroleTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: ycroles
@@ -49,5 +51,6 @@ end
 #  id          :integer(4)      not null, primary key
 #  name        :string(255)
 #  description :string(255)
+#  type        :string(255)     default("public")
 #
 

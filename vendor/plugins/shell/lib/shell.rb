@@ -91,43 +91,30 @@ module Shell
 
         belongs_to :creator, :class_name => "User", :foreign_key => "user_id"
           
-        before_save :set_creator
-        
-        after_save :add_permissions
+        before_create :set_creator
+        after_create :add_permissions
 
-        named_sql :readable_by_user, lambda { |user| {
-            #            :select=> "DISTINCT #{models}.*",
-            #            :joins => "INNER JOIN #{permissions} ON #{permissions}.#{model}_id = #{models}.id " +
-            #              "INNER JOIN user_ycroles ON #{permissions}.ycrole_id = user_ycroles.ycrole_id ",
-            #            :conditions => "(#{permissions}.can_read = true OR #{permissions}.can_write = true) and user_ycroles.user_id = #{user.id}",
-            :scope_sql => "SELECT DISTINCT `#{models}`.* FROM `#{models}`
-                           INNER JOIN `#{permissions}` ON (`contracts`.`id` = `#{permissions}`.`contract_id`)
-                           INNER JOIN `ycroles` ON (`ycroles`.`id` = `#{permissions}`.`ycrole_id`)
-                           INNER JOIN `user_ycroles` ON user_ycroles.ycrole_id = ycroles.id
-                           WHERE ((`#{permissions}`.`can_read` = true OR `#{permissions}`.`can_read` = true) AND `user_ycroles`.`user_id` = #{user.id})
-                           UNION
-                           SELECT DISTINCT `#{models}`.* FROM `#{models}`
-                           WHERE (`#{models}`.`user_id` = #{user.id})"
+        named_scope :readable_by_user, lambda { |user| {
+                        :select=> "DISTINCT #{models}.*",
+                        :joins => "INNER JOIN #{permissions} ON #{permissions}.#{model}_id = #{models}.id " +
+                          "INNER JOIN user_ycroles ON #{permissions}.ycrole_id = user_ycroles.ycrole_id ",
+                        :conditions => "(#{permissions}.can_read = true OR #{permissions}.can_write = true) and user_ycroles.user_id = #{user.id}",
+#            :scope_sql => "SELECT DISTINCT `#{models}`.* FROM `#{models}`
+#                           INNER JOIN `#{permissions}` ON (`#{models}`.`id` = `#{permissions}`.`#{model}_id`)
+#                           INNER JOIN `ycroles` ON (`ycroles`.`id` = `#{permissions}`.`ycrole_id`)
+#                           INNER JOIN `user_ycroles` ON user_ycroles.ycrole_id = ycroles.id
+#                           WHERE ((`#{permissions}`.`can_read` = true OR `#{permissions}`.`can_read` = true) AND `user_ycroles`.`user_id` = #{user.id})
+#                           UNION
+#                           SELECT DISTINCT `#{models}`.* FROM `#{models}`
+#                           WHERE (`#{models}`.`user_id` = #{user.id})#"
           }
         }
-        #
-        #        named_scope :readable_by_user_id, lambda { |user_id| {
-        #            :select=> "DISTINCT #{models}.*",
-        #            :joins => "INNER JOIN #{permissions} ON #{permissions}.#{model}_id = #{models}.id " +
-        #              "INNER JOIN user_ycroles ON #{permissions}.ycrole_id = user_ycroles.ycrole_id ",
-        #            :conditions => "(#{permissions}.can_read = true OR #{permissions}.can_write = true) and user_ycroles.user_id = #{user_id}"
-        #          }
-        #        }
+
 
         named_scope :created_by_user, lambda { |user| {
             :conditions => ["user_id = ? ", user.id],
           }
         }
-
-        #        named_scope :created_by_user_id, lambda { |user_id| {
-        #            :conditions => ["user_id = ? ", user_id]
-        #          }
-        #        }
 
         named_scope :writeable_by_user, lambda { |user| {
             :select=> "DISTINCT #{models}.*",
@@ -152,6 +139,7 @@ module Shell
         return true if found
         return false
       end
+
 
       def can_write_by_user?(user, id)
 
@@ -192,8 +180,13 @@ module Shell
           model_name = self.class.to_s.downcase
           doc_id = "#{model_name.downcase}_id".to_sym
           permissions = self.send("#{model_name}_permissions".to_sym)
+          if self.creator.username == role.name
+            can_read = can_write = true
+          elsif
+            can_read = can_write = false
+          end
           permissions.create doc_id => self.id, :ycrole_id => role.id,
-            :can_read => false, :can_write => false
+            :can_read => can_read, :can_write => can_write
         end
       end
       
@@ -208,8 +201,10 @@ module Shell
           creator = User.find current_user.id
         end
 
-        self.creator = creator unless creator.nil?
-        return true
+        unless creator.nil?
+          self.creator = creator
+          return true
+        end
       end
       
       def users_having_permissions_on
@@ -227,9 +222,10 @@ module Shell
       end
 
       def authorized_for_read?
+#        return true if current_user.is_admin?
         return can_read_by_user?(current_user)
       end
-      #
+
       def authorized_for_update?
         return can_write_by_user?(current_user)
       end
@@ -378,12 +374,11 @@ module Shell
           yield(value)
           value
         end
-        
+      
         has_many :expiration_remindings, :dependent => :destroy
         has_many :contract_expiration_remindings, :class_name => "ExpirationReminding", :conditions => ["reminder_type = ?", 'Contract']
         has_many :license_expiration_remindings, :class_name => "ExpirationReminding", :conditions => ["reminder_type = ?", 'License']
         has_many :archive_expiration_remindings, :class_name => "ExpirationReminding", :conditions => ["reminder_type = ?", 'Archive']
-        #        has_many_polymorphs :reminders, :from => [:contracts, :archives, :licenses], :through => :expiration_remindings, :dependent => :destroy
       end
     end
 

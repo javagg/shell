@@ -1,0 +1,8 @@
+<% form_tag({:action => 'import'}, :multipart => true) do %>
+  <p>
+    <%= select_tag("fdf") %>
+  </p>
+  <p>
+    <%= submit_tag I18n.t('txt.import') %>
+  </p>
+<% end %>

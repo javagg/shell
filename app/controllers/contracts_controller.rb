@@ -76,9 +76,6 @@ class ContractsController < ApplicationController
 
     config.action_links.add :upload_xls_file, :label => I18n.t('txt.import')
     config.action_links[:upload_xls_file].type = :collection
-    #    config.action_links[:download].popup = true
-    #    config.action_links[:import].security_method = :download_authorized?
-
   end
 
   def beginning_of_chain
@@ -90,7 +87,7 @@ class ContractsController < ApplicationController
   end
 
   def upload_xls_file
-    render(:partial => "app/views/upload/upload_xls_file.erb")
+    render :partial => "app/views/upload/upload_xls_file.erb"
   end
   
   def import

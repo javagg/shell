@@ -262,6 +262,7 @@ ActiveRecord::Schema.define(:version => 1) do
   create_table "ycroles", :force => true do |t|
     t.string "name"
     t.string "description"
+    t.string "type",        :default => "public"
   end
 
 end

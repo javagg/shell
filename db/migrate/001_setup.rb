@@ -209,6 +209,7 @@ class Setup < ActiveRecord::Migration
     create_table :ycroles, :force => true do |t|
       t.string :name, :uniq => true
       t.string :description
+      t.string :type, :default => "public"
     end
 
     create_table :user_ycroles, :id => false, :force => true do |t|

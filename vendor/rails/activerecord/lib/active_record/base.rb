@@ -611,7 +611,7 @@ module ActiveRecord #:nodoc:
       def find(*args)
         options = args.extract_options!
 
-        puts "find: options: #{options}"
+      #  puts "find: options: #{options}"
         validate_find_options(options)
         set_readonly_option!(options)
 
@@ -1576,7 +1576,7 @@ module ActiveRecord #:nodoc:
         end
 
         def find_every(options)
-          puts "find_every: #{options}"
+    #      puts "find_every: #{options}"
           include_associations = merge_includes(scope(:find, :include), options[:include])
 
           if include_associations.any? && references_eager_loaded_tables?(options)

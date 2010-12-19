@@ -1,0 +1,20 @@
+<% form_tag({:action => 'batch_set_permissions'}) do %>
+  <p>
+    <%= select_tag("ycrole", options_for_select(Ycrole.public.all.collect {|role| role.name})) %>
+  </p>
+  <% @selecteds.each do |selected| %>
+    <p><%=  selected.name %> </p>
+  <% end%>
+  <%= label_tag '全部只读'%>
+  <%= radio_button_tag 'read_action', 'true', true %><br/>
+  <%= label_tag '全部可写'%>
+  <%= radio_button_tag 'write_action', 'true' %><br/>
+  <%= label_tag '全部不只读'%>
+  <%= radio_button_tag 'read_action', 'false' %><br/>
+  <%= label_tag '全部不可写'%>
+  <%= radio_button_tag 'write_action', 'false', true %><br/>
+  <p>
+    <%= hidden_field_tag("selected_ids", @selected_ids.join(",")) %>
+    <%= submit_tag I18n.t('txt.set') %>
+  </p>
+<% end %>
