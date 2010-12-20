@@ -43,6 +43,7 @@ gem install passenger
 gem install whenever
 gem install app_config
 gem install acts_as_audited
+gem install spreadsheet
 
 passenger-install-apache2-module
 
