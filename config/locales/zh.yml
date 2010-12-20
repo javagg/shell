@@ -610,6 +610,7 @@ zh:
     role_management: 角色设置
     logged_as: "登录为"
     copyright: "延长壳牌石油有限公司版权所有"
+    download: "模板下载"
     
   user:
     username: "用户名"
