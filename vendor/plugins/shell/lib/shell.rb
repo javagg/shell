@@ -99,14 +99,6 @@ module Shell
             :joins => "INNER JOIN #{permissions} ON #{permissions}.#{model}_id = #{models}.id " +
               "INNER JOIN user_ycroles ON #{permissions}.ycrole_id = user_ycroles.ycrole_id ",
             :conditions => "(#{permissions}.can_read = true OR #{permissions}.can_write = true) and user_ycroles.user_id = #{user.id}",
-            #            :scope_sql => "SELECT DISTINCT `#{models}`.* FROM `#{models}`
-            #                           INNER JOIN `#{permissions}` ON (`#{models}`.`id` = `#{permissions}`.`#{model}_id`)
-            #                           INNER JOIN `ycroles` ON (`ycroles`.`id` = `#{permissions}`.`ycrole_id`)
-            #                           INNER JOIN `user_ycroles` ON user_ycroles.ycrole_id = ycroles.id
-            #                           WHERE ((`#{permissions}`.`can_read` = true OR `#{permissions}`.`can_read` = true) AND `user_ycroles`.`user_id` = #{user.id})
-            #                           UNION
-            #                           SELECT DISTINCT `#{models}`.* FROM `#{models}`
-            #                           WHERE (`#{models}`.`user_id` = #{user.id})#"
           }
         }
 
@@ -139,7 +131,6 @@ module Shell
         return true if found
         return false
       end
-
 
       def can_write_by_user?(user, id)
 
@@ -314,6 +305,65 @@ module Shell
     end
   end
 
+  module YcroleDocumentControllerConfiguration
+    def self.included(base)
+      base.class_eval do
+        extend ClassMethods
+        include InstanceMethods
+        
+        def ycrole_model_name
+          self.class.to_s.gsub(/Ycrole/, "").gsub(/Controller/,"").singularize
+        end
+
+        def permissions_name
+          "#{ycrole_model_name}Permission"
+        end
+      end
+    end
+
+    module ClassMethods
+      def config_active_scaffold(config)
+        config.list.columns = [:number, :name]
+        config.list.mark_records = true
+        config.actions.exclude :create
+        config.actions.exclude :update
+        config.actions.exclude :show
+        config.actions.exclude :delete
+
+        config.actions.exclude :search
+        config.actions << :field_search
+        config.list.mark_records = true
+        config.action_links.add :batch_set, :label => I18n.t('txt.batch_set')
+        config.action_links[:batch_set].type = :collection
+      end
+    end
+    
+    module InstanceMethods
+     
+      def batch_set
+        @selected_ids = marked_records.to_a
+        @selecteds = ycrole_model_name.constantize.find @selected_ids
+        render :template => "app/views/ycroles/batch_set.erb"
+      end
+
+      def batch_set_permissions
+        role = Ycrole.find_by_name params[:ycrole]
+        selected_ids = params[:selected_ids].split(",")
+        selected = ycrole_model_name.constantize.find selected_ids
+        model_id_sym = "#{ycrole_model_name.downcase.singularize}_id".to_sym
+        selected.each do |select|
+          permission = permissions_name.constantize.find(:first, :conditions => {:ycrole_id => role.id, model_id_sym => select.id })
+          if permission
+            permission.can_read = params[:read_action]
+            permission.can_write = params[:write_action]
+            permission.save
+          end
+        end
+        redirect_to :action => :index
+      end
+    end
+  end
+
   module Attachable
     def self.included(base)
       base.class_eval do
@@ -394,37 +444,36 @@ module Shell
     end
   end
 
-  module ActiveScaffoldConfiguration
+  module PermissionsActiveScaffoldConfiguration
     def self.included(base)
       base.class_eval do
-        include InstanceMethods
         extend ClassMethods
       end
     end
+    
     module ClassMethods
-      def permissions_active_scaffold_configurate(doc_name)
-        doc = doc_name.to_sym
-        permissions = "#{doc_name}_permissions".to_sym
+      def before_active_scaffold(doc)
+        permissions = "#{doc.to_s}_permissions".to_sym
         in_place_edit_for permissions, :can_read
         in_place_edit_for permissions, :can_write
+      end
 
-        active_scaffold permissions do |config|
-          config.columns = [ doc, :can_read, :can_write ]
-          config.columns[doc].form_ui = :select
-          config.show.columns = [doc]
-          config.columns[:can_read].form_ui = :select
-          config.columns[:can_read].options = { :options => Shell::Options::shifou_options }
-          config.columns[:can_read].inplace_edit = true
-          config.columns[:can_write].form_ui = :select
-          config.columns[:can_write].options = { :options => Shell::Options::shifou_options }
-          config.columns[:can_write].inplace_edit = true
+      def config_active_scaffold(config, doc)
+        config.columns = [ doc, :can_read, :can_write ]
+        config.columns[doc].form_ui = :select
+        config.show.columns = [doc]
+        config.columns[:can_read].form_ui = :select
+        config.columns[:can_read].options = { :options => Shell::Options::shifou_options }
+        config.columns[:can_read].inplace_edit = true
+        config.columns[:can_write].form_ui = :select
+        config.columns[:can_write].options = { :options => Shell::Options::shifou_options }
+        config.columns[:can_write].inplace_edit = true
 
-          config.actions.exclude :show
-          config.actions.exclude :update
-        end
+        config.actions.exclude :show
+        config.actions.exclude :update
       end
     end
-  end  
+  end
 
   module ImportExcel
     require 'spreadsheet'

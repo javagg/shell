@@ -52,7 +52,7 @@ module ActiveScaffold
 
       # converts Foo::BarController to 'bar' and FooBarsController to 'foo_bar' and AddressController to 'address'
       model_id = self.to_s.split('::').last.sub(/Controller$/, '').pluralize.singularize.underscore unless model_id
-
+      puts "model_id: #{model_id}"
       # run the configuration
       @active_scaffold_config = ActiveScaffold::Config::Core.new(model_id)
       @active_scaffold_config_block = block
@@ -114,6 +114,7 @@ module ActiveScaffold
           column.clear_link
         else
           model = column.association.klass
+          puts "column.association.klass: #{column.association.klass}"
           begin
             controller = active_scaffold_controller_for(model)
           rescue ActiveScaffold::ControllerNotFound
