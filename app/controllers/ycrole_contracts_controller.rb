@@ -1,4 +1,6 @@
 class YcroleContractsController < ApplicationController
+  before_filter :require_user
+  filter_access_to :all
   include Shell::YcroleDocumentControllerConfiguration
 
   active_scaffold :contracts do |config|

@@ -38,6 +38,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :accounts
   map.resources :password_resets, :only => [:new, :create, :edit, :update]
 
+  map.batch_permissions '/batch_permissions', :controller => 'ycroles', :action => 'batch_permissions'
   map.with_options :controller => 'site' do |site|
     site.home '', :action => 'index'
     site.help '/help', :action => 'help'

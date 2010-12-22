@@ -1,4 +1,6 @@
 class YcroleArchivesController < ApplicationController
+  before_filter :require_user
+  filter_access_to :all
   include Shell::YcroleDocumentControllerConfiguration
   
   active_scaffold :archives do |config|

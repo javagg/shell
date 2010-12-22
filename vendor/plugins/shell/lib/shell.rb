@@ -335,6 +335,8 @@ module Shell
         config.list.mark_records = true
         config.action_links.add :batch_set, :label => I18n.t('txt.batch_set')
         config.action_links[:batch_set].type = :collection
+
+        config.field_search.link.label = I18n.t('txt.filter')
       end
     end
     
@@ -448,6 +450,7 @@ module Shell
     def self.included(base)
       base.class_eval do
         extend ClassMethods
+        include InstanceMethods
       end
     end
     
@@ -470,7 +473,20 @@ module Shell
         config.columns[:can_write].inplace_edit = true
 
         config.actions.exclude :show
-        config.actions.exclude :update
+        config.create.link = false
+        config.update.link = false
+        config.delete.link = false
+
+        config.action_links.add :batch_set, :label => I18n.t('txt.batch_set')
+        config.action_links[:batch_set].type = :collection
+        config.action_links[:batch_set].popup = true
+#        config.action_links[:download].security_method = :download_authorized?
+      end
+    end
+
+    module InstanceMethods
+      def batch_set
+        redirect_to batch_permissions_path
       end
     end
   end

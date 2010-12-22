@@ -14,4 +14,7 @@ class YcrolesController < ApplicationController
   def beginning_of_chain
     active_scaffold_config.model.public
   end
+
+  def batch_permissions
+  end
 end

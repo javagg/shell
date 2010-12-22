@@ -550,6 +550,7 @@ zh:
     empty: "清空"
     import: "导入"
     set: "设置"
+    filter: "筛选"
     select_xls_file: "请选择xls文件"
     mark_read: "选定只读"
     mark_write: "选定可写"
