@@ -87,7 +87,6 @@ module ActiveRecord
         name = name.to_sym
 
         scopes[name] = lambda do |parent_scope, *args|
-          puts "named_scope: args #{args}"
           Scope.new(parent_scope, case options
             when Hash
 

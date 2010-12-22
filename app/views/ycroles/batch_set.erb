@@ -1,20 +1,46 @@
 <% form_tag({:action => 'batch_set_permissions'}) do %>
-  <p>
-    <%= select_tag("ycrole", options_for_select(Ycrole.public.all.collect {|role| role.name})) %>
-  </p>
-  <% @selecteds.each do |selected| %>
-    <p><%=  selected.name %> </p>
-  <% end%>
-  <%= label_tag '全部只读'%>
-  <%= radio_button_tag 'read_action', 'true', true %><br/>
-  <%= label_tag '全部可写'%>
-  <%= radio_button_tag 'write_action', 'true' %><br/>
-  <%= label_tag '全部不只读'%>
-  <%= radio_button_tag 'read_action', 'false' %><br/>
-  <%= label_tag '全部不可写'%>
-  <%= radio_button_tag 'write_action', 'false', true %><br/>
+  <div style="text-align: left">
+    <h1>
+      <%= label_tag "请选择一个需要设置的角色" %>
+    </h1>
+    <p>
+      <%= select_tag("ycrole", options_for_select(Ycrole.public.all.collect {|role| role.name})) %>
+    </p>
+  <%# @selecteds.each do |selected| %>
+  <%#*<p>%>
+  <%#=  selected.name %>
+  <%#*</p>%>
+  <%# end %>
+    <br/>
+    <h1>
+      <%= label_tag "请选择需要进行的动作" %>
+    </h1>
+    <div>
+      <table style="text-align: center">
+        <tr>
+          <td>
+            <%= label_tag '全部只读'%>
+            <%= radio_button_tag 'read_action', 'true', true %>
+          </td>
+          <td>
+            <%= label_tag '全部可写'%>
+            <%= radio_button_tag 'write_action', 'true' %>
+          </td>
+          <td>
+            <%= label_tag '全部不只读'%>
+            <%= radio_button_tag 'read_action', 'false' %>
+          </td>
+          <td>
+            <%= label_tag '全部不可写'%>
+            <%= radio_button_tag 'write_action', 'false', true %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
   <p>
     <%= hidden_field_tag("selected_ids", @selected_ids.join(",")) %>
     <%= submit_tag I18n.t('txt.set') %>
   </p>
 <% end %>
+
