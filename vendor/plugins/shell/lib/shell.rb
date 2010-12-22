@@ -341,7 +341,6 @@ module Shell
     end
     
     module InstanceMethods
-     
       def batch_set
         @selected_ids = marked_records.to_a
         @selecteds = ycrole_model_name.constantize.find @selected_ids
@@ -480,7 +479,7 @@ module Shell
         config.action_links.add :batch_set, :label => I18n.t('txt.batch_set')
         config.action_links[:batch_set].type = :collection
         config.action_links[:batch_set].popup = true
-#        config.action_links[:download].security_method = :download_authorized?
+        #        config.action_links[:download].security_method = :download_authorized?
       end
     end
 
