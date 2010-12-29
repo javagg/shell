@@ -1,5 +1,7 @@
 class LicensesController < ApplicationController
   before_filter :require_user
+
+  include Shell::ControllerWithCommonFunctions
   
   active_scaffold :licenses do |config|
     # for uploading file
@@ -29,8 +31,7 @@ class LicensesController < ApplicationController
     config.actions.exclude :search
     config.actions << :field_search
 
-    config.action_links.add :upload_xls_file, :label => I18n.t('txt.import')
-    config.action_links[:upload_xls_file].type = :collection
+    config_active_scaffold(config)
   end
 
   def beginning_of_chain
@@ -41,5 +42,4 @@ class LicensesController < ApplicationController
     end
   end
 
-  include Shell::ControllerWithImport
 end

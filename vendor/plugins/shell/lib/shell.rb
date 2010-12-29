@@ -263,6 +263,7 @@ module Shell
 
     module ClassMethods
       def acts_as_expirable
+        after_create :add_creator_as_expiration_remindee
         has_many :expiration_remindings, :as => :reminder, :dependent => :destroy
         has_many :expiration_remindees, :through => :expiration_remindings, :source => 'user'
       end
@@ -285,6 +286,13 @@ module Shell
     attr_accessor :expired_on
 
     module InstanceMethods
+      def add_creator_as_expiration_remindee
+        remindee = current_user
+        unless remindee.nil?
+          ExpirationReminding.create(:user => remindee, :reminder => self)
+        end
+      end
+      
       def remind_expiaration
         expiration_remindees.each do | remindee |
           Emailer.deliver_expiration_reminding self, remindee
@@ -300,8 +308,6 @@ module Shell
         return false if expired?
         return  Date.today >= expired_on - expiration_reminding_days && Date.today <= expired_on
       end
-
-
     end
   end
 
@@ -560,16 +566,50 @@ module Shell
     end
   end
 
-  module ControllerWithImport
+  module ControllerWithCommonFunctions
     def self.included(base)
       base.class_eval do
+        extend ClassMethods
         include InstanceMethods
+        def document_model_name
+          self.class.to_s.gsub(/Ycrole/, "").gsub(/Controller/,"").singularize
+        end
       end
     end
-
+    
+    module ClassMethods
+      def config_active_scaffold(config)
+        config.list.mark_records = true
+        config.action_links.add :export, :label => I18n.t('txt.export')
+        config.action_links[:export].type = :collection
+        config.action_links[:export].popup = true
+        
+        config.action_links.add :upload_xls_file, :label => I18n.t('txt.import')
+        config.action_links[:upload_xls_file].type = :collection
+        
+        config.action_links.add :delete_marked, :label => I18n.t('txt.batch_delete')
+        config.action_links[:delete_marked].type = :collection
+      end
+    end
+    
     module InstanceMethods
       def upload_xls_file
         render :partial => "app/views/upload/upload_xls_file.erb"
+      end
+      
+      def delete_marked
+        model_name = self.controller_name.downcase.singularize.capitalize
+        klass = model_name.constantize
+        marked_records.each do |record_id|
+          puts "record_id: #{record_id}"
+          select = klass.find record_id
+          if select and select.can_write_by_user?(current_user)
+            klass.destroy record_id
+            marked_records.delete record_id
+          end
+        end
+        render :text => "ok!"
+        #        redirect_to :action => :index
       end
 
       def import
@@ -586,6 +626,28 @@ module Shell
           File.delete(filename)
           redirect_to :action => :index
         end
+      end
+
+      def export
+        filename = "#{RAILS_ROOT}/tmp/export.xls"
+#        if File.exist?(filename)
+#          File.delete(filename)
+#        end
+#
+#        book = Spreadsheet::Workbook.new
+#        sheet = book.create_worksheet :name => "export objects"
+#
+#        sheet[0, 0] = "Products Catalog"
+#        sheet.row(1).concat ["Name", "Price", "Stock", "Description"]
+#        sheet.update_row 1, "name1", "price1", 200, "description1"
+#        sheet.update_row 2, "name2", "price2", 200, "description2"
+#        title_format = Spreadsheet::Format.new(:color => :blue, :weight => :bold, :size => 18)
+#        sheet.row(0).set_format(0, title_format)
+#        bold = Spreadsheet::Format.new(:weight => :bold)
+#        sheet.row(1).default_format = bold
+#        book.write filename
+
+        send_file filename
       end
     end
   end

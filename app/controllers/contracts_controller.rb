@@ -16,6 +16,8 @@ class ContractsController < ApplicationController
 
   before_filter :require_user
 
+  include Shell::ControllerWithCommonFunctions
+
   active_scaffold :contracts do |config|
     # for uploading file
     config.create.multipart = true
@@ -74,8 +76,7 @@ class ContractsController < ApplicationController
     config.columns[:payment_remindees].form_ui = :select
     config.columns[:payment_remindees].options = { :draggable_lists => true }
 
-    config.action_links.add :upload_xls_file, :label => I18n.t('txt.import')
-    config.action_links[:upload_xls_file].type = :collection
+    config_active_scaffold(config)
   end
 
   def beginning_of_chain
@@ -85,7 +86,4 @@ class ContractsController < ApplicationController
       active_scaffold_config.model
     end
   end
-
-  include Shell::ControllerWithImport
-  
 end

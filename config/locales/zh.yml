@@ -549,6 +549,8 @@ zh:
     download: "下载"
     empty: "清空"
     import: "导入"
+    export: "导出"
+    batch_delete: "批量删除"
     set: "设置"
     filter: "筛选"
     select_xls_file: "请选择xls文件"

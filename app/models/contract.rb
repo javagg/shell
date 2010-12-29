@@ -16,7 +16,16 @@ class Contract <  ActiveRecord::Base
 
   include Shell::Authorized
   acts_as_authorized
-  
+
+  after_create :add_creator_as_payment_remindee
+ 
+  def add_creator_as_payment_remindee
+    remindee = current_user
+    unless remindee.nil?
+      PaymentReminding.create(:user => remindee, :contract => self)
+    end
+  end
+      
   def next_payment_date(from = Date.today)
     payment_dates.find_all { |e| e > from }.min
   end
