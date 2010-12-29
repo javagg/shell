@@ -66,7 +66,7 @@ class Contract <  ActiveRecord::Base
     Settings.payment_reminding_days.to_i
   end
 
-  include Shell::ImportExcel
+  include Shell::ImportExportExcel
 
   def self.header_field
     return {

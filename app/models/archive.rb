@@ -14,7 +14,7 @@ class Archive < ActiveRecord::Base
     Settings.expiration_reminding_days.to_i
   end
 
-  include Shell::ImportExcel
+  include Shell::ImportExportExcel
 
   def self.header_field
     return {

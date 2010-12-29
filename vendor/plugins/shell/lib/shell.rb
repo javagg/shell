@@ -496,7 +496,7 @@ module Shell
     end
   end
 
-  module ImportExcel
+  module ImportExportExcel
     require 'spreadsheet'
     require 'iconv'
 
@@ -563,6 +563,33 @@ module Shell
         end
         return data
       end
+
+      def to_xls(ids = {})
+        header_row = 0
+        start_row = header_row + 1
+        filename = "#{RAILS_ROOT}/tmp/export.xls"
+        if File.exist?(filename)
+          File.delete(filename)
+        end
+        
+        book = Spreadsheet::Workbook.new
+        sheet = book.create_worksheet :name => "export objects"
+        sheet.row(header_row).concat header_field.keys
+
+        fields = header_field.values
+        row = start_row
+        ids.each do |id|
+          record = self.find id
+          values = []
+          fields.each do |field|
+            values << record[field]
+          end
+          sheet.insert_row row, values
+          row += 1
+        end
+        book.write filename
+        return filename
+      end
     end
   end
 
@@ -571,9 +598,6 @@ module Shell
       base.class_eval do
         extend ClassMethods
         include InstanceMethods
-        def document_model_name
-          self.class.to_s.gsub(/Ycrole/, "").gsub(/Controller/,"").singularize
-        end
       end
     end
     
@@ -598,10 +622,7 @@ module Shell
       end
       
       def delete_marked
-        model_name = self.controller_name.downcase.singularize.capitalize
-        klass = model_name.constantize
         marked_records.each do |record_id|
-          puts "record_id: #{record_id}"
           select = klass.find record_id
           if select and select.can_write_by_user?(current_user)
             klass.destroy record_id
@@ -613,14 +634,12 @@ module Shell
       end
 
       def import
-        model_name = self.controller_name.downcase.singularize.capitalize
         file = params[:upload][:xlsfile]
         if !file.original_filename.empty?
           filename = "#{RAILS_ROOT}/tmp/#{file.original_filename}"
           File.open(filename, "wb") do |f|
             f.write(file.read)
           end
-          klass = model_name.constantize
           data = klass.parse(filename)
           klass.create data
           File.delete(filename)
@@ -629,25 +648,15 @@ module Shell
       end
 
       def export
-        filename = "#{RAILS_ROOT}/tmp/export.xls"
-#        if File.exist?(filename)
-#          File.delete(filename)
-#        end
-#
-#        book = Spreadsheet::Workbook.new
-#        sheet = book.create_worksheet :name => "export objects"
-#
-#        sheet[0, 0] = "Products Catalog"
-#        sheet.row(1).concat ["Name", "Price", "Stock", "Description"]
-#        sheet.update_row 1, "name1", "price1", 200, "description1"
-#        sheet.update_row 2, "name2", "price2", 200, "description2"
-#        title_format = Spreadsheet::Format.new(:color => :blue, :weight => :bold, :size => 18)
-#        sheet.row(0).set_format(0, title_format)
-#        bold = Spreadsheet::Format.new(:weight => :bold)
-#        sheet.row(1).default_format = bold
-#        book.write filename
+        filename = klass.to_xls marked_records
+        send_file filename, :type => "application/xls"
+      end
 
-        send_file filename
+      private
+
+      def klass
+        model_name = self.controller_name.downcase.singularize.capitalize
+        model_name.constantize
       end
     end
   end
