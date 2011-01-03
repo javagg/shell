@@ -118,7 +118,6 @@ module Shell
       end
      
       def can_read_by_user?(user, id)
-
         found = self.find(:first,
           :select=> "DISTINCT #{models}.*",
           :joins => { :involved_ycroles => :user_ycroles },
@@ -133,7 +132,6 @@ module Shell
       end
 
       def can_write_by_user?(user, id)
-
         found = self.find(:first,
           :select=> "DISTINCT #{models}.*",
           :joins => { :involved_ycroles => :user_ycroles },
@@ -203,17 +201,14 @@ module Shell
       end
 
       def can_read_by_user?(user)
-        return true if created_by?(user)
         self.class.can_read_by_user?(user, self.id)
       end
 
       def can_write_by_user?(user)
-        return true if created_by?(user)
         self.class.can_write_by_user?(user, self.id)
       end
 
       def authorized_for_read?
-        #        return true if current_user.is_admin?
         return can_read_by_user?(current_user)
       end
 
@@ -629,8 +624,8 @@ module Shell
             marked_records.delete record_id
           end
         end
-        render :text => "ok!"
-        #        redirect_to :action => :index
+#        render :text => "ok!"
+        redirect_to :action => :index
       end
 
       def import
