@@ -482,10 +482,13 @@ zh:
           attributes:
             start_date:
               blank: "不是有效日期"
+              invalid_date: "格式不正确"
             end_date:
+              invalid_date: "格式不正确"
               blank: "不是有效日期"
             first_payment_date:
               blank: "不是有效日期"
+              invalid_date: "格式不正确"
             num_payments:
               not_a_number: "不是数字"
         ycrole:

@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :user_ycroles, :active_scaffold => true
   map.resources :ycroles, :active_scaffold => true
   map.resources :documents, :active_scaffold => true
-  map.resources :contracts, :collection => {:upload_xls_file => :get, :delete_marked => :get, :export => :get }, :active_scaffold => true do |contract|
+  map.resources :contracts, :collection => { :upload_xls_file => :get, :delete_marked => :get, :export => :get }, :active_scaffold => true do |contract|
     contract.resources :payments, :active_scaffold => true
     contract.resources :payment_periods
     contract.resources :reminding_periods
@@ -12,13 +12,13 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :expiration_remindings, :active_scaffold => true
   
-  map.resources :licenses, :collection => {:upload_xls_file => :get, :delete_marked => :get, :export => :get }, :active_scaffold => true do |license|
+  map.resources :licenses, :collection => { :upload_xls_file => :get, :delete_marked => :get, :export => :get }, :active_scaffold => true do |license|
     license.resources :expiration_remindees
     license.resources :reminding_periods
     license.resources :attachments, :member => { :download => :get }
   end
   
-  map.resources :archives, :collection => {:upload_xls_file => :get, :delete_marked => :get, :export => :get }, :active_scaffold => true do |archive|
+  map.resources :archives, :collection => { :upload_xls_file => :get, :delete_marked => :get, :export => :get }, :active_scaffold => true do |archive|
     archive.resources :expiration_remindees
     archive.resources :reminding_periods
     archive.resources :attachments, :member => { :download => :get }
@@ -31,8 +31,8 @@ ActionController::Routing::Routes.draw do |map|
     user.resources :payment_remindings, :active_scaffold => true
   end
 
-  map.resources :audits, :collection => { :empty => :get}, :active_scaffold => true
-  map.resources :roles, :collection => {:browse => :get}, :member => {:select => :post}
+  map.resources :audits, :collection => { :empty => :get }, :active_scaffold => true
+  map.resources :roles, :collection => { :browse => :get }, :member => { :select => :post }
 
   map.resource :user_session
   map.resources :accounts

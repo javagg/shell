@@ -102,10 +102,4 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
-
-#  def active_scaffold_controller_for(klass)
-#    puts "kao"
-#    return UsersYcRolesController if klass == UserYcRole
-#  end
-
 end

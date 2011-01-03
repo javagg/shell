@@ -77,6 +77,7 @@ class ContractsController < ApplicationController
     config.columns[:payment_remindees].options = { :draggable_lists => true }
 
     config_active_scaffold(config)
+
   end
 
   def beginning_of_chain
