@@ -600,13 +600,8 @@ module Shell
       def config_active_scaffold(config)
         config.list.mark_records = true
         config.action_links.add :export, :label => I18n.t('txt.export'), :type => :collection, :popup => true
-#        config.action_links[:export].type = :collection
-#        config.action_links[:export].popup = true
-        
         config.action_links.add :upload_xls_file, :label => I18n.t('txt.import'), :type => :collection
-        
-        config.action_links.add :delete_marked, :label => I18n.t('txt.batch_delete'),
-          :type => :collection, :inline => false
+        config.action_links.add :delete_marked, :label => I18n.t('txt.batch_delete'), :type => :collection, :inline => false
       end
     end
     
@@ -636,7 +631,8 @@ module Shell
           data = klass.parse(filename)
           klass.create data
           File.delete(filename)
-          redirect_to :action => :index
+          
+          return_to_main
         end
       end
 
