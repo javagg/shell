@@ -231,7 +231,7 @@ ActiveRecord::Schema.define(:version => 1) do
 
   add_index "settings", ["var"], :name => "index_settings_on_var"
 
-  create_table "user_ycroles", :id => false, :force => true do |t|
+  create_table "user_ycroles", :force => true do |t|
     t.integer "user_id",   :null => false
     t.integer "ycrole_id", :null => false
   end

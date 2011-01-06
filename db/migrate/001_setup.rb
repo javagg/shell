@@ -212,7 +212,7 @@ class Setup < ActiveRecord::Migration
       t.string :type, :default => "public"
     end
 
-    create_table :user_ycroles, :id => false, :force => true do |t|
+    create_table :user_ycroles, :force => true do |t|
       t.references :user, :null => false
       t.references :ycrole, :null => false
     end
