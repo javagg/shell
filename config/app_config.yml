@@ -1,6 +1,6 @@
 defaults: &defaults
-  admin_email: "lu.lee05@gmail.com"
-  app_domain: "61.236.244.74"
+  admin_email: "yinan.wu@ycshell.com"
+  app_domain: "www.ycshell.com"
   app_email: "forshell12345@sohu.com"
   app_port: "80"
   smtp_address: "smtp.sohu.com"
