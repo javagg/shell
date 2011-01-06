@@ -1,28 +1,7 @@
 class Emailer < ActionMailer::Base
 
-  def signup_notification recipient
-    #body['host'] = self.default_url_options[:host]
-    recipients recipient.email
-    bcc        []
-    from       AppConfig['app_email']
-    subject    "signup notification"
-    body       :account => recipient
-    send_on    Time.now
-  end
-
-  def welcome recipient
-    #    body['host'] = self.default_url_options[:host]
-    recipients recipient.email
-    bcc        []
-    from       AppConfig['app_email']
-    subject    "Welcome"
-    body       :account => recipient
-    send_on    Time.now
-  end
-
   def activation_instructions recipient
-    #    body['host'] = self.default_url_options[:host]
-    subject       "Activation Instructions"
+    subject       "激活"
     from          AppConfig['app_email']
     recipients    recipient.email
     sent_on       Time.now
@@ -30,8 +9,7 @@ class Emailer < ActionMailer::Base
   end
 
   def welcome user
-    #    body['host'] = self.default_url_options[:host]
-    subject       "Welcome to the site!"
+    subject       "欢迎使用shell文件管理系统"
     from          AppConfig['app_email']
     recipients    user.email
     sent_on       Time.now
@@ -39,9 +17,8 @@ class Emailer < ActionMailer::Base
   end
 
   def password_reset_instructions recipient
-    #    body['host'] = self.default_url_options[:host]
     recipients   recipient.email
-    subject      "Password Reset"
+    subject      "密码重设"
     from         AppConfig['app_email']
     content_type "text/html"
     sent_on      Time.now
@@ -50,7 +27,7 @@ class Emailer < ActionMailer::Base
 
   def expiration_reminding expirable, remindee
     recipients   remindee.email
-    subject      "a expirable will expire"
+    subject      "过期提醒"
     content_type "text/html"
     from         AppConfig['app_email']
     sent_on      Time.now
@@ -59,7 +36,7 @@ class Emailer < ActionMailer::Base
 
   def contract_payment_reminding contract, remindee
     recipients   remindee.email
-    subject      "contract payment"
+    subject      "合同支付提醒"
     content_type "text/html"
     from         AppConfig['app_email']
     sent_on      Time.now
