@@ -1,7 +1,7 @@
 module Shell
   module Options
     def self.department_options
-      ["FN", "OP", "EN", "HR", "HSSE", "ND"]
+      ["FN", "OP", "EN", "HR", "HSSE", "ND", "PR", "SUP", "GM"]
     end
     
     def self.shifou_options

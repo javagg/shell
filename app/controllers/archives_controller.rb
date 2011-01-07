@@ -17,10 +17,6 @@ class ArchivesController < ApplicationController
     config.list.columns = [:number, :name, :expired_on]
     config.nested.add_link I18n.t('document.show_attachments'), :attachments
 
-    config.columns[:issue_dep].form_ui = :select
-    config.columns[:issue_dep].options = { :include_blank => I18n.t('txt.please_choose'),
-      :options => Shell::Options::department_options }
-
     config.columns[:keep_dep].form_ui = :select
     config.columns[:keep_dep].options = { :include_blank => I18n.t('txt.please_choose'),
       :options => Shell::Options::department_options }

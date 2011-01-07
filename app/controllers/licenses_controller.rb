@@ -21,6 +21,10 @@ class LicensesController < ApplicationController
     config.columns[:has_electrical_edtion].form_ui = :select
     config.columns[:has_electrical_edtion].options = { :options => Shell::Options::shifou_options }
 
+    config.columns[:owning_department].form_ui = :select
+    config.columns[:owning_department].options = { :include_blank => I18n.t('txt.please_choose'),
+      :options => Shell::Options::department_options }
+
     config.columns[:confidential_level].form_ui = :select
     config.columns[:confidential_level].options = { :include_blank => I18n.t('txt.please_choose'),
       :options => Shell::Options::confidential_level_options }
