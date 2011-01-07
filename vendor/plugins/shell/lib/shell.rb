@@ -1,7 +1,7 @@
 module Shell
   module Options
     def self.department_options
-      ["FN", "OP", "EN", "HR", "HSSE"]
+      ["FN", "OP", "EN", "HR", "HSSE", "ND"]
     end
     
     def self.shifou_options
@@ -510,7 +510,7 @@ module Shell
         headers = header_field.keys
 
         sheet_index = 0
-        encoding = "GBK"
+        encoding = 'utf-8'
 
         header_row = 0
         start_row = 1

@@ -245,6 +245,7 @@ zh:
     attributes:
       attachment:
         data: ""
+        
       user_session:
         username: "用户名"
         password: "密码"
