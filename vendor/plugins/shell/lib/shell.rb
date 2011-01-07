@@ -546,11 +546,7 @@ module Shell
               unless ignore_cols.include?(col)
                 key = field_index[col].to_sym
                 value = sheet.row(row)[col]
-                begin
-                  row_data[key] = Iconv.iconv("UTF-8//IGNORE","GBK//IGNORE",value)[0]
-                rescue
-                  row_data[key] = value
-                end
+                row_data[key] = value
               end
             end
             data << row_data
