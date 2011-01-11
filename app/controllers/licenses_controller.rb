@@ -14,7 +14,7 @@ class LicensesController < ApplicationController
       :expiration_remindees
     ]
 
-    config.list.columns = [:number, :name, :station_name, :expired_on]
+    config.list.columns = [:t5code, :number, :name, :station_name, :expired_on]
     config.columns[:expiration_remindees].form_ui = :select
     config.columns[:expiration_remindees].options = { :draggable_lists => true }
 
