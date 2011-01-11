@@ -31,7 +31,7 @@ class ContractsController < ApplicationController
     ]
 
     config.subform.layout = :vertical
-    config.list.columns = [:number, :name, :end_date, :next_payment_date]
+    config.list.columns = [:number, :name, :end_date, :trading_mode, :next_payment_date]
     config.nested.add_link I18n.t('contract.show_payments'), :payments
     config.nested.add_link I18n.t('document.show_attachments'), :attachments
     config.nested.add_link I18n.t('contract.show_payment_periods'), :payment_periods

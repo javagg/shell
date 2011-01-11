@@ -73,7 +73,7 @@ class Contract <  ActiveRecord::Base
       "类型" => "contract_type",
       "印花税类型" => "stamp_tax_type",
       "合同编号" => "number",
-      "加油站标准站名" => "station_name",
+      "合同名称" => "name",
       "项目地址" => "project_address",
       "交易模式" => "trading_mode",
       "土地证办理期限" => "land_certificate_application_deadline",
