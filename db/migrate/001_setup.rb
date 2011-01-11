@@ -70,7 +70,7 @@ class Setup < ActiveRecord::Migration
       t.string :number
       t.string :name
       t.text :description
-      t.integer :t5code
+      t.string :t5code
       t.string :area
       t.string :station_name
       t.string :issuing_authority
