@@ -126,6 +126,7 @@ module Shell
         )
 
         return true if found
+        
         found = self.find(:first, :conditions => ["user_id = ? and id = ? ", user.id, id])
         return true if found
         return false
@@ -138,6 +139,8 @@ module Shell
           :conditions => { models.to_sym => {:id => id }, permissions.to_sym => { :can_write => true },
             :involved_ycroles => { :user_ycroles => { :user_id => user.id }}}
         )
+
+        return true if found
 
         found = self.find(:first, :conditions => ["user_id = ? and id = ? ", user.id, id])
         return true if found
