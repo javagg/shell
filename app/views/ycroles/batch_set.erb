@@ -20,20 +20,20 @@
         <tr>
           <td>
             <%= label_tag '全部可读'%>
-            <%= radio_button_tag 'read_action', 'true', true %>
+            <%= radio_button_tag 'read_write_action', 'all_read', true %>
           </td>
           <td>
             <%= label_tag '全部可写'%>
-            <%= radio_button_tag 'write_action', 'true' %>
+            <%= radio_button_tag 'read_write_action', 'all_write' %>
           </td>
           <td>
-            <%= label_tag '全部不可读'%>
-            <%= radio_button_tag 'read_action', 'false' %>
+            <%= label_tag '全部不可读不可写'%>
+            <%= radio_button_tag 'read_write_action', 'all_not_read_write' %>
           </td>
-          <td>
-            <%= label_tag '全部不可写'%>
-            <%= radio_button_tag 'write_action', 'false', true %>
-          </td>
+          <%#*<td>%>
+            <%#= label_tag '全部不可写'%>
+            <%#= radio_button_tag 'write_action', 'false', true %>
+          <%#*</td>%>
         </tr>
       </table>
     </div>

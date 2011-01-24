@@ -209,6 +209,11 @@ module Shell
       end
 
       def authorized_for_read?
+        # add this for admin to set its read_write permissions,
+        # admin can see all items in permission_batch_set lists
+        # very important!!!!!!
+        return true if current_user.username == "admin"
+
         return can_read_by_user?(current_user)
       end
 
@@ -356,8 +361,16 @@ module Shell
         selected.each do |select|
           permission = permissions_name.constantize.find(:first, :conditions => {:ycrole_id => role.id, model_id_sym => select.id })
           if permission
-            permission.can_read = params[:read_action]
-            permission.can_write = params[:write_action]
+            if params[:read_write_action] == "all_not_read_write"
+              permission.can_read = false
+              permission.can_write = false
+            elsif params[:read_write_action] == "all_read"
+              permission.can_read = true
+              permission.can_write = false
+            elsif params[:read_write_action] == "all_write"
+              permission.can_read = true
+              permission.can_write = true
+            end
             permission.save
           end
         end
