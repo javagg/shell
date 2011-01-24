@@ -593,6 +593,13 @@ zh:
 
     station_contract: "加油站合同"
     purchase_contract: "采购合同"
+    order_contract: "订单合同"
+    order_contract1: "订单合同1-EN"
+    order_contract2: "订单合同2-MKT"
+    order_contract3: "订单合同3-CR"
+    order_contract4: "订单合同4-开业小组"
+    order_contract6: "订单合同6-IT设备"
+    framework_contract: "框架合同"
 
     cannot_be_less_than_start_date:  "不能小于开始日期"
     cannot_be_less_than_first_payment_date: "不能小于首次支付日期"

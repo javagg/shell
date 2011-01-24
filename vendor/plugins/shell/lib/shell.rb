@@ -23,7 +23,12 @@ module Shell
     end
 
     def self.contract_type_options
-      [ I18n.t('txt.station_contract'), I18n.t('txt.purchase_contract') ].map(&:to_sym)
+      [ I18n.t('txt.station_contract'), I18n.t('txt.purchase_contract'),
+        I18n.t('txt.order_contract'), I18n.t('txt.order_contract1'),
+        I18n.t('txt.order_contract2'), I18n.t('txt.order_contract3'),
+        I18n.t('txt.order_contract4'), I18n.t('txt.order_contract6'),
+        I18n.t('txt.framework_contract')
+      ].map(&:to_sym)
     end
     
     def self.trading_mode_options
