@@ -40,4 +40,5 @@ Rails::Initializer.run do |config|
   config.gem "shoulda", :lib => 'shoulda'
   config.time_zone = 'UTC'
   config.action_controller.session_store = :active_record_store
+  config.active_record.colorize_logging = false
 end
