@@ -1,4 +1,7 @@
 class AuditsController < ApplicationController
+  before_filter :require_user
+  filter_access_to :all
+  
   active_scaffold :audits do |config|
     config.columns = [ :created_at, :user, :action, :auditable, :changes]
     config.actions.exclude :create

@@ -29,6 +29,7 @@ end
 
 
 
+
 # == Schema Information
 #
 # Table name: licenses
@@ -37,7 +38,7 @@ end
 #  number                 :string(255)
 #  name                   :string(255)
 #  description            :text
-#  t5code                 :integer(4)
+#  t5code                 :string(255)
 #  area                   :string(255)
 #  station_name           :string(255)
 #  issuing_authority      :string(255)
