@@ -52,7 +52,6 @@ doc\:plugins\:authlogic=Generate documentation for the authlogic plugin
 doc\:plugins\:auto_complete=Generate documentation for the auto_complete plugin
 doc\:plugins\:calendar_date_select=Generate documentation for the calendar_date_select plugin
 doc\:plugins\:declarative_authorization=Generate documentation for the declarative_authorization plugin
-doc\:plugins\:has_many_polymorphs=Generate documentation for the has_many_polymorphs plugin
 doc\:plugins\:in_place_editing=Generate documentation for the in_place_editing plugin
 doc\:plugins\:irs_process_scripts=Generate documentation for the irs_process_scripts plugin
 doc\:plugins\:paperclip=Generate documentation for the paperclip plugin
