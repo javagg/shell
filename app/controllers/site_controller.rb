@@ -1,4 +1,5 @@
 class SiteController < ApplicationController
+  before_filter :require_user, :only => [:download]
   def index
   end
 
