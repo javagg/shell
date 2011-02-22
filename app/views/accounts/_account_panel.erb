@@ -3,7 +3,7 @@
     <tbody>
       <tr>
         <td style="text-align:right;width:100px"><%= f.label :username %></td>
-        <td style="text-align:left"><%= f.text_field :username, :class => 'txt_field', :disabled => is_edit %></td>
+        <td style="text-align:left"><%= f.text_field :username, :class => 'txt_field', :disabled => edit_mode %></td>
       </tr>
       <tr>
         <td style="text-align:right;width:100px"><%= f.label :password %></td>

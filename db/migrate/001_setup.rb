@@ -13,6 +13,7 @@ class Setup < ActiveRecord::Migration
       t.string :email, :null => false
       t.string :crypted_password, :null => false
       t.string :salt, :null => false
+      t.boolean :public, :default => false, :null => false
       t.boolean :active, :default => false, :null => false
       t.string :persistence_token, :null => false
       t.string :single_access_token, :null => false

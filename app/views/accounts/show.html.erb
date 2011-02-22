@@ -54,7 +54,9 @@
         </tr>
         <tr>
           <td></td><td style="text-align:left">
+            <% if !@user.public %>
             <%= link_to t('general.edit'), edit_account_path(@user.id) %>
+            <% end %>
           </td>
         </tr>
       </tbody>

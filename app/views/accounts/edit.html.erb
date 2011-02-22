@@ -1,7 +1,7 @@
 <h1><%= I18n.t 'txt.edit_your_account_details' %></h1>
 <% form_for @user, :url => account_path do |f| %>
   <%= f.error_messages %>
-  <%= render :partial => "account_panel", :locals => { :f  => f, :is_edit => true } %>
+  <%= render :partial => "account_panel", :locals => { :f  => f, :edit_mode => true } %>
   <%= f.submit t 'general.update' %>
 <% end %>
 
