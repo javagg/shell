@@ -22,7 +22,7 @@ class Emailer < ActionMailer::Base
     from         AppConfig['app_email']
     content_type "text/html"
     sent_on      Time.now
-    body         :edit_password_reset_url => edit_password_reset_url(recipient.perishable_token)
+    body         :edit_password_reset_url => edit_password_reset_url(recipient.perishable_token), :user => recipient
   end
 
   def expiration_reminding expirable, remindee
