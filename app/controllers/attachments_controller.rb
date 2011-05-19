@@ -17,7 +17,8 @@ class AttachmentsController < ApplicationController
   def download
     head(:not_found) and return if (attachment = Attachment.find(params[:id])).nil?
     head(:forbidden) and return unless download_authorized?
-    send_file_options = { :type => attachment.data_content_type }
+    filename = File.basename(Iconv.iconv("gb2312", "utf-8", attachment.data.path)[0])
+    send_file_options = { :type => attachment.data_content_type, :filename => filename }
     send_file(attachment.data.path, send_file_options)
   end
 
