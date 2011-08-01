@@ -1,0 +1,75 @@
+--- !ruby/object:Gem::Specification 
+name: net-ssh
+version: !ruby/object:Gem::Version 
+  hash: 3
+  prerelease: 
+  segments: 
+  - 2
+  - 1
+  - 4
+  version: 2.1.4
+platform: ruby
+authors: 
+- Jamis Buck
+- Delano Mandelbaum
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2011-04-03 00:00:00 Z
+dependencies: []
+
+description: "Net::SSH: a pure-Ruby implementation of the SSH2 client protocol."
+email: 
+- net-ssh@solutious.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README.rdoc
+- THANKS.rdoc
+- CHANGELOG.rdoc
+files: 
+- README.rdoc
+- THANKS.rdoc
+- CHANGELOG.rdoc
+homepage: http://github.com/net-ssh/net-ssh
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --line-numbers
+- --title
+- "Net::SSH: a pure-Ruby implementation of the SSH2 client protocol."
+- --main
+- README.rdoc
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: net-ssh
+rubygems_version: 1.8.6
+signing_key: 
+specification_version: 3
+summary: "Net::SSH: a pure-Ruby implementation of the SSH2 client protocol."
+test_files: []
+

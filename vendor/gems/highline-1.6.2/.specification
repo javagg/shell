@@ -1,0 +1,81 @@
+--- !ruby/object:Gem::Specification 
+name: highline
+version: !ruby/object:Gem::Version 
+  hash: 11
+  prerelease: 
+  segments: 
+  - 1
+  - 6
+  - 2
+  version: 1.6.2
+platform: ruby
+authors: 
+- James Edward Gray II
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2011-05-13 00:00:00 Z
+dependencies: []
+
+description: |
+  A high-level IO library that provides validation, type conversion, and more for
+  command-line interfaces. HighLine also includes a complete menu system that can
+  crank out anything from simple list selection to complete shells with just
+  minutes of work.
+
+email: james@grayproductions.net
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- README
+- INSTALL
+- TODO
+- CHANGELOG
+- LICENSE
+files: 
+- README
+- INSTALL
+- TODO
+- CHANGELOG
+- LICENSE
+homepage: http://highline.rubyforge.org
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --title
+- HighLine Documentation
+- --main
+- README
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: highline
+rubygems_version: 1.8.6
+signing_key: 
+specification_version: 3
+summary: HighLine is a high-level command-line IO library.
+test_files: []
+

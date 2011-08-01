@@ -1,0 +1,112 @@
+--- !ruby/object:Gem::Specification 
+name: spreadsheet
+version: !ruby/object:Gem::Version 
+  hash: 101
+  prerelease: 
+  segments: 
+  - 0
+  - 6
+  - 5
+  - 7
+  version: 0.6.5.7
+platform: ruby
+authors: 
+- Masaomi Hatakeyama, Zeno R.R. Davatz
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2011-07-20 00:00:00 Z
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: ruby-ole
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 15
+        segments: 
+        - 1
+        - 0
+        version: "1.0"
+  type: :runtime
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: hoe
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 41
+        segments: 
+        - 2
+        - 9
+        - 1
+        version: 2.9.1
+  type: :development
+  version_requirements: *id002
+description: |-
+  The Spreadsheet Library is designed to read and write Spreadsheet Documents.
+  As of version 0.6.0, only Microsoft Excel compatible spreadsheets are
+  supported. Spreadsheet is a combination/complete rewrite of the
+  Spreadsheet::Excel Library by Daniel J. Berger and the ParseExcel Library by
+  Hannes Wyss. Spreadsheet can read, write and modify Spreadsheet Documents.
+email: 
+- mhatakeyama@ywesee.com, zdavatz@ywesee.com
+executables: 
+- xlsopcodes
+extensions: []
+
+extra_rdoc_files: 
+- GUIDE.txt
+- History.txt
+- LICENSE.txt
+- Manifest.txt
+- README.txt
+files: 
+- bin/xlsopcodes
+- GUIDE.txt
+- History.txt
+- LICENSE.txt
+- Manifest.txt
+- README.txt
+homepage: http://spreadsheet.rubyforge.org
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --main
+- README.txt
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: spreadsheet
+rubygems_version: 1.8.6
+signing_key: 
+specification_version: 3
+summary: The Spreadsheet Library is designed to read and write Spreadsheet Documents
+test_files: []
+

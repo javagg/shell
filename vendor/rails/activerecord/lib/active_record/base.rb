@@ -610,8 +610,6 @@ module ActiveRecord #:nodoc:
       #   end
       def find(*args)
         options = args.extract_options!
-
-      #  puts "find: options: #{options}"
         validate_find_options(options)
         set_readonly_option!(options)
 
@@ -1288,7 +1286,7 @@ module ActiveRecord #:nodoc:
 
       # Turns the +table_name+ back into a class name following the reverse rules of +table_name+.
       def class_name(table_name = table_name) # :nodoc:
-        ActiveSupport::Deprecation.warn("ActiveRecord::Base#class_name is deprecated and will be removed in Rails 2.3.9.", caller)
+        ActiveSupport::Deprecation.warn("ActiveRecord::Base#class_name is deprecated and will be removed in Rails 3.", caller)
 
         # remove any prefix and/or suffix from the table name
         class_name = table_name[table_name_prefix.length..-(table_name_suffix.length + 1)].camelize
@@ -1576,7 +1574,6 @@ module ActiveRecord #:nodoc:
         end
 
         def find_every(options)
-    #      puts "find_every: #{options}"
           include_associations = merge_includes(scope(:find, :include), options[:include])
 
           if include_associations.any? && references_eager_loaded_tables?(options)
@@ -1727,7 +1724,6 @@ module ActiveRecord #:nodoc:
           add_order!(sql, options[:order], scope)
           add_limit!(sql, options, scope)
           add_lock!(sql, options, scope)
-
 
           sql
         end
@@ -2443,7 +2439,7 @@ module ActiveRecord #:nodoc:
         end
 
         VALID_FIND_OPTIONS = [ :conditions, :include, :joins, :limit, :offset,
-                               :order, :select, :readonly, :group, :having, :from, :lock, :scope_sql ]
+                               :order, :select, :readonly, :group, :having, :from, :lock ]
 
         def validate_find_options(options) #:nodoc:
           options.assert_valid_keys(VALID_FIND_OPTIONS)

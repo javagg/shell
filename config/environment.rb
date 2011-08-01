@@ -1,44 +1,25 @@
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.3.10' unless defined? RAILS_GEM_VERSION
+#RAILS_GEM_VERSION = '2.3.12' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+RAILS_DEFAULT_LOGGER = Logger.new("#{RAILS_ROOT}/log/#{RAILS_ENV}.log", "daily")
+Rails::Initializer.run do |config|
+  config.gem "shoulda", :version => '2.11.3'
+  config.gem "app_config", :version => '0.7.1'
+  config.gem "spreadsheet", :version => "0.6.5.7"
+  #config.gem "passenger", :version => "3.0.7"
+  config.gem "capistrano", :version => "2.6.0"
+  config.gem "mysql", :version => "2.8.1"
+  
+  config.time_zone = 'UTC'
+  config.action_controller.session_store = :active_record_store
+  config.active_record.colorize_logging = false
+end
 
 require 'app_config'
-
 AppConfig.setup do |app_config|
   app_config[:storage_method] = :yaml
   app_config[:env] = "#{RAILS_ENV}"
   app_config[:path] = "#{RAILS_ROOT}/config/app_config.yml"
-end
-
-RAILS_DEFAULT_LOGGER = Logger.new("#{RAILS_ROOT}/log/#{RAILS_ENV}.log", "daily")
-
-Rails::Initializer.run do |config|
-
-  # Settings in config/environments/* take precedence over those specified here.
-  # Application configuration should go into files in config/initializers
-  # -- all .rb files in that directory are automatically loaded.
-
-  # Add additional load paths for your own custom dirs
-  # config.autoload_paths += %W( #{RAILS_ROOT}/extras )
-
-  # Only load the plugins named here, in the order given (default is alphabetical).
-  # :all can be used as a placeholder for all plugins not explicitly named
-  # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
-
-  # Skip frameworks you're not going to use. To use Rails without a database,
-  # you must remove the Active Record framework.
-  # config.frameworks -= [ :active_record, :active_resource, :action_mailer ]
-
-  # Activate observers that should always be running
-  # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-
-  # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-  # Run "rake -D time" for a
-  # list of tasks for finding time zone names.
-  config.gem "shoulda", :lib => 'shoulda'
-  config.time_zone = 'UTC'
-  config.action_controller.session_store = :active_record_store
-  config.active_record.colorize_logging = false
 end

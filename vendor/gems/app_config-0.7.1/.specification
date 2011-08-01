@@ -1,0 +1,124 @@
+--- !ruby/object:Gem::Specification 
+name: app_config
+version: !ruby/object:Gem::Version 
+  hash: 1
+  prerelease: 
+  segments: 
+  - 0
+  - 7
+  - 1
+  version: 0.7.1
+platform: ruby
+authors: 
+- Dale Campbell
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2011-05-22 00:00:00 Z
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: bson_ext
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: mongo
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id002
+- !ruby/object:Gem::Dependency 
+  name: rspec
+  prerelease: false
+  requirement: &id003 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 23
+        segments: 
+        - 2
+        - 6
+        - 0
+        version: 2.6.0
+  type: :development
+  version_requirements: *id003
+- !ruby/object:Gem::Dependency 
+  name: sqlite3
+  prerelease: false
+  requirement: &id004 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :development
+  version_requirements: *id004
+description: An easy to use, customizable library to easily store and retrieve application configuration.
+email: 
+- oshuma@gmail.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: []
+
+files: []
+
+homepage: http://oshuma.github.com/app_config
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --inline-source
+- --charset=UTF-8
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: 
+rubygems_version: 1.8.6
+signing_key: 
+specification_version: 3
+summary: Quick and easy application configuration.
+test_files: []
+

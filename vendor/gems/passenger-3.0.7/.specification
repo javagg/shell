@@ -1,0 +1,146 @@
+--- !ruby/object:Gem::Specification 
+name: passenger
+version: !ruby/object:Gem::Version 
+  hash: 9
+  prerelease: 
+  segments: 
+  - 3
+  - 0
+  - 7
+  version: 3.0.7
+platform: ruby
+authors: 
+- Phusion - http://www.phusion.nl/
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2011-04-14 00:00:00 Z
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: rake
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 61
+        segments: 
+        - 0
+        - 8
+        - 1
+        version: 0.8.1
+  type: :runtime
+  version_requirements: *id001
+- !ruby/object:Gem::Dependency 
+  name: fastthread
+  prerelease: false
+  requirement: &id002 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 21
+        segments: 
+        - 1
+        - 0
+        - 1
+        version: 1.0.1
+  type: :runtime
+  version_requirements: *id002
+- !ruby/object:Gem::Dependency 
+  name: daemon_controller
+  prerelease: false
+  requirement: &id003 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 29
+        segments: 
+        - 0
+        - 2
+        - 5
+        version: 0.2.5
+  type: :runtime
+  version_requirements: *id003
+- !ruby/object:Gem::Dependency 
+  name: rack
+  prerelease: false
+  requirement: &id004 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 3
+        segments: 
+        - 0
+        version: "0"
+  type: :runtime
+  version_requirements: *id004
+description: Easy and robust Ruby web application deployment.
+email: info@phusion.nl
+executables: 
+- passenger
+- passenger-install-apache2-module
+- passenger-install-nginx-module
+- passenger-config
+- passenger-status
+- passenger-memory-stats
+- passenger-make-enterprisey
+extensions: []
+
+extra_rdoc_files: 
+- README
+files: 
+- bin/passenger
+- bin/passenger-install-apache2-module
+- bin/passenger-install-nginx-module
+- bin/passenger-config
+- bin/passenger-status
+- bin/passenger-memory-stats
+- bin/passenger-make-enterprisey
+- README
+homepage: http://www.modrails.com/
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- -S
+- -N
+- -p
+- -H
+- --main
+- README
+- --title
+- Passenger Ruby API
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: passenger
+rubygems_version: 1.8.6
+signing_key: 
+specification_version: 3
+summary: Easy and robust Ruby web application deployment
+test_files: []
+

@@ -1,0 +1,74 @@
+--- !ruby/object:Gem::Specification 
+name: ruby-ole
+version: !ruby/object:Gem::Version 
+  hash: 97
+  prerelease: 
+  segments: 
+  - 1
+  - 2
+  - 11
+  - 1
+  version: 1.2.11.1
+platform: ruby
+authors: 
+- Charles Lowe
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-10-24 00:00:00 Z
+dependencies: []
+
+description: A library for easy read/write access to OLE compound documents for Ruby.
+email: aquasync@gmail.com
+executables: 
+- oletool
+extensions: []
+
+extra_rdoc_files: 
+- README
+- ChangeLog
+files: 
+- bin/oletool
+- README
+- ChangeLog
+homepage: http://code.google.com/p/ruby-ole
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --main
+- README
+- --title
+- ruby-ole documentation
+- --tab-width
+- "2"
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+requirements: []
+
+rubyforge_project: ruby-ole
+rubygems_version: 1.8.6
+signing_key: 
+specification_version: 3
+summary: Ruby OLE library.
+test_files: []
+

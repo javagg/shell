@@ -1,0 +1,103 @@
+--- !ruby/object:Gem::Specification 
+name: net-scp
+version: !ruby/object:Gem::Version 
+  hash: 31
+  prerelease: 
+  segments: 
+  - 1
+  - 0
+  - 4
+  version: 1.0.4
+platform: ruby
+authors: 
+- Jamis Buck
+- Delano Mandelbaum
+autorequire: 
+bindir: bin
+cert_chain: []
+
+date: 2010-08-17 00:00:00 Z
+dependencies: 
+- !ruby/object:Gem::Dependency 
+  name: net-ssh
+  prerelease: false
+  requirement: &id001 !ruby/object:Gem::Requirement 
+    none: false
+    requirements: 
+    - - ">="
+      - !ruby/object:Gem::Version 
+        hash: 409
+        segments: 
+        - 1
+        - 99
+        - 1
+        version: 1.99.1
+  type: :runtime
+  version_requirements: *id001
+description: A pure Ruby implementation of the SCP client protocol
+email: net-scp@solutious.com
+executables: []
+
+extensions: []
+
+extra_rdoc_files: 
+- CHANGELOG.rdoc
+- lib/net/scp/download.rb
+- lib/net/scp/errors.rb
+- lib/net/scp/upload.rb
+- lib/net/scp/version.rb
+- lib/net/scp.rb
+- lib/uri/open-scp.rb
+- lib/uri/scp.rb
+- README.rdoc
+files: 
+- CHANGELOG.rdoc
+- lib/net/scp/download.rb
+- lib/net/scp/errors.rb
+- lib/net/scp/upload.rb
+- lib/net/scp/version.rb
+- lib/net/scp.rb
+- lib/uri/open-scp.rb
+- lib/uri/scp.rb
+- README.rdoc
+homepage: http://net-ssh.rubyforge.org/scp
+licenses: []
+
+post_install_message: 
+rdoc_options: 
+- --line-numbers
+- --inline-source
+- --title
+- Net-scp
+- --main
+- README.rdoc
+require_paths: 
+- lib
+required_ruby_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 3
+      segments: 
+      - 0
+      version: "0"
+required_rubygems_version: !ruby/object:Gem::Requirement 
+  none: false
+  requirements: 
+  - - ">="
+    - !ruby/object:Gem::Version 
+      hash: 11
+      segments: 
+      - 1
+      - 2
+      version: "1.2"
+requirements: []
+
+rubyforge_project: net-ssh
+rubygems_version: 1.8.6
+signing_key: 
+specification_version: 3
+summary: A pure Ruby implementation of the SCP client protocol
+test_files: []
+
