@@ -108,6 +108,7 @@ class UserTest < ActiveSupport::TestCase
   end
 end
 
+
 # == Schema Information
 #
 # Table name: users
@@ -117,6 +118,7 @@ end
 #  email               :string(255)     not null
 #  crypted_password    :string(255)     not null
 #  salt                :string(255)     not null
+#  public              :boolean(1)      default(FALSE), not null
 #  active              :boolean(1)      default(FALSE), not null
 #  persistence_token   :string(255)     not null
 #  single_access_token :string(255)     not null

@@ -3,6 +3,7 @@
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
+
 RAILS_DEFAULT_LOGGER = Logger.new("#{RAILS_ROOT}/log/#{RAILS_ENV}.log", "daily")
 Rails::Initializer.run do |config|
   config.gem "shoulda", :version => '2.11.3'
@@ -23,3 +24,17 @@ AppConfig.setup do |app_config|
   app_config[:env] = "#{RAILS_ENV}"
   app_config[:path] = "#{RAILS_ROOT}/config/app_config.yml"
 end
+
+ActionMailer::Base.default_charset = "utf-8"
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.default_url_options = { :host => AppConfig['app_domain'], :port => AppConfig['app_port'] }
+ActionMailer::Base.smtp_settings = {
+  :address => AppConfig['smtp_address'],
+  :port => AppConfig['smtp_port'],
+  :domain => AppConfig['smtp_domain'],
+  :authentication =>  :login,
+  :user_name =>  AppConfig['smtp_user_name'],
+  :password => AppConfig['smtp_password']
+}
+
+puts AppConfig['app_domain']

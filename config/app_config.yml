@@ -5,7 +5,7 @@ defaults: &defaults
   app_port: "80"
   smtp_address: "smtp.ycshell.com"
   smtp_port: 25
-  smtp_domain: "ycshell.com"
+  smtp_domain: "smtp.ycshell.com"
   smtp_user_name: "redstar_wjxt"
   smtp_password: "Pass123"
 
