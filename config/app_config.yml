@@ -3,7 +3,7 @@ defaults: &defaults
   app_domain: "www.ycshell.com"
   app_email: "redstar_wjxt@ycshell.com"
   app_port: "80"
-  smtp_address: "smtp.ycshell.com1"
+  smtp_address: "smtp.ycshell.com"
   smtp_port: 25
   smtp_domain: "ycshell.com"
   smtp_user_name: "redstar_wjxt"
