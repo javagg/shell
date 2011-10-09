@@ -37,4 +37,7 @@ ActionMailer::Base.smtp_settings = {
   :password => AppConfig['smtp_password']
 }
 
-puts AppConfig['app_domain']
+ActionMailer::Base.sendmail_settings =  {
+  :location       => '/usr/sbin/sendmail',
+  :arguments      => '-i -t'
+}
