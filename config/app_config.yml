@@ -1,13 +1,13 @@
 defaults: &defaults
   admin_email: "yinan.wu@ycshell.com"
   app_domain: "www.ycshell.com"
-  app_email: "redstar_wjxt@ycshell.com"
+  app_email: "forshell12345@sohu.com"
   app_port: "80"
-  smtp_address: "smtp.ycshell.com"
+  smtp_address: "smtp.sohu.com"
   smtp_port: 25
-  smtp_domain: "smtp.ycshell.com"
-  smtp_user_name: "redstar_wjxt"
-  smtp_password: "Pass123"
+  smtp_domain: "sohu.com"
+  smtp_user_name: "forshell12345"
+  smtp_password: "1234567"
 
 development:
   <<: *defaults

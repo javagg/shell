@@ -45,6 +45,7 @@ ActionController::Routing::Routes.draw do |map|
     site.contact 'contact', :action => 'contact'
     site.about '/about', :action => 'about'
     site.download '/download', :action => 'download'
+    site.test_email '/test_email', :action => 'test_email'
   end
 
   map.activate '/activate/:activation_code', :controller => 'activations', :action => 'create'
